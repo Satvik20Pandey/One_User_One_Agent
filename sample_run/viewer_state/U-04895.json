@@ -1,0 +1,92 @@
+{
+ "state": {
+  "user_id": "U-04895",
+  "note": "no state saved (data store unavailable at decision time)"
+ },
+ "decisions": [
+  {
+   "decision_id": "D-01665",
+   "viewer_id": "U-04895",
+   "arm": "holdout",
+   "trigger": {
+    "event": "app_open",
+    "event_id": "6600c14f-0e30-42bd-bf27-e3be4cfdb4d5",
+    "session_id": "2010e485-57c6-4600-bc03-cd6b60fcf59b",
+    "received_at": "2026-10-01T13:13:40.311Z",
+    "delivered_at": "2026-10-01T13:13:40.311Z",
+    "event_age_s": 0,
+    "live_visit": true,
+    "device_clock_trusted": true
+   },
+   "goal": null,
+   "no_goal_reason": "user_data_store unavailable; no goal chosen without the viewer's history",
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "viewer is in the randomized holdout arm",
+   "dialect": {
+    "used": "d2",
+    "source": "app_setting",
+    "conflicts": []
+   },
+   "content": [],
+   "confidence": {
+    "value": 0.3,
+    "reason": "profile row present; no event history; dialect sources agree; trigger is fresh; fallback: store_degraded"
+   },
+   "evidence": [
+    {
+     "ref": "trigger:6600c14f-0e30-42bd-bf27-e3be4cfdb4d5",
+     "source": "event",
+     "observed_at": "2026-10-01T13:13:40.311Z"
+    },
+    {
+     "ref": "profile:U-04895@2026-09-28T20:03:05.043Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:03:05.043Z"
+    },
+    {
+     "ref": "events:U-04895:play_started=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-04895:episode_completed=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-04895:count=0",
+     "source": "derived",
+     "observed_at": "2026-10-01T13:13:40.311Z"
+    }
+   ],
+   "assumptions": [
+    "user_data_store unavailable; decided from the trigger and the pack only",
+    "generic dialect page published without a goal"
+   ],
+   "conflicts": [],
+   "eligibility": null,
+   "model": {
+    "provider": null,
+    "calls": 0,
+    "used": false,
+    "rejected": null
+   },
+   "checks": {
+    "passed": [],
+    "failed": []
+   },
+   "budget": {
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 18000
+   },
+   "fallback_used": "store_degraded",
+   "decided_in_ms": 18001,
+   "published_at": "2026-10-01T13:13:58.312Z",
+   "status": "HOLDOUT_NO_ACTION"
+  }
+ ],
+ "actions": [],
+ "outcomes": []
+}

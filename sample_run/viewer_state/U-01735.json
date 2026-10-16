@@ -1,0 +1,398 @@
+{
+ "state": {
+  "user_id": "U-01735",
+  "active_goal": {
+   "instance_id": "G-00105",
+   "goal_id": "G01",
+   "name": "first_play_24h",
+   "started_at": "2026-10-01T01:45:10.763Z",
+   "deadline": "2026-10-02T01:45:10.763Z",
+   "success_signal": "play_started (any title) within 24h",
+   "rule_version": "goals.json@2026-09-30",
+   "eligibility_reason": "signed up in the last 7 days, no play_started on record",
+   "evidence": [
+    "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5",
+    "events:U-01735:play_started=0 of 2"
+   ],
+   "context": {},
+   "shadow": true,
+   "outcome": {
+    "verdict": "failed",
+    "reason": "no play_started matching 'any title' before the deadline",
+    "success_event_id": null,
+    "success_at": null,
+    "attribution": "holdout_no_action",
+    "exposure": {},
+    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+   }
+  },
+  "goal_history": [],
+  "learnings": [
+   "2026-10-02T01:45:10.763Z G01 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'any title' before the deadline"
+  ],
+  "arm": "holdout",
+  "facts": {
+   "trigger_freshness": {
+    "value": {
+     "event_age_s": 0,
+     "live_visit": true,
+     "device_clock_trusted": true
+    },
+    "source": "event",
+    "observed_at": "2026-10-01T01:45:14.308Z",
+    "evidence": [
+     "trigger:e0c8df16-ae70-478e-ab79-9aea2d5ae835"
+    ],
+    "note": ""
+   },
+   "dialect": {
+    "value": {
+     "used": "d1",
+     "source": "app_setting",
+     "conflicts": [],
+     "page_dialect": "d1",
+     "message_dialect": "d1"
+    },
+    "source": "app_setting",
+    "observed_at": "2026-10-01T01:45:14.308Z",
+    "evidence": [
+     "trigger:e0c8df16-ae70-478e-ab79-9aea2d5ae835"
+    ],
+    "note": ""
+   },
+   "app_language": {
+    "value": "hin",
+    "source": "app_setting",
+    "observed_at": "2026-10-01T01:45:14.308Z",
+    "evidence": [
+     "trigger:e0c8df16-ae70-478e-ab79-9aea2d5ae835"
+    ],
+    "note": ""
+   },
+   "signup_at": {
+    "value": "2026-10-01T01:44:59.173Z",
+    "source": "event",
+    "observed_at": "2026-10-01T01:44:59.173Z",
+    "evidence": [
+     "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5"
+    ],
+    "note": ""
+   },
+   "subscription_status": {
+    "value": "never",
+    "source": "derived",
+    "observed_at": "2026-10-01T01:45:14.308Z",
+    "evidence": [
+     "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5"
+    ],
+    "note": ""
+   },
+   "ever_paid": {
+    "value": false,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "consent_push": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": "no profile row, consent unknown"
+   },
+   "consent_whatsapp": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": "no profile row, consent unknown"
+   },
+   "plays": {
+    "value": {
+     "count": 0,
+     "first_at": null,
+     "last_at": null,
+     "days_in_last_14": [],
+     "top_genres": []
+    },
+    "source": "event",
+    "observed_at": null,
+    "evidence": [
+     "events:U-01735:play_started=0"
+    ],
+    "note": ""
+   },
+   "completions": {
+    "value": {
+     "count": 0,
+     "last_at": null
+    },
+    "source": "event",
+    "observed_at": null,
+    "evidence": [
+     "events:U-01735:episode_completed=0"
+    ],
+    "note": ""
+   },
+   "unfinished_series": {
+    "value": [],
+    "source": "event",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "last_visit_before_trigger": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": "no earlier visit on record"
+   },
+   "history_depth": {
+    "value": 3,
+    "source": "derived",
+    "observed_at": "2026-10-01T01:45:14.308Z",
+    "evidence": [
+     "events:U-01735:count=3"
+    ],
+    "note": ""
+   }
+  },
+  "conflicts": [],
+  "last_session_id": "1fd98dce-6b1c-4278-939c-defdc25a786d",
+  "decisions": [
+   "D-00124",
+   "D-00125"
+  ],
+  "actions": [],
+  "updated_at": "2026-10-01T01:45:14.309Z"
+ },
+ "decisions": [
+  {
+   "decision_id": "D-00124",
+   "viewer_id": "U-01735",
+   "arm": "holdout",
+   "trigger": {
+    "event": "login_success",
+    "event_id": "e35dd693-5a1a-4d3f-9b3c-21e4ae9e1fb7",
+    "session_id": "1fd98dce-6b1c-4278-939c-defdc25a786d",
+    "received_at": "2026-10-01T01:45:10.763Z",
+    "delivered_at": "2026-10-01T01:45:10.763Z",
+    "event_age_s": 0,
+    "live_visit": true,
+    "device_clock_trusted": true
+   },
+   "goal": {
+    "id": "G01",
+    "name": "first_play_24h",
+    "instance_id": "G-00105",
+    "started_at": "2026-10-01T01:45:10.763Z",
+    "deadline": "2026-10-02T01:45:10.763Z",
+    "success_signal": "play_started (any title) within 24h",
+    "rule_version": "goals.json@2026-09-30",
+    "committed_now": true,
+    "shadow": true
+   },
+   "no_goal_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "goal G01 chosen but app dialect unknown, cannot know which page the app would request; no consented message channel",
+   "dialect": {
+    "used": null,
+    "source": "none",
+    "conflicts": []
+   },
+   "content": [],
+   "confidence": {
+    "value": 0.5,
+    "reason": "no profile row; only 2 events of history; dialect sources agree; trigger is fresh"
+   },
+   "evidence": [
+    {
+     "ref": "trigger:e35dd693-5a1a-4d3f-9b3c-21e4ae9e1fb7",
+     "source": "event",
+     "observed_at": "2026-10-01T01:45:10.763Z"
+    },
+    {
+     "ref": "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5",
+     "source": "event",
+     "observed_at": "2026-10-01T01:44:59.173Z"
+    },
+    {
+     "ref": "events:U-01735:play_started=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-01735:episode_completed=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-01735:count=2",
+     "source": "derived",
+     "observed_at": "2026-10-01T01:45:10.763Z"
+    }
+   ],
+   "assumptions": [
+    "no profile row; status 'never' inferred from signup_completed with no purchase"
+   ],
+   "conflicts": [],
+   "eligibility": {
+    "goal": "G01",
+    "reason": "signed up in the last 7 days, no play_started on record",
+    "evidence": [
+     "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5",
+     "events:U-01735:play_started=0 of 2"
+    ]
+   },
+   "model": {
+    "provider": null,
+    "calls": 0,
+    "used": false,
+    "rejected": null
+   },
+   "checks": {
+    "passed": [],
+    "failed": []
+   },
+   "budget": {
+    "model_calls": 0,
+    "tool_calls": 7,
+    "simulated_wait_ms": 0
+   },
+   "fallback_used": null,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T01:45:10.763Z",
+   "status": "HOLDOUT_NO_ACTION"
+  },
+  {
+   "decision_id": "D-00125",
+   "viewer_id": "U-01735",
+   "arm": "holdout",
+   "trigger": {
+    "event": "app_open",
+    "event_id": "e0c8df16-ae70-478e-ab79-9aea2d5ae835",
+    "session_id": "1fd98dce-6b1c-4278-939c-defdc25a786d",
+    "received_at": "2026-10-01T01:45:14.308Z",
+    "delivered_at": "2026-10-01T01:45:14.308Z",
+    "event_age_s": 0,
+    "live_visit": true,
+    "device_clock_trusted": true
+   },
+   "goal": {
+    "id": "G01",
+    "name": "first_play_24h",
+    "instance_id": "G-00105",
+    "started_at": "2026-10-01T01:45:10.763Z",
+    "deadline": "2026-10-02T01:45:10.763Z",
+    "success_signal": "play_started (any title) within 24h",
+    "rule_version": "goals.json@2026-09-30",
+    "committed_now": false,
+    "shadow": true
+   },
+   "no_goal_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "viewer is in the randomized holdout arm",
+   "dialect": {
+    "used": "d1",
+    "source": "app_setting",
+    "conflicts": []
+   },
+   "content": [],
+   "confidence": {
+    "value": 0.5,
+    "reason": "no profile row; only 3 events of history; dialect sources agree; trigger is fresh"
+   },
+   "evidence": [
+    {
+     "ref": "trigger:e0c8df16-ae70-478e-ab79-9aea2d5ae835",
+     "source": "event",
+     "observed_at": "2026-10-01T01:45:14.308Z"
+    },
+    {
+     "ref": "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5",
+     "source": "event",
+     "observed_at": "2026-10-01T01:44:59.173Z"
+    },
+    {
+     "ref": "events:U-01735:play_started=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-01735:episode_completed=0",
+     "source": "event",
+     "observed_at": null
+    },
+    {
+     "ref": "events:U-01735:count=3",
+     "source": "derived",
+     "observed_at": "2026-10-01T01:45:14.308Z"
+    }
+   ],
+   "assumptions": [
+    "no profile row; status 'never' inferred from signup_completed with no purchase"
+   ],
+   "conflicts": [],
+   "eligibility": {
+    "goal": "G01",
+    "reason": "signed up in the last 7 days, no play_started on record",
+    "evidence": [
+     "event:f92b86e0-5b89-468f-b5de-2791f3c26ce5",
+     "events:U-01735:play_started=0 of 3"
+    ]
+   },
+   "model": {
+    "provider": null,
+    "calls": 0,
+    "used": false,
+    "rejected": null
+   },
+   "checks": {
+    "passed": [],
+    "failed": []
+   },
+   "budget": {
+    "model_calls": 0,
+    "tool_calls": 7,
+    "simulated_wait_ms": 0
+   },
+   "fallback_used": null,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T01:45:14.309Z",
+   "status": "HOLDOUT_NO_ACTION"
+  }
+ ],
+ "actions": [],
+ "outcomes": [
+  {
+   "user_id": "U-01735",
+   "arm": "holdout",
+   "goal_instance_id": "G-00105",
+   "goal_id": "G01",
+   "goal_name": "first_play_24h",
+   "started_at": "2026-10-01T01:45:10.763Z",
+   "deadline": "2026-10-02T01:45:10.763Z",
+   "rule_version_at_commit": "goals.json@2026-09-30",
+   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "closed_early": null,
+   "verdict": "failed",
+   "reason": "no play_started matching 'any title' before the deadline",
+   "success_event_id": null,
+   "success_at": null,
+   "attribution": "holdout_no_action",
+   "exposure": {},
+   "actions": []
+  }
+ ]
+}

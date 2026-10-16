@@ -1,0 +1,138 @@
+{
+  "triggers": 2769,
+  "viewers": 1746,
+  "decisions_by_status": {
+    "PUBLISHED": 909,
+    "HOLDOUT_NO_ACTION": 1325,
+    "NO_ACTION": 445,
+    "DUPLICATE": 90
+  },
+  "actions_by_type": {
+    "home_page": 926,
+    "push": 207,
+    "whatsapp": 148
+  },
+  "goals_chosen": {
+    "G07": 786,
+    "G02": 430,
+    "G05": 77,
+    "G08": 65,
+    "G09": 19,
+    "G06": 13,
+    "G01": 110,
+    "G12": 4,
+    "G03": 1
+  },
+  "no_action_reasons": {
+    "holdout": 1030,
+    "no catalogue content": 101,
+    "buffered offline": 422,
+    "duplicate": 90,
+    "still live": 166,
+    "dialect unknown": 48,
+    "no measurable goal": 3
+  },
+  "fallbacks": {
+    "model_unavailable": 11,
+    "store_degraded": 1
+  },
+  "model": {
+    "calls": 909,
+    "advice_used": 897,
+    "advice_rejected": 1,
+    "failures": 11
+  },
+  "history_ingest": {
+    "lines": 142906,
+    "stored": 140730,
+    "duplicates_dropped": 2176
+  },
+  "unmeasurable_goals": {
+    "G10": "success condition names no event",
+    "G11": "success event 'tv_app_open' never appears in the event stream"
+  },
+  "control_events": [
+    {
+      "at": "2026-10-01T07:00:00.000Z",
+      "type": "title_withdrawn",
+      "title_id": "T0001",
+      "live_pages_republished": [
+        "A-00339",
+        "A-00340",
+        "A-00341",
+        "A-00342",
+        "A-00343",
+        "A-00344",
+        "A-00345",
+        "A-00346",
+        "A-00347",
+        "A-00348",
+        "A-00349",
+        "A-00350",
+        "A-00351",
+        "A-00352",
+        "A-00353",
+        "A-00354",
+        "A-00355",
+        "A-00356",
+        "A-00357",
+        "A-00358",
+        "A-00359",
+        "A-00360",
+        "A-00361",
+        "A-00362"
+      ],
+      "messages_cancelled": []
+    },
+    {
+      "at": "2026-10-01T08:30:00.000Z",
+      "type": "goal_rule_corrected",
+      "goal_id": "G03",
+      "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+      "open_goals_affected": 0,
+      "viewers": []
+    },
+    {
+      "at": "2026-10-01T10:35:00.000Z",
+      "type": "dependency_unavailable",
+      "dependency": "model_provider",
+      "until": "2026-10-01T10:42:00.000Z",
+      "detail": "every model call fails with HTTP 503"
+    },
+    {
+      "at": "2026-10-01T13:10:00.000Z",
+      "type": "dependency_degraded",
+      "dependency": "user_data_store",
+      "until": "2026-10-01T13:17:00.000Z",
+      "detail": "p95 read latency 8 s and 20% of reads time out"
+    }
+  ],
+  "plan_revisions_from_live_events": [
+    {
+      "at": "2026-10-01T07:37:32.152Z",
+      "user_id": "U-00649",
+      "event": "purchase_completed",
+      "note": "purchase_completed arrived at 2026-10-01T07:37:32.152Z; success signal for G05 received, goal closed for judgement"
+    },
+    {
+      "at": "2026-10-01T07:40:32.239Z",
+      "user_id": "U-04825",
+      "event": "purchase_completed",
+      "note": "purchase_completed arrived at 2026-10-01T07:40:32.239Z; success signal for G05 received, goal closed for judgement"
+    },
+    {
+      "at": "2026-10-01T12:54:22.923Z",
+      "user_id": "U-01275",
+      "event": "purchase_completed",
+      "note": "purchase_completed arrived at 2026-10-01T12:54:22.923Z; success signal for G05 received, goal closed for judgement"
+    }
+  ],
+  "latency": {
+    "p50_ms": 2,
+    "p95_ms": 4,
+    "max_ms": 18001,
+    "within_budget": 2769,
+    "late": 0,
+    "failed": 0
+  }
+}

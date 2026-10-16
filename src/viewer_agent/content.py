@@ -1,0 +1,199 @@
+"""Builds the content of an action from the catalogue, in the dialect the viewer's app will actually show.
+
+Nothing here reads descriptions or free text. Titles are picked by dialect, availability, popularity and genre.
+"""
+from __future__ import annotations
+
+from collections import Counter
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta
+
+from .config import Settings
+from .facts import ViewerFacts
+from .pack import Pack, Title
+from .times import next_send_slot
+
+MIN_ROW, MAX_ROW, MAX_ROWS = 3, 10, 6
+MONEY_GOALS = {"G04", "G05", "G06"}
+PUSH_TITLE_MAX, PUSH_BODY_MAX = 40, 120
+
+
+@dataclass
+class Row:
+    row_type: str
+    title_ids: list[str]
+
+
+@dataclass
+class PageDraft:
+    dialect: str
+    hero_title_id: str | None
+    rows: list[Row]
+    candidate_ids: list[str] = field(default_factory=list)
+
+    def title_ids(self) -> list[str]:
+        ids = [t for r in self.rows for t in r.title_ids]
+        return ([self.hero_title_id] if self.hero_title_id else []) + ids
+
+
+@dataclass
+class MessageDraft:
+    channel: str  # push | whatsapp
+    dialect: str
+    title_id: str
+    send_at: datetime
+    template_id: str | None = None
+    variables: dict | None = None
+    text: dict | None = None  # {"title", "body"} for push
+    deeplink: str | None = None
+    hook: str = ""
+
+
+def _rank(titles: list[Title], pack: Pack, premium_first: bool = False) -> list[Title]:
+    """Most played first, newer first on ties. Money goals put premium titles ahead."""
+    def key(t: Title):
+        return (0 if premium_first and t.is_premium else 1, -pack.popularity.get(t.title_id, 0), -t.release_date.toordinal())
+    return sorted(titles, key=key)
+
+
+def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings) -> PageDraft | None:
+    dialect = (facts.value("dialect") or {}).get("page_dialect")
+    if not dialect:
+        return None
+    pool = pack.dialect_titles(dialect, now, facts.value("app_language"))
+    if len(pool) < MIN_ROW:
+        return None
+    premium_first = goal_id in MONEY_GOALS
+    ranked = _rank(pool, pack, premium_first)
+    played_slugs = {s["slug"] for s in facts.value("unfinished_series") or []}
+    top_genres = (facts.value("plays") or {}).get("top_genres") or []
+    recent_cutoff = (now - timedelta(days=30)).date()
+
+    # hero: the campaign title if it is in this dialect, else the strongest title for the goal
+    link = facts.value("campaign_deeplink") or {}
+    hero = None
+    campaign_title = pack.title(link.get("title_id"))
+    if campaign_title and campaign_title.dialect == dialect and campaign_title.available_at(now):
+        hero = campaign_title
+    unfinished = [s for s in facts.value("unfinished_series") or []
+                  if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect
+                  and pack.title(s["title_id"]).available_at(now)]
+    if hero is None and goal_id == "G07" and unfinished:
+        hero = pack.title(unfinished[0]["title_id"])
+    if hero is None:
+        hero = ranked[0]
+
+    used = {hero.slug}
+
+    def take(candidates: list[Title]) -> list[str]:
+        ids = []
+        for t in candidates:
+            if t.slug in used or not t.available_at(now):
+                continue
+            used.add(t.slug)
+            ids.append(t.title_id)
+            if len(ids) == MAX_ROW:
+                break
+        return ids
+
+    def popular():
+        return Row("popular_in_dialect", take(ranked))
+
+    def new_releases():
+        return Row("new_releases", take([t for t in ranked if t.release_date >= recent_cutoff]))
+
+    def because_you_watched():
+        if not top_genres:
+            return Row("because_you_watched", [])
+        return Row("because_you_watched", take([t for t in ranked if top_genres[0] in t.genres]))
+
+    def genre_row():
+        counts = Counter(g for t in ranked for g in t.genres)
+        for g, _ in counts.most_common():
+            if g not in top_genres[:1]:
+                ids = take([t for t in ranked if g in t.genres])
+                if ids:
+                    return Row("genre", ids)
+        return Row("genre", [])
+
+    def next_episode():
+        first = [pack.title(s["title_id"]) for s in unfinished]
+        shows = [t for t in ranked if t.content_type != "film" and t.slug not in played_slugs]
+        return Row("next_episode", take(first + shows))
+
+    if goal_id == "G07":
+        builders = [next_episode, because_you_watched, popular, new_releases]
+    elif goal_id == "G08":
+        builders = [new_releases, popular, because_you_watched, genre_row]
+    elif goal_id in ("G09", "G12"):
+        builders = [because_you_watched, popular, new_releases, genre_row]
+    else:  # G01, G02, G03 and the money goals
+        builders = [popular, new_releases, because_you_watched, genre_row]
+
+    rows = [r for r in (b() for b in builders) if len(r.title_ids) >= MIN_ROW][:MAX_ROWS]
+    if not rows:
+        return None
+    return PageDraft(dialect, hero.title_id, rows, candidate_ids=[t.title_id for t in ranked])
+
+
+def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings) -> MessageDraft | None:
+    """A message only when the goal has a concrete content hook. Channel: WhatsApp if opted in, else push."""
+    dialect = (facts.value("dialect") or {}).get("message_dialect")
+    if not dialect:
+        return None
+    if facts.value("consent_whatsapp") is True:
+        channel = "whatsapp"
+    elif facts.value("consent_push") is True:
+        channel = "push"
+    else:
+        return None
+    send_at = next_send_slot(now, settings.message_send_hour_ist)
+    pool = pack.dialect_titles(dialect, send_at, facts.value("app_language"))
+    if not pool:
+        return None
+
+    if goal_id == "G07":
+        series = [s for s in facts.value("unfinished_series") or []
+                  if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect]
+        if not series:
+            return None
+        s = series[0]
+        t = pack.title(s["title_id"])
+        if not t.available_at(send_at):
+            return None
+        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="unfinished series")
+        if channel == "whatsapp":
+            msg.template_id, msg.variables = "wa_new_episode_v2", {"title_name": t.name, "episode_number": str(s["next_episode_number"])}
+        else:
+            msg.text = _push_copy(f"Continue {t.name}", f"Episode {s['next_episode_number']} of {t.name} is waiting for you.")
+            msg.deeplink = f"ott://title/{t.title_id}"
+        return msg
+
+    if goal_id == "G08":
+        recent = [t for t in _rank(pool, pack) if t.release_date >= (now - timedelta(days=30)).date()]
+        if not recent:
+            return None
+        t = recent[0]
+        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="new release")
+        if channel == "whatsapp":
+            msg.template_id, msg.variables = "wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()}
+        else:
+            msg.text = _push_copy(f"New in {dialect.upper()}: {t.name}", f"{t.name} just released. Start watching now.")
+            msg.deeplink = f"ott://title/{t.title_id}"
+        return msg
+
+    if goal_id == "G04":
+        price = pack.plan_price("P_MONTH")
+        t = _rank(pool, pack, premium_first=True)[0]
+        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="trial ending")
+        if channel == "whatsapp":
+            msg.template_id, msg.variables = "wa_trial_ending_v1", {"plan_price": f"Rs {price}"}
+        else:
+            msg.text = _push_copy("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}.")
+            msg.deeplink = f"ott://title/{t.title_id}"
+        return msg
+    return None
+
+
+def _push_copy(title: str, body: str) -> dict:
+    return {"title": title[:PUSH_TITLE_MAX], "body": body[:PUSH_BODY_MAX]}
