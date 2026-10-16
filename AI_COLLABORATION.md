@@ -18,8 +18,8 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 42 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
-  failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge and the CLI.
+- 43 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+  failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the demo.
 - Reports are generated from program output. I did not type a number into a document.
 
 ## What I rejected or changed
@@ -40,6 +40,12 @@ file records what they did, how I checked their output, and what I rejected.
   timed-out read costs 8 s and a slow successful one 2 s.
 - **Anthropic as the live provider.** I had chosen it first; I switched to an OpenAI-compatible adapter so one
   adapter covers OpenRouter, Groq and OpenAI, and kept mock mode as the only thing evaluators need.
+- **A separate frontend for the demo.** ChatGPT suggested a demo and named Streamlit or React. I built one
+  static HTML file generated from the run's outputs instead: no new dependency, no server, nothing sent anywhere,
+  and no second copy of the decision logic in JavaScript.
+- **Report counts that did not reconcile.** A review noticed 1,505 judged goals but 1,503 viewers in the impact
+  table. Tracing the records showed two holdout viewers with a second goal after the first closed early. The
+  reports now state both counting units instead of leaving the reader to guess.
 - **ChatGPT's suggestion to drop SQLite for JSON files.** Rejected: idempotency by `event_id` and "find every open
   G03 goal" at the rule correction need an index, and three small tables are easier to explain than a hand-rolled
   one.
@@ -50,4 +56,7 @@ A multi-file shell command Claude wrote to create test fixtures failed on the sh
 fixtures as plain files. The first judge export skipped the one viewer decided while the store was unavailable;
 it now exports viewers from the decision log as well. The `run-all` command, the one evaluators will use, read a
 flag that only `replay` defines and crashed on first use; a CLI test now drives every command. The judge crashed
-on an empty outcome stream. All of these were caught by running the code, not by reading it.
+on an empty outcome stream. Building the demo page exposed a real agent bug: for "resume a series" goals the page
+hero and the message promoted the most recently played series, not the one the goal was about and would be judged
+on. The content builders now take the goal's own series, and a test pins it. All of these were caught by running
+or looking at the output, not by reading the code.

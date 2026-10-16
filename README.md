@@ -26,6 +26,18 @@ flowchart LR
     J --> I[impact vs holdout]
 ```
 
+## Demo page
+
+`run-all` also writes `sample_run/demo.html`. Open it in any browser, no server or internet needed. It is a
+read-only view over the run's output files, with no decision logic of its own, so it cannot disagree with what the
+agent actually did. It has three tabs:
+
+- **Overview**: what happened on the replay day, why the agent did nothing when it did, and the changed conditions it noticed.
+- **Inspect a viewer**: walk any viewer from app open to judged outcome: facts with source and time, the goal and
+  why, the page or message, every check, confidence, and what happened afterwards. Twelve one-click examples cover the
+  situations in the brief (holdout, buffered open, duplicate, dialect conflict, unsupported model claim, outages...).
+- **Impact vs holdout**: the arm comparison with its interval, by goal, and why "served vs not served" misleads.
+
 ## Quick start
 
 Python 3.10 or newer. The data pack is not in this repository (it is treated as personal data); place it at
@@ -35,7 +47,7 @@ Python 3.10 or newer. The data pack is not in this repository (it is treated as 
 pip install -r requirements.txt
 pip install -e .
 
-# one command: replay the trigger stream, run the pack simulator, judge every goal, write the reports
+# one command: replay the trigger stream, run the pack simulator, judge every goal, write the reports and demo.html
 python -m viewer_agent run-all --pack ./pack --out sample_run
 
 # the same, step by step
@@ -43,6 +55,7 @@ python -m viewer_agent replay   --pack ./pack --out sample_run
 python -m viewer_agent simulate --pack ./pack --out sample_run --seed oua-practice
 python -m viewer_agent judge    --pack ./pack --out sample_run
 python -m viewer_agent impact   --pack ./pack --out sample_run
+python -m viewer_agent demo     --pack ./pack --out sample_run
 
 # everything the agent knew, decided and observed for one viewer
 python -m viewer_agent inspect U-00649 --out sample_run
@@ -80,6 +93,7 @@ descriptions and other free text never do.
 | `sample_run/replay_summary.json` | Counts, control events handled, plan revisions from live events |
 | `sample_run/impact_report.md` | Agent arm vs holdout arm, by goal, and why the simpler comparison misleads |
 | `sample_run/final_report.md` | One-page summary of the sample run |
+| `sample_run/demo.html` | The demo page described above |
 | `sample_run/sim/` | The pack simulator's outcome events and report |
 
 ## Layout
@@ -96,8 +110,9 @@ src/viewer_agent/
   agent.py      one agent per viewer; budget; degraded modes
   replay.py     the replay harness and its outputs
   judge.py      outcomes, attribution, impact report
+  demo.py       builds demo.html from a run's outputs (template: demo_template.html)
   cli.py        commands
-tests/          42 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI)
+tests/          43 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI)
 sample_run/     output of run-all on the supplied pack (state.db is not committed; run-all rebuilds it)
 ```
 

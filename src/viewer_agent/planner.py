@@ -86,11 +86,11 @@ def propose(facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, setting
     chosen = next((e for e in eligible if e.goal_id == keep_goal), None) or eligible[0]
 
     budget.tool("catalogue:page")
-    page = build_page(chosen.goal_id, facts, pack, now, settings)
+    page = build_page(chosen.goal_id, facts, pack, now, settings, chosen.context)
     message = None
     if message_block is None:
         budget.tool("catalogue:message")
-        message = build_message(chosen.goal_id, facts, pack, now, settings)
+        message = build_message(chosen.goal_id, facts, pack, now, settings, chosen.context)
     proposal = Proposal(chosen, page, message, None)
     if message_block:
         proposal.assumptions.append(message_block)

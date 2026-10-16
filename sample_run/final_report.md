@@ -11,7 +11,7 @@ Replay day 2026-10-01 IST, 2769 triggers from 1746 viewers, mock model provider.
 | NO_ACTION | 445 |
 | DUPLICATE | 90 |
 
-Actions published: 926 home_page, 207 push, 148 whatsapp.
+Actions published: 926 home_page, 206 push, 147 whatsapp.
 
 Goals committed (both arms): G07 786, G02 430, G01 110, G05 77, G08 65, G09 19, G06 13, G12 4, G03 1.
 
@@ -30,7 +30,7 @@ Goals committed (both arms): G07 786, G02 430, G01 110, G05 77, G08 65, G09 19, 
 ## Real-time behaviour
 
 - Every decision published within the 60 s budget: 2769/2769; late 0, failed 0.
-- p50 2 ms, p95 4 ms, max 18001 ms (16 decisions waited on a degraded dependency).
+- p50 2 ms, p95 5 ms, max 18001 ms (16 decisions waited on a degraded dependency).
 - Peak load 79 triggers in one minute (2026-10-01T04:45 UTC, the offline-buffer burst).
 - Duplicate triggers recognised: 90. Fallbacks: 11 model_unavailable, 1 store_degraded.
 - Model: 909 calls, advice used 897, rejected 1, provider failures 11.
@@ -47,16 +47,18 @@ Goals committed (both arms): G07 786, G02 430, G01 110, G05 77, G08 65, G09 19, 
 
 - Policy problems: **0** (holdout, consent, quiet hours, frequency cap).
 - Pages accepted 926, shown personalised 832, published but not shown 14.
-- Push delivered 177/207 (invalid tokens 30), WhatsApp delivered 148/148, clicks 11.
+- Push delivered 176/206 (invalid tokens 30), WhatsApp delivered 147/147, clicks 6.
 
 ## Outcomes
 
 | Arm | Succeeded | Failed | Inconclusive |
 |---|---|---|---|
-| agent | 88 | 669 | 0 |
+| agent | 87 | 670 | 0 |
 | holdout | 70 | 678 | 0 |
 
-Intention-to-treat success rate: agent 11.6% vs holdout 9.4%, difference +2.2 pp (95% interval -0.9 pp to +5.3 pp). See `impact_report.md`.
+The table counts goals (1505). A viewer can hold more than one goal over the day, one at a time; 1503 viewers had at least one.
+
+Intention-to-treat success rate, first goal per viewer: agent 11.5% (757 viewers) vs holdout 9.4% (746 viewers), difference +2.1 pp (95% interval -1.0 pp to +5.2 pp). See `impact_report.md`.
 
 ## Where to look
 

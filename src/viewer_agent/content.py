@@ -56,7 +56,17 @@ def _rank(titles: list[Title], pack: Pack, premium_first: bool = False) -> list[
     return sorted(titles, key=key)
 
 
-def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings) -> PageDraft | None:
+def _series_first(facts: ViewerFacts, pack: Pack, dialect: str, at: datetime, context: dict | None) -> list[dict]:
+    """Unfinished series the app can show, with the one the goal is about (if any) first."""
+    goal_slug = (context or {}).get("slug")
+    series = [s for s in facts.value("unfinished_series") or []
+              if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect
+              and pack.title(s["title_id"]).available_at(at)]
+    return sorted(series, key=lambda s: s["slug"] != goal_slug)
+
+
+def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings,
+               context: dict | None = None) -> PageDraft | None:
     dialect = (facts.value("dialect") or {}).get("page_dialect")
     if not dialect:
         return None
@@ -75,9 +85,7 @@ def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, sett
     campaign_title = pack.title(link.get("title_id"))
     if campaign_title and campaign_title.dialect == dialect and campaign_title.available_at(now):
         hero = campaign_title
-    unfinished = [s for s in facts.value("unfinished_series") or []
-                  if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect
-                  and pack.title(s["title_id"]).available_at(now)]
+    unfinished = _series_first(facts, pack, dialect, now, context)
     if hero is None and goal_id == "G07" and unfinished:
         hero = pack.title(unfinished[0]["title_id"])
     if hero is None:
@@ -136,7 +144,8 @@ def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, sett
     return PageDraft(dialect, hero.title_id, rows, candidate_ids=[t.title_id for t in ranked])
 
 
-def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings) -> MessageDraft | None:
+def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings,
+                  context: dict | None = None) -> MessageDraft | None:
     """A message only when the goal has a concrete content hook. Channel: WhatsApp if opted in, else push."""
     dialect = (facts.value("dialect") or {}).get("message_dialect")
     if not dialect:
@@ -153,14 +162,12 @@ def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, s
         return None
 
     if goal_id == "G07":
-        series = [s for s in facts.value("unfinished_series") or []
-                  if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect]
-        if not series:
+        # only the series the goal will be judged on; a message about another one would not help this goal
+        series = _series_first(facts, pack, dialect, send_at, context)
+        if not series or series[0]["slug"] != (context or {}).get("slug"):
             return None
         s = series[0]
         t = pack.title(s["title_id"])
-        if not t.available_at(send_at):
-            return None
         msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="unfinished series")
         if channel == "whatsapp":
             msg.template_id, msg.variables = "wa_new_episode_v2", {"title_name": t.name, "episode_number": str(s["next_episode_number"])}

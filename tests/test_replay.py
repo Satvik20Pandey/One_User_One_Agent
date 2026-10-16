@@ -3,6 +3,7 @@ import json
 from datetime import timedelta
 
 from helpers import MINI, NOW, read_jsonl
+from viewer_agent.demo import build_demo
 from viewer_agent.judge import run_judge, write_reports
 from viewer_agent.replay import run_replay, write_jsonl
 from viewer_agent.times import iso
@@ -55,6 +56,11 @@ def test_mini_replay_end_to_end(tmp_path):
     for path in write_reports(MINI, out):
         assert path.exists()
     assert "holdout" in (out / "impact_report.md").read_text(encoding="utf-8")
+
+    # the demo page is built only from these outputs and embeds them as data
+    html = build_demo(MINI, out).read_text(encoding="utf-8")
+    assert "/*__DATA__*/" not in html and '"U-A1":' in html
+    assert html.count("</script>") == 1  # embedded data cannot close the script tag early
 
 
 def _outcome(user_id, event, at, props):

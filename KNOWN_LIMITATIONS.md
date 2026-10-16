@@ -36,4 +36,8 @@ not settle. Each assumption is a setting in `config.py` or a named constant in `
   itself slow.
 - **Sample size.** The agent-minus-holdout difference in the sample run has a confidence interval that includes
   zero. The report says so rather than claiming an effect.
-- **No user interface.** The CLI and the exported JSON are the only ways to inspect a viewer.
+- **The demo page is a static snapshot.** `demo.html` shows one finished run in mock mode; it does not run the agent
+  or call a model. It embeds every viewer of the run, so it is about 10 MB.
+- **WhatsApp wording for resume goals.** The only approved template that names an episode is `wa_new_episode_v2`
+  ("Naya episode aa gaya"). It is used to point at the viewer's next unwatched episode, which exists but is not new.
+  A dedicated "continue watching" template would be more honest copy; templates cannot be invented.

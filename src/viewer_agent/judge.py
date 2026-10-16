@@ -213,6 +213,17 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
             lines.append("The interval excludes zero and the difference is negative: the agent arm did worse. "
                          "This needs investigation before any rollout.")
 
+    triggered = Counter()
+    for arm in {dd["viewer_id"]: dd["arm"] for dd in decisions}.values():
+        triggered[arm] += 1
+    multi = len(outcomes) - len(rows)
+    lines += ["", "### Who is counted", "",
+              f"- {len(outcomes)} goals were judged in total for {len(rows)} viewers. {multi} viewer(s) got a second goal the same",
+              "  day after the first closed early (the viewer stopped qualifying); the table above counts the first goal only.",
+              f"- Triggered viewers: agent {triggered['agent']}, holdout {triggered['holdout']}. Viewers without any goal: agent "
+              f"{triggered['agent'] - a['n']}, holdout {triggered['holdout'] - h['n']}. Nearly all of them only had app opens that were",
+              "  buffered offline for hours or days, which the same rule treats as \"not a live visit\" in both arms."]
+
     lines += ["", "## By goal", "", "| Goal | Agent judged | Agent rate | Holdout judged | Holdout rate | Difference |",
               "|---|---|---|---|---|---|"]
     for goal_id in sorted({o["goal_id"] for o in rows}):
@@ -307,7 +318,10 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -
               "", "## Outcomes", "", "| Arm | Succeeded | Failed | Inconclusive |", "|---|---|---|---|"]
     for arm in ("agent", "holdout"):
         lines.append(f"| {arm} | {verdicts[(arm, 'succeeded')]} | {verdicts[(arm, 'failed')]} | {verdicts[(arm, 'inconclusive')]} |")
-    lines += ["", f"Intention-to-treat success rate: agent {_pct(a['rate'])} vs holdout {_pct(h['rate'])}, difference {_pp(d)} "
+    lines += ["", f"The table counts goals ({len(outcomes)}). A viewer can hold more than one goal over the day, one at a time; "
+              f"{len({o['user_id'] for o in outcomes})} viewers had at least one.", "",
+              f"Intention-to-treat success rate, first goal per viewer: agent {_pct(a['rate'])} ({a['judged']} viewers) vs holdout "
+              f"{_pct(h['rate'])} ({h['judged']} viewers), difference {_pp(d)} "
               f"(95% interval {_pp(lo)} to {_pp(hi)}). See `impact_report.md`.", "",
               "## Where to look", "",
               "- `decisions.jsonl`: one record per trigger with goal, action or reason for none, evidence, conflicts, checks, timing.",

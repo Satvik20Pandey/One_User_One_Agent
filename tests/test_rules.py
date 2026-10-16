@@ -80,3 +80,17 @@ def test_viewer_without_evidence_gets_no_goal_until_the_signup_arrives(env):
     record, actions = env.decide(make_trigger("U-B1", at=later), later)
     assert record["status"] == "PUBLISHED" and record["goal"]["id"] == "G01"
     assert any("inferred from signup_completed" in a for a in record["assumptions"])
+
+
+def test_resume_content_promotes_the_series_the_goal_is_about(env):
+    # U-S1 left "hapi" untouched since 09-20 (the goal) but started "tidha" yesterday (more recent, not the goal)
+    env.store.add_event(make_event("U-S1", "play_started", NOW - timedelta(days=1),
+                                   {"title_id": "T0005", "episode_id": "tidha-d1-s1e1"}))
+    record, actions = env.decide(make_trigger("U-S1"))
+    assert record["goal"]["id"] == "G07" and "hapi-d1" in record["eligibility"]["reason"]
+
+    page = next(a for a in actions if a["type"] == "home_page")
+    message = next(a for a in actions if a["type"] == "whatsapp")
+    assert page["hero_title_id"] == "T0004"
+    assert page["rows"][0]["row_type"] == "next_episode" and page["rows"][0]["title_ids"][0] == "T0005"
+    assert message["title_id"] == "T0004" and message["variables"]["title_name"] == "Hapi"

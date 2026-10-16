@@ -25,14 +25,15 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1
+     "home_page_shown": 1,
+     "message_delivered": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T04:38:36.659Z G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T04:38:36.659Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -272,7 +273,8 @@
    "D-00348"
   ],
   "actions": [
-   "A-00187"
+   "A-00185",
+   "A-00186"
   ],
   "updated_at": "2026-10-01T04:38:36.664Z"
  },
@@ -305,7 +307,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -316,8 +319,8 @@
     ]
    },
    "content": [
-    "title:T0536",
     "title:T1677",
+    "title:T0536",
     "title:T0521",
     "title:T1682",
     "title:T0522",
@@ -441,13 +444,18 @@
      "availability",
      "page_rules",
      "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
@@ -527,7 +535,7 @@
  ],
  "actions": [
   {
-   "action_id": "A-00187",
+   "action_id": "A-00185",
    "decision_id": "D-00348",
    "user_id": "U-00118",
    "trigger_event_id": "f467975e-6204-44c0-bda3-6fc3a8c723bd",
@@ -535,12 +543,12 @@
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
-   "hero_title_id": "T0536",
+   "hero_title_id": "T1677",
    "rows": [
     {
      "row_type": "next_episode",
      "title_ids": [
-      "T1677",
+      "T0536",
       "T0521",
       "T1682",
       "T0522",
@@ -598,6 +606,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00186",
+   "decision_id": "D-00348",
+   "user_id": "U-00118",
+   "trigger_event_id": "f467975e-6204-44c0-bda3-6fc3a8c723bd",
+   "published_at": "2026-10-01T04:38:36.664Z",
+   "goal_id": "G07",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T1677",
+   "dialect": "d2",
+   "text": {
+    "title": "Continue Dhapipa Gini (English)",
+    "body": "Episode 4 of Dhapipa Gini (English) is waiting for you."
+   },
+   "deeplink": "ott://title/T1677"
   }
  ],
  "outcomes": [
@@ -618,10 +643,12 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1
+    "home_page_shown": 1,
+    "message_delivered": 1
    },
    "actions": [
-    "A-00187"
+    "A-00185",
+    "A-00186"
    ]
   }
  ]

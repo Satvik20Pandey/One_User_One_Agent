@@ -19,22 +19,21 @@
    },
    "shadow": false,
    "outcome": {
-    "verdict": "succeeded",
-    "reason": "play_started matched 'same content_slug as the unfinished series'",
-    "success_event_id": "oua-027936",
-    "success_at": "2026-10-02T14:45:11.000Z",
-    "attribution": "exposed_before_success",
+    "verdict": "failed",
+    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "success_event_id": null,
+    "success_at": null,
+    "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 4,
-     "message_delivered": 1,
-     "message_clicked": 1
+     "message_delivered": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-02T14:45:11.000Z G07 succeeded (exposed_before_success; page shown 4x, message delivered 1x). play_started matched 'same content_slug as the unfinished series'"
+   "2026-10-04T04:45:04.980Z G07 failed (exposed_no_success; page shown 4x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -250,12 +249,12 @@
    "D-02250"
   ],
   "actions": [
+   "A-00194",
    "A-00195",
-   "A-00196",
-   "A-00638",
-   "A-01062"
+   "A-00637",
+   "A-01060"
   ],
-  "updated_at": "2026-10-01T15:25:06.631Z"
+  "updated_at": "2026-10-01T15:25:06.632Z"
  },
  "decisions": [
   {
@@ -475,7 +474,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00195 for this viewer is still live (published 2026-10-01T04:45:04.983Z); nothing to change",
+   "no_action_reason": "home page A-00194 for this viewer is still live (published 2026-10-01T04:45:04.983Z); nothing to change",
    "dialect": {
     "used": "d2",
     "source": "app_setting",
@@ -572,8 +571,8 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T05:08:28.579Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T05:08:28.580Z",
    "status": "NO_ACTION"
   },
   {
@@ -757,8 +756,8 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T11:05:44.146Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T11:05:44.147Z",
    "status": "PUBLISHED"
   },
   {
@@ -942,14 +941,14 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:25:06.631Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:25:06.632Z",
    "status": "PUBLISHED"
   }
  ],
  "actions": [
   {
-   "action_id": "A-00195",
+   "action_id": "A-00194",
    "decision_id": "D-00371",
    "user_id": "U-04376",
    "trigger_event_id": "c52df2b3-96de-4c48-b8db-e83737c0d42d",
@@ -1022,7 +1021,7 @@
    ]
   },
   {
-   "action_id": "A-00196",
+   "action_id": "A-00195",
    "decision_id": "D-00371",
    "user_id": "U-04376",
    "trigger_event_id": "c52df2b3-96de-4c48-b8db-e83737c0d42d",
@@ -1039,11 +1038,11 @@
    "deeplink": "ott://title/T0565"
   },
   {
-   "action_id": "A-00638",
+   "action_id": "A-00637",
    "decision_id": "D-01387",
    "user_id": "U-04376",
    "trigger_event_id": "3d9a23a5-14e4-474f-9f93-591cac71ef0f",
-   "published_at": "2026-10-01T11:05:44.146Z",
+   "published_at": "2026-10-01T11:05:44.147Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
@@ -1112,11 +1111,11 @@
    ]
   },
   {
-   "action_id": "A-01062",
+   "action_id": "A-01060",
    "decision_id": "D-02250",
    "user_id": "U-04376",
    "trigger_event_id": "fd20ac83-c85f-4c95-944e-609a707087d2",
-   "published_at": "2026-10-01T15:25:06.631Z",
+   "published_at": "2026-10-01T15:25:06.632Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
@@ -1197,21 +1196,20 @@
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "succeeded",
-   "reason": "play_started matched 'same content_slug as the unfinished series'",
-   "success_event_id": "oua-027936",
-   "success_at": "2026-10-02T14:45:11.000Z",
-   "attribution": "exposed_before_success",
+   "verdict": "failed",
+   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "success_event_id": null,
+   "success_at": null,
+   "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 4,
-    "message_delivered": 1,
-    "message_clicked": 1
+    "message_delivered": 1
    },
    "actions": [
+    "A-00194",
     "A-00195",
-    "A-00196",
-    "A-00638",
-    "A-01062"
+    "A-00637",
+    "A-01060"
    ]
   }
  ]
