@@ -2,13 +2,13 @@
  "state": {
   "user_id": "U-02349",
   "active_goal": {
-   "instance_id": "G-00360",
+   "instance_id": "G-00886",
    "goal_id": "G02",
    "name": "first_full_episode_3d",
-   "started_at": "2026-10-01T05:53:14.009Z",
-   "deadline": "2026-10-04T05:53:14.009Z",
+   "started_at": "2026-10-01T12:28:44.849Z",
+   "deadline": "2026-10-04T12:28:44.849Z",
    "success_signal": "episode_completed (any episode) within 72h",
-   "rule_version": "goals.json@2026-09-30",
+   "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "eligibility_reason": "no episode_completed on record",
    "evidence": [
     "events:U-02349:episode_completed=0"
@@ -16,18 +16,48 @@
    "context": {},
    "shadow": true,
    "outcome": {
-    "verdict": "succeeded",
-    "reason": "episode_completed matched 'any episode'",
-    "success_event_id": "oua-015228",
-    "success_at": "2026-10-01T06:01:31.009Z",
+    "verdict": "failed",
+    "reason": "no episode_completed matching 'any episode' before the deadline",
+    "success_event_id": null,
+    "success_at": null,
     "attribution": "holdout_no_action",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
-  "goal_history": [],
+  "goal_history": [
+   {
+    "instance_id": "G-00360",
+    "goal_id": "G12",
+    "name": "return_after_absence_7d",
+    "started_at": "2026-10-01T05:53:14.009Z",
+    "deadline": "2026-10-08T05:53:14.009Z",
+    "success_signal": "play_started (any title) within 168h",
+    "rule_version": "goals.json@2026-09-30",
+    "eligibility_reason": "no visit for 20 days before this open",
+    "evidence": [
+     "event:f823240b-81b3-4514-9a60-db44943dbfbf"
+    ],
+    "context": {},
+    "shadow": true,
+    "closed_at": "2026-10-01T12:28:44.849Z",
+    "close_reason": "no_longer_eligible:visited 0 days ago",
+    "close_event_id": null,
+    "outcome": {
+     "verdict": "succeeded",
+     "reason": "play_started matched 'any title'",
+     "success_event_id": "oua-015114",
+     "success_at": "2026-10-01T05:56:31.009Z",
+     "attribution": "holdout_no_action",
+     "exposure": {},
+     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    }
+   }
+  ],
   "learnings": [
-   "2026-10-01T06:01:31.009Z judged: G02 succeeded (holdout_no_action; nothing of ours was seen). episode_completed matched 'any episode'"
+   "2026-10-01T12:28:44.849Z G12 closed early: visited 0 days ago",
+   "2026-10-01T05:56:31.009Z judged: G12 succeeded (holdout_no_action; nothing of ours was seen). play_started matched 'any title'",
+   "2026-10-04T12:28:44.849Z judged: G02 failed (holdout_no_action; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -181,7 +211,7 @@
    "D-01569"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T12:28:44.851Z"
+  "updated_at": "2026-10-01T12:28:44.850Z"
  },
  "decisions": [
   {
@@ -199,12 +229,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G12",
+    "name": "return_after_absence_7d",
     "instance_id": "G-00360",
     "started_at": "2026-10-01T05:53:14.009Z",
-    "deadline": "2026-10-04T05:53:14.009Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-08T05:53:14.009Z",
+    "success_signal": "play_started (any title) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -227,48 +257,147 @@
     {
      "ref": "trigger:dfda01ff-3e85-484c-91c4-5476c562fe2b",
      "source": "event",
-     "observed_at": "2026-10-01T05:53:14.009Z"
+     "observed_at": "2026-10-01T05:53:14.009Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02349@2026-09-29T05:19:55.953Z",
      "source": "profile",
-     "observed_at": "2026-09-29T05:19:55.953Z"
+     "observed_at": "2026-09-29T05:19:55.953Z",
+     "age_s": 174798
     },
     {
      "ref": "events:U-02349:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-02349:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:f823240b-81b3-4514-9a60-db44943dbfbf",
      "source": "event",
-     "observed_at": "2026-09-10T12:35:15.288Z"
+     "observed_at": "2026-09-10T12:35:15.288Z",
+     "age_s": 1790278
     },
     {
      "ref": "events:U-02349:count=7",
      "source": "derived",
-     "observed_at": "2026-10-01T05:53:14.009Z"
+     "observed_at": "2026-10-01T05:53:14.009Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:53:14.009Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:53:14.009Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:53:14.009Z"
+    },
+    "signup_at": {
+     "value": "2025-06-25T08:27:58.142Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-10T12:35:15.288Z",
+     "source": "event",
+     "observed_at": "2026-09-10T12:35:15.288Z"
+    },
+    "history_depth": {
+     "value": 7,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:53:14.009Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G12",
+    "reason": "no visit for 20 days before this open",
     "evidence": [
-     "events:U-02349:episode_completed=0"
+     "event:f823240b-81b3-4514-9a60-db44943dbfbf"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -280,9 +409,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T05:53:14.011Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T05:53:14.010Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-00729",
@@ -299,12 +430,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G12",
+    "name": "return_after_absence_7d",
     "instance_id": "G-00360",
     "started_at": "2026-10-01T05:53:14.009Z",
-    "deadline": "2026-10-04T05:53:14.009Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-08T05:53:14.009Z",
+    "success_signal": "play_started (any title) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -312,7 +443,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G02 chosen but app dialect 'd2' has no catalogue content; no consented message channel",
+   "no_action_reason": "goal G12 chosen but app dialect 'd2' has no catalogue content; no consented message channel",
    "dialect": {
     "used": "d2",
     "source": "profile",
@@ -327,50 +458,149 @@
     {
      "ref": "trigger:cead9c2c-567d-48fc-83f3-d765b8b1d2f6",
      "source": "event",
-     "observed_at": "2026-10-01T05:53:17.154Z"
+     "observed_at": "2026-10-01T05:53:17.154Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02349@2026-09-29T05:19:55.953Z",
      "source": "profile",
-     "observed_at": "2026-10-01T05:53:17.154Z"
+     "observed_at": "2026-09-29T05:19:55.953Z",
+     "age_s": 174801
     },
     {
      "ref": "events:U-02349:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-02349:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:f823240b-81b3-4514-9a60-db44943dbfbf",
      "source": "event",
-     "observed_at": "2026-09-10T12:35:15.288Z"
+     "observed_at": "2026-09-10T12:35:15.288Z",
+     "age_s": 1790281
     },
     {
      "ref": "events:U-02349:count=8",
      "source": "derived",
-     "observed_at": "2026-10-01T05:53:17.154Z"
+     "observed_at": "2026-10-01T05:53:17.154Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:53:17.154Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "profile",
+      "conflicts": [],
+      "page_dialect": null,
+      "message_dialect": "d2"
+     },
+     "source": "profile",
+     "observed_at": "2026-10-01T05:53:17.154Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:53:17.154Z"
+    },
+    "signup_at": {
+     "value": "2025-06-25T08:27:58.142Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-10T12:35:15.288Z",
+     "source": "event",
+     "observed_at": "2026-09-10T12:35:15.288Z"
+    },
+    "history_depth": {
+     "value": 8,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:53:17.154Z"
+    }
+   },
    "assumptions": [
     "app dialect missing on the trigger; profile preference used for messages only"
    ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G12",
+    "reason": "no visit for 20 days before this open",
     "evidence": [
-     "events:U-02349:episode_completed=0"
+     "event:f823240b-81b3-4514-9a60-db44943dbfbf"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -382,9 +612,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T05:53:17.155Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T05:53:17.154Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01569",
@@ -403,12 +635,12 @@
    "goal": {
     "id": "G02",
     "name": "first_full_episode_3d",
-    "instance_id": "G-00360",
-    "started_at": "2026-10-01T05:53:14.009Z",
-    "deadline": "2026-10-04T05:53:14.009Z",
+    "instance_id": "G-00886",
+    "started_at": "2026-10-01T12:28:44.849Z",
+    "deadline": "2026-10-04T12:28:44.849Z",
     "success_signal": "episode_completed (any episode) within 72h",
-    "rule_version": "goals.json@2026-09-30",
-    "committed_now": false,
+    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+    "committed_now": true,
     "shadow": true
    },
    "no_goal_reason": null,
@@ -429,34 +661,131 @@
     {
      "ref": "trigger:d36431b3-75af-4913-8758-2609372a74ff",
      "source": "event",
-     "observed_at": "2026-10-01T12:28:44.849Z"
+     "observed_at": "2026-10-01T12:28:44.849Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02349@2026-09-29T05:19:55.953Z",
      "source": "profile",
-     "observed_at": "2026-09-29T05:19:55.953Z"
+     "observed_at": "2026-09-29T05:19:55.953Z",
+     "age_s": 198528
     },
     {
      "ref": "events:U-02349:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-02349:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:cead9c2c-567d-48fc-83f3-d765b8b1d2f6",
      "source": "event",
-     "observed_at": "2026-10-01T05:53:17.154Z"
+     "observed_at": "2026-10-01T05:53:17.154Z",
+     "age_s": 23727
     },
     {
      "ref": "events:U-02349:count=9",
      "source": "derived",
-     "observed_at": "2026-10-01T12:28:44.849Z"
+     "observed_at": "2026-10-01T12:28:44.849Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T12:28:44.849Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:28:44.849Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:28:44.849Z"
+    },
+    "signup_at": {
+     "value": "2025-06-25T08:27:58.142Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:19:55.953Z"
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T05:53:17.154Z",
+     "source": "event",
+     "observed_at": "2026-10-01T05:53:17.154Z"
+    },
+    "history_depth": {
+     "value": 9,
+     "source": "derived",
+     "observed_at": "2026-10-01T12:28:44.849Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -470,7 +799,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -482,9 +813,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T12:28:44.851Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T12:28:44.850Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -493,17 +826,36 @@
    "user_id": "U-02349",
    "arm": "holdout",
    "goal_instance_id": "G-00360",
-   "goal_id": "G02",
-   "goal_name": "first_full_episode_3d",
+   "goal_id": "G12",
+   "goal_name": "return_after_absence_7d",
    "started_at": "2026-10-01T05:53:14.009Z",
-   "deadline": "2026-10-04T05:53:14.009Z",
+   "deadline": "2026-10-08T05:53:14.009Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "closed_early": null,
+   "closed_early": "no_longer_eligible:visited 0 days ago",
    "verdict": "succeeded",
-   "reason": "episode_completed matched 'any episode'",
-   "success_event_id": "oua-015228",
-   "success_at": "2026-10-01T06:01:31.009Z",
+   "reason": "play_started matched 'any title'",
+   "success_event_id": "oua-015114",
+   "success_at": "2026-10-01T05:56:31.009Z",
+   "attribution": "holdout_no_action",
+   "exposure": {},
+   "actions": []
+  },
+  {
+   "user_id": "U-02349",
+   "arm": "holdout",
+   "goal_instance_id": "G-00886",
+   "goal_id": "G02",
+   "goal_name": "first_full_episode_3d",
+   "started_at": "2026-10-01T12:28:44.849Z",
+   "deadline": "2026-10-04T12:28:44.849Z",
+   "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "closed_early": null,
+   "verdict": "failed",
+   "reason": "no episode_completed matching 'any episode' before the deadline",
+   "success_event_id": null,
+   "success_at": null,
    "attribution": "holdout_no_action",
    "exposure": {},
    "actions": []

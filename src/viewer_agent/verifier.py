@@ -65,8 +65,13 @@ def verify(proposal: Proposal, facts: ViewerFacts, arm: str | None, rules: RuleB
         fresh = build_facts(facts.user_id, facts.trigger, events, pack, now, settings)
         again = rules.check(proposal.goal.goal_id, fresh)
         measurable, why = rules.measurable(proposal.goal.goal_id)
+        needed = STATUS_GOALS.get(proposal.goal.goal_id)
+        status = raw_subscription_status(facts.user_id, events, pack) if needed else None
         if not again.eligible:
             r.fail("eligibility", f"{proposal.goal.goal_id}: {again.reason}", "all")
+        elif needed and status != needed:
+            r.fail("eligibility", f"{proposal.goal.goal_id} needs status {needed}; an independent read of the "
+                                  f"profile and payment events says {status}", "all")
         elif not measurable:
             r.fail("eligibility", f"{proposal.goal.goal_id}: {why}", "all")
         else:
@@ -121,6 +126,30 @@ def _check_page(r: CheckResult, page, facts: ViewerFacts, store: Store, pack: Pa
         r.ok("duplicate_action")
 
 
+# goals whose eligibility is about the subscription; the verifier re-derives the status with its own code
+STATUS_GOALS = {"G04": "trial_active", "G05": "never", "G06": "lapsed", "G08": "active", "G09": "active"}
+
+
+def raw_subscription_status(user_id: str, events: list[dict], pack: Pack) -> str | None:
+    """Subscription status from the sources, written separately from facts.py on purpose: the profile row, then
+    every purchase, renewal or lapse received after that row was exported."""
+    profile = pack.profiles.get(user_id)
+    status = profile["subscription_status"] if profile else None
+    snapshot_at = parse_ts(profile["updated_at"]) if profile else None
+    if profile is None and any(e["event"] == "signup_completed" for e in events):
+        status = "never"
+    for e in sorted(events, key=event_time):
+        if snapshot_at and event_time(e) <= snapshot_at:
+            continue
+        if e["event"] == "purchase_completed":
+            status = "trial_active" if e["properties"].get("is_trial") else "active"
+        elif e["event"] == "subscription_renewed":
+            status = "active"
+        elif e["event"] == "subscription_lapsed":
+            status = "lapsed"
+    return status
+
+
 def raw_consent(user_id: str, channel: str, events: list[dict], pack: Pack) -> tuple[bool, str]:
     """Consent straight from the sources, written separately from facts.py on purpose."""
     profile = pack.profiles.get(user_id)
@@ -138,22 +167,32 @@ def raw_consent(user_id: str, channel: str, events: list[dict], pack: Pack) -> t
 def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], store: Store, pack: Pack,
                    settings: Settings, now: datetime, budget) -> None:
     channel = msg.channel
-    consented, why = raw_consent(facts.user_id, channel, events, pack)
-    if not consented:
-        r.fail("consent", f"{channel}: {why}", "message")
+    if channel == "in_app_message":
+        # shown inside the app at the next open: no consent or quiet hours apply, but at most one per day
+        budget.tool("store:messages_on_day")
+        if store.messages_on_day(facts.user_id, ist_day(msg.send_at), types=("in_app_message",)):
+            r.fail("frequency_cap", "an in-app message was already published for this viewer today", "message")
+        else:
+            r.ok("frequency_cap")
+        if msg.dialect != (facts.value("dialect") or {}).get("page_dialect"):
+            r.fail("message_dialect", f"in-app message in {msg.dialect} but the app is set to another dialect", "message")
     else:
-        r.ok("consent")
+        consented, why = raw_consent(facts.user_id, channel, events, pack)
+        if not consented:
+            r.fail("consent", f"{channel}: {why}", "message")
+        else:
+            r.ok("consent")
 
-    if in_quiet_hours(msg.send_at, settings.quiet_start_hour_ist, settings.quiet_end_hour_ist):
-        r.fail("quiet_hours", f"send time {msg.send_at.isoformat()} is inside 22:00-08:00 IST", "message")
-    else:
-        r.ok("quiet_hours")
+        if in_quiet_hours(msg.send_at, settings.quiet_start_hour_ist, settings.quiet_end_hour_ist):
+            r.fail("quiet_hours", f"send time {msg.send_at.isoformat()} is inside 22:00-08:00 IST", "message")
+        else:
+            r.ok("quiet_hours")
 
-    budget.tool("store:messages_on_day")
-    if store.messages_on_day(facts.user_id, ist_day(msg.send_at)):
-        r.fail("frequency_cap", "a push or WhatsApp message is already scheduled for that IST day", "message")
-    else:
-        r.ok("frequency_cap")
+        budget.tool("store:messages_on_day")
+        if store.messages_on_day(facts.user_id, ist_day(msg.send_at)):
+            r.fail("frequency_cap", "a push or WhatsApp message is already scheduled for that IST day", "message")
+        else:
+            r.ok("frequency_cap")
 
     title = pack.title(msg.title_id)
     if title is None or title.dialect != msg.dialect:

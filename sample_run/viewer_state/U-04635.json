@@ -3,21 +3,22 @@
   "user_id": "U-04635",
   "active_goal": {
    "instance_id": "G-00369",
-   "goal_id": "G02",
-   "name": "first_full_episode_3d",
+   "goal_id": "G09",
+   "name": "weekly_habit_14d",
    "started_at": "2026-10-01T05:57:53.855Z",
-   "deadline": "2026-10-04T05:57:53.855Z",
-   "success_signal": "episode_completed (any episode) within 72h",
+   "deadline": "2026-10-15T05:57:53.855Z",
+   "success_signal": "play_started (on 3 distinct IST days) within 336h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "no episode_completed on record",
+   "eligibility_reason": "active subscriber with plays on 0 day(s) in the last 14",
    "evidence": [
-    "events:U-04635:episode_completed=0"
+    "profile:U-04635@2026-09-29T10:05:05.138Z",
+    "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
    ],
    "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no episode_completed matching 'any episode' before the deadline",
+    "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -27,7 +28,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T05:57:53.855Z judged: G02 failed (holdout_no_action; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
+   "2026-10-15T05:57:53.855Z judged: G09 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'on 3 distinct IST days' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -197,7 +198,7 @@
    "D-01440"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T11:37:47.165Z"
+  "updated_at": "2026-10-01T11:37:47.164Z"
  },
  "decisions": [
   {
@@ -215,12 +216,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G09",
+    "name": "weekly_habit_14d",
     "instance_id": "G-00369",
     "started_at": "2026-10-01T05:57:53.855Z",
-    "deadline": "2026-10-04T05:57:53.855Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-15T05:57:53.855Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -243,53 +244,167 @@
     {
      "ref": "trigger:016189e0-94f6-4070-9aff-0c3ba8e14a18",
      "source": "event",
-     "observed_at": "2026-10-01T05:57:53.855Z"
+     "observed_at": "2026-10-01T05:57:53.855Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04635@2026-09-29T10:05:05.138Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-29T10:05:05.138Z",
+     "age_s": 157968
     },
     {
      "ref": "event:5f900eef-91d1-4e7e-aa09-402578250afc",
      "source": "event",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-06T01:26:09.572Z",
+     "age_s": 2176304
     },
     {
      "ref": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f",
      "source": "event",
-     "observed_at": "2026-09-16T12:37:28.937Z"
+     "observed_at": "2026-09-16T12:37:28.937Z",
+     "age_s": 1272024
     },
     {
      "ref": "events:U-04635:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:a63a23cb-682b-4024-b890-92a5080d8b75",
      "source": "event",
-     "observed_at": "2026-09-30T03:36:12.321Z"
+     "observed_at": "2026-09-30T03:36:12.321Z",
+     "age_s": 94901
     },
     {
      "ref": "events:U-04635:count=21",
      "source": "derived",
-     "observed_at": "2026-10-01T05:57:53.855Z"
+     "observed_at": "2026-10-01T05:57:53.855Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:57:53.855Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:57:53.855Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:57:53.855Z"
+    },
+    "signup_at": {
+     "value": "2025-04-08T01:24:03.926Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-16T12:37:28.937Z",
+      "last_at": "2026-09-16T12:37:28.937Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "haja-d3",
+       "title_id": "T0907",
+       "last_played_at": "2026-09-16T12:37:28.937Z",
+       "next_episode_id": "haja-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 49,
+       "evidence": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T03:36:12.321Z",
+     "source": "event",
+     "observed_at": "2026-09-30T03:36:12.321Z"
+    },
+    "history_depth": {
+     "value": 21,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:57:53.855Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 0 day(s) in the last 14",
     "evidence": [
-     "events:U-04635:episode_completed=0"
+     "profile:U-04635@2026-09-29T10:05:05.138Z",
+     "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -301,9 +416,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T05:57:53.856Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-00967",
@@ -320,12 +437,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G09",
+    "name": "weekly_habit_14d",
     "instance_id": "G-00369",
     "started_at": "2026-10-01T05:57:53.855Z",
-    "deadline": "2026-10-04T05:57:53.855Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-15T05:57:53.855Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -348,53 +465,167 @@
     {
      "ref": "trigger:8055b284-03ee-4603-a8d7-281b7b293812",
      "source": "event",
-     "observed_at": "2026-10-01T07:48:02.789Z"
+     "observed_at": "2026-10-01T07:48:02.789Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04635@2026-09-29T10:05:05.138Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-29T10:05:05.138Z",
+     "age_s": 164577
     },
     {
      "ref": "event:5f900eef-91d1-4e7e-aa09-402578250afc",
      "source": "event",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-06T01:26:09.572Z",
+     "age_s": 2182913
     },
     {
      "ref": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f",
      "source": "event",
-     "observed_at": "2026-09-16T12:37:28.937Z"
+     "observed_at": "2026-09-16T12:37:28.937Z",
+     "age_s": 1278633
     },
     {
      "ref": "events:U-04635:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:016189e0-94f6-4070-9aff-0c3ba8e14a18",
      "source": "event",
-     "observed_at": "2026-10-01T05:57:53.855Z"
+     "observed_at": "2026-10-01T05:57:53.855Z",
+     "age_s": 6608
     },
     {
      "ref": "events:U-04635:count=22",
      "source": "derived",
-     "observed_at": "2026-10-01T07:48:02.789Z"
+     "observed_at": "2026-10-01T07:48:02.789Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:48:02.789Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:48:02.789Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:48:02.789Z"
+    },
+    "signup_at": {
+     "value": "2025-04-08T01:24:03.926Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-16T12:37:28.937Z",
+      "last_at": "2026-09-16T12:37:28.937Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "haja-d3",
+       "title_id": "T0907",
+       "last_played_at": "2026-09-16T12:37:28.937Z",
+       "next_episode_id": "haja-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 49,
+       "evidence": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T05:57:53.855Z",
+     "source": "event",
+     "observed_at": "2026-10-01T05:57:53.855Z"
+    },
+    "history_depth": {
+     "value": 22,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:48:02.789Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 0 day(s) in the last 14",
     "evidence": [
-     "events:U-04635:episode_completed=0"
+     "profile:U-04635@2026-09-29T10:05:05.138Z",
+     "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -406,9 +637,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T07:48:02.791Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T07:48:02.790Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01439",
@@ -425,12 +658,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G09",
+    "name": "weekly_habit_14d",
     "instance_id": "G-00369",
     "started_at": "2026-10-01T05:57:53.855Z",
-    "deadline": "2026-10-04T05:57:53.855Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-15T05:57:53.855Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -453,39 +686,150 @@
     {
      "ref": "trigger:39fc3d7d-9772-45e6-b31e-c5d8e94c902f",
      "source": "event",
-     "observed_at": "2026-10-01T11:37:42.470Z"
+     "observed_at": "2026-09-23T10:25:35.158Z",
+     "age_s": 695527
     },
     {
      "ref": "profile:U-04635@2026-09-29T10:05:05.138Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-29T10:05:05.138Z",
+     "age_s": 178357
     },
     {
      "ref": "event:5f900eef-91d1-4e7e-aa09-402578250afc",
      "source": "event",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-06T01:26:09.572Z",
+     "age_s": 2196692
     },
     {
      "ref": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f",
      "source": "event",
-     "observed_at": "2026-09-16T12:37:28.937Z"
+     "observed_at": "2026-09-16T12:37:28.937Z",
+     "age_s": 1292413
     },
     {
      "ref": "events:U-04635:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:8c3397c9-3f8e-4cee-b941-de4c2cbff373",
      "source": "event",
-     "observed_at": "2026-09-16T12:35:38.230Z"
+     "observed_at": "2026-09-16T12:35:38.230Z",
+     "age_s": 1292524
     },
     {
      "ref": "events:U-04635:count=23",
      "source": "derived",
-     "observed_at": "2026-10-01T11:37:42.470Z"
+     "observed_at": "2026-10-01T11:37:42.470Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 695527,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T11:37:42.470Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:37:42.470Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:37:42.470Z"
+    },
+    "signup_at": {
+     "value": "2025-04-08T01:24:03.926Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-16T12:37:28.937Z",
+      "last_at": "2026-09-16T12:37:28.937Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "haja-d3",
+       "title_id": "T0907",
+       "last_played_at": "2026-09-16T12:37:28.937Z",
+       "next_episode_id": "haja-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 49,
+       "evidence": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-16T12:35:38.230Z",
+     "source": "event",
+     "observed_at": "2026-09-16T12:35:38.230Z"
+    },
+    "history_depth": {
+     "value": 23,
+     "source": "derived",
+     "observed_at": "2026-10-01T11:37:42.470Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": null,
@@ -493,7 +837,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -505,9 +851,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T11:37:42.471Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T11:37:42.470Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01440",
@@ -524,12 +872,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G09",
+    "name": "weekly_habit_14d",
     "instance_id": "G-00369",
     "started_at": "2026-10-01T05:57:53.855Z",
-    "deadline": "2026-10-04T05:57:53.855Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-15T05:57:53.855Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -552,39 +900,150 @@
     {
      "ref": "trigger:3b6458ea-7983-409f-b2b3-b58a634baf0d",
      "source": "event",
-     "observed_at": "2026-10-01T11:37:47.164Z"
+     "observed_at": "2026-09-23T10:25:39.852Z",
+     "age_s": 695527
     },
     {
      "ref": "profile:U-04635@2026-09-29T10:05:05.138Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-29T10:05:05.138Z",
+     "age_s": 178362
     },
     {
      "ref": "event:5f900eef-91d1-4e7e-aa09-402578250afc",
      "source": "event",
-     "observed_at": "2026-09-29T10:05:05.138Z"
+     "observed_at": "2026-09-06T01:26:09.572Z",
+     "age_s": 2196697
     },
     {
      "ref": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f",
      "source": "event",
-     "observed_at": "2026-09-16T12:37:28.937Z"
+     "observed_at": "2026-09-16T12:37:28.937Z",
+     "age_s": 1292418
     },
     {
      "ref": "events:U-04635:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:8c3397c9-3f8e-4cee-b941-de4c2cbff373",
      "source": "event",
-     "observed_at": "2026-09-16T12:35:38.230Z"
+     "observed_at": "2026-09-16T12:35:38.230Z",
+     "age_s": 1292528
     },
     {
      "ref": "events:U-04635:count=24",
      "source": "derived",
-     "observed_at": "2026-10-01T11:37:47.164Z"
+     "observed_at": "2026-10-01T11:37:47.164Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 695527,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T11:37:47.164Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:37:47.164Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:37:47.164Z"
+    },
+    "signup_at": {
+     "value": "2025-04-08T01:24:03.926Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:05:05.138Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-16T12:37:28.937Z",
+      "last_at": "2026-09-16T12:37:28.937Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "haja-d3",
+       "title_id": "T0907",
+       "last_played_at": "2026-09-16T12:37:28.937Z",
+       "next_episode_id": "haja-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 49,
+       "evidence": "event:3cbe03ca-39bc-44df-8900-4eae8924df1f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-16T12:37:28.937Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-16T12:35:38.230Z",
+     "source": "event",
+     "observed_at": "2026-09-16T12:35:38.230Z"
+    },
+    "history_depth": {
+     "value": 24,
+     "source": "derived",
+     "observed_at": "2026-10-01T11:37:47.164Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": null,
@@ -592,7 +1051,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -604,9 +1065,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T11:37:47.165Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T11:37:47.164Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -615,15 +1078,15 @@
    "user_id": "U-04635",
    "arm": "holdout",
    "goal_instance_id": "G-00369",
-   "goal_id": "G02",
-   "goal_name": "first_full_episode_3d",
+   "goal_id": "G09",
+   "goal_name": "weekly_habit_14d",
    "started_at": "2026-10-01T05:57:53.855Z",
-   "deadline": "2026-10-04T05:57:53.855Z",
+   "deadline": "2026-10-15T05:57:53.855Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no episode_completed matching 'any episode' before the deadline",
+   "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

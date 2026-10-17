@@ -6,14 +6,16 @@ processing time (plus any simulated waiting on a slow dependency) is measured an
 """
 from __future__ import annotations
 
+import heapq
 import json
 import os
 import sys
-from collections import Counter
+from collections import Counter, deque
+from datetime import timedelta
 from datetime import datetime
 from pathlib import Path
 
-from .agent import Deps, ViewerAgent
+from .agent import Deps, Ids, ViewerAgent
 from .config import Settings
 from .goals import RuleBook
 from .pack import Pack
@@ -36,9 +38,9 @@ def write_jsonl(path: Path, rows) -> int:
     return n
 
 
-def make_provider(name: str, faults: list[dict]):
+def make_provider(name: str, faults: list[dict], settings: Settings):
     if name == "mock":
-        return MockProvider(faults)
+        return MockProvider(faults, latency_s=settings.mock_model_latency_s)
     if name == "openai":
         return OpenAIProvider(model=os.environ.get("VIEWER_AGENT_MODEL", "gpt-4o-mini"),
                               base_url=os.environ.get("OPENAI_BASE_URL"), api_key=os.environ.get("OPENAI_API_KEY"))
@@ -59,8 +61,9 @@ class Replay:
         self.history = self.store.ingest_history(self.pack_dir / "data" / "events.jsonl")
         self.pack.popularity = self.history["plays_per_title"]
         self.rules = RuleBook(self.pack.goals_config, self.settings, known_events=self.history["event_names"])
-        self.provider = make_provider(provider_name, read_jsonl(self.pack_dir / "replay" / "model_faults.jsonl"))
-        self.deps = Deps(self.pack, self.store, self.rules, self.settings, self.provider)
+        self.provider = make_provider(provider_name, read_jsonl(self.pack_dir / "replay" / "model_faults.jsonl"), self.settings)
+        self.deps = Deps(self.pack, self.store, self.rules, self.settings, self.provider, ids=Ids.after(self.store))
+        self.surge = SurgeMonitor(self.settings)
         self.agents: dict[str, ViewerAgent] = {}
         self.decisions: list[dict] = []
         self.event_notes: list[dict] = []
@@ -81,13 +84,20 @@ class Replay:
         timeline.sort(key=lambda x: (x[1], order[x[0]]))
 
         triggers_seen = 0
+        free_at = [0.0] * self.settings.workers  # when each decision worker is next free (epoch seconds)
         for kind, at, item in timeline:
             if kind == "trigger":
                 if limit and triggers_seen >= limit:
                     break
                 triggers_seen += 1
+                self.deps.shed_model = self.surge.add(at)
+                # one shared queue: the open waits for the first free worker, and that wait counts against its budget
+                start = max(at.timestamp(), heapq.heappop(free_at))
+                queued_s = start - at.timestamp()
                 self.store.add_event(item)  # the trigger is itself an event the viewer's history must contain
-                record, _ = self.agent(item["user_id"]).handle_trigger(item, at)
+                record, _ = self.agent(item["user_id"]).handle_trigger(item, at, queued_s=queued_s)
+                record["during_surge"] = self.deps.shed_model
+                heapq.heappush(free_at, start + record["decided_in_ms"] / 1000 - queued_s)
                 self.decisions.append(record)
                 if triggers_seen % 500 == 0:
                     print(f"  {triggers_seen} triggers processed", file=sys.stderr)
@@ -180,9 +190,13 @@ class Replay:
             "model": {"calls": sum(d["model"].get("calls", 0) for d in self.decisions),
                       "advice_used": sum(1 for d in self.decisions if d["model"].get("used")),
                       "advice_rejected": sum(1 for d in self.decisions if d["model"].get("rejected")),
-                      "failures": sum(1 for d in self.decisions if d["model"].get("failure"))},
+                      "failures": sum(1 for d in self.decisions if d["model"].get("failure")),
+                      "skipped_not_needed": sum(1 for d in self.decisions if (d["model"].get("skipped") or "").startswith("not needed")),
+                      "skipped_surge": sum(1 for d in self.decisions if (d["model"].get("skipped") or "").startswith("traffic surge")),
+                      "skipped_time": sum(1 for d in self.decisions if "time budget left" in (d["model"].get("skipped") or ""))},
             "history_ingest": self.history["counts"],
             "catalogue_text_flagged": [{"title_id": tid, "excerpt": text[:140]} for tid, text in sorted(self.pack.flagged_text.items())],
+            "traffic_surges": self.surge.windows,
             "unmeasurable_goals": {g: self.rules.measurable(g)[1] for g in self.rules.goals if not self.rules.measurable(g)[0]},
             "control_events": self.control_log,
             "plan_revisions_from_live_events": self.event_notes,
@@ -209,6 +223,10 @@ class Replay:
             "late": sum(1 for d in self.decisions if d["status"] == "LATE"),
             "failed": sum(1 for d in self.decisions if d["status"] == "FAILED"),
             "with_simulated_wait": sum(1 for d in self.decisions if d["budget"].get("simulated_wait_ms")),
+            "workers": self.settings.workers,
+            "queue_wait_p95_ms": sorted(d.get("queue_wait_ms", 0) for d in self.decisions)[int(len(times) * 0.95)] if times else 0,
+            "queue_wait_max_ms": max((d.get("queue_wait_ms", 0) for d in self.decisions), default=0),
+            "decisions_during_surge": sum(1 for d in self.decisions if d.get("during_surge")),
             "max_simulated_wait_ms": max((d["budget"].get("simulated_wait_ms", 0) for d in self.decisions), default=0),
             "peak_triggers_per_minute": max(per_minute.values()) if per_minute else 0,
             "peak_minute_utc": max(per_minute, key=per_minute.get) if per_minute else None,
@@ -221,6 +239,39 @@ def _main_day(decisions: list[dict]) -> str | None:
     """The IST calendar day most triggers were delivered on."""
     days = Counter(parse_ts(d["trigger"]["delivered_at"]).astimezone(IST).date().isoformat() for d in decisions)
     return days.most_common(1)[0][0] if days else None
+
+
+class SurgeMonitor:
+    """Notices traffic surges: a 10-minute window with `surge_ratio` times the opens of the hour before it."""
+
+    def __init__(self, settings: Settings):
+        self.s = settings
+        self.recent: deque = deque()
+        self.windows: list[dict] = []
+        self.active = False
+        self.first_seen = None
+
+    def add(self, at) -> bool:
+        self.first_seen = self.first_seen or at
+        self.recent.append(at)
+        while self.recent and self.recent[0] < at - timedelta(minutes=70):
+            self.recent.popleft()
+        last_10 = sum(1 for t in self.recent if t > at - timedelta(minutes=10))
+        baseline = (len(self.recent) - last_10) / 6  # opens per 10 minutes over the hour before
+        warmed_up = at - self.first_seen >= timedelta(minutes=60)  # a surge only means something against a baseline
+        surge = warmed_up and last_10 >= self.s.surge_min_opens and last_10 >= self.s.surge_ratio * max(baseline, 1.0)
+        if surge and not self.active:
+            last = self.windows[-1] if self.windows else None
+            if last and at - parse_ts(last["end"]) <= timedelta(minutes=5):
+                pass  # the same surge dipped for a moment; keep one window
+            else:
+                self.windows.append({"start": iso(at), "end": iso(at), "opens_in_10_min": last_10,
+                                     "baseline_per_10_min": round(baseline, 1)})
+        if surge:
+            w = self.windows[-1]
+            w["end"], w["opens_in_10_min"] = iso(at), max(w["opens_in_10_min"], last_10)
+        self.active = surge
+        return surge
 
 
 def _reason_key(d: dict) -> str:

@@ -3,27 +3,24 @@
   "user_id": "U-02374",
   "active_goal": {
    "instance_id": "G-00474",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T07:13:03.018Z",
-   "deadline": "2026-10-04T07:13:03.018Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T07:13:03.018Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+    "profile:U-02374@2026-09-29T03:59:38.355Z"
    ],
-   "context": {
-    "slug": "hama-chudibha-d1",
-    "title_id": "T0002"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+    "success_event_id": "oua-015203",
+    "success_at": "2026-10-01T07:40:00.982Z",
+    "attribution": "exposed_before_success",
     "exposure": {
      "home_page_shown": 2,
      "message_delivered": 1
@@ -33,7 +30,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T07:13:03.018Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-01T07:40:00.982Z judged: G08 succeeded (exposed_before_success; page shown 2x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -236,12 +233,12 @@
    "D-02733"
   ],
   "actions": [
-   "A-00381",
-   "A-00382",
-   "A-00589",
-   "A-01269"
+   "A-00342",
+   "A-00343",
+   "A-00528",
+   "A-01139"
   ],
-  "updated_at": "2026-10-01T18:04:47.872Z"
+  "updated_at": "2026-10-01T18:04:49.072Z"
  },
  "decisions": [
   {
@@ -259,12 +256,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00474",
     "started_at": "2026-10-01T07:13:03.018Z",
-    "deadline": "2026-10-04T07:13:03.018Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T07:13:03.018Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": false
@@ -283,15 +280,25 @@
    },
    "content": [
     "title:T0002",
-    "title:T0008",
-    "title:T1574",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
     "title:T0005",
     "title:T0004",
+    "title:T0003",
     "title:T0009",
     "title:T0015",
     "title:T0013",
     "title:T0006",
-    "title:T0007",
+    "title:T0014",
+    "title:T0008",
     "title:T0012",
     "title:T0011",
     "title:T0018",
@@ -302,27 +309,17 @@
     "title:T0058",
     "title:T0023",
     "title:T0168",
-    "title:T0028",
-    "title:T0003",
-    "title:T0014",
+    "title:T0100",
     "title:T0010",
-    "title:T0034",
     "title:T0016",
-    "title:T0025",
-    "title:T0084",
-    "title:T0067",
-    "title:T0044",
-    "title:T0037",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0435",
-    "title:T0195",
-    "title:T0036"
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041"
    ],
    "confidence": {
     "value": 0.75,
@@ -332,66 +329,209 @@
     {
      "ref": "trigger:e82feac0-fa53-4369-bc6e-218b34b6059e",
      "source": "event",
-     "observed_at": "2026-10-01T07:13:03.018Z"
+     "observed_at": "2026-10-01T07:13:03.018Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02374@2026-09-29T03:59:38.355Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-29T03:59:38.355Z",
+     "age_s": 184404
     },
     {
      "ref": "event:f97bb09b-196e-4bbc-a761-c8a3ac196883",
      "source": "event",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-01T20:47:20.259Z",
+     "age_s": 2543142
     },
     {
      "ref": "event:7f3427aa-66e1-404a-8a5d-ee9cd6a01799",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-25T20:32:25.597Z",
+     "age_s": 470437
     },
     {
      "ref": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-26T16:23:59.604Z",
+     "age_s": 398943
     },
     {
      "ref": "event:f7498774-4946-4f26-8577-c9b5f97bb114",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-27T14:22:33.462Z",
+     "age_s": 319829
     },
     {
      "ref": "event:a0dfd4f6-8a4b-46b3-bcc8-3227149814fe",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-22T15:23:56.334Z",
+     "age_s": 748146
     },
     {
      "ref": "event:c416a97c-86f4-4f81-bd73-25dc0e940350",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-25T22:22:49.332Z",
+     "age_s": 463813
     },
     {
      "ref": "event:3ee493d5-3d16-40f4-8083-c72582f90aff",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-24T15:47:44.675Z",
+     "age_s": 573918
     },
     {
      "ref": "event:f2e1069c-623e-4560-a311-7b46ada4d248",
      "source": "event",
-     "observed_at": "2026-09-27T14:21:02.447Z"
+     "observed_at": "2026-09-27T14:21:02.447Z",
+     "age_s": 319920
     },
     {
      "ref": "events:U-02374:count=119",
      "source": "derived",
-     "observed_at": "2026-10-01T07:13:03.018Z"
+     "observed_at": "2026-10-01T07:13:03.018Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:13:03.018Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:13:03.018Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:13:03.018Z"
+    },
+    "signup_at": {
+     "value": "2025-06-16T05:45:28.996Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "plays": {
+     "value": {
+      "count": 15,
+      "first_at": "2026-09-02T08:37:04.040Z",
+      "last_at": "2026-09-27T14:22:33.462Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-22",
+       "2026-09-24",
+       "2026-09-26",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Drama",
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "completions": {
+     "value": {
+      "count": 9,
+      "last_at": "2026-09-25T22:22:49.332Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T22:22:49.332Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-27T14:22:33.462Z",
+       "next_episode_id": "hama-chudibha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 36,
+       "evidence": "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+      },
+      {
+       "slug": "hate-d1",
+       "title_id": "T0008",
+       "last_played_at": "2026-09-26T16:23:59.604Z",
+       "next_episode_id": "hate-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca"
+      },
+      {
+       "slug": "rina-d1",
+       "title_id": "T1574",
+       "last_played_at": "2026-09-24T15:47:44.675Z",
+       "next_episode_id": "rina-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 35,
+       "evidence": "event:3ee493d5-3d16-40f4-8083-c72582f90aff"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T14:21:02.447Z",
+     "source": "event",
+     "observed_at": "2026-09-27T14:21:02.447Z"
+    },
+    "history_depth": {
+     "value": 119,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:13:03.018Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+     "profile:U-02374@2026-09-29T03:59:38.355Z"
     ]
    },
    "model": {
@@ -400,7 +540,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -422,12 +563,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 8,
-   "published_at": "2026-10-01T07:13:03.026Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1207,
+   "published_at": "2026-10-01T07:13:04.225Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-00943",
@@ -444,12 +587,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00474",
     "started_at": "2026-10-01T07:13:03.018Z",
-    "deadline": "2026-10-04T07:13:03.018Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T07:13:03.018Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": false
@@ -457,7 +600,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00381 for this viewer is still live (published 2026-10-01T07:13:03.026Z); nothing to change",
+   "no_action_reason": "home page A-00342 for this viewer is still live (published 2026-10-01T07:13:04.225Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -472,73 +615,218 @@
     {
      "ref": "trigger:13dfc355-b2a2-49e3-a477-8d86ba7d3e5c",
      "source": "event",
-     "observed_at": "2026-10-01T07:38:19.982Z"
+     "observed_at": "2026-10-01T07:38:19.982Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02374@2026-09-29T03:59:38.355Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-29T03:59:38.355Z",
+     "age_s": 185921
     },
     {
      "ref": "event:f97bb09b-196e-4bbc-a761-c8a3ac196883",
      "source": "event",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-01T20:47:20.259Z",
+     "age_s": 2544659
     },
     {
      "ref": "event:7f3427aa-66e1-404a-8a5d-ee9cd6a01799",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-25T20:32:25.597Z",
+     "age_s": 471954
     },
     {
      "ref": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-26T16:23:59.604Z",
+     "age_s": 400460
     },
     {
      "ref": "event:f7498774-4946-4f26-8577-c9b5f97bb114",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-27T14:22:33.462Z",
+     "age_s": 321346
     },
     {
      "ref": "event:a0dfd4f6-8a4b-46b3-bcc8-3227149814fe",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-22T15:23:56.334Z",
+     "age_s": 749663
     },
     {
      "ref": "event:c416a97c-86f4-4f81-bd73-25dc0e940350",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-25T22:22:49.332Z",
+     "age_s": 465330
     },
     {
      "ref": "event:3ee493d5-3d16-40f4-8083-c72582f90aff",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-24T15:47:44.675Z",
+     "age_s": 575435
     },
     {
      "ref": "event:e82feac0-fa53-4369-bc6e-218b34b6059e",
      "source": "event",
-     "observed_at": "2026-10-01T07:13:03.018Z"
+     "observed_at": "2026-10-01T07:13:03.018Z",
+     "age_s": 1516
     },
     {
      "ref": "events:U-02374:count=120",
      "source": "derived",
-     "observed_at": "2026-10-01T07:38:19.982Z"
+     "observed_at": "2026-10-01T07:38:19.982Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:38:19.982Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:38:19.982Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:38:19.982Z"
+    },
+    "signup_at": {
+     "value": "2025-06-16T05:45:28.996Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "plays": {
+     "value": {
+      "count": 15,
+      "first_at": "2026-09-02T08:37:04.040Z",
+      "last_at": "2026-09-27T14:22:33.462Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-22",
+       "2026-09-24",
+       "2026-09-26",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Drama",
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "completions": {
+     "value": {
+      "count": 9,
+      "last_at": "2026-09-25T22:22:49.332Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T22:22:49.332Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-27T14:22:33.462Z",
+       "next_episode_id": "hama-chudibha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 36,
+       "evidence": "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+      },
+      {
+       "slug": "hate-d1",
+       "title_id": "T0008",
+       "last_played_at": "2026-09-26T16:23:59.604Z",
+       "next_episode_id": "hate-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca"
+      },
+      {
+       "slug": "rina-d1",
+       "title_id": "T1574",
+       "last_played_at": "2026-09-24T15:47:44.675Z",
+       "next_episode_id": "rina-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 35,
+       "evidence": "event:3ee493d5-3d16-40f4-8083-c72582f90aff"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T07:13:03.018Z",
+     "source": "event",
+     "observed_at": "2026-10-01T07:13:03.018Z"
+    },
+    "history_depth": {
+     "value": 120,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:38:19.982Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+     "profile:U-02374@2026-09-29T03:59:38.355Z"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -550,9 +838,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T07:38:19.985Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T07:38:19.984Z",
+   "status": "NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01307",
@@ -569,12 +859,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00474",
     "started_at": "2026-10-01T07:13:03.018Z",
-    "deadline": "2026-10-04T07:13:03.018Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T07:13:03.018Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": false
@@ -592,15 +882,25 @@
    },
    "content": [
     "title:T0002",
-    "title:T0008",
-    "title:T1574",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
     "title:T0005",
     "title:T0004",
+    "title:T0003",
     "title:T0009",
     "title:T0015",
     "title:T0013",
     "title:T0006",
-    "title:T0007",
+    "title:T0014",
+    "title:T0008",
     "title:T0012",
     "title:T0011",
     "title:T0018",
@@ -611,27 +911,17 @@
     "title:T0058",
     "title:T0023",
     "title:T0168",
-    "title:T0028",
-    "title:T0003",
-    "title:T0014",
+    "title:T0100",
     "title:T0010",
-    "title:T0034",
     "title:T0016",
-    "title:T0025",
-    "title:T0084",
-    "title:T0067",
-    "title:T0044",
-    "title:T0037",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0435",
-    "title:T0195",
-    "title:T0036"
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041"
    ],
    "confidence": {
     "value": 0.75,
@@ -641,68 +931,211 @@
     {
      "ref": "trigger:5ad55077-7444-4614-bb67-9087a93a4c20",
      "source": "event",
-     "observed_at": "2026-10-01T10:31:32.763Z"
+     "observed_at": "2026-10-01T10:31:32.763Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02374@2026-09-29T03:59:38.355Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-29T03:59:38.355Z",
+     "age_s": 196314
     },
     {
      "ref": "event:f97bb09b-196e-4bbc-a761-c8a3ac196883",
      "source": "event",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-01T20:47:20.259Z",
+     "age_s": 2555052
     },
     {
      "ref": "event:7f3427aa-66e1-404a-8a5d-ee9cd6a01799",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-25T20:32:25.597Z",
+     "age_s": 482347
     },
     {
      "ref": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-26T16:23:59.604Z",
+     "age_s": 410853
     },
     {
      "ref": "event:f7498774-4946-4f26-8577-c9b5f97bb114",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-27T14:22:33.462Z",
+     "age_s": 331739
     },
     {
      "ref": "event:a0dfd4f6-8a4b-46b3-bcc8-3227149814fe",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-22T15:23:56.334Z",
+     "age_s": 760056
     },
     {
      "ref": "event:c416a97c-86f4-4f81-bd73-25dc0e940350",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-25T22:22:49.332Z",
+     "age_s": 475723
     },
     {
      "ref": "event:3ee493d5-3d16-40f4-8083-c72582f90aff",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-24T15:47:44.675Z",
+     "age_s": 585828
     },
     {
      "ref": "event:13dfc355-b2a2-49e3-a477-8d86ba7d3e5c",
      "source": "event",
-     "observed_at": "2026-10-01T07:38:19.982Z"
+     "observed_at": "2026-10-01T07:38:19.982Z",
+     "age_s": 10392
     },
     {
      "ref": "events:U-02374:count=121",
      "source": "derived",
-     "observed_at": "2026-10-01T10:31:32.763Z"
+     "observed_at": "2026-10-01T10:31:32.763Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T10:31:32.763Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:31:32.763Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:31:32.763Z"
+    },
+    "signup_at": {
+     "value": "2025-06-16T05:45:28.996Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "plays": {
+     "value": {
+      "count": 15,
+      "first_at": "2026-09-02T08:37:04.040Z",
+      "last_at": "2026-09-27T14:22:33.462Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-22",
+       "2026-09-24",
+       "2026-09-26",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Drama",
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "completions": {
+     "value": {
+      "count": 9,
+      "last_at": "2026-09-25T22:22:49.332Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T22:22:49.332Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-27T14:22:33.462Z",
+       "next_episode_id": "hama-chudibha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 36,
+       "evidence": "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+      },
+      {
+       "slug": "hate-d1",
+       "title_id": "T0008",
+       "last_played_at": "2026-09-26T16:23:59.604Z",
+       "next_episode_id": "hate-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca"
+      },
+      {
+       "slug": "rina-d1",
+       "title_id": "T1574",
+       "last_played_at": "2026-09-24T15:47:44.675Z",
+       "next_episode_id": "rina-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 35,
+       "evidence": "event:3ee493d5-3d16-40f4-8083-c72582f90aff"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T07:38:19.982Z",
+     "source": "event",
+     "observed_at": "2026-10-01T07:38:19.982Z"
+    },
+    "history_depth": {
+     "value": 121,
+     "source": "derived",
+     "observed_at": "2026-10-01T10:31:32.763Z"
+    }
+   },
    "assumptions": [
     "a message is already scheduled for 2026-10-02; page only"
    ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+     "profile:U-02374@2026-09-29T03:59:38.355Z"
     ]
    },
    "model": {
@@ -711,7 +1144,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -728,12 +1162,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 10,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 7,
-   "published_at": "2026-10-01T10:31:32.770Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1208,
+   "published_at": "2026-10-01T10:31:33.971Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-02733",
@@ -750,12 +1186,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00474",
     "started_at": "2026-10-01T07:13:03.018Z",
-    "deadline": "2026-10-04T07:13:03.018Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T07:13:03.018Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": false
@@ -773,15 +1209,25 @@
    },
    "content": [
     "title:T0002",
-    "title:T0008",
-    "title:T1574",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
     "title:T0005",
     "title:T0004",
+    "title:T0003",
     "title:T0009",
     "title:T0015",
     "title:T0013",
     "title:T0006",
-    "title:T0007",
+    "title:T0014",
+    "title:T0008",
     "title:T0012",
     "title:T0011",
     "title:T0018",
@@ -792,27 +1238,17 @@
     "title:T0058",
     "title:T0023",
     "title:T0168",
-    "title:T0028",
-    "title:T0003",
-    "title:T0014",
+    "title:T0100",
     "title:T0010",
-    "title:T0034",
     "title:T0016",
-    "title:T0084",
-    "title:T0067",
-    "title:T0044",
-    "title:T0037",
-    "title:T0029",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0435",
-    "title:T0195",
-    "title:T0036"
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041"
    ],
    "confidence": {
     "value": 0.75,
@@ -822,68 +1258,211 @@
     {
      "ref": "trigger:b721a354-c0a9-481c-8867-77ed8be673e5",
      "source": "event",
-     "observed_at": "2026-10-01T18:04:47.866Z"
+     "observed_at": "2026-10-01T18:04:47.866Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02374@2026-09-29T03:59:38.355Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-29T03:59:38.355Z",
+     "age_s": 223509
     },
     {
      "ref": "event:f97bb09b-196e-4bbc-a761-c8a3ac196883",
      "source": "event",
-     "observed_at": "2026-09-29T03:59:38.355Z"
+     "observed_at": "2026-09-01T20:47:20.259Z",
+     "age_s": 2582247
     },
     {
      "ref": "event:7f3427aa-66e1-404a-8a5d-ee9cd6a01799",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-25T20:32:25.597Z",
+     "age_s": 509542
     },
     {
      "ref": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-26T16:23:59.604Z",
+     "age_s": 438048
     },
     {
      "ref": "event:f7498774-4946-4f26-8577-c9b5f97bb114",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-27T14:22:33.462Z",
+     "age_s": 358934
     },
     {
      "ref": "event:a0dfd4f6-8a4b-46b3-bcc8-3227149814fe",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-22T15:23:56.334Z",
+     "age_s": 787251
     },
     {
      "ref": "event:c416a97c-86f4-4f81-bd73-25dc0e940350",
      "source": "event",
-     "observed_at": "2026-09-25T22:22:49.332Z"
+     "observed_at": "2026-09-25T22:22:49.332Z",
+     "age_s": 502918
     },
     {
      "ref": "event:3ee493d5-3d16-40f4-8083-c72582f90aff",
      "source": "event",
-     "observed_at": "2026-09-27T14:22:33.462Z"
+     "observed_at": "2026-09-24T15:47:44.675Z",
+     "age_s": 613023
     },
     {
      "ref": "event:5ad55077-7444-4614-bb67-9087a93a4c20",
      "source": "event",
-     "observed_at": "2026-10-01T10:31:32.763Z"
+     "observed_at": "2026-10-01T10:31:32.763Z",
+     "age_s": 27195
     },
     {
      "ref": "events:U-02374:count=122",
      "source": "derived",
-     "observed_at": "2026-10-01T18:04:47.866Z"
+     "observed_at": "2026-10-01T18:04:47.866Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T18:04:47.866Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T18:04:47.866Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T18:04:47.866Z"
+    },
+    "signup_at": {
+     "value": "2025-06-16T05:45:28.996Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:59:38.355Z"
+    },
+    "plays": {
+     "value": {
+      "count": 15,
+      "first_at": "2026-09-02T08:37:04.040Z",
+      "last_at": "2026-09-27T14:22:33.462Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-22",
+       "2026-09-24",
+       "2026-09-26",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Drama",
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "completions": {
+     "value": {
+      "count": 9,
+      "last_at": "2026-09-25T22:22:49.332Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T22:22:49.332Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-27T14:22:33.462Z",
+       "next_episode_id": "hama-chudibha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 36,
+       "evidence": "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+      },
+      {
+       "slug": "hate-d1",
+       "title_id": "T0008",
+       "last_played_at": "2026-09-26T16:23:59.604Z",
+       "next_episode_id": "hate-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:5ba435cc-4199-4037-ad4b-d60783e4e3ca"
+      },
+      {
+       "slug": "rina-d1",
+       "title_id": "T1574",
+       "last_played_at": "2026-09-24T15:47:44.675Z",
+       "next_episode_id": "rina-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 35,
+       "evidence": "event:3ee493d5-3d16-40f4-8083-c72582f90aff"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T14:22:33.462Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T10:31:32.763Z",
+     "source": "event",
+     "observed_at": "2026-10-01T10:31:32.763Z"
+    },
+    "history_depth": {
+     "value": 122,
+     "source": "derived",
+     "observed_at": "2026-10-01T18:04:47.866Z"
+    }
+   },
    "assumptions": [
     "a message is already scheduled for 2026-10-02; page only"
    ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:f7498774-4946-4f26-8577-c9b5f97bb114"
+     "profile:U-02374@2026-09-29T03:59:38.355Z"
     ]
    },
    "model": {
@@ -892,7 +1471,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-27"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -909,38 +1489,55 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 10,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T18:04:47.872Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T18:04:49.072Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00381",
+   "action_id": "A-00342",
    "decision_id": "D-00883",
    "user_id": "U-02374",
    "trigger_event_id": "e82feac0-fa53-4369-bc6e-218b34b6059e",
-   "published_at": "2026-10-01T07:13:03.026Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T07:13:04.225Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
    "hero_title_id": "T0002",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0008",
-      "T1574",
+      "T0007",
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
       "T0005",
       "T0004",
+      "T0003",
       "T0009",
       "T0015",
       "T0013",
       "T0006",
-      "T0007",
+      "T0014",
+      "T0008",
       "T0012"
      ]
     },
@@ -956,81 +1553,81 @@
       "T0058",
       "T0023",
       "T0168",
-      "T0028"
+      "T0100"
      ]
     },
     {
-     "row_type": "popular_in_dialect",
+     "row_type": "genre",
      "title_ids": [
-      "T0003",
-      "T0014",
       "T0010",
-      "T0034",
       "T0016",
-      "T0025",
-      "T0084",
-      "T0067",
-      "T0044",
-      "T0037"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0031",
-      "T0070",
-      "T0047",
-      "T0127",
-      "T0063",
-      "T0426",
-      "T0382",
-      "T0435",
-      "T0195",
-      "T0036"
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00382",
+   "action_id": "A-00343",
    "decision_id": "D-00883",
    "user_id": "U-02374",
    "trigger_event_id": "e82feac0-fa53-4369-bc6e-218b34b6059e",
-   "published_at": "2026-10-01T07:13:03.026Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T07:13:04.225Z",
+   "goal_id": "G08",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0002",
+   "title_id": "T0007",
    "dialect": "d1",
    "text": {
-    "title": "Continue Hama Chudibha",
-    "body": "Episode 2 of Hama Chudibha is waiting for you."
+    "title": "New in D1: Tiya Bhamaro",
+    "body": "Tiya Bhamaro just released. Start watching now."
    },
-   "deeplink": "ott://title/T0002"
+   "deeplink": "ott://title/T0007"
   },
   {
-   "action_id": "A-00589",
+   "action_id": "A-00528",
    "decision_id": "D-01307",
    "user_id": "U-02374",
    "trigger_event_id": "5ad55077-7444-4614-bb67-9087a93a4c20",
-   "published_at": "2026-10-01T10:31:32.770Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T10:31:33.971Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
    "hero_title_id": "T0002",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0008",
-      "T1574",
+      "T0007",
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
       "T0005",
       "T0004",
+      "T0003",
       "T0009",
       "T0015",
       "T0013",
       "T0006",
-      "T0007",
+      "T0014",
+      "T0008",
       "T0012"
      ]
     },
@@ -1046,64 +1643,64 @@
       "T0058",
       "T0023",
       "T0168",
-      "T0028"
+      "T0100"
      ]
     },
     {
-     "row_type": "popular_in_dialect",
+     "row_type": "genre",
      "title_ids": [
-      "T0003",
-      "T0014",
       "T0010",
-      "T0034",
       "T0016",
-      "T0025",
-      "T0084",
-      "T0067",
-      "T0044",
-      "T0037"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0031",
-      "T0070",
-      "T0047",
-      "T0127",
-      "T0063",
-      "T0426",
-      "T0382",
-      "T0435",
-      "T0195",
-      "T0036"
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041"
      ]
     }
    ]
   },
   {
-   "action_id": "A-01269",
+   "action_id": "A-01139",
    "decision_id": "D-02733",
    "user_id": "U-02374",
    "trigger_event_id": "b721a354-c0a9-481c-8867-77ed8be673e5",
-   "published_at": "2026-10-01T18:04:47.872Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T18:04:49.072Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
    "hero_title_id": "T0002",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0008",
-      "T1574",
+      "T0007",
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
       "T0005",
       "T0004",
+      "T0003",
       "T0009",
       "T0015",
       "T0013",
       "T0006",
-      "T0007",
+      "T0014",
+      "T0008",
       "T0012"
      ]
     },
@@ -1119,37 +1716,22 @@
       "T0058",
       "T0023",
       "T0168",
-      "T0028"
+      "T0100"
      ]
     },
     {
-     "row_type": "popular_in_dialect",
+     "row_type": "genre",
      "title_ids": [
-      "T0003",
-      "T0014",
       "T0010",
-      "T0034",
       "T0016",
-      "T0084",
-      "T0067",
-      "T0044",
-      "T0037",
-      "T0029"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0031",
-      "T0070",
-      "T0047",
-      "T0127",
-      "T0063",
-      "T0426",
-      "T0382",
-      "T0435",
-      "T0195",
-      "T0036"
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041"
      ]
     }
    ]
@@ -1160,27 +1742,27 @@
    "user_id": "U-02374",
    "arm": "agent",
    "goal_instance_id": "G-00474",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T07:13:03.018Z",
-   "deadline": "2026-10-04T07:13:03.018Z",
+   "deadline": "2026-10-08T07:13:03.018Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+   "success_event_id": "oua-015203",
+   "success_at": "2026-10-01T07:40:00.982Z",
+   "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 2,
     "message_delivered": 1
    },
    "actions": [
-    "A-00381",
-    "A-00382",
-    "A-00589",
-    "A-01269"
+    "A-00342",
+    "A-00343",
+    "A-00528",
+    "A-01139"
    ]
   }
  ]

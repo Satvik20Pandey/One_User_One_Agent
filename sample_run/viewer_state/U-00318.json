@@ -184,7 +184,7 @@
    "D-00255"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T03:34:31.245Z"
+  "updated_at": "2026-10-01T03:34:31.243Z"
  },
  "decisions": [
   {
@@ -230,39 +230,142 @@
     {
      "ref": "trigger:a191c1b2-da86-4a60-8f95-f1c8abe16e95",
      "source": "event",
-     "observed_at": "2026-10-01T03:34:31.242Z"
+     "observed_at": "2026-10-01T03:34:31.242Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00318@2026-09-29T07:02:23.111Z",
      "source": "profile",
-     "observed_at": "2026-10-01T03:34:31.242Z"
+     "observed_at": "2026-09-29T07:02:23.111Z",
+     "age_s": 160328
     },
     {
      "ref": "event:c872702d-bf53-4e60-93b5-bf00455c0b6c",
      "source": "event",
-     "observed_at": "2026-09-17T02:35:31.349Z"
+     "observed_at": "2026-09-17T02:35:31.349Z",
+     "age_s": 1213139
     },
     {
      "ref": "event:a5ec2e83-3f00-42bc-bd92-122477f2cca2",
      "source": "event",
-     "observed_at": "2026-09-27T13:57:39.368Z"
+     "observed_at": "2026-09-27T13:57:39.368Z",
+     "age_s": 308211
     },
     {
      "ref": "event:393f4f5b-cf5f-4152-b64e-29e7cc87a9d5",
      "source": "event",
-     "observed_at": "2026-09-27T15:38:51.680Z"
+     "observed_at": "2026-09-27T15:38:51.680Z",
+     "age_s": 302139
     },
     {
      "ref": "event:6f323752-b434-4431-a5c1-509882cc3694",
      "source": "event",
-     "observed_at": "2026-09-28T11:39:55.716Z"
+     "observed_at": "2026-09-28T11:39:55.716Z",
+     "age_s": 230075
     },
     {
      "ref": "events:U-00318:count=25",
      "source": "derived",
-     "observed_at": "2026-10-01T03:34:31.242Z"
+     "observed_at": "2026-10-01T03:34:31.242Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T03:34:31.242Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "profile",
+      "conflicts": [],
+      "page_dialect": null,
+      "message_dialect": "d3"
+     },
+     "source": "profile",
+     "observed_at": "2026-10-01T03:34:31.242Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T03:34:31.242Z"
+    },
+    "signup_at": {
+     "value": "2026-09-17T02:35:31.349Z",
+     "source": "event",
+     "observed_at": "2026-09-17T02:35:31.349Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T07:02:23.111Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T07:02:23.111Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T07:02:23.111Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T07:02:23.111Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-27T13:57:39.368Z",
+      "last_at": "2026-09-27T13:57:39.368Z",
+      "days_in_last_14": [
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:57:39.368Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-27T15:38:51.680Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T15:38:51.680Z"
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-28T11:39:55.716Z",
+     "source": "event",
+     "observed_at": "2026-09-28T11:39:55.716Z"
+    },
+    "history_depth": {
+     "value": 25,
+     "source": "derived",
+     "observed_at": "2026-10-01T03:34:31.242Z"
+    }
+   },
    "assumptions": [
     "app dialect missing on the trigger; profile preference used for messages only"
    ],
@@ -275,10 +378,12 @@
     ]
    },
    "model": {
-    "provider": null,
+    "provider": "mock",
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [],
@@ -290,9 +395,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T03:34:31.245Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T03:34:31.243Z",
+   "status": "NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

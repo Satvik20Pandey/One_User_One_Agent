@@ -248,34 +248,148 @@
     {
      "ref": "trigger:0a372dc0-696e-4935-95aa-80e7223eb569",
      "source": "event",
-     "observed_at": "2026-10-01T02:31:43.864Z"
+     "observed_at": "2026-10-01T02:31:43.864Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04577@2026-09-29T04:26:09.462Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:26:09.462Z"
+     "observed_at": "2026-09-29T04:26:09.462Z",
+     "age_s": 165934
     },
     {
      "ref": "event:6d6f0ef9-5785-464c-8006-77cc33af27e5",
      "source": "event",
-     "observed_at": "2026-09-30T15:44:40.774Z"
+     "observed_at": "2026-09-30T15:44:40.774Z",
+     "age_s": 38823
     },
     {
      "ref": "events:U-04577:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:1b599776-f5e6-4f59-9b2f-851010d21495",
      "source": "event",
-     "observed_at": "2026-09-30T15:41:15.678Z"
+     "observed_at": "2026-09-30T15:41:15.678Z",
+     "age_s": 39028
     },
     {
      "ref": "events:U-04577:count=18",
      "source": "derived",
-     "observed_at": "2026-10-01T02:31:43.864Z"
+     "observed_at": "2026-10-01T02:31:43.864Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T02:31:43.864Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T02:31:43.864Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T02:31:43.864Z"
+    },
+    "signup_at": {
+     "value": "2026-08-27T00:10:39.530Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:26:09.462Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:26:09.462Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:26:09.462Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:26:09.462Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:26:09.462Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-30T15:44:40.774Z",
+      "last_at": "2026-09-30T15:44:40.774Z",
+      "days_in_last_14": [
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T15:44:40.774Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-30T15:44:40.774Z",
+       "next_episode_id": "yatite-roloda-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 23,
+       "evidence": "event:6d6f0ef9-5785-464c-8006-77cc33af27e5"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-30T15:44:40.774Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T15:41:15.678Z",
+     "source": "event",
+     "observed_at": "2026-09-30T15:41:15.678Z"
+    },
+    "history_depth": {
+     "value": 18,
+     "source": "derived",
+     "observed_at": "2026-10-01T02:31:43.864Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
@@ -291,7 +405,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -303,9 +419,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T02:31:43.865Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

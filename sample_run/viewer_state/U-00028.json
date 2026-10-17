@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00028",
   "active_goal": {
-   "instance_id": "G-00841",
+   "instance_id": "G-00840",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T11:57:01.494Z",
@@ -23,16 +23,14 @@
     "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "published_but_never_seen",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T11:57:01.494Z judged: G07 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T11:57:01.494Z judged: G07 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -219,10 +217,9 @@
    "D-01500"
   ],
   "actions": [
-   "A-00684",
-   "A-00685"
+   "A-00610"
   ],
-  "updated_at": "2026-10-01T11:57:01.497Z"
+  "updated_at": "2026-10-01T11:57:01.496Z"
  },
  "decisions": [
   {
@@ -242,7 +239,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-00841",
+    "instance_id": "G-00840",
     "started_at": "2026-10-01T11:57:01.494Z",
     "deadline": "2026-10-04T11:57:01.494Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -253,8 +250,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -316,40 +312,166 @@
     {
      "ref": "trigger:5de7835c-7576-45d3-bb84-4145cac5b534",
      "source": "event",
-     "observed_at": "2026-10-01T11:57:01.494Z"
+     "observed_at": "2026-10-01T11:57:01.494Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00028@2026-09-29T02:46:45.504Z",
      "source": "profile",
-     "observed_at": "2026-09-29T02:46:45.504Z"
+     "observed_at": "2026-09-29T02:46:45.504Z",
+     "age_s": 205815
     },
     {
      "ref": "event:92b21e4c-ef9e-4111-bcf6-00afc16d31ca",
      "source": "event",
-     "observed_at": "2026-09-10T16:45:22.913Z"
+     "observed_at": "2026-09-03T12:15:20.387Z",
+     "age_s": 2418101
     },
     {
      "ref": "event:dd1d4898-9b9e-4cbc-a4bd-8d399fdd96b3",
      "source": "event",
-     "observed_at": "2026-09-10T16:45:22.913Z"
+     "observed_at": "2026-09-10T16:45:22.913Z",
+     "age_s": 1797098
     },
     {
      "ref": "event:6a65d4a6-55e6-40b1-bb47-9ee909e673b2",
      "source": "event",
-     "observed_at": "2026-09-03T13:56:33.110Z"
+     "observed_at": "2026-09-03T13:56:33.110Z",
+     "age_s": 2412028
     },
     {
      "ref": "event:fdc4e6ba-5d50-4e35-9911-ac27f4ddf738",
      "source": "event",
-     "observed_at": "2026-09-30T08:33:53.633Z"
+     "observed_at": "2026-09-30T08:33:53.633Z",
+     "age_s": 98587
     },
     {
      "ref": "events:U-00028:count=34",
      "source": "derived",
-     "observed_at": "2026-10-01T11:57:01.494Z"
+     "observed_at": "2026-10-01T11:57:01.494Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T11:57:01.494Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d3",
+       "deeplink:d2"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:57:01.494Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:57:01.494Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp053",
+      "dialect": "d2",
+      "title_id": "T1678"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T11:57:01.494Z"
+    },
+    "signup_at": {
+     "value": "2025-05-24T17:36:03.647Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:46:45.504Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:46:45.504Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:46:45.504Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:46:45.504Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:46:45.504Z"
+    },
+    "plays": {
+     "value": {
+      "count": 2,
+      "first_at": "2026-09-03T12:15:20.387Z",
+      "last_at": "2026-09-10T16:45:22.913Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Devotional",
+       "Action"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-10T16:45:22.913Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-03T13:56:33.110Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-03T13:56:33.110Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "lala-gunesa-d5",
+       "title_id": "T1194",
+       "last_played_at": "2026-09-10T16:45:22.913Z",
+       "next_episode_id": "lala-gunesa-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 12,
+       "evidence": "event:dd1d4898-9b9e-4cbc-a4bd-8d399fdd96b3"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-10T16:45:22.913Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T08:33:53.633Z",
+     "source": "event",
+     "observed_at": "2026-09-30T08:33:53.633Z"
+    },
+    "history_depth": {
+     "value": 34,
+     "source": "derived",
+     "observed_at": "2026-10-01T11:57:01.494Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d5, profile=d3, deeplink=d2 -> used d5 (app_setting)"
    ],
@@ -362,11 +484,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series lala-gunesa-d5 (0/12 episodes), last played 2026-09-10"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -375,34 +497,30 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 12,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T11:57:01.497Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T11:57:01.496Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00684",
+   "action_id": "A-00610",
    "decision_id": "D-01500",
    "user_id": "U-00028",
    "trigger_event_id": "5de7835c-7576-45d3-bb84-4145cac5b534",
-   "published_at": "2026-10-01T11:57:01.497Z",
+   "published_at": "2026-10-01T11:57:01.496Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
@@ -469,30 +587,13 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00685",
-   "decision_id": "D-01500",
-   "user_id": "U-00028",
-   "trigger_event_id": "5de7835c-7576-45d3-bb84-4145cac5b534",
-   "published_at": "2026-10-01T11:57:01.497Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1194",
-   "dialect": "d5",
-   "text": {
-    "title": "Continue Lala Gunesa",
-    "body": "Episode 1 of Lala Gunesa is waiting for you."
-   },
-   "deeplink": "ott://title/T1194"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-00028",
    "arm": "agent",
-   "goal_instance_id": "G-00841",
+   "goal_instance_id": "G-00840",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T11:57:01.494Z",
@@ -504,13 +605,10 @@
    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
+   "attribution": "published_but_never_seen",
+   "exposure": {},
    "actions": [
-    "A-00684",
-    "A-00685"
+    "A-00610"
    ]
   }
  ]

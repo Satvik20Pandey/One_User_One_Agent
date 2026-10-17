@@ -234,34 +234,136 @@
     {
      "ref": "trigger:0958906f-9e76-454f-ba78-d6f76687c606",
      "source": "event",
-     "observed_at": "2026-10-01T08:41:31.876Z"
+     "observed_at": "2026-10-01T08:41:31.876Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00601@2026-09-29T10:03:52.167Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:03:52.167Z"
+     "observed_at": "2026-09-29T10:03:52.167Z",
+     "age_s": 167859
     },
     {
      "ref": "event:68e7bc30-d9e3-4e5d-9777-9ca14ff6629b",
      "source": "event",
-     "observed_at": "2026-09-05T14:45:42.126Z"
+     "observed_at": "2026-09-05T14:45:42.126Z",
+     "age_s": 2224549
     },
     {
      "ref": "events:U-00601:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:b20b38a6-4f7b-43f0-815e-bc2aa9f1ba52",
      "source": "event",
-     "observed_at": "2026-09-30T15:57:45.806Z"
+     "observed_at": "2026-09-30T15:57:45.806Z",
+     "age_s": 60226
     },
     {
      "ref": "events:U-00601:count=21",
      "source": "derived",
-     "observed_at": "2026-10-01T08:41:31.876Z"
+     "observed_at": "2026-10-01T08:41:31.876Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T08:41:31.876Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:41:31.876Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:41:31.876Z"
+    },
+    "signup_at": {
+     "value": "2026-03-09T20:35:37.176Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:03:52.167Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:03:52.167Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:03:52.167Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:03:52.167Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:03:52.167Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-05T14:45:42.126Z",
+      "last_at": "2026-09-05T14:45:42.126Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Drama",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T14:45:42.126Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T15:57:45.806Z",
+     "source": "event",
+     "observed_at": "2026-09-30T15:57:45.806Z"
+    },
+    "history_depth": {
+     "value": 21,
+     "source": "derived",
+     "observed_at": "2026-10-01T08:41:31.876Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
@@ -277,7 +379,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -289,9 +393,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T08:41:31.877Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

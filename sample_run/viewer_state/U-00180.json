@@ -197,7 +197,7 @@
    "D-00287"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T03:59:10.610Z"
+  "updated_at": "2026-10-01T03:59:10.608Z"
  },
  "decisions": [
   {
@@ -243,34 +243,145 @@
     {
      "ref": "trigger:a8f6d576-1c03-4499-96b8-7a8143516d26",
      "source": "event",
-     "observed_at": "2026-10-01T03:59:10.607Z"
+     "observed_at": "2026-10-01T03:59:10.607Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00180@2026-09-29T11:17:53.577Z",
      "source": "profile",
-     "observed_at": "2026-09-29T11:17:53.577Z"
+     "observed_at": "2026-09-29T11:17:53.577Z",
+     "age_s": 146477
     },
     {
      "ref": "event:3f1fbd81-349a-4e6f-bdd9-317540ba94cd",
      "source": "event",
-     "observed_at": "2026-09-30T15:42:11.345Z"
+     "observed_at": "2026-09-30T15:42:11.345Z",
+     "age_s": 44219
     },
     {
      "ref": "events:U-00180:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:bf03ec5a-d297-490a-bbe6-4a99e8af0cba",
      "source": "event",
-     "observed_at": "2026-09-30T15:40:55.973Z"
+     "observed_at": "2026-09-30T15:40:55.973Z",
+     "age_s": 44294
     },
     {
      "ref": "events:U-00180:count=10",
      "source": "derived",
-     "observed_at": "2026-10-01T03:59:10.607Z"
+     "observed_at": "2026-10-01T03:59:10.607Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T03:59:10.607Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T03:59:10.607Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T03:59:10.607Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp001",
+      "dialect": "d4",
+      "title_id": "T0939"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T03:59:10.607Z"
+    },
+    "signup_at": {
+     "value": "2026-02-23T23:41:22.858Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T11:17:53.577Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T11:17:53.577Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T11:17:53.577Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T11:17:53.577Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T11:17:53.577Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-30T15:42:11.345Z",
+      "last_at": "2026-09-30T15:42:11.345Z",
+      "days_in_last_14": [
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Drama",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T15:42:11.345Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T15:40:55.973Z",
+     "source": "event",
+     "observed_at": "2026-09-30T15:40:55.973Z"
+    },
+    "history_depth": {
+     "value": 10,
+     "source": "derived",
+     "observed_at": "2026-10-01T03:59:10.607Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -284,7 +395,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -296,9 +409,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T03:59:10.610Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T03:59:10.608Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

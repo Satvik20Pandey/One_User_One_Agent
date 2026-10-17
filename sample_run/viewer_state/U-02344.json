@@ -25,15 +25,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 6,
-     "message_delivered": 1
+     "home_page_shown": 6
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-03T18:32:59.458Z judged: G07 failed (exposed_no_success; page shown 6x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-03T18:32:59.458Z judged: G07 failed (exposed_no_success; page shown 6x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -229,13 +228,12 @@
   ],
   "actions": [
    "A-00001",
-   "A-00002",
-   "A-00300",
-   "A-00655",
-   "A-00889",
-   "A-01255"
+   "A-00267",
+   "A-00587",
+   "A-00796",
+   "A-01124"
   ],
-  "updated_at": "2026-10-01T17:45:11.726Z"
+  "updated_at": "2026-10-01T17:45:11.725Z"
  },
  "decisions": [
   {
@@ -266,8 +264,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -300,50 +297,182 @@
     {
      "ref": "trigger:9ffd7200-d9e5-4fd0-8106-bb555fdf33cb",
      "source": "event",
-     "observed_at": "2026-09-30T18:32:59.458Z"
+     "observed_at": "2026-09-30T18:32:59.458Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 113864
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1241703
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 649980
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 561030
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 649758
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 554958
     },
     {
      "ref": "event:95c0ca48-5f63-4bb7-b91d-577cb05e6ff0",
      "source": "event",
-     "observed_at": "2026-09-30T15:24:46.304Z"
+     "observed_at": "2026-09-30T15:24:46.304Z",
+     "age_s": 11293
     },
     {
      "ref": "events:U-02344:count=58",
      "source": "derived",
-     "observed_at": "2026-09-30T18:32:59.458Z"
+     "observed_at": "2026-09-30T18:32:59.458Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T18:32:59.458Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T18:32:59.458Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T18:32:59.458Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T15:24:46.304Z",
+     "source": "event",
+     "observed_at": "2026-09-30T15:24:46.304Z"
+    },
+    "history_depth": {
+     "value": 58,
+     "source": "derived",
+     "observed_at": "2026-09-30T18:32:59.458Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
    ],
@@ -356,11 +485,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (1/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -369,25 +498,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 12,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 9,
-   "published_at": "2026-09-30T18:32:59.467Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 3,
+   "published_at": "2026-09-30T18:32:59.461Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-00778",
@@ -451,51 +576,191 @@
     {
      "ref": "trigger:af345733-f9f3-4243-b5bf-c2cf0d2a4860",
      "source": "event",
-     "observed_at": "2026-10-01T06:18:42.517Z"
+     "observed_at": "2026-10-01T06:18:42.517Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 156207
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1284046
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 692323
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 603373
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 692101
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 597301
     },
     {
      "ref": "event:9ffd7200-d9e5-4fd0-8106-bb555fdf33cb",
      "source": "event",
-     "observed_at": "2026-09-30T18:32:59.458Z"
+     "observed_at": "2026-09-30T18:32:59.458Z",
+     "age_s": 42343
     },
     {
      "ref": "events:U-02344:count=59",
      "source": "derived",
-     "observed_at": "2026-10-01T06:18:42.517Z"
+     "observed_at": "2026-10-01T06:18:42.517Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1",
+       "deeplink:d4"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp032",
+      "dialect": "d4",
+      "title_id": "T0915"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T18:32:59.458Z",
+     "source": "event",
+     "observed_at": "2026-09-30T18:32:59.458Z"
+    },
+    "history_depth": {
+     "value": 59,
+     "source": "derived",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=d4 -> used d3 (app_setting)"
@@ -509,11 +774,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (1/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -522,20 +787,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T06:18:42.522Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T06:18:42.520Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01428",
@@ -598,51 +864,181 @@
     {
      "ref": "trigger:3dbabf70-3e9b-4998-b397-9eb4b859decf",
      "source": "event",
-     "observed_at": "2026-10-01T11:31:37.818Z"
+     "observed_at": "2026-10-01T11:31:37.818Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 174983
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1302822
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 711098
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 622148
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 710876
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 616076
     },
     {
      "ref": "event:af345733-f9f3-4243-b5bf-c2cf0d2a4860",
      "source": "event",
-     "observed_at": "2026-10-01T06:18:42.517Z"
+     "observed_at": "2026-10-01T06:18:42.517Z",
+     "age_s": 18775
     },
     {
      "ref": "events:U-02344:count=60",
      "source": "derived",
-     "observed_at": "2026-10-01T11:31:37.818Z"
+     "observed_at": "2026-10-01T11:31:37.818Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T11:31:37.818Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:31:37.818Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:31:37.818Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T06:18:42.517Z",
+     "source": "event",
+     "observed_at": "2026-10-01T06:18:42.517Z"
+    },
+    "history_depth": {
+     "value": 60,
+     "source": "derived",
+     "observed_at": "2026-10-01T11:31:37.818Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
@@ -656,11 +1052,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (1/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -669,20 +1065,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 3,
    "published_at": "2026-10-01T11:31:37.821Z",
-   "status": "PUBLISHED"
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01901",
@@ -746,51 +1143,191 @@
     {
      "ref": "trigger:818de0a8-8e86-4bc3-b00a-2bb62d48bf17",
      "source": "event",
-     "observed_at": "2026-10-01T14:26:42.975Z"
+     "observed_at": "2026-10-01T14:26:42.975Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 185488
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1313327
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 721603
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 632653
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 721382
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 626581
     },
     {
      "ref": "event:3dbabf70-3e9b-4998-b397-9eb4b859decf",
      "source": "event",
-     "observed_at": "2026-10-01T11:31:37.818Z"
+     "observed_at": "2026-10-01T11:31:37.818Z",
+     "age_s": 10505
     },
     {
      "ref": "events:U-02344:count=61",
      "source": "derived",
-     "observed_at": "2026-10-01T14:26:42.975Z"
+     "observed_at": "2026-10-01T14:26:42.975Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1",
+       "deeplink:d6"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp017",
+      "dialect": "d6",
+      "title_id": "T1425"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T11:31:37.818Z",
+     "source": "event",
+     "observed_at": "2026-10-01T11:31:37.818Z"
+    },
+    "history_depth": {
+     "value": 61,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=d6 -> used d3 (app_setting)"
@@ -804,11 +1341,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (1/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -817,20 +1354,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 3,
    "published_at": "2026-10-01T14:26:42.978Z",
-   "status": "PUBLISHED"
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-02194",
@@ -860,7 +1398,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00889 for this viewer is still live (published 2026-10-01T14:26:42.978Z); nothing to change",
+   "no_action_reason": "home page A-00796 for this viewer is still live (published 2026-10-01T14:26:42.978Z); nothing to change",
    "dialect": {
     "used": "d3",
     "source": "app_setting",
@@ -877,49 +1415,188 @@
     {
      "ref": "trigger:77ff802d-30f5-4f8d-a694-f8132a6ab2f4",
      "source": "event",
-     "observed_at": "2026-10-01T15:12:31.104Z"
+     "observed_at": "2026-10-01T15:12:31.104Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 188236
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1316075
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 724351
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 635401
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 724130
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 629330
     },
     {
      "ref": "event:818de0a8-8e86-4bc3-b00a-2bb62d48bf17",
      "source": "event",
-     "observed_at": "2026-10-01T14:26:42.975Z"
+     "observed_at": "2026-10-01T14:26:42.975Z",
+     "age_s": 2748
     },
     {
      "ref": "events:U-02344:count=62",
      "source": "derived",
-     "observed_at": "2026-10-01T15:12:31.104Z"
+     "observed_at": "2026-10-01T15:12:31.104Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp029",
+      "dialect": "d3",
+      "title_id": "T0901"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T14:26:42.975Z",
+     "source": "event",
+     "observed_at": "2026-10-01T14:26:42.975Z"
+    },
+    "history_depth": {
+     "value": 62,
+     "source": "derived",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=d3 -> used d3 (app_setting)"
@@ -935,7 +1612,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -947,9 +1626,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 2,
    "published_at": "2026-10-01T15:12:31.106Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": true
   },
   {
    "decision_id": "D-02698",
@@ -1012,51 +1693,181 @@
     {
      "ref": "trigger:df7e6c25-339c-4e40-9a61-de037f1d15ac",
      "source": "event",
-     "observed_at": "2026-10-01T17:45:11.722Z"
+     "observed_at": "2026-10-01T17:45:11.722Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02344@2026-09-29T10:55:14.640Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:55:14.640Z"
+     "observed_at": "2026-09-29T10:55:14.640Z",
+     "age_s": 197397
     },
     {
      "ref": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-16T09:37:55.770Z",
+     "age_s": 1325235
     },
     {
      "ref": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-23T05:59:59.287Z",
+     "age_s": 733512
     },
     {
      "ref": "event:116db403-dbb7-4a9b-8750-49847a3256e5",
      "source": "event",
-     "observed_at": "2026-09-24T06:42:29.335Z"
+     "observed_at": "2026-09-24T06:42:29.335Z",
+     "age_s": 644562
     },
     {
      "ref": "event:09486fea-1ab5-4328-93a4-8054273261b9",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-23T06:03:40.873Z",
+     "age_s": 733290
     },
     {
      "ref": "event:3d6df5f0-5bec-488a-bed1-e9a7dd58d6ea",
      "source": "event",
-     "observed_at": "2026-09-24T08:23:41.004Z"
+     "observed_at": "2026-09-24T08:23:41.004Z",
+     "age_s": 638490
     },
     {
      "ref": "event:77ff802d-30f5-4f8d-a694-f8132a6ab2f4",
      "source": "event",
-     "observed_at": "2026-10-01T15:12:31.104Z"
+     "observed_at": "2026-10-01T15:12:31.104Z",
+     "age_s": 9160
     },
     {
      "ref": "events:U-02344:count=63",
      "source": "derived",
-     "observed_at": "2026-10-01T17:45:11.722Z"
+     "observed_at": "2026-10-01T17:45:11.722Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T17:45:11.722Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T17:45:11.722Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T17:45:11.722Z"
+    },
+    "signup_at": {
+     "value": "2025-01-09T02:54:51.862Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:55:14.640Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-16T09:37:55.770Z",
+      "last_at": "2026-09-24T06:42:29.335Z",
+      "days_in_last_14": [
+       "2026-09-23",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T06:42:29.335Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T08:23:41.004Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T08:23:41.004Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-23T05:59:59.287Z",
+       "next_episode_id": "yatite-roloda-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 23,
+       "evidence": "event:10b1afb2-ad59-41ad-ad25-b047d65c859a"
+      },
+      {
+       "slug": "digi-mone-d3",
+       "title_id": "T0910",
+       "last_played_at": "2026-09-16T09:37:55.770Z",
+       "next_episode_id": "digi-mone-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 32,
+       "evidence": "event:4dea672f-a784-40d0-a118-6d24dc1d1c87"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T05:59:59.287Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T15:12:31.104Z",
+     "source": "event",
+     "observed_at": "2026-10-01T15:12:31.104Z"
+    },
+    "history_depth": {
+     "value": 63,
+     "source": "derived",
+     "observed_at": "2026-10-01T17:45:11.722Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
@@ -1070,11 +1881,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (1/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -1083,20 +1894,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T17:45:11.726Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T17:45:11.725Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
@@ -1105,7 +1917,7 @@
    "decision_id": "D-00001",
    "user_id": "U-02344",
    "trigger_event_id": "9ffd7200-d9e5-4fd0-8106-bb555fdf33cb",
-   "published_at": "2026-09-30T18:32:59.467Z",
+   "published_at": "2026-09-30T18:32:59.461Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d3",
@@ -1136,28 +1948,11 @@
    ]
   },
   {
-   "action_id": "A-00002",
-   "decision_id": "D-00001",
-   "user_id": "U-02344",
-   "trigger_event_id": "9ffd7200-d9e5-4fd0-8106-bb555fdf33cb",
-   "published_at": "2026-09-30T18:32:59.467Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0901",
-   "dialect": "d3",
-   "text": {
-    "title": "Continue Yatite Roloda",
-    "body": "Episode 2 of Yatite Roloda is waiting for you."
-   },
-   "deeplink": "ott://title/T0901"
-  },
-  {
-   "action_id": "A-00300",
+   "action_id": "A-00267",
    "decision_id": "D-00778",
    "user_id": "U-02344",
    "trigger_event_id": "af345733-f9f3-4243-b5bf-c2cf0d2a4860",
-   "published_at": "2026-10-01T06:18:42.522Z",
+   "published_at": "2026-10-01T06:18:42.520Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d3",
@@ -1188,7 +1983,7 @@
    ]
   },
   {
-   "action_id": "A-00655",
+   "action_id": "A-00587",
    "decision_id": "D-01428",
    "user_id": "U-02344",
    "trigger_event_id": "3dbabf70-3e9b-4998-b397-9eb4b859decf",
@@ -1223,7 +2018,7 @@
    ]
   },
   {
-   "action_id": "A-00889",
+   "action_id": "A-00796",
    "decision_id": "D-01901",
    "user_id": "U-02344",
    "trigger_event_id": "818de0a8-8e86-4bc3-b00a-2bb62d48bf17",
@@ -1258,11 +2053,11 @@
    ]
   },
   {
-   "action_id": "A-01255",
+   "action_id": "A-01124",
    "decision_id": "D-02698",
    "user_id": "U-02344",
    "trigger_event_id": "df7e6c25-339c-4e40-9a61-de037f1d15ac",
-   "published_at": "2026-10-01T17:45:11.726Z",
+   "published_at": "2026-10-01T17:45:11.725Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d3",
@@ -1311,16 +2106,14 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 6,
-    "message_delivered": 1
+    "home_page_shown": 6
    },
    "actions": [
     "A-00001",
-    "A-00002",
-    "A-00300",
-    "A-00655",
-    "A-00889",
-    "A-01255"
+    "A-00267",
+    "A-00587",
+    "A-00796",
+    "A-01124"
    ]
   }
  ]

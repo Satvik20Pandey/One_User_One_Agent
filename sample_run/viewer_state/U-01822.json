@@ -203,8 +203,8 @@
    "D-01420"
   ],
   "actions": [
-   "A-00023",
-   "A-00627"
+   "A-00020",
+   "A-00562"
   ],
   "updated_at": "2026-10-01T11:28:26.236Z"
  },
@@ -298,34 +298,157 @@
     {
      "ref": "trigger:f0d389d8-6446-4691-99b1-3fdce3f689f2",
      "source": "event",
-     "observed_at": "2026-09-30T19:39:35.103Z"
+     "observed_at": "2026-09-30T19:39:35.103Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01822@2026-09-29T06:13:22.740Z",
      "source": "profile",
-     "observed_at": "2026-09-29T06:13:22.740Z"
+     "observed_at": "2026-09-29T06:13:22.740Z",
+     "age_s": 134772
     },
     {
      "ref": "event:61c21635-f0cb-414c-b010-df68caf61191",
      "source": "event",
-     "observed_at": "2026-09-04T04:08:33.216Z"
+     "observed_at": "2026-09-04T04:08:33.216Z",
+     "age_s": 2302261
     },
     {
      "ref": "events:U-01822:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:0af12467-df04-45ea-a27d-d50338a47573",
      "source": "event",
-     "observed_at": "2026-09-21T17:09:24.786Z"
+     "observed_at": "2026-09-21T17:09:24.786Z",
+     "age_s": 786610
     },
     {
      "ref": "events:U-01822:count=29",
      "source": "derived",
-     "observed_at": "2026-09-30T19:39:35.103Z"
+     "observed_at": "2026-09-30T19:39:35.103Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d6",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d4",
+       "deeplink:d1"
+      ],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp058",
+      "dialect": "d1",
+      "title_id": "T1503"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    },
+    "signup_at": {
+     "value": "2025-06-14T21:49:59.009Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-04T04:08:33.216Z",
+      "last_at": "2026-09-04T04:08:33.216Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Devotional",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rasuya-moni-d6",
+       "title_id": "T1976",
+       "last_played_at": "2026-09-04T04:08:33.216Z",
+       "next_episode_id": "rasuya-moni-d6-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 9,
+       "evidence": "event:61c21635-f0cb-414c-b010-df68caf61191"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-21T17:09:24.786Z",
+     "source": "event",
+     "observed_at": "2026-09-21T17:09:24.786Z"
+    },
+    "history_depth": {
+     "value": 29,
+     "source": "derived",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d4, deeplink=d1 -> used d6 (app_setting)"
@@ -343,6 +466,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -360,12 +484,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-09-30T19:39:35.105Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-09-30T19:39:36.305Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01369",
@@ -455,34 +581,147 @@
     {
      "ref": "trigger:485ed149-2dd1-4edf-9dba-ecea67f86852",
      "source": "event",
-     "observed_at": "2026-10-01T10:56:41.430Z"
+     "observed_at": "2026-10-01T10:56:41.430Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01822@2026-09-29T06:13:22.740Z",
      "source": "profile",
-     "observed_at": "2026-09-29T06:13:22.740Z"
+     "observed_at": "2026-09-29T06:13:22.740Z",
+     "age_s": 189798
     },
     {
      "ref": "event:61c21635-f0cb-414c-b010-df68caf61191",
      "source": "event",
-     "observed_at": "2026-09-04T04:08:33.216Z"
+     "observed_at": "2026-09-04T04:08:33.216Z",
+     "age_s": 2357288
     },
     {
      "ref": "events:U-01822:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:f0d389d8-6446-4691-99b1-3fdce3f689f2",
      "source": "event",
-     "observed_at": "2026-09-30T19:39:35.103Z"
+     "observed_at": "2026-09-30T19:39:35.103Z",
+     "age_s": 55026
     },
     {
      "ref": "events:U-01822:count=30",
      "source": "derived",
-     "observed_at": "2026-10-01T10:56:41.430Z"
+     "observed_at": "2026-10-01T10:56:41.430Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T10:56:41.430Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d6",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:56:41.430Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:56:41.430Z"
+    },
+    "signup_at": {
+     "value": "2025-06-14T21:49:59.009Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-04T04:08:33.216Z",
+      "last_at": "2026-09-04T04:08:33.216Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Devotional",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rasuya-moni-d6",
+       "title_id": "T1976",
+       "last_played_at": "2026-09-04T04:08:33.216Z",
+       "next_episode_id": "rasuya-moni-d6-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 9,
+       "evidence": "event:61c21635-f0cb-414c-b010-df68caf61191"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T19:39:35.103Z",
+     "source": "event",
+     "observed_at": "2026-09-30T19:39:35.103Z"
+    },
+    "history_depth": {
+     "value": 30,
+     "source": "derived",
+     "observed_at": "2026-10-01T10:56:41.430Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d4, deeplink=None -> used d6 (app_setting)"
@@ -500,6 +739,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -517,12 +757,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T10:56:41.435Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T10:56:42.632Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01420",
@@ -552,7 +794,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00627 for this viewer is still live (published 2026-10-01T10:56:41.435Z); nothing to change",
+   "no_action_reason": "home page A-00562 for this viewer is still live (published 2026-10-01T10:56:42.632Z); nothing to change",
    "dialect": {
     "used": "d6",
     "source": "app_setting",
@@ -569,34 +811,147 @@
     {
      "ref": "trigger:d7acf25d-e821-4a2f-9f20-8f613ece25a9",
      "source": "event",
-     "observed_at": "2026-10-01T11:28:26.235Z"
+     "observed_at": "2026-10-01T11:24:59.497Z",
+     "age_s": 206
     },
     {
      "ref": "profile:U-01822@2026-09-29T06:13:22.740Z",
      "source": "profile",
-     "observed_at": "2026-09-29T06:13:22.740Z"
+     "observed_at": "2026-09-29T06:13:22.740Z",
+     "age_s": 191703
     },
     {
      "ref": "event:61c21635-f0cb-414c-b010-df68caf61191",
      "source": "event",
-     "observed_at": "2026-09-04T04:08:33.216Z"
+     "observed_at": "2026-09-04T04:08:33.216Z",
+     "age_s": 2359193
     },
     {
      "ref": "events:U-01822:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:485ed149-2dd1-4edf-9dba-ecea67f86852",
      "source": "event",
-     "observed_at": "2026-10-01T10:56:41.430Z"
+     "observed_at": "2026-10-01T10:56:41.430Z",
+     "age_s": 1904
     },
     {
      "ref": "events:U-01822:count=31",
      "source": "derived",
-     "observed_at": "2026-10-01T11:28:26.235Z"
+     "observed_at": "2026-10-01T11:28:26.235Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 206,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T11:28:26.235Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d6",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:28:26.235Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T11:28:26.235Z"
+    },
+    "signup_at": {
+     "value": "2025-06-14T21:49:59.009Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:13:22.740Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-04T04:08:33.216Z",
+      "last_at": "2026-09-04T04:08:33.216Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Devotional",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rasuya-moni-d6",
+       "title_id": "T1976",
+       "last_played_at": "2026-09-04T04:08:33.216Z",
+       "next_episode_id": "rasuya-moni-d6-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 9,
+       "evidence": "event:61c21635-f0cb-414c-b010-df68caf61191"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-04T04:08:33.216Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T10:56:41.430Z",
+     "source": "event",
+     "observed_at": "2026-10-01T10:56:41.430Z"
+    },
+    "history_depth": {
+     "value": 31,
+     "source": "derived",
+     "observed_at": "2026-10-01T11:28:26.235Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d4, deeplink=None -> used d6 (app_setting)"
@@ -612,7 +967,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -624,18 +981,20 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T11:28:26.236Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00023",
+   "action_id": "A-00020",
    "decision_id": "D-00030",
    "user_id": "U-01822",
    "trigger_event_id": "f0d389d8-6446-4691-99b1-3fdce3f689f2",
-   "published_at": "2026-09-30T19:39:35.105Z",
+   "published_at": "2026-09-30T19:39:36.305Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d6",
@@ -703,11 +1062,11 @@
    ]
   },
   {
-   "action_id": "A-00627",
+   "action_id": "A-00562",
    "decision_id": "D-01369",
    "user_id": "U-01822",
    "trigger_event_id": "485ed149-2dd1-4edf-9dba-ecea67f86852",
-   "published_at": "2026-10-01T10:56:41.435Z",
+   "published_at": "2026-10-01T10:56:42.632Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d6",
@@ -796,8 +1155,8 @@
     "home_page_shown": 2
    },
    "actions": [
-    "A-00023",
-    "A-00627"
+    "A-00020",
+    "A-00562"
    ]
   }
  ]

@@ -18,7 +18,7 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 55 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 68 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
 - Reports are generated from program output. I did not type a number into a document.
@@ -65,7 +65,16 @@ grade the work as a hiring panel would. I checked each finding in the code and t
 | A live event closed a goal by its type, without checking the condition (a trial purchase would close G05) | true | Goals close early only when the event really meets the success condition |
 | Opens from phones with fast clocks were treated as live even when buffered for hours | true for 2 opens; wrong that anything was published (both viewers were holdout) | The phone's own send-minus-occur gap is used whatever its clock says, as the simulator does |
 | Instructions hidden in catalogue text were avoided but never noticed | true | The catalogue is scanned at load; flagged titles appear in the run summary |
-| G07 takes half the goals at a 4% success rate | true | Kept as a documented choice; KNOWN_LIMITATIONS says what it costs and what I would change |
+| G07 takes half the goals at a 4% success rate | true: 455 of those viewers were subscribers who also qualified for a new-release or habit goal | Goal order now follows the viewer's lifecycle stage; subscribers get habit or new-release goals, free viewers keep "resume" |
+| Confidence never changes what the agent does | true | A push or WhatsApp now needs evidence confidence of 0.6; below that the agent publishes the page only |
+| Learnings are written but never read | true | The planner reads judged outcomes and does not retry a failed goal for seven days |
+| The model is called on every decision | true | It is asked only when there is copy to write or a hero the evidence did not decide, and skipped during traffic surges or when the budget is short |
+| No queue or concurrency model, so "traffic triples" is never exercised | true | Opens now wait for one of four workers, the wait counts against the 60 s budget, and a surge monitor caught both the offline burst and the evening peak |
+| Evidence refs show their fact's time, not their own | true | Each ref carries its own time and age; each decision stores its full fact table |
+| In-app messages are never used | true | Viewers without push or WhatsApp consent can get one in-app message a day |
+
+The second pass found one more bug of its own: the final report crashed on a control event type it did not know.
+Fixed, and the unseen-day test now runs through the reports.
 
 ## Where AI output was wrong and I only noticed by running it
 

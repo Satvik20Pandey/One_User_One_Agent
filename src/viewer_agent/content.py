@@ -30,6 +30,7 @@ class PageDraft:
     hero_title_id: str | None
     rows: list[Row]
     candidate_ids: list[str] = field(default_factory=list)
+    hero_reason: str = "most popular"  # campaign link | goal series | most popular
 
     def title_ids(self) -> list[str]:
         ids = [t for r in self.rows for t in r.title_ids]
@@ -38,13 +39,13 @@ class PageDraft:
 
 @dataclass
 class MessageDraft:
-    channel: str  # push | whatsapp
+    channel: str  # whatsapp | push | in_app_message
     dialect: str
     title_id: str
     send_at: datetime
     template_id: str | None = None
     variables: dict | None = None
-    text: dict | None = None  # {"title", "body"} for push
+    text: dict | None = None  # {"title", "body"} for push and in-app
     deeplink: str | None = None
     hook: str = ""
 
@@ -81,13 +82,13 @@ def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, sett
 
     # hero: the campaign title if it is in this dialect, else the strongest title for the goal
     link = facts.value("campaign_deeplink") or {}
-    hero = None
+    hero, hero_reason = None, "most popular"
     campaign_title = pack.title(link.get("title_id"))
     if campaign_title and campaign_title.dialect == dialect and campaign_title.available_at(now):
-        hero = campaign_title
+        hero, hero_reason = campaign_title, "campaign link"
     unfinished = _series_first(facts, pack, dialect, now, context)
     if hero is None and goal_id == "G07" and unfinished:
-        hero = pack.title(unfinished[0]["title_id"])
+        hero, hero_reason = pack.title(unfinished[0]["title_id"]), "goal series"
     if hero is None:
         hero = ranked[0]
 
@@ -141,65 +142,67 @@ def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, sett
     rows = [r for r in (b() for b in builders) if len(r.title_ids) >= MIN_ROW][:MAX_ROWS]
     if not rows:
         return None
-    return PageDraft(dialect, hero.title_id, rows, candidate_ids=[t.title_id for t in ranked])
+    return PageDraft(dialect, hero.title_id, rows, candidate_ids=[t.title_id for t in ranked], hero_reason=hero_reason)
 
 
 def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, settings: Settings,
                   context: dict | None = None) -> MessageDraft | None:
-    """A message only when the goal has a concrete content hook. Channel: WhatsApp if opted in, else push."""
-    dialect = (facts.value("dialect") or {}).get("message_dialect")
-    if not dialect:
-        return None
+    """One message, only when the goal has a concrete content hook. Channel: WhatsApp if the viewer opted in, else
+    push if opted in, else an in-app message (no consent needed; the app shows it at the next open)."""
     if facts.value("consent_whatsapp") is True:
         channel = "whatsapp"
     elif facts.value("consent_push") is True:
         channel = "push"
     else:
+        channel = "in_app_message"
+    dialect_fact = facts.value("dialect") or {}
+    # an in-app message is read inside the app, so it must be in the app's dialect
+    dialect = dialect_fact.get("page_dialect" if channel == "in_app_message" else "message_dialect")
+    if not dialect:
         return None
-    send_at = next_send_slot(now, settings.message_send_hour_ist)
-    pool = pack.dialect_titles(dialect, send_at, facts.value("app_language"))
+    send_at = now if channel == "in_app_message" else next_send_slot(now, settings.message_send_hour_ist)
+    hook = _hook(goal_id, facts, pack, dialect, send_at, now, context)
+    if hook is None:
+        return None
+    title, name, (push_title, push_body), template = hook
+    msg = MessageDraft(channel, dialect, title.title_id, send_at, hook=name)
+    if channel == "whatsapp":
+        msg.template_id, msg.variables = template
+    else:
+        msg.text = _push_copy(push_title, push_body)
+        msg.deeplink = f"ott://title/{title.title_id}"
+    return msg
+
+
+def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: datetime, now: datetime, context: dict | None):
+    """(title, hook name, push copy, WhatsApp template) for goals that have something concrete to say, else None."""
+    pool = pack.dialect_titles(dialect, at, facts.value("app_language"))
     if not pool:
         return None
+    recommend = lambda t: ("wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()})  # noqa: E731
 
     if goal_id == "G07":
         # only the series the goal will be judged on; a message about another one would not help this goal
-        series = _series_first(facts, pack, dialect, send_at, context)
+        series = _series_first(facts, pack, dialect, at, context)
         if not series or series[0]["slug"] != (context or {}).get("slug"):
             return None
         s = series[0]
         t = pack.title(s["title_id"])
-        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="unfinished series")
-        if channel == "whatsapp":
-            # not wa_new_episode_v2: "Naya episode aa gaya" would claim a new episode, and the next one is not new
-            msg.template_id, msg.variables = "wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()}
-        else:
-            msg.text = _push_copy(f"Continue {t.name}", f"Episode {s['next_episode_number']} of {t.name} is waiting for you.")
-            msg.deeplink = f"ott://title/{t.title_id}"
-        return msg
+        # not wa_new_episode_v2: "Naya episode aa gaya" would claim a new episode, and the next one is not new
+        return t, "unfinished series", (f"Continue {t.name}", f"Episode {s['next_episode_number']} of {t.name} is waiting for you."), recommend(t)
 
     if goal_id == "G08":
         recent = [t for t in _rank(pool, pack) if t.release_date >= (now - timedelta(days=30)).date()]
         if not recent:
             return None
         t = recent[0]
-        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="new release")
-        if channel == "whatsapp":
-            msg.template_id, msg.variables = "wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()}
-        else:
-            msg.text = _push_copy(f"New in {dialect.upper()}: {t.name}", f"{t.name} just released. Start watching now.")
-            msg.deeplink = f"ott://title/{t.title_id}"
-        return msg
+        return t, "new release", (f"New in {dialect.upper()}: {t.name}", f"{t.name} just released. Start watching now."), recommend(t)
 
     if goal_id == "G04":
         price = pack.plan_price("P_MONTH")
         t = _rank(pool, pack, premium_first=True)[0]
-        msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="trial ending")
-        if channel == "whatsapp":
-            msg.template_id, msg.variables = "wa_trial_ending_v1", {"plan_price": f"Rs {price}"}
-        else:
-            msg.text = _push_copy("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}.")
-            msg.deeplink = f"ott://title/{t.title_id}"
-        return msg
+        return (t, "trial ending", ("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}."),
+                ("wa_trial_ending_v1", {"plan_price": f"Rs {price}"}))
     return None
 
 

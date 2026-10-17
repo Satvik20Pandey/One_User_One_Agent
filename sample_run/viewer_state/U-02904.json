@@ -2,28 +2,25 @@
  "state": {
   "user_id": "U-02904",
   "active_goal": {
-   "instance_id": "G-01036",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01037",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T14:14:41.505Z",
-   "deadline": "2026-10-04T14:14:41.505Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T14:14:41.505Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series yatite-roloda-d3 (6/23 episodes), last played 2026-09-28",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:59639d05-5bca-4421-8931-e24f9af6c248"
+    "profile:U-02904@2026-09-29T10:30:08.965Z"
    ],
-   "context": {
-    "slug": "yatite-roloda-d3",
-    "title_id": "T0901"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+    "success_event_id": "oua-018232",
+    "success_at": "2026-10-04T15:45:38.000Z",
+    "attribution": "exposed_before_success",
     "exposure": {
      "home_page_shown": 1,
      "message_delivered": 1
@@ -33,7 +30,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T14:14:41.505Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T15:45:38.000Z judged: G08 succeeded (exposed_before_success; page shown 1x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -241,10 +238,10 @@
    "D-01849"
   ],
   "actions": [
-   "A-00862",
-   "A-00863"
+   "A-00773",
+   "A-00774"
   ],
-  "updated_at": "2026-10-01T14:14:41.510Z"
+  "updated_at": "2026-10-01T14:14:42.709Z"
  },
  "decisions": [
   {
@@ -262,12 +259,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01036",
+    "id": "G08",
+    "name": "try_new_release_7d",
+    "instance_id": "G-01037",
     "started_at": "2026-10-01T14:14:41.505Z",
-    "deadline": "2026-10-04T14:14:41.505Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T14:14:41.505Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -286,17 +283,17 @@
    },
    "content": [
     "title:T0901",
-    "title:T0907",
     "title:T0904",
+    "title:T0902",
+    "title:T0905",
     "title:T0903",
+    "title:T0907",
     "title:T0908",
     "title:T0914",
     "title:T0913",
     "title:T0910",
     "title:T0909",
-    "title:T0905",
     "title:T0906",
-    "title:T0902",
     "title:T0911"
    ],
    "confidence": {
@@ -307,61 +304,211 @@
     {
      "ref": "trigger:c219e43e-310a-4bd3-98fc-889063a3e36e",
      "source": "event",
-     "observed_at": "2026-10-01T14:14:41.505Z"
+     "observed_at": "2026-10-01T14:14:41.505Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02904@2026-09-29T10:30:08.965Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:30:08.965Z"
+     "observed_at": "2026-09-29T10:30:08.965Z",
+     "age_s": 186272
     },
     {
      "ref": "event:893ee749-2b6f-48b7-a399-369cfe206709",
      "source": "event",
-     "observed_at": "2026-09-29T10:30:08.965Z"
+     "observed_at": "2026-09-16T22:06:15.978Z",
+     "age_s": 1267705
     },
     {
      "ref": "event:257c2892-b512-48df-aecf-ec57a85f2482",
      "source": "event",
-     "observed_at": "2026-09-29T06:11:30.829Z"
+     "observed_at": "2026-09-19T09:07:28.476Z",
+     "age_s": 1055233
     },
     {
      "ref": "event:59639d05-5bca-4421-8931-e24f9af6c248",
      "source": "event",
-     "observed_at": "2026-09-29T06:11:30.829Z"
+     "observed_at": "2026-09-28T03:11:52.416Z",
+     "age_s": 298969
     },
     {
      "ref": "event:66001029-6cf9-4136-a2cf-7af3eaa97dcd",
      "source": "event",
-     "observed_at": "2026-09-29T06:11:30.829Z"
+     "observed_at": "2026-09-29T06:11:30.829Z",
+     "age_s": 201790
     },
     {
      "ref": "event:94127729-0f60-4349-9c20-1a3279603f40",
      "source": "event",
-     "observed_at": "2026-09-28T03:15:31.388Z"
+     "observed_at": "2026-09-16T15:02:50.874Z",
+     "age_s": 1293110
     },
     {
      "ref": "event:abaf6c41-c51e-44cb-a7e7-78ad188749df",
      "source": "event",
-     "observed_at": "2026-09-28T03:15:31.388Z"
+     "observed_at": "2026-09-28T03:15:31.388Z",
+     "age_s": 298750
     },
     {
      "ref": "event:42511fd6-2bc8-4c8e-a0f1-23ec53d59542",
      "source": "event",
-     "observed_at": "2026-09-29T12:24:41.400Z"
+     "observed_at": "2026-09-29T12:24:41.400Z",
+     "age_s": 179400
     },
     {
      "ref": "events:U-02904:count=112",
      "source": "derived",
-     "observed_at": "2026-10-01T14:14:41.505Z"
+     "observed_at": "2026-10-01T14:14:41.505Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:14:41.505Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:14:41.505Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:14:41.505Z"
+    },
+    "signup_at": {
+     "value": "2026-08-12T13:45:19.236Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:30:08.965Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:30:08.965Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:30:08.965Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:30:08.965Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:30:08.965Z"
+    },
+    "plays": {
+     "value": {
+      "count": 13,
+      "first_at": "2026-09-02T06:49:36.247Z",
+      "last_at": "2026-09-29T06:11:30.829Z",
+      "days_in_last_14": [
+       "2026-09-19",
+       "2026-09-28",
+       "2026-09-29"
+      ],
+      "top_genres": [
+       "Romance",
+       "Family",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-29T06:11:30.829Z"
+    },
+    "completions": {
+     "value": {
+      "count": 11,
+      "last_at": "2026-09-28T03:15:31.388Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T03:15:31.388Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "haja-d3",
+       "title_id": "T0907",
+       "last_played_at": "2026-09-29T06:11:30.829Z",
+       "next_episode_id": "haja-d3-s1e4",
+       "next_episode_number": 4,
+       "watched": 3,
+       "total": 49,
+       "evidence": "event:66001029-6cf9-4136-a2cf-7af3eaa97dcd"
+      },
+      {
+       "slug": "yatite-roloda-d3",
+       "title_id": "T0901",
+       "last_played_at": "2026-09-28T03:11:52.416Z",
+       "next_episode_id": "yatite-roloda-d3-s1e7",
+       "next_episode_number": 7,
+       "watched": 6,
+       "total": 23,
+       "evidence": "event:59639d05-5bca-4421-8931-e24f9af6c248"
+      },
+      {
+       "slug": "gula-tete-d3",
+       "title_id": "T0912",
+       "last_played_at": "2026-09-19T09:07:28.476Z",
+       "next_episode_id": "gula-tete-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 22,
+       "evidence": "event:257c2892-b512-48df-aecf-ec57a85f2482"
+      },
+      {
+       "slug": "jakasa-dapi-d3",
+       "title_id": "T0904",
+       "last_played_at": "2026-09-13T14:32:40.899Z",
+       "next_episode_id": "jakasa-dapi-d3-s1e3",
+       "next_episode_number": 3,
+       "watched": 2,
+       "total": 19,
+       "evidence": "event:75b3f4f5-34ea-4242-b730-abc5bcdcc6c4"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-29T06:11:30.829Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-29T12:24:41.400Z",
+     "source": "event",
+     "observed_at": "2026-09-29T12:24:41.400Z"
+    },
+    "history_depth": {
+     "value": 112,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:14:41.505Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series yatite-roloda-d3 (6/23 episodes), last played 2026-09-28",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:59639d05-5bca-4421-8931-e24f9af6c248"
+     "profile:U-02904@2026-09-29T10:30:08.965Z"
     ]
    },
    "model": {
@@ -370,7 +517,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yatite-roloda-d3 (6/23 episodes), last played 2026-09-28"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -392,92 +540,94 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T14:14:41.510Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T14:14:42.709Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00862",
+   "action_id": "A-00773",
    "decision_id": "D-01849",
    "user_id": "U-02904",
    "trigger_event_id": "c219e43e-310a-4bd3-98fc-889063a3e36e",
-   "published_at": "2026-10-01T14:14:41.510Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T14:14:42.709Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d3",
    "hero_title_id": "T0901",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0907",
       "T0904",
-      "T0903",
-      "T0908",
-      "T0914",
-      "T0913",
-      "T0910",
-      "T0909",
+      "T0902",
       "T0905"
      ]
     },
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
+      "T0903",
+      "T0907",
+      "T0908",
+      "T0914",
+      "T0913",
+      "T0910",
+      "T0909",
       "T0906",
-      "T0902",
       "T0911"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00863",
+   "action_id": "A-00774",
    "decision_id": "D-01849",
    "user_id": "U-02904",
    "trigger_event_id": "c219e43e-310a-4bd3-98fc-889063a3e36e",
-   "published_at": "2026-10-01T14:14:41.510Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T14:14:42.709Z",
+   "goal_id": "G08",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0901",
+   "title_id": "T0904",
    "dialect": "d3",
    "text": {
-    "title": "Continue Yatite Roloda",
-    "body": "Episode 7 of Yatite Roloda is waiting for you."
+    "title": "New in D3: Jakasa Dapi",
+    "body": "Jakasa Dapi just released. Start watching now."
    },
-   "deeplink": "ott://title/T0901"
+   "deeplink": "ott://title/T0904"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-02904",
    "arm": "agent",
-   "goal_instance_id": "G-01036",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01037",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T14:14:41.505Z",
-   "deadline": "2026-10-04T14:14:41.505Z",
+   "deadline": "2026-10-08T14:14:41.505Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+   "success_event_id": "oua-018232",
+   "success_at": "2026-10-04T15:45:38.000Z",
+   "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 1,
     "message_delivered": 1
    },
    "actions": [
-    "A-00862",
-    "A-00863"
+    "A-00773",
+    "A-00774"
    ]
   }
  ]

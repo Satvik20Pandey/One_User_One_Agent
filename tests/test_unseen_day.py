@@ -5,6 +5,7 @@ import shutil
 from datetime import timedelta
 
 from helpers import MINI, read_jsonl
+from viewer_agent.judge import run_judge, write_reports
 from viewer_agent.replay import run_replay, write_jsonl
 from viewer_agent.times import iso, parse_ts
 
@@ -37,3 +38,13 @@ def test_a_shifted_day_with_new_fault_and_control_types(tmp_path):
     assert s1["status"] == "PUBLISHED" and "http_500" in s1["model"]["failure"]
     assert any(c["type"] == "catalogue_refreshed" for c in summary["control_events"])
     assert json.loads((out / "latency_report.json").read_text())["decisions"] == summary["triggers"]
+
+    # and the rest of the pipeline copes with the unknown event too
+    (out / "sim").mkdir()
+    write_jsonl(out / "sim" / "outcome_events.jsonl", [])
+    (out / "sim" / "simulator_report.json").write_text(
+        json.dumps({"seed": "x", "events_written": 0, "counts": {}, "policy_problem_count": 0}))
+    run_judge(pack, out)
+    write_reports(pack, out)
+    final = (out / "final_report.md").read_text(encoding="utf-8")
+    assert "Replay day 2026-10-10" in final and "`catalogue_refreshed` received" in final

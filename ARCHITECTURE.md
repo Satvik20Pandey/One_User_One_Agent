@@ -34,17 +34,29 @@ goal (a "shadow" goal, so the arms stay comparable) and publishes nothing.
 ## Planning
 
 The goal is chosen by rules in `goals.py`, never by the model, so treatment and holdout get identical goal
-assignment. The active goal is kept while its window is open and the viewer still qualifies. It is revised on a
-state change, not on a schedule: a purchase closes a monetisation goal the moment the event arrives
-(`handle_event`), a lapse closes subscriber goals, an expired window closes the goal for judgement, and the next
-open starts a fresh choice. Two goals are never offered: G10 has no success event and G11's event never occurs in
-the stream, which the rule book detects at start-up.
+assignment. The order depends on the viewer's lifecycle stage (`config.py`): new viewers aim for a first play or a
+second-day return, trial viewers for a paid plan, subscribers for a weekly habit or a recent release, lapsed viewers
+for coming back, free viewers for a first full episode or resuming a series. Within a stage, goals with a broad,
+observable success signal come first so the holdout comparison has enough signal: in an earlier run, "resume this
+exact series" succeeded about 4% of the time and "play any new release" about 29%. Two goals are never offered:
+G10 has no success event and G11's event never occurs in the stream, which the rule book detects at start-up.
 
-Interventions are proportionate. A home page is the default because it needs no consent and the app shows it only
-while the viewer is there. One message at most, only for goals with a concrete hook (resume a series, a new
-release, a trial ending), sent the next evening, WhatsApp before push when both are allowed. "Do nothing" is a
-recorded decision with a reason: holdout, buffered-offline trigger, duplicate, page still live, no catalogue in the
-app's dialect, no evidence yet, no measurable goal, or a verifier veto with no smaller safe action.
+The active goal is kept while its window is open and the viewer still qualifies. It is revised on a state change,
+not on a schedule: a live event that meets the success condition closes the goal at once (`handle_event`), a
+purchase makes a monetisation goal moot, a lapse closes subscriber goals. Judged outcomes feed back: a goal that
+failed for this viewer is not retried for seven days, and the decision says so ("learned: ...").
+
+Interventions are proportionate. A home page is the default: it needs no consent, the app shows it only while the
+viewer is there, and it is always rendered in the app's own dialect. One message at most, only for goals with a
+concrete hook (resume a series, a new release, a trial ending): WhatsApp if the viewer opted in, else push, else an
+in-app message, which needs no consent and is shown at the next open. A push or WhatsApp reaches the viewer outside
+the app, so it needs evidence confidence of at least 0.6; when the app, profile and campaign disagree on dialect the
+agent publishes the page only. "Do nothing" is a recorded decision with a reason: holdout, buffered-offline trigger,
+duplicate, page still live, no catalogue in the app's dialect, no evidence yet, no measurable goal, or a veto.
+
+The model is asked only when it can add something: push or in-app copy to write, or a hero title that the evidence
+(a campaign link or the goal's own series) did not already decide. In the sample run that skips about a fifth of
+the possible calls.
 
 ## Source handling and freshness
 
@@ -66,21 +78,29 @@ an open buffered for more than ten minutes is not a live visit, so facts are rec
 ## Memory
 
 `store.py` holds four tables: the event history (the viewer data store, de-duplicated by `event_id`), one state
-document per viewer, every decision (indexed by trigger `event_id` for idempotency) and every action. The state
-document carries the fact snapshot, the active goal, goal history with outcomes, decision and action ids, and
-plain-language learnings written by the agent and the judge. `viewer_state/<user_id>.json` exports all of it with
-the decision and action records inlined; `inspect <user_id>` prints the same.
+document per viewer, every decision (indexed by trigger `event_id` for idempotency) and every action. Every
+decision record carries the full fact table the agent used, and every evidence ref carries its own timestamp and
+its age at decision time, so what the agent knew at any moment can be read back without replaying anything. The
+state document holds the active goal, goal history with judged outcomes, and plain-language learnings; the planner
+reads those learnings (see Planning). The judge replaces its own learnings on every run, so judging twice gives
+the same state. `viewer_state/<user_id>.json` exports everything for one viewer; `inspect <user_id>` prints it.
 
 ## Verification
 
-`verifier.py` runs after the planner and can veto it. It does not trust the planner's facts: it re-reads the
-viewer's events from the store and recomputes eligibility on that fresh read (an event that arrived after planning
-can still stop the action), and it derives consent with its own code straight from the profile row and opt-out
-events. The holdout arm, page dialect, availability at publish time (withdrawals included), page rules, the daily
-cap from stored actions, templates and copy are checked against the pack and policy. "New episode" copy is allowed
-only for a recent release. Each check has a scope: a failed message check drops the message and keeps the page; a
-failed page check drops the page; holdout or eligibility failures drop everything. The rule code itself is shared
-with the planner, so a wrong rule would pass both; the tests pin each rule instead.
+`verifier.py` runs after the planner and can veto it. It does not trust the planner's facts:
+
+- it re-reads the viewer's events from the store and recomputes eligibility on that fresh read, so an event that
+  arrived after planning can still stop the action;
+- for goals that depend on the subscription (trial, first paid, lapsed, subscriber goals) it re-derives the status
+  with its own code from the raw profile row and payment events;
+- it derives consent with its own code from the profile row and later opt-out events;
+- holdout arm, page dialect, availability at publish time (withdrawals included), page rules, the daily caps
+  (push and WhatsApp share one, in-app has its own), templates and copy are checked against the pack and policy.
+  "New episode" copy is allowed only for a recent release.
+
+Each check has a scope: a failed message check drops the message and keeps the page; a failed page check drops the
+page; holdout or eligibility failures drop everything. The eligibility rules themselves are shared code with the
+planner, so the tests pin each rule; the subscription and consent checks are separate implementations on purpose.
 
 Model output is generated text: a goal claim without an eligible rule behind it is rejected with the eligible set
 cited, and copy that contains instruction-like phrases is discarded. The same pattern scans the catalogue at load,
@@ -89,12 +109,19 @@ so descriptions that try to instruct an AI are flagged in the run summary (they 
 ## Latency and budget
 
 Each decision runs under a `Budget`: at most 8 model calls and 20 tool calls (configurable), a 10 s model timeout,
-and a clock. The replay runs faster than real time, so `decided_in_ms` is measured processing time plus any
-simulated waiting on a degraded dependency, and `published_at = deliver_at + decided_in_ms`. Over 60 s is `LATE`,
-over 5 minutes is `FAILED` and nothing is published. Duplicate triggers return the earlier decision in one store
-lookup. Within a minute the agents are independent, so a burst (the offline-buffer burst delivers 79 opens in one
-minute) is handled in order with no shared state beyond the store; at real scale the same design shards by
-`user_id` across workers, with the store as the only coordination point.
+and a clock. The replay runs faster than real time, so time spent waiting is charged as simulated time: the mock
+model's 1.2 s per call, a slow or timed-out data-store read, and the queue.
+
+App opens wait in one shared queue for four decision workers (configurable). The wait counts against the same
+60 s budget, so `decided_in_ms` is queue wait plus processing plus waiting on dependencies, and
+`published_at = deliver_at + decided_in_ms`. When less budget is left than one model call would take, the agent
+decides with rules alone. Over 60 s is `LATE`; over 5 minutes is `FAILED` and nothing is published. Duplicate
+triggers return the earlier decision in one store lookup.
+
+A surge monitor compares opens in the last 10 minutes with the hour before. At 2.5 times the baseline (and at least
+30 opens) it marks a surge and the agent skips optional model calls until traffic settles. In the sample run it
+caught both the offline-buffer burst and the evening peak. At real scale the same design shards by `user_id`
+across workers; the store is the only coordination point.
 
 ## Failure recovery
 
@@ -103,6 +130,8 @@ minute) is handled in order with no shared state beyond the store; at real scale
 | model returns 503, times out or returns unparsable JSON | rule-based decision, `fallback_used: model_unavailable`; the timeout costs our 10 s, not the model's |
 | viewer data store times out (retried once) | smallest safe action: a popular-in-dialect page needing nothing about the viewer, goal left unchosen, state not overwritten; no action if the dialect is unknown |
 | tool or model budget exhausted | recorded no-action with the reason |
+| traffic surge or a long queue | optional model calls are skipped; rules decide; the queue wait is charged to the budget |
+| a control event type nobody handles | logged and shown in the final report; nothing crashes |
 | a title is withdrawn | catalogue updated; live pages containing it are republished without it; pending messages about it are cancelled |
 | a goal rule is corrected | rule book versioned; only viewers with that goal open are tagged; every open goal is judged under the rule in force |
 | a viewer opts out after a message was scheduled | the scheduled message is cancelled |

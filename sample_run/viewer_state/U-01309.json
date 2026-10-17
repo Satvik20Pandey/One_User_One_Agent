@@ -173,9 +173,9 @@
    "D-00646"
   ],
   "actions": [
-   "A-00230"
+   "A-00202"
   ],
-  "updated_at": "2026-10-01T05:14:11.849Z"
+  "updated_at": "2026-10-01T05:14:11.848Z"
  },
  "decisions": [
   {
@@ -255,29 +255,125 @@
     {
      "ref": "trigger:9440dfe8-c2f9-4d49-a63c-630eb31c6590",
      "source": "event",
-     "observed_at": "2026-10-01T05:14:07.043Z"
+     "observed_at": "2026-10-01T05:14:07.043Z",
+     "age_s": 0
     },
     {
      "ref": "event:b8fe98c3-ac2f-4272-9c39-1041c5bc68a9",
      "source": "event",
-     "observed_at": "2026-10-01T05:13:35.942Z"
+     "observed_at": "2026-10-01T05:13:35.942Z",
+     "age_s": 31
     },
     {
      "ref": "events:U-01309:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-01309:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-01309:count=2",
      "source": "derived",
-     "observed_at": "2026-10-01T05:14:07.043Z"
+     "observed_at": "2026-10-01T05:14:07.043Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:14:07.043Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:14:07.043Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:14:07.043Z"
+    },
+    "signup_at": {
+     "value": "2026-10-01T05:13:35.942Z",
+     "source": "event",
+     "observed_at": "2026-10-01T05:13:35.942Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "derived",
+     "observed_at": "2026-10-01T05:14:07.043Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "none",
+     "observed_at": null
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_whatsapp": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "history_depth": {
+     "value": 2,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:14:07.043Z"
+    }
+   },
    "assumptions": [
     "no profile row; status 'never' inferred from signup_completed with no purchase"
    ],
@@ -296,6 +392,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "signed up in the last 7 days, no play_started on record"
    },
    "checks": {
@@ -313,12 +410,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T05:14:07.046Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T05:14:08.245Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-00646",
@@ -348,7 +447,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00230 for this viewer is still live (published 2026-10-01T05:14:07.046Z); nothing to change",
+   "no_action_reason": "home page A-00202 for this viewer is still live (published 2026-10-01T05:14:08.245Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -363,29 +462,125 @@
     {
      "ref": "trigger:f78ab34e-0a31-4545-b3df-742c075880b2",
      "source": "event",
-     "observed_at": "2026-10-01T05:14:11.848Z"
+     "observed_at": "2026-10-01T05:14:11.848Z",
+     "age_s": 0
     },
     {
      "ref": "event:b8fe98c3-ac2f-4272-9c39-1041c5bc68a9",
      "source": "event",
-     "observed_at": "2026-10-01T05:13:35.942Z"
+     "observed_at": "2026-10-01T05:13:35.942Z",
+     "age_s": 35
     },
     {
      "ref": "events:U-01309:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-01309:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-01309:count=3",
      "source": "derived",
-     "observed_at": "2026-10-01T05:14:11.848Z"
+     "observed_at": "2026-10-01T05:14:11.848Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:14:11.848Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:14:11.848Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:14:11.848Z"
+    },
+    "signup_at": {
+     "value": "2026-10-01T05:13:35.942Z",
+     "source": "event",
+     "observed_at": "2026-10-01T05:13:35.942Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "derived",
+     "observed_at": "2026-10-01T05:14:11.848Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "none",
+     "observed_at": null
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_whatsapp": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "history_depth": {
+     "value": 3,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:14:11.848Z"
+    }
+   },
    "assumptions": [
     "no profile row; status 'never' inferred from signup_completed with no purchase"
    ],
@@ -402,7 +597,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -414,18 +611,20 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T05:14:11.849Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T05:14:11.848Z",
+   "status": "NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00230",
+   "action_id": "A-00202",
    "decision_id": "D-00645",
    "user_id": "U-01309",
    "trigger_event_id": "9440dfe8-c2f9-4d49-a63c-630eb31c6590",
-   "published_at": "2026-10-01T05:14:07.046Z",
+   "published_at": "2026-10-01T05:14:08.245Z",
    "goal_id": "G01",
    "type": "home_page",
    "dialect": "d1",
@@ -479,7 +678,7 @@
    ]
   },
   {
-   "action_id": "A-00341",
+   "action_id": "A-00305",
    "decision_id": "D-00645",
    "user_id": "U-01309",
    "trigger_event_id": "9440dfe8-c2f9-4d49-a63c-630eb31c6590",
@@ -535,7 +734,7 @@
      ]
     }
    ],
-   "replaces": "A-00230",
+   "replaces": "A-00202",
    "reason": "T0001 withdrawn"
   }
  ],
@@ -558,8 +757,8 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00230",
-    "A-00341"
+    "A-00202",
+    "A-00305"
    ]
   }
  ]

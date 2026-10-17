@@ -204,12 +204,12 @@
    "D-02575"
   ],
   "actions": [
-   "A-00178",
-   "A-00474",
-   "A-00839",
-   "A-01206"
+   "A-00155",
+   "A-00428",
+   "A-00753",
+   "A-01083"
   ],
-  "updated_at": "2026-10-01T16:59:09.055Z"
+  "updated_at": "2026-10-01T16:59:10.254Z"
  },
  "decisions": [
   {
@@ -299,34 +299,146 @@
     {
      "ref": "trigger:24d6809b-678f-4478-a2d3-6fbcc4c35830",
      "source": "event",
-     "observed_at": "2026-10-01T04:32:38.391Z"
+     "observed_at": "2026-10-01T04:32:38.391Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 144789
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 212829
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:4bc46d4b-cb57-4ee6-ba38-4786479ca6ed",
      "source": "event",
-     "observed_at": "2026-09-28T17:23:06.169Z"
+     "observed_at": "2026-09-28T17:23:06.169Z",
+     "age_s": 212972
     },
     {
      "ref": "events:U-00958:count=21",
      "source": "derived",
-     "observed_at": "2026-10-01T04:32:38.391Z"
+     "observed_at": "2026-10-01T04:32:38.391Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:32:38.391Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:32:38.391Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:32:38.391Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-28T17:23:06.169Z",
+     "source": "event",
+     "observed_at": "2026-09-28T17:23:06.169Z"
+    },
+    "history_depth": {
+     "value": 21,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:32:38.391Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -342,6 +454,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -359,12 +472,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T04:32:38.396Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T04:32:39.593Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01067",
@@ -453,34 +568,146 @@
     {
      "ref": "trigger:f6d8bbf3-d771-46ec-aa61-acb870e6d3af",
      "source": "event",
-     "observed_at": "2026-10-01T08:32:07.491Z"
+     "observed_at": "2026-10-01T08:32:07.491Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 159158
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 227199
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:24d6809b-678f-4478-a2d3-6fbcc4c35830",
      "source": "event",
-     "observed_at": "2026-10-01T04:32:38.391Z"
+     "observed_at": "2026-10-01T04:32:38.391Z",
+     "age_s": 14369
     },
     {
      "ref": "events:U-00958:count=22",
      "source": "derived",
-     "observed_at": "2026-10-01T08:32:07.491Z"
+     "observed_at": "2026-10-01T08:32:07.491Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T08:32:07.491Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:32:07.491Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:32:07.491Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T04:32:38.391Z",
+     "source": "event",
+     "observed_at": "2026-10-01T04:32:38.391Z"
+    },
+    "history_depth": {
+     "value": 22,
+     "source": "derived",
+     "observed_at": "2026-10-01T08:32:07.491Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -496,6 +723,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -513,12 +741,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T08:32:07.496Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T08:32:08.693Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01226",
@@ -548,7 +778,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00474 for this viewer is still live (published 2026-10-01T08:32:07.496Z); nothing to change",
+   "no_action_reason": "home page A-00428 for this viewer is still live (published 2026-10-01T08:32:08.693Z); nothing to change",
    "dialect": {
     "used": "d5",
     "source": "app_setting",
@@ -563,34 +793,146 @@
     {
      "ref": "trigger:652e82d5-81ed-4b99-8975-00e96945ba16",
      "source": "event",
-     "observed_at": "2026-10-01T09:44:37.559Z"
+     "observed_at": "2026-10-01T09:44:37.559Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 163508
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 231549
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:f6d8bbf3-d771-46ec-aa61-acb870e6d3af",
      "source": "event",
-     "observed_at": "2026-10-01T08:32:07.491Z"
+     "observed_at": "2026-10-01T08:32:07.491Z",
+     "age_s": 4350
     },
     {
      "ref": "events:U-00958:count=23",
      "source": "derived",
-     "observed_at": "2026-10-01T09:44:37.559Z"
+     "observed_at": "2026-10-01T09:44:37.559Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T09:44:37.559Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:44:37.559Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:44:37.559Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T08:32:07.491Z",
+     "source": "event",
+     "observed_at": "2026-10-01T08:32:07.491Z"
+    },
+    "history_depth": {
+     "value": 23,
+     "source": "derived",
+     "observed_at": "2026-10-01T09:44:37.559Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -604,7 +946,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -616,9 +960,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T09:44:37.560Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01262",
@@ -648,7 +994,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00474 for this viewer is still live (published 2026-10-01T08:32:07.496Z); nothing to change",
+   "no_action_reason": "home page A-00428 for this viewer is still live (published 2026-10-01T08:32:08.693Z); nothing to change",
    "dialect": {
     "used": "d5",
     "source": "app_setting",
@@ -663,34 +1009,146 @@
     {
      "ref": "trigger:f1e6643f-d6c4-402e-a46a-64ac38954257",
      "source": "event",
-     "observed_at": "2026-10-01T10:06:48.315Z"
+     "observed_at": "2026-10-01T10:06:48.315Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 164839
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 232879
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:652e82d5-81ed-4b99-8975-00e96945ba16",
      "source": "event",
-     "observed_at": "2026-10-01T09:44:37.559Z"
+     "observed_at": "2026-10-01T09:44:37.559Z",
+     "age_s": 1330
     },
     {
      "ref": "events:U-00958:count=24",
      "source": "derived",
-     "observed_at": "2026-10-01T10:06:48.315Z"
+     "observed_at": "2026-10-01T10:06:48.315Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T10:06:48.315Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:06:48.315Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:06:48.315Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T09:44:37.559Z",
+     "source": "event",
+     "observed_at": "2026-10-01T09:44:37.559Z"
+    },
+    "history_depth": {
+     "value": 24,
+     "source": "derived",
+     "observed_at": "2026-10-01T10:06:48.315Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -704,7 +1162,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -716,9 +1176,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T10:06:48.316Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01817",
@@ -807,34 +1269,146 @@
     {
      "ref": "trigger:9e769c96-440f-4ed5-89b5-a9f6ee65df66",
      "source": "event",
-     "observed_at": "2026-10-01T14:03:28.721Z"
+     "observed_at": "2026-10-01T14:03:28.721Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 179039
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 247080
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:f1e6643f-d6c4-402e-a46a-64ac38954257",
      "source": "event",
-     "observed_at": "2026-10-01T10:06:48.315Z"
+     "observed_at": "2026-10-01T10:06:48.315Z",
+     "age_s": 14200
     },
     {
      "ref": "events:U-00958:count=25",
      "source": "derived",
-     "observed_at": "2026-10-01T14:03:28.721Z"
+     "observed_at": "2026-10-01T14:03:28.721Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:03:28.721Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:03:28.721Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:03:28.721Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T10:06:48.315Z",
+     "source": "event",
+     "observed_at": "2026-10-01T10:06:48.315Z"
+    },
+    "history_depth": {
+     "value": 25,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:03:28.721Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -850,6 +1424,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -867,12 +1442,14 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T14:03:28.727Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T14:03:29.923Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-02314",
@@ -902,7 +1479,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00839 for this viewer is still live (published 2026-10-01T14:03:28.727Z); nothing to change",
+   "no_action_reason": "home page A-00753 for this viewer is still live (published 2026-10-01T14:03:29.923Z); nothing to change",
    "dialect": {
     "used": "d5",
     "source": "app_setting",
@@ -917,34 +1494,146 @@
     {
      "ref": "trigger:7e4d50d3-1ea0-4edd-b6f6-aed8265e38c8",
      "source": "event",
-     "observed_at": "2026-10-01T15:44:23.279Z"
+     "observed_at": "2026-10-01T15:44:23.279Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 185094
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 253134
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:9e769c96-440f-4ed5-89b5-a9f6ee65df66",
      "source": "event",
-     "observed_at": "2026-10-01T14:03:28.721Z"
+     "observed_at": "2026-10-01T14:03:28.721Z",
+     "age_s": 6054
     },
     {
      "ref": "events:U-00958:count=26",
      "source": "derived",
-     "observed_at": "2026-10-01T15:44:23.279Z"
+     "observed_at": "2026-10-01T15:44:23.279Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T15:44:23.279Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:44:23.279Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:44:23.279Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T14:03:28.721Z",
+     "source": "event",
+     "observed_at": "2026-10-01T14:03:28.721Z"
+    },
+    "history_depth": {
+     "value": 26,
+     "source": "derived",
+     "observed_at": "2026-10-01T15:44:23.279Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -958,7 +1647,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -970,9 +1661,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T15:44:23.280Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-02575",
@@ -1061,34 +1754,146 @@
     {
      "ref": "trigger:2598d94e-d472-4dde-aa93-717f0d77ec18",
      "source": "event",
-     "observed_at": "2026-10-01T16:59:09.052Z"
+     "observed_at": "2026-10-01T16:59:09.052Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00958@2026-09-29T12:19:28.947Z",
      "source": "profile",
-     "observed_at": "2026-09-29T12:19:28.947Z"
+     "observed_at": "2026-09-29T12:19:28.947Z",
+     "age_s": 189580
     },
     {
      "ref": "event:a1a4b317-1055-4c43-b815-848c33c3bfde",
      "source": "event",
-     "observed_at": "2026-09-28T17:25:28.440Z"
+     "observed_at": "2026-09-28T17:25:28.440Z",
+     "age_s": 257620
     },
     {
      "ref": "events:U-00958:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:7e4d50d3-1ea0-4edd-b6f6-aed8265e38c8",
      "source": "event",
-     "observed_at": "2026-10-01T15:44:23.279Z"
+     "observed_at": "2026-10-01T15:44:23.279Z",
+     "age_s": 4485
     },
     {
      "ref": "events:U-00958:count=27",
      "source": "derived",
-     "observed_at": "2026-10-01T16:59:09.052Z"
+     "observed_at": "2026-10-01T16:59:09.052Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T16:59:09.052Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T16:59:09.052Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T16:59:09.052Z"
+    },
+    "signup_at": {
+     "value": "2025-11-27T15:16:59.999Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T12:19:28.947Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-28T17:25:28.440Z",
+      "last_at": "2026-09-28T17:25:28.440Z",
+      "days_in_last_14": [
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-28T17:25:28.440Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 29,
+       "evidence": "event:a1a4b317-1055-4c43-b815-848c33c3bfde"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-28T17:25:28.440Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T15:44:23.279Z",
+     "source": "event",
+     "observed_at": "2026-10-01T15:44:23.279Z"
+    },
+    "history_depth": {
+     "value": 27,
+     "source": "derived",
+     "observed_at": "2026-10-01T16:59:09.052Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -1104,6 +1909,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -1121,21 +1927,23 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:59:09.055Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T16:59:10.254Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00178",
+   "action_id": "A-00155",
    "decision_id": "D-00337",
    "user_id": "U-00958",
    "trigger_event_id": "24d6809b-678f-4478-a2d3-6fbcc4c35830",
-   "published_at": "2026-10-01T04:32:38.396Z",
+   "published_at": "2026-10-01T04:32:39.593Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d5",
@@ -1204,11 +2012,11 @@
    ]
   },
   {
-   "action_id": "A-00474",
+   "action_id": "A-00428",
    "decision_id": "D-01067",
    "user_id": "U-00958",
    "trigger_event_id": "f6d8bbf3-d771-46ec-aa61-acb870e6d3af",
-   "published_at": "2026-10-01T08:32:07.496Z",
+   "published_at": "2026-10-01T08:32:08.693Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d5",
@@ -1277,11 +2085,11 @@
    ]
   },
   {
-   "action_id": "A-00839",
+   "action_id": "A-00753",
    "decision_id": "D-01817",
    "user_id": "U-00958",
    "trigger_event_id": "9e769c96-440f-4ed5-89b5-a9f6ee65df66",
-   "published_at": "2026-10-01T14:03:28.727Z",
+   "published_at": "2026-10-01T14:03:29.923Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d5",
@@ -1350,11 +2158,11 @@
    ]
   },
   {
-   "action_id": "A-01206",
+   "action_id": "A-01083",
    "decision_id": "D-02575",
    "user_id": "U-00958",
    "trigger_event_id": "2598d94e-d472-4dde-aa93-717f0d77ec18",
-   "published_at": "2026-10-01T16:59:09.055Z",
+   "published_at": "2026-10-01T16:59:10.254Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d5",
@@ -1444,10 +2252,10 @@
     "home_page_shown": 7
    },
    "actions": [
-    "A-00178",
-    "A-00474",
-    "A-00839",
-    "A-01206"
+    "A-00155",
+    "A-00428",
+    "A-00753",
+    "A-01083"
    ]
   }
  ]

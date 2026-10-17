@@ -231,34 +231,133 @@
     {
      "ref": "trigger:173db0b2-658d-428b-bb2b-f565e0218422",
      "source": "event",
-     "observed_at": "2026-10-01T07:45:31.558Z"
+     "observed_at": "2026-10-01T07:45:31.558Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04338@2026-09-29T06:56:36.769Z",
      "source": "profile",
-     "observed_at": "2026-09-29T06:56:36.769Z"
+     "observed_at": "2026-09-29T06:56:36.769Z",
+     "age_s": 175734
     },
     {
      "ref": "events:U-04338:play_started=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "events:U-04338:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:85b24e49-2dd1-4dea-8be9-f7058218504d",
      "source": "event",
-     "observed_at": "2026-09-21T10:02:12.752Z"
+     "observed_at": "2026-09-21T10:02:12.752Z",
+     "age_s": 855798
     },
     {
      "ref": "events:U-04338:count=10",
      "source": "derived",
-     "observed_at": "2026-10-01T07:45:31.558Z"
+     "observed_at": "2026-10-01T07:45:31.558Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:45:31.558Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d7",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": null,
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:45:31.558Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:45:31.558Z"
+    },
+    "signup_at": {
+     "value": "2025-07-11T10:15:25.271Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:56:36.769Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:56:36.769Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:56:36.769Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:56:36.769Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:56:36.769Z"
+    },
+    "plays": {
+     "value": {
+      "count": 0,
+      "first_at": null,
+      "last_at": null,
+      "days_in_last_14": [],
+      "top_genres": []
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-21T10:02:12.752Z",
+     "source": "event",
+     "observed_at": "2026-09-21T10:02:12.752Z"
+    },
+    "history_depth": {
+     "value": 10,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:45:31.558Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d7, profile=d6, deeplink=None -> used d7 (app_setting)"
@@ -271,10 +370,12 @@
     ]
    },
    "model": {
-    "provider": null,
+    "provider": "mock",
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [],
@@ -286,9 +387,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T07:45:31.559Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

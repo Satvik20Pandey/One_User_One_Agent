@@ -243,34 +243,147 @@
     {
      "ref": "trigger:3ab81519-e5c4-45b4-9e04-5c712cfcb277",
      "source": "event",
-     "observed_at": "2026-09-30T19:24:49.712Z"
+     "observed_at": "2026-09-30T19:24:49.712Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00560@2026-09-29T17:27:40.685Z",
      "source": "profile",
-     "observed_at": "2026-09-29T17:27:40.685Z"
+     "observed_at": "2026-09-29T17:27:40.685Z",
+     "age_s": 93429
     },
     {
      "ref": "event:6fe9c814-c23b-4d44-8bea-dc6edb816f7c",
      "source": "event",
-     "observed_at": "2026-09-30T15:37:02.016Z"
+     "observed_at": "2026-09-30T15:37:02.016Z",
+     "age_s": 13667
     },
     {
      "ref": "event:bc652e6b-5569-43b5-a721-2c9a1f79f5bc",
      "source": "event",
-     "observed_at": "2026-09-30T15:39:47.180Z"
+     "observed_at": "2026-09-30T15:39:47.180Z",
+     "age_s": 13502
     },
     {
      "ref": "event:2b8cc88a-014b-4968-a761-8d1c99c42c54",
      "source": "event",
-     "observed_at": "2026-09-30T15:35:09.644Z"
+     "observed_at": "2026-09-30T15:35:09.644Z",
+     "age_s": 13780
     },
     {
      "ref": "events:U-00560:count=17",
      "source": "derived",
-     "observed_at": "2026-09-30T19:24:49.712Z"
+     "observed_at": "2026-09-30T19:24:49.712Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T19:24:49.712Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:24:49.712Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:24:49.712Z"
+    },
+    "signup_at": {
+     "value": "2026-03-04T18:20:06.474Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T17:27:40.685Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T17:27:40.685Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T17:27:40.685Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T17:27:40.685Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T17:27:40.685Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-30T15:37:02.016Z",
+      "last_at": "2026-09-30T15:37:02.016Z",
+      "days_in_last_14": [
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Romance",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T15:37:02.016Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-30T15:39:47.180Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T15:39:47.180Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "jamo-hasa-d5",
+       "title_id": "T1179",
+       "last_played_at": "2026-09-30T15:37:02.016Z",
+       "next_episode_id": "jamo-hasa-d5-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 33,
+       "evidence": "event:6fe9c814-c23b-4d44-8bea-dc6edb816f7c"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-30T15:37:02.016Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T15:35:09.644Z",
+     "source": "event",
+     "observed_at": "2026-09-30T15:35:09.644Z"
+    },
+    "history_depth": {
+     "value": 17,
+     "source": "derived",
+     "observed_at": "2026-09-30T19:24:49.712Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -284,7 +397,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -296,9 +411,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-09-30T19:24:49.713Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

@@ -214,34 +214,149 @@
     {
      "ref": "trigger:6f6f77f1-7a01-48cf-bd0f-5e5063e18c92",
      "source": "event",
-     "observed_at": "2026-10-01T04:47:10.823Z"
+     "observed_at": "2026-09-30T13:25:21.896Z",
+     "age_s": 55308
     },
     {
      "ref": "profile:U-00445@2026-09-29T02:25:26.266Z",
      "source": "profile",
-     "observed_at": "2026-09-29T02:25:26.266Z"
+     "observed_at": "2026-09-29T02:25:26.266Z",
+     "age_s": 181304
     },
     {
      "ref": "event:f60ce469-1ad5-4289-a09c-1778998bcbca",
      "source": "event",
-     "observed_at": "2026-09-17T07:04:14.913Z"
+     "observed_at": "2026-09-17T07:04:14.913Z",
+     "age_s": 1201375
     },
     {
      "ref": "events:U-00445:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:10d36f76-504c-45bc-b119-91991b63bd3a",
      "source": "event",
-     "observed_at": "2026-09-17T07:02:19.368Z"
+     "observed_at": "2026-09-17T07:02:19.368Z",
+     "age_s": 1201491
     },
     {
      "ref": "events:U-00445:count=6",
      "source": "derived",
-     "observed_at": "2026-10-01T04:47:10.823Z"
+     "observed_at": "2026-10-01T04:47:10.823Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 55308,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:47:10.823Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:10.823Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:10.823Z"
+    },
+    "signup_at": {
+     "value": "2025-08-26T14:23:12.423Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:25:26.266Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:25:26.266Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:25:26.266Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:25:26.266Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:25:26.266Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-17T07:04:14.913Z",
+      "last_at": "2026-09-17T07:04:14.913Z",
+      "days_in_last_14": [
+       "2026-09-17"
+      ],
+      "top_genres": [
+       "Action",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-17T07:04:14.913Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rigu-dhadi-d2",
+       "title_id": "T0526",
+       "last_played_at": "2026-09-17T07:04:14.913Z",
+       "next_episode_id": "rigu-dhadi-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 23,
+       "evidence": "event:f60ce469-1ad5-4289-a09c-1778998bcbca"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-17T07:04:14.913Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-17T07:02:19.368Z",
+     "source": "event",
+     "observed_at": "2026-09-17T07:02:19.368Z"
+    },
+    "history_depth": {
+     "value": 6,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:47:10.823Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d2, profile=d4, deeplink=None -> used d2 (app_setting)"
@@ -251,7 +366,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -263,9 +380,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 0,
    "published_at": "2026-10-01T04:47:10.823Z",
-   "status": "NO_ACTION"
+   "status": "NO_ACTION",
+   "during_surge": true
   }
  ],
  "actions": [],

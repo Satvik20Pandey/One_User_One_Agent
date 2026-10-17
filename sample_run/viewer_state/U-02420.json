@@ -243,34 +243,147 @@
     {
      "ref": "trigger:af6821fa-b074-443d-9820-33cc7ec83f89",
      "source": "event",
-     "observed_at": "2026-10-01T02:15:15.779Z"
+     "observed_at": "2026-10-01T02:15:15.779Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02420@2026-09-29T06:11:42.179Z",
      "source": "profile",
-     "observed_at": "2026-09-29T06:11:42.179Z"
+     "observed_at": "2026-09-29T06:11:42.179Z",
+     "age_s": 158613
     },
     {
      "ref": "event:2383fb65-2809-41ed-9a82-f0620f859b03",
      "source": "event",
-     "observed_at": "2026-09-29T09:31:21.316Z"
+     "observed_at": "2026-09-29T09:31:21.316Z",
+     "age_s": 146634
     },
     {
      "ref": "events:U-02420:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:9271ff86-703a-4c72-8728-13f0a5869af6",
      "source": "event",
-     "observed_at": "2026-09-29T16:22:10.364Z"
+     "observed_at": "2026-09-29T16:22:10.364Z",
+     "age_s": 121985
     },
     {
      "ref": "events:U-02420:count=22",
      "source": "derived",
-     "observed_at": "2026-10-01T02:15:15.779Z"
+     "observed_at": "2026-10-01T02:15:15.779Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T02:15:15.779Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T02:15:15.779Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T02:15:15.779Z"
+    },
+    "signup_at": {
+     "value": "2026-06-28T05:16:37.110Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:11:42.179Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T06:11:42.179Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:11:42.179Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:11:42.179Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T06:11:42.179Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-29T09:31:21.316Z",
+      "last_at": "2026-09-29T09:31:21.316Z",
+      "days_in_last_14": [
+       "2026-09-29"
+      ],
+      "top_genres": [
+       "Action",
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-29T09:31:21.316Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "molo-d2",
+       "title_id": "T0521",
+       "last_played_at": "2026-09-29T09:31:21.316Z",
+       "next_episode_id": "molo-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 7,
+       "evidence": "event:2383fb65-2809-41ed-9a82-f0620f859b03"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-29T09:31:21.316Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-29T16:22:10.364Z",
+     "source": "event",
+     "observed_at": "2026-09-29T16:22:10.364Z"
+    },
+    "history_depth": {
+     "value": 22,
+     "source": "derived",
+     "observed_at": "2026-10-01T02:15:15.779Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -284,7 +397,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -296,9 +411,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 2,
    "published_at": "2026-10-01T02:15:15.781Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

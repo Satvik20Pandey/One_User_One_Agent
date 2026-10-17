@@ -3,24 +3,21 @@
   "user_id": "U-04573",
   "active_goal": {
    "instance_id": "G-00690",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T09:56:49.428Z",
-   "deadline": "2026-10-04T09:56:49.428Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T09:56:49.428Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series ripiha-d1 (1/8 episodes), last played 2026-09-24",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:3eb87abe-6305-4933-b009-6c462cf2c778"
+    "profile:U-04573@2026-09-29T02:42:12.574Z"
    ],
-   "context": {
-    "slug": "ripiha-d1",
-    "title_id": "T0044"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T09:56:49.428Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T09:56:49.428Z judged: G08 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -235,12 +232,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00690",
     "started_at": "2026-10-01T09:56:49.428Z",
-    "deadline": "2026-10-04T09:56:49.428Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T09:56:49.428Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": true
@@ -263,78 +260,212 @@
     {
      "ref": "trigger:ab86f74a-b45e-419c-bc7c-fc9fee564569",
      "source": "event",
-     "observed_at": "2026-10-01T09:56:49.428Z"
+     "observed_at": "2026-10-01T09:56:49.428Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04573@2026-09-29T02:42:12.574Z",
      "source": "profile",
-     "observed_at": "2026-09-29T02:42:12.574Z"
+     "observed_at": "2026-09-29T02:42:12.574Z",
+     "age_s": 198876
     },
     {
      "ref": "event:2fb9ec72-fc0c-4ac5-a3ff-fbe40e07eed7",
      "source": "event",
-     "observed_at": "2026-09-29T02:42:12.574Z"
+     "observed_at": "2026-09-24T05:19:56.504Z",
+     "age_s": 621412
     },
     {
      "ref": "event:e820e2d2-04eb-4f0c-86a3-ddae3124e379",
      "source": "event",
-     "observed_at": "2026-09-28T17:04:43.368Z"
+     "observed_at": "2026-09-21T18:12:40.416Z",
+     "age_s": 834249
     },
     {
      "ref": "event:dd470e0f-0a77-4880-932d-99e0e9812ebf",
      "source": "event",
-     "observed_at": "2026-09-28T17:04:43.368Z"
+     "observed_at": "2026-09-28T05:43:05.061Z",
+     "age_s": 274424
     },
     {
      "ref": "event:fa1810e4-54d1-458a-a271-9be14baddb46",
      "source": "event",
-     "observed_at": "2026-09-28T17:04:43.368Z"
+     "observed_at": "2026-09-28T17:04:43.368Z",
+     "age_s": 233526
     },
     {
      "ref": "event:1c1e58c6-3a76-4a83-9ad1-ce67b88031ca",
      "source": "event",
-     "observed_at": "2026-09-28T19:03:24.336Z"
+     "observed_at": "2026-09-21T20:11:22.524Z",
+     "age_s": 827126
     },
     {
      "ref": "event:d3f18a69-4a69-40b9-b3ff-c38ee79d2620",
      "source": "event",
-     "observed_at": "2026-09-28T19:03:24.336Z"
+     "observed_at": "2026-09-28T19:03:24.336Z",
+     "age_s": 226405
     },
     {
      "ref": "event:3eb87abe-6305-4933-b009-6c462cf2c778",
      "source": "event",
-     "observed_at": "2026-09-24T04:36:00.829Z"
+     "observed_at": "2026-09-24T04:36:00.829Z",
+     "age_s": 624048
     },
     {
      "ref": "event:fdc7e279-699c-4277-ad52-b7028d2a9589",
      "source": "event",
-     "observed_at": "2026-09-24T04:36:00.829Z"
+     "observed_at": "2026-09-16T01:32:55.892Z",
+     "age_s": 1326233
     },
     {
      "ref": "event:016850ba-d072-43bf-a901-1630952b501e",
      "source": "event",
-     "observed_at": "2026-09-28T17:02:58.635Z"
+     "observed_at": "2026-09-28T17:02:58.635Z",
+     "age_s": 233630
     },
     {
      "ref": "events:U-04573:count=47",
      "source": "derived",
-     "observed_at": "2026-10-01T09:56:49.428Z"
+     "observed_at": "2026-10-01T09:56:49.428Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T09:56:49.428Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:56:49.428Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:56:49.428Z"
+    },
+    "signup_at": {
+     "value": "2025-10-17T08:50:45.269Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:42:12.574Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:42:12.574Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T02:42:12.574Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:42:12.574Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:42:12.574Z"
+    },
+    "plays": {
+     "value": {
+      "count": 6,
+      "first_at": "2026-09-06T05:06:18.511Z",
+      "last_at": "2026-09-28T17:04:43.368Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-24",
+       "2026-09-28"
+      ],
+      "top_genres": [
+       "Devotional",
+       "Action",
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T17:04:43.368Z"
+    },
+    "completions": {
+     "value": {
+      "count": 5,
+      "last_at": "2026-09-28T19:03:24.336Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-28T19:03:24.336Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "ripiha-d1",
+       "title_id": "T0044",
+       "last_played_at": "2026-09-24T04:36:00.829Z",
+       "next_episode_id": "ripiha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 8,
+       "evidence": "event:3eb87abe-6305-4933-b009-6c462cf2c778"
+      },
+      {
+       "slug": "kopibha-niya-d1",
+       "title_id": "T0013",
+       "last_played_at": "2026-09-16T01:32:55.892Z",
+       "next_episode_id": "kopibha-niya-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 8,
+       "evidence": "event:fdc7e279-699c-4277-ad52-b7028d2a9589"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-24T04:36:00.829Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-28T17:02:58.635Z",
+     "source": "event",
+     "observed_at": "2026-09-28T17:02:58.635Z"
+    },
+    "history_depth": {
+     "value": 47,
+     "source": "derived",
+     "observed_at": "2026-10-01T09:56:49.428Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series ripiha-d1 (1/8 episodes), last played 2026-09-24",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:3eb87abe-6305-4933-b009-6c462cf2c778"
+     "profile:U-04573@2026-09-29T02:42:12.574Z"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -346,9 +477,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 2,
    "published_at": "2026-10-01T09:56:49.430Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -357,15 +490,15 @@
    "user_id": "U-04573",
    "arm": "holdout",
    "goal_instance_id": "G-00690",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T09:56:49.428Z",
-   "deadline": "2026-10-04T09:56:49.428Z",
+   "deadline": "2026-10-08T09:56:49.428Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

@@ -254,34 +254,145 @@
     {
      "ref": "trigger:66812eb9-4b11-45f1-b9e8-fea60dd1d497",
      "source": "event",
-     "observed_at": "2026-10-01T07:38:15.001Z"
+     "observed_at": "2026-10-01T07:38:15.001Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04825@2026-09-28T20:47:21.110Z",
      "source": "profile",
-     "observed_at": "2026-09-28T20:47:21.110Z"
+     "observed_at": "2026-09-28T20:47:21.110Z",
+     "age_s": 211853
     },
     {
      "ref": "event:73ca8e0c-357d-4649-876b-2f5ec797f3a9",
      "source": "event",
-     "observed_at": "2026-09-17T05:57:48.783Z"
+     "observed_at": "2026-09-17T05:57:48.783Z",
+     "age_s": 1215626
     },
     {
      "ref": "event:ade30f31-05fb-4df7-bb87-afd077dcf74e",
      "source": "event",
-     "observed_at": "2026-09-17T08:03:51.257Z"
+     "observed_at": "2026-09-17T08:03:51.257Z",
+     "age_s": 1208063
     },
     {
      "ref": "event:c44c83f7-4c69-45e0-aa1d-1f4b8180b340",
      "source": "event",
-     "observed_at": "2026-09-24T14:20:29.424Z"
+     "observed_at": "2026-09-24T14:20:29.424Z",
+     "age_s": 580665
     },
     {
      "ref": "events:U-04825:count=17",
      "source": "derived",
-     "observed_at": "2026-10-01T07:38:15.001Z"
+     "observed_at": "2026-10-01T07:38:15.001Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:38:15.001Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d7",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": null,
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:38:15.001Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:38:15.001Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp055",
+      "dialect": "d7",
+      "title_id": "T0001"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T07:38:15.001Z"
+    },
+    "signup_at": {
+     "value": "2025-02-04T15:47:48.175Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:21.110Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:21.110Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:21.110Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:21.110Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:21.110Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-17T05:57:48.783Z",
+      "last_at": "2026-09-17T05:57:48.783Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Comedy",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-17T05:57:48.783Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-17T08:03:51.257Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-17T08:03:51.257Z"
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-24T14:20:29.424Z",
+     "source": "event",
+     "observed_at": "2026-09-24T14:20:29.424Z"
+    },
+    "history_depth": {
+     "value": 17,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:38:15.001Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d7, profile=d2, deeplink=d7 -> used d7 (app_setting)"
@@ -297,7 +408,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -309,9 +422,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T07:38:15.002Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

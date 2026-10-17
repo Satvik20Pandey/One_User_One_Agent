@@ -40,10 +40,25 @@ SCENARIOS = ["Normal", "Model gives a false answer", "Model is down", "Data stor
 
 st.set_page_config(page_title="One User, One Agent", page_icon="🎬", layout="centered")
 st.markdown("""<style>
-  .block-container { padding-top: 2rem; max-width: 980px; }
-  [data-testid="stMetricValue"] { font-size: 1.45rem; }
-  .step { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: #6b7280; margin-bottom: .2rem; }
-  .big { font-size: 1.12rem; font-weight: 600; line-height: 1.35; margin-bottom: .35rem; }
+  .block-container { padding-top: 3.2rem; max-width: 1080px; }
+  .hero { background: linear-gradient(135deg, #eaf2ff 0%, #f8fafc 70%); border: 1px solid #e1e8f3; border-radius: 16px;
+          padding: 20px 24px; margin-bottom: 14px; }
+  .hero h1 { font-size: 1.85rem; margin: 0 0 4px 0; padding: 0; color: #14213d; }
+  .hero p { margin: 0; color: #4b5563; font-size: .97rem; }
+  .by { display: inline-block; margin-top: 10px; background: #fff; border: 1px solid #d6e2f2; border-radius: 999px;
+        padding: 2px 12px; font-size: .8rem; color: #1c5cab; }
+  [data-testid="stMetricValue"] { font-size: 1.5rem; }
+  .st-key-card_decide, .st-key-card_act, .st-key-card_measure { border-top: 4px solid var(--accent) !important;
+        border-radius: 14px !important; background: #fcfdff; min-height: 300px; }
+  .st-key-card_decide { --accent: #2a78d6; } .st-key-card_act { --accent: #12a150; } .st-key-card_measure { --accent: #7c5cdb; }
+  .step { font-size: .76rem; letter-spacing: .08em; text-transform: uppercase; color: #6b7280; font-weight: 600; }
+  .big { font-size: 1.08rem; font-weight: 650; line-height: 1.35; margin: .35rem 0 .45rem 0; color: #111827; }
+  .chip { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .76rem; font-weight: 650; }
+  .chip.ok { background: #e6f6ec; color: #137333; } .chip.none { background: #f1f3f5; color: #495057; }
+  .chip.hold { background: #fff1de; color: #b45309; } .chip.bad { background: #fde8e8; color: #b42318; }
+  .arrow { color: #a0aec0; font-size: 1.5rem; text-align: center; padding-top: 120px; }
+  @media (max-width: 640px) { .arrow { display: none; } }
+  .foot { color: #8a94a6; font-size: .78rem; margin-top: 18px; }
 </style>""", unsafe_allow_html=True)
 
 
@@ -134,7 +149,7 @@ def run_agent(eng: dict, user_id: str, scenario: str) -> dict:
         faults.append({"trigger_event_id": trigger["event_id"], "fault": "unsupported_claim",
                        "model_output": {"goal_id": "G04", "eligible": True, "confidence": 0.97,
                                         "reason": "The user is on an active trial that ends tomorrow (confirmed in billing)."}})
-    provider = MockProvider(faults)
+    provider = MockProvider(faults, latency_s=settings.mock_model_latency_s)
     if scenario == "Model is down":
         provider.set_outage(now - timedelta(minutes=1), now + timedelta(minutes=10))
     if scenario == "Data store is down":
@@ -160,64 +175,82 @@ def describe_action(a: dict, names: dict) -> str:
     return f"{channel} about *{names.get(a['title_id'], a['title_id'])}*, scheduled {when} IST"
 
 
+def chip(text: str, kind: str) -> str:
+    return f'<span class="chip {kind}">{text}</span>'
+
+
 def show_loop(result: dict, outcomes: list[dict]) -> None:
     d, actions = result["decision"], result["actions"]
-    decide, act, measure = st.columns(3, border=True)
+    failed = (d.get("checks") or {}).get("failed") or []
+    passed = (d.get("checks") or {}).get("passed") or []
+    cols = st.columns([10, 1, 10, 1, 10])
+    for arrow in (cols[1], cols[3]):
+        arrow.markdown('<div class="arrow">→</div>', unsafe_allow_html=True)
 
-    with decide:
-        st.markdown('<div class="step">1 · Decide</div>', unsafe_allow_html=True)
+    with cols[0].container(border=True, key="card_decide"):
+        st.markdown('<div class="step">🎯 1 · Decide</div>', unsafe_allow_html=True)
         goal = d.get("goal")
         if goal:
             st.markdown(f'<div class="big">{result["goal_text"].get(goal["id"], goal["name"])}</div>', unsafe_allow_html=True)
+            label = f"{goal['id']} · {goal['name'].replace('_', ' ')}"
+            st.markdown(chip(label, "hold" if goal.get("shadow") else "ok"), unsafe_allow_html=True)
             reason = (d.get("eligibility") or {}).get("reason")
-            st.caption(f"{goal['id']} {goal['name']} · why: {reason or 'kept the active goal'}")
+            st.caption(f"Why: {reason or 'kept the goal already active for this viewer'}")
             st.caption(f"Judged by: {goal['success_signal']}")
         else:
             st.markdown('<div class="big">No goal</div>', unsafe_allow_html=True)
+            st.markdown(chip("abstained", "none"), unsafe_allow_html=True)
             st.caption(d.get("no_goal_reason") or d.get("no_action_reason") or "")
         conf = d.get("confidence") or {}
-        st.caption(f"Confidence {conf.get('value')} · {conf.get('reason', '')}")
+        st.caption(f"Confidence **{conf.get('value')}**: {conf.get('reason', '')}")
 
-    with act:
-        st.markdown('<div class="step">2 · Act</div>', unsafe_allow_html=True)
-        failed = (d.get("checks") or {}).get("failed") or []
-        passed = (d.get("checks") or {}).get("passed") or []
+    with cols[2].container(border=True, key="card_act"):
+        st.markdown('<div class="step">⚡ 2 · Act</div>', unsafe_allow_html=True)
         if actions:
             st.markdown('<div class="big">Published</div>', unsafe_allow_html=True)
+            chips = chip(f"✓ {len(passed)} checks passed", "ok")
+            if failed:
+                chips += " " + chip(f"✗ {len(failed)} vetoed", "bad")
+            st.markdown(chips, unsafe_allow_html=True)
             for a in actions:
                 st.markdown(f"- {describe_action(a, result['names'])}")
         elif d["status"] == "HOLDOUT_NO_ACTION":
-            st.markdown('<div class="big">Nothing sent (holdout)</div>', unsafe_allow_html=True)
-            st.caption("Control group: the goal is recorded so the comparison is fair, but no action is allowed.")
+            st.markdown('<div class="big">Nothing sent</div>', unsafe_allow_html=True)
+            st.markdown(chip("holdout · control group", "hold"), unsafe_allow_html=True)
+            st.caption("The goal is recorded so the comparison is fair, but holdout viewers never get an action.")
         else:
             st.markdown('<div class="big">Chose to do nothing</div>', unsafe_allow_html=True)
+            st.markdown(chip("no action", "none"), unsafe_allow_html=True)
             st.caption(d.get("no_action_reason") or "")
-        if passed or failed:
-            st.caption(f"✓ {len(passed)} independent checks passed" + (f" · ✗ {len(failed)} vetoed" if failed else ""))
-        st.caption(f"Decided in {d['decided_in_ms']:,} ms (budget 60,000)")
+        held = [a for a in d.get("assumptions") or [] if "page only" in a or "learned:" in a]
+        for line in held[:2]:
+            st.caption(f"ℹ️ {line}")
+        st.caption(f"Decided in **{d['decided_in_ms']:,} ms** of a 60,000 ms budget")
 
-    with measure:
-        st.markdown('<div class="step">3 · Measure</div>', unsafe_allow_html=True)
+    with cols[4].container(border=True, key="card_measure"):
+        st.markdown('<div class="step">📏 3 · Measure</div>', unsafe_allow_html=True)
         if result["scenario"] != "Normal":
             st.markdown('<div class="big">Not judged</div>', unsafe_allow_html=True)
-            st.caption("A what-if run is not followed by 14 days of viewer behaviour, so there is nothing honest to "
-                       "measure. Switch back to Normal to see this viewer's real outcome.")
+            st.markdown(chip("what-if run", "none"), unsafe_allow_html=True)
+            st.caption("A what-if is not followed by 14 days of viewer behaviour, so there is nothing honest to measure. "
+                       "Choose Normal to see this viewer's real outcome.")
         elif not outcomes:
             st.markdown('<div class="big">Nothing to judge</div>', unsafe_allow_html=True)
+            st.markdown(chip("no goal", "none"), unsafe_allow_html=True)
             st.caption("No goal was committed for this viewer in the replay.")
         else:
             o = outcomes[0]
-            icon = {"succeeded": "✅", "failed": "❌"}.get(o["verdict"], "⏳")
-            st.markdown(f'<div class="big">{icon} Goal {o["verdict"]}</div>', unsafe_allow_html=True)
-            st.caption(o["reason"])
-            st.caption({"exposed_before_success": "The viewer saw the agent's action before succeeding.",
+            st.markdown(f'<div class="big">Goal {o["verdict"]}</div>', unsafe_allow_html=True)
+            kind = {"succeeded": "ok", "failed": "bad"}.get(o["verdict"], "none")
+            st.markdown(chip(o["verdict"], kind), unsafe_allow_html=True)
+            st.caption({"exposed_before_success": "The viewer saw the agent's action, then reached the goal.",
                         "exposed_no_success": "The viewer saw the action but did not reach the goal.",
                         "published_but_never_seen": "The action was published but the viewer never saw it.",
-                        "holdout_no_action": "Holdout: whatever happened, the agent did not cause it.",
+                        "holdout_no_action": "Holdout viewer: whatever happened, the agent did not cause it.",
                         "no_action_taken": "The agent did not act for this goal.",
-                        "success_before_exposure": "The viewer succeeded before seeing anything from the agent.",
+                        "success_before_exposure": "The viewer reached the goal before seeing anything from the agent.",
                         }.get(o["attribution"], o["attribution"]))
-            st.caption("From the sample run: what the viewer did in the 14 days after.")
+            st.caption(f"{o['reason']} · from the 14 days after the replay day")
 
     # what went wrong and how the agent handled it, in one line
     model = d.get("model") or {}
@@ -278,8 +311,10 @@ def show_impact(run: dict) -> None:
 
 
 # --------------------------------------------------------------------------- page
-st.title("One User, One Agent")
-st.caption("Made by Satvik Pandey · one agent per viewer decides, acts and measures · mock model, no API key needed")
+st.markdown("""<div class="hero"><h1>One User, One Agent</h1>
+<p>Every viewer gets an agent that picks one measurable goal, acts or deliberately does nothing, checks itself, and
+then measures whether it helped against a randomized holdout.</p>
+<span class="by">Made by Satvik Pandey · mock model, no API key needed</span></div>""", unsafe_allow_html=True)
 
 if not (RUN / "replay_summary.json").exists():
     st.error(f"No run found at `{RUN}`. Create one with `python -m viewer_agent run-all --pack ./pack --out sample_run`.")
@@ -288,11 +323,14 @@ run = load_run(str(RUN))
 s, lat, sim = run["summary"], run["latency"], run["sim"]
 status = s["decisions_by_status"]
 c = st.columns(4)
-c[0].metric("App opens decided", f"{s['triggers']:,}", help=f"{s['viewers']:,} viewers on {s.get('replay_day_ist', 'the replay day')}")
-c[1].metric("On time (≤ 60 s)", f"{100 * lat['within_budget'] / lat['decisions']:.0f}%", help=f"p95 {lat['p95_ms']} ms")
-c[2].metric("Acted / chose not to", f"{status.get('PUBLISHED', 0):,} / {status.get('NO_ACTION', 0):,}",
+c[0].metric("App opens decided", f"{s['triggers']:,}", border=True,
+            help=f"{s['viewers']:,} viewers on {s.get('replay_day_ist', 'the replay day')}")
+c[1].metric("On time (≤ 60 s)", f"{100 * lat['within_budget'] / lat['decisions']:.0f}%", border=True,
+            help=f"p95 {lat['p95_ms']:,} ms, including model and data-store waits")
+c[2].metric("Acted / chose not to", f"{status.get('PUBLISHED', 0):,} / {status.get('NO_ACTION', 0):,}", border=True,
             help=f"plus {status.get('HOLDOUT_NO_ACTION', 0):,} holdout and {status.get('DUPLICATE', 0)} duplicate opens")
-c[3].metric("Policy violations", sim["policy_problem_count"], help="consent, quiet hours, daily cap, holdout: checked by the simulator")
+c[3].metric("Policy violations", sim["policy_problem_count"], border=True,
+            help="consent, quiet hours, daily cap, holdout: checked by the platform simulator")
 
 st.subheader("Run the loop for one viewer")
 if not (PACK / "data" / "events.jsonl").exists():
@@ -302,17 +340,22 @@ engine = load_engine(str(PACK))
 found = examples(run)
 label_of = {u: label for label, u in found.items()}
 viewers = list(found.values()) + sorted(u for u in engine["first_trigger"] if u not in label_of)
-pick, what = st.columns([1, 1])
-user_id = pick.selectbox("Viewer", viewers, key="viewer",
-                         format_func=lambda u: f"{u} · {label_of[u]}" if u in label_of else u)
-scenario = what.selectbox("What goes wrong?", SCENARIOS, key="scenario")
-arm = engine["pack_before"].arms.get(user_id)
-st.caption(f"Arm: **{arm}** · first app open of the day at "
-           f"{parse_ts(engine['first_trigger'][user_id]['deliver_at']).astimezone(IST).strftime('%H:%M IST')}")
+with st.container(border=True):
+    pick, what = st.columns([1, 1])
+    user_id = pick.selectbox("Viewer", viewers, key="viewer",
+                             format_func=lambda u: f"{u} · {label_of[u]}" if u in label_of else u)
+    scenario = what.selectbox("What goes wrong?", SCENARIOS, key="scenario")
+    arm = engine["pack_before"].arms.get(user_id)
+    first_open = parse_ts(engine["first_trigger"][user_id]["deliver_at"]).astimezone(IST).strftime("%H:%M IST")
+    st.caption(f"Randomized arm: **{arm}** · first app open of the replay day at {first_open} · "
+               "the real agent runs live on it")
 
 result = run_agent(engine, user_id, scenario)
 st.session_state["last_result"] = result  # read by the tests
 show_loop(result, run["outcomes"].get(user_id, []))
 
 st.subheader("Did the agent help?")
-show_impact(run)
+with st.container(border=True):
+    show_impact(run)
+st.markdown(f'<div class="foot">Replay day {s.get("replay_day_ist", "")} · decisions, actions and outcomes are read '
+            "from sample_run/ · the data never leaves this machine</div>", unsafe_allow_html=True)

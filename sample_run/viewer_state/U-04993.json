@@ -3,24 +3,21 @@
   "user_id": "U-04993",
   "active_goal": {
    "instance_id": "G-00495",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T07:26:12.362Z",
-   "deadline": "2026-10-04T07:26:12.362Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T07:26:12.362Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-20",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:230034f8-b3bf-4674-8ff1-6b44776e4903"
+    "profile:U-04993@2026-09-29T04:41:36.598Z"
    ],
-   "context": {
-    "slug": "rasuya-moni-d6",
-    "title_id": "T1976"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
@@ -33,7 +30,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T07:26:12.362Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T07:26:12.362Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -220,10 +217,10 @@
    "D-00915"
   ],
   "actions": [
-   "A-00398",
-   "A-00399"
+   "A-00356",
+   "A-00357"
   ],
-  "updated_at": "2026-10-01T07:26:12.365Z"
+  "updated_at": "2026-10-01T07:26:13.565Z"
  },
  "decisions": [
   {
@@ -241,12 +238,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00495",
     "started_at": "2026-10-01T07:26:12.362Z",
-    "deadline": "2026-10-04T07:26:12.362Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T07:26:12.362Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": false
@@ -264,9 +261,21 @@
     "conflicts": []
    },
    "content": [
-    "title:T1976",
+    "title:T1387",
     "title:T1393",
+    "title:T1463",
+    "title:T1486",
+    "title:T1421",
+    "title:T1461",
+    "title:T1468",
+    "title:T1491",
+    "title:T1484",
+    "title:T1472",
+    "title:T1456",
+    "title:T1392",
+    "title:T1388",
     "title:T1389",
+    "title:T1391",
     "title:T1390",
     "title:T1398",
     "title:T1500",
@@ -274,34 +283,25 @@
     "title:T1395",
     "title:T1406",
     "title:T1428",
-    "title:T1407",
-    "title:T1391",
     "title:T1396",
     "title:T1437",
     "title:T1404",
     "title:T1419",
     "title:T1426",
     "title:T1444",
-    "title:T1468",
     "title:T1455",
     "title:T1465",
-    "title:T1392",
-    "title:T1388",
+    "title:T1494",
     "title:T1394",
-    "title:T1400",
-    "title:T1414",
-    "title:T1402",
-    "title:T1399",
-    "title:T1499",
-    "title:T1450",
-    "title:T1463",
-    "title:T1486",
-    "title:T1421",
-    "title:T1461",
-    "title:T1491",
-    "title:T1484",
-    "title:T1472",
-    "title:T1456"
+    "title:T1482",
+    "title:T1448",
+    "title:T1497",
+    "title:T1410",
+    "title:T1427",
+    "title:T1424",
+    "title:T1438",
+    "title:T1481",
+    "title:T1492"
    ],
    "confidence": {
     "value": 0.75,
@@ -311,66 +311,197 @@
     {
      "ref": "trigger:9db59193-5e1c-46b5-af5e-cf30a35ea752",
      "source": "event",
-     "observed_at": "2026-10-01T07:26:12.362Z"
+     "observed_at": "2026-10-01T07:26:12.362Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-04993@2026-09-29T04:41:36.598Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:41:36.598Z"
+     "observed_at": "2026-09-29T04:41:36.598Z",
+     "age_s": 182675
     },
     {
      "ref": "event:b8ad1c80-fe3c-48e4-beb1-8cd10ebfbebf",
      "source": "event",
-     "observed_at": "2026-09-29T04:41:36.598Z"
+     "observed_at": "2026-09-27T19:16:49.327Z",
+     "age_s": 302963
     },
     {
      "ref": "event:f7f93354-14b2-441b-ae18-fffcaa573d33",
      "source": "event",
-     "observed_at": "2026-09-26T13:45:30.081Z"
+     "observed_at": "2026-09-20T07:18:09.847Z",
+     "age_s": 950882
     },
     {
      "ref": "event:230034f8-b3bf-4674-8ff1-6b44776e4903",
      "source": "event",
-     "observed_at": "2026-09-26T13:45:30.081Z"
+     "observed_at": "2026-09-20T12:35:23.663Z",
+     "age_s": 931848
     },
     {
      "ref": "event:15adb109-67ae-42bb-9f0e-60979d8b6341",
      "source": "event",
-     "observed_at": "2026-09-26T13:45:30.081Z"
+     "observed_at": "2026-09-26T13:45:30.081Z",
+     "age_s": 409242
     },
     {
      "ref": "event:d831412f-308a-4b3f-aeea-b358d0662bc3",
      "source": "event",
-     "observed_at": "2026-09-26T15:18:23.574Z"
+     "observed_at": "2026-09-20T13:04:49.424Z",
+     "age_s": 930082
     },
     {
      "ref": "event:05967b32-d08c-4d22-8858-572bf1b135b1",
      "source": "event",
-     "observed_at": "2026-09-26T15:18:23.574Z"
+     "observed_at": "2026-09-26T15:18:23.574Z",
+     "age_s": 403668
     },
     {
      "ref": "event:ec1f4086-7e40-4379-aaba-27b30b07efeb",
      "source": "event",
-     "observed_at": "2026-09-20T12:35:23.663Z"
+     "observed_at": "2026-09-18T03:17:48.716Z",
+     "age_s": 1138103
     },
     {
      "ref": "event:37a89fbf-b0be-40c4-847b-178bc9232a30",
      "source": "event",
-     "observed_at": "2026-09-27T09:11:01.306Z"
+     "observed_at": "2026-09-27T09:11:01.306Z",
+     "age_s": 339311
     },
     {
      "ref": "events:U-04993:count=54",
      "source": "derived",
-     "observed_at": "2026-10-01T07:26:12.362Z"
+     "observed_at": "2026-10-01T07:26:12.362Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:26:12.362Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d6",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:26:12.362Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:26:12.362Z"
+    },
+    "signup_at": {
+     "value": "2025-07-12T10:32:40.146Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:41:36.598Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:41:36.598Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T04:41:36.598Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:41:36.598Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:41:36.598Z"
+    },
+    "plays": {
+     "value": {
+      "count": 6,
+      "first_at": "2026-09-01T11:41:29.692Z",
+      "last_at": "2026-09-26T13:45:30.081Z",
+      "days_in_last_14": [
+       "2026-09-18",
+       "2026-09-20",
+       "2026-09-26"
+      ],
+      "top_genres": [
+       "Drama",
+       "Action",
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-26T13:45:30.081Z"
+    },
+    "completions": {
+     "value": {
+      "count": 4,
+      "last_at": "2026-09-26T15:18:23.574Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-26T15:18:23.574Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rasuya-moni-d6",
+       "title_id": "T1976",
+       "last_played_at": "2026-09-20T12:35:23.663Z",
+       "next_episode_id": "rasuya-moni-d6-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 9,
+       "evidence": "event:230034f8-b3bf-4674-8ff1-6b44776e4903"
+      },
+      {
+       "slug": "bhari-vagi-d6",
+       "title_id": "T1393",
+       "last_played_at": "2026-09-18T03:17:48.716Z",
+       "next_episode_id": "bhari-vagi-d6-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 26,
+       "evidence": "event:ec1f4086-7e40-4379-aaba-27b30b07efeb"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-20T12:35:23.663Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T09:11:01.306Z",
+     "source": "event",
+     "observed_at": "2026-09-27T09:11:01.306Z"
+    },
+    "history_depth": {
+     "value": 54,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:26:12.362Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-20",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:230034f8-b3bf-4674-8ff1-6b44776e4903"
+     "profile:U-04993@2026-09-29T04:41:36.598Z"
     ]
    },
    "model": {
@@ -379,7 +510,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-20"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -401,54 +533,41 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T07:26:12.365Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T07:26:13.565Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00398",
+   "action_id": "A-00356",
    "decision_id": "D-00915",
    "user_id": "U-04993",
    "trigger_event_id": "9db59193-5e1c-46b5-af5e-cf30a35ea752",
-   "published_at": "2026-10-01T07:26:12.365Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T07:26:13.565Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d6",
-   "hero_title_id": "T1976",
+   "hero_title_id": "T1387",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
       "T1393",
-      "T1389",
-      "T1390",
-      "T1398",
-      "T1500",
-      "T1397",
-      "T1395",
-      "T1406",
-      "T1428",
-      "T1407"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T1391",
-      "T1396",
-      "T1437",
-      "T1404",
-      "T1419",
-      "T1426",
-      "T1444",
+      "T1463",
+      "T1486",
+      "T1421",
+      "T1461",
       "T1468",
-      "T1455",
-      "T1465"
+      "T1491",
+      "T1484",
+      "T1472",
+      "T1456"
      ]
     },
     {
@@ -456,46 +575,64 @@
      "title_ids": [
       "T1392",
       "T1388",
-      "T1394",
-      "T1400",
-      "T1414",
-      "T1402",
-      "T1399",
-      "T1499",
-      "T1450",
-      "T1463"
+      "T1389",
+      "T1391",
+      "T1390",
+      "T1398",
+      "T1500",
+      "T1397",
+      "T1395",
+      "T1406"
      ]
     },
     {
-     "row_type": "new_releases",
+     "row_type": "because_you_watched",
      "title_ids": [
-      "T1486",
-      "T1421",
-      "T1461",
-      "T1491",
-      "T1484",
-      "T1472",
-      "T1456"
+      "T1428",
+      "T1396",
+      "T1437",
+      "T1404",
+      "T1419",
+      "T1426",
+      "T1444",
+      "T1455",
+      "T1465",
+      "T1494"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1394",
+      "T1482",
+      "T1448",
+      "T1497",
+      "T1410",
+      "T1427",
+      "T1424",
+      "T1438",
+      "T1481",
+      "T1492"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00399",
+   "action_id": "A-00357",
    "decision_id": "D-00915",
    "user_id": "U-04993",
    "trigger_event_id": "9db59193-5e1c-46b5-af5e-cf30a35ea752",
-   "published_at": "2026-10-01T07:26:12.365Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T07:26:13.565Z",
+   "goal_id": "G08",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1976",
+   "title_id": "T1393",
    "dialect": "d6",
    "text": {
-    "title": "Continue Rasuya Moni (English)",
-    "body": "Episode 2 of Rasuya Moni (English) is waiting for you."
+    "title": "New in D6: Bhari Vagi",
+    "body": "Bhari Vagi just released. Start watching now."
    },
-   "deeplink": "ott://title/T1976"
+   "deeplink": "ott://title/T1393"
   }
  ],
  "outcomes": [
@@ -503,15 +640,15 @@
    "user_id": "U-04993",
    "arm": "agent",
    "goal_instance_id": "G-00495",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T07:26:12.362Z",
-   "deadline": "2026-10-04T07:26:12.362Z",
+   "deadline": "2026-10-08T07:26:12.362Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
@@ -520,8 +657,8 @@
     "message_delivered": 1
    },
    "actions": [
-    "A-00398",
-    "A-00399"
+    "A-00356",
+    "A-00357"
    ]
   }
  ]

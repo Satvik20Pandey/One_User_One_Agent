@@ -2,38 +2,37 @@
  "state": {
   "user_id": "U-01569",
   "active_goal": {
-   "instance_id": "G-01424",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01430",
+   "goal_id": "G09",
+   "name": "weekly_habit_14d",
    "started_at": "2026-10-01T17:05:03.093Z",
-   "deadline": "2026-10-04T17:05:03.093Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-15T17:05:03.093Z",
+   "success_signal": "play_started (on 3 distinct IST days) within 336h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series pibha-tibalo-d5 (1/60 episodes), last played 2026-09-25",
+   "eligibility_reason": "active subscriber with plays on 1 day(s) in the last 14",
    "evidence": [
+    "profile:U-01569@2026-09-28T19:34:15.627Z",
+    "event:a36e38c1-f455-4eab-8d6f-200f4c3202ff",
+    "event:2658752b-1798-48d0-85e8-cbb515951452",
     "event:ad7c2e9b-9976-449b-b094-ff1334841d95"
    ],
-   "context": {
-    "slug": "pibha-tibalo-d5",
-    "title_id": "T1919"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T17:05:03.093Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-15T17:05:03.093Z judged: G09 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'on 3 distinct IST days' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -221,10 +220,9 @@
    "D-02596"
   ],
   "actions": [
-   "A-01215",
-   "A-01216"
+   "A-01090"
   ],
-  "updated_at": "2026-10-01T17:05:03.097Z"
+  "updated_at": "2026-10-01T17:05:04.296Z"
  },
  "decisions": [
   {
@@ -242,12 +240,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01424",
+    "id": "G09",
+    "name": "weekly_habit_14d",
+    "instance_id": "G-01430",
     "started_at": "2026-10-01T17:05:03.093Z",
-    "deadline": "2026-10-04T17:05:03.093Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-15T17:05:03.093Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -255,8 +253,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -267,37 +264,27 @@
     ]
    },
    "content": [
-    "title:T1919",
-    "title:T1180",
     "title:T1177",
-    "title:T1179",
-    "title:T1906",
+    "title:T1902",
     "title:T1905",
-    "title:T1185",
-    "title:T1191",
-    "title:T1904",
-    "title:T1188",
-    "title:T1226",
     "title:T1181",
+    "title:T1191",
     "title:T1206",
     "title:T1184",
     "title:T1245",
     "title:T1263",
     "title:T1295",
     "title:T1211",
-    "title:T1236",
-    "title:T1285",
-    "title:T1248",
+    "title:T1179",
     "title:T1901",
+    "title:T1906",
+    "title:T1185",
     "title:T1903",
     "title:T1907",
-    "title:T1938",
-    "title:T1241",
-    "title:T1200",
-    "title:T1915",
-    "title:T1243",
-    "title:T1196",
-    "title:T1195",
+    "title:T1904",
+    "title:T1188",
+    "title:T1226",
+    "title:T1919",
     "title:T1192",
     "title:T1213",
     "title:T1916",
@@ -307,7 +294,17 @@
     "title:T1202",
     "title:T1215",
     "title:T1953",
-    "title:T1278"
+    "title:T1278",
+    "title:T1938",
+    "title:T1915",
+    "title:T1909",
+    "title:T1258",
+    "title:T1299",
+    "title:T1242",
+    "title:T1270",
+    "title:T1350",
+    "title:T1279",
+    "title:T1371"
    ],
    "confidence": {
     "value": 0.55,
@@ -317,57 +314,189 @@
     {
      "ref": "trigger:5583120a-4cb2-4bec-a5d3-449fac931cc3",
      "source": "event",
-     "observed_at": "2026-10-01T17:05:03.093Z"
+     "observed_at": "2026-10-01T17:05:03.093Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01569@2026-09-28T19:34:15.627Z",
      "source": "profile",
-     "observed_at": "2026-09-28T19:34:15.627Z"
+     "observed_at": "2026-09-28T19:34:15.627Z",
+     "age_s": 250247
     },
     {
      "ref": "event:9673ea61-f3ef-4e70-a97a-b40c86be090e",
      "source": "event",
-     "observed_at": "2026-09-28T19:34:15.627Z"
+     "observed_at": "2026-09-19T09:47:53.220Z",
+     "age_s": 1063029
     },
     {
      "ref": "event:a36e38c1-f455-4eab-8d6f-200f4c3202ff",
      "source": "event",
-     "observed_at": "2026-09-25T14:22:51.813Z"
+     "observed_at": "2026-09-01T16:29:10.185Z",
+     "age_s": 2594152
     },
     {
      "ref": "event:2658752b-1798-48d0-85e8-cbb515951452",
      "source": "event",
-     "observed_at": "2026-09-25T14:22:51.813Z"
+     "observed_at": "2026-09-02T02:23:38.610Z",
+     "age_s": 2558484
     },
     {
      "ref": "event:ad7c2e9b-9976-449b-b094-ff1334841d95",
      "source": "event",
-     "observed_at": "2026-09-25T14:22:51.813Z"
+     "observed_at": "2026-09-25T14:22:51.813Z",
+     "age_s": 528131
     },
     {
      "ref": "event:b673da11-05ac-4a8d-821e-706cf4693893",
      "source": "event",
-     "observed_at": "2026-09-25T14:24:41.254Z"
+     "observed_at": "2026-09-25T14:24:41.254Z",
+     "age_s": 528021
     },
     {
      "ref": "event:a109d566-bd8e-4e67-a89f-39777b9a7060",
      "source": "event",
-     "observed_at": "2026-09-27T14:01:04.523Z"
+     "observed_at": "2026-09-27T14:01:04.523Z",
+     "age_s": 356638
     },
     {
      "ref": "events:U-01569:count=50",
      "source": "derived",
-     "observed_at": "2026-10-01T17:05:03.093Z"
+     "observed_at": "2026-10-01T17:05:03.093Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T17:05:03.093Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T17:05:03.093Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T17:05:03.093Z"
+    },
+    "signup_at": {
+     "value": "2026-07-25T15:38:44.311Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T19:34:15.627Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-28T19:34:15.627Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-28T19:34:15.627Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T19:34:15.627Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T19:34:15.627Z"
+    },
+    "plays": {
+     "value": {
+      "count": 3,
+      "first_at": "2026-09-01T16:29:10.185Z",
+      "last_at": "2026-09-25T14:22:51.813Z",
+      "days_in_last_14": [
+       "2026-09-25"
+      ],
+      "top_genres": [
+       "Family",
+       "Devotional",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T14:22:51.813Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-25T14:24:41.254Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-25T14:24:41.254Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "pibha-tibalo-d5",
+       "title_id": "T1919",
+       "last_played_at": "2026-09-25T14:22:51.813Z",
+       "next_episode_id": "pibha-tibalo-d5-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 60,
+       "evidence": "event:ad7c2e9b-9976-449b-b094-ff1334841d95"
+      },
+      {
+       "slug": "kova-sako-d5",
+       "title_id": "T1180",
+       "last_played_at": "2026-09-01T16:29:10.185Z",
+       "next_episode_id": "kova-sako-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 30,
+       "evidence": "event:a36e38c1-f455-4eab-8d6f-200f4c3202ff"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-25T14:22:51.813Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T14:01:04.523Z",
+     "source": "event",
+     "observed_at": "2026-09-27T14:01:04.523Z"
+    },
+    "history_depth": {
+     "value": 50,
+     "source": "derived",
+     "observed_at": "2026-10-01T17:05:03.093Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d5, profile=d6, deeplink=None -> used d5 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series pibha-tibalo-d5 (1/60 episodes), last played 2026-09-25",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 1 day(s) in the last 14",
     "evidence": [
+     "profile:U-01569@2026-09-28T19:34:15.627Z",
+     "event:a36e38c1-f455-4eab-8d6f-200f4c3202ff",
+     "event:2658752b-1798-48d0-85e8-cbb515951452",
      "event:ad7c2e9b-9976-449b-b094-ff1334841d95"
     ]
    },
@@ -377,7 +506,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series pibha-tibalo-d5 (1/60 episodes), last played 2026-09-25"
+    "skipped": null,
+    "reason": "active subscriber with plays on 1 day(s) in the last 14"
    },
    "checks": {
     "passed": [
@@ -387,81 +517,63 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T17:05:03.097Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T17:05:04.296Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-01215",
+   "action_id": "A-01090",
    "decision_id": "D-02596",
    "user_id": "U-01569",
    "trigger_event_id": "5583120a-4cb2-4bec-a5d3-449fac931cc3",
-   "published_at": "2026-10-01T17:05:03.097Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T17:05:04.296Z",
+   "goal_id": "G09",
    "type": "home_page",
    "dialect": "d5",
-   "hero_title_id": "T1919",
+   "hero_title_id": "T1177",
    "rows": [
-    {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T1180",
-      "T1177",
-      "T1179",
-      "T1906",
-      "T1905",
-      "T1185",
-      "T1191",
-      "T1904",
-      "T1188",
-      "T1226"
-     ]
-    },
     {
      "row_type": "because_you_watched",
      "title_ids": [
+      "T1902",
+      "T1905",
       "T1181",
+      "T1191",
       "T1206",
       "T1184",
       "T1245",
       "T1263",
       "T1295",
-      "T1211",
-      "T1236",
-      "T1285",
-      "T1248"
+      "T1211"
      ]
     },
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
+      "T1179",
       "T1901",
+      "T1906",
+      "T1185",
       "T1903",
       "T1907",
-      "T1938",
-      "T1241",
-      "T1200",
-      "T1915",
-      "T1243",
-      "T1196",
-      "T1195"
+      "T1904",
+      "T1188",
+      "T1226",
+      "T1919"
      ]
     },
     {
@@ -478,51 +590,47 @@
       "T1953",
       "T1278"
      ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1938",
+      "T1915",
+      "T1909",
+      "T1258",
+      "T1299",
+      "T1242",
+      "T1270",
+      "T1350",
+      "T1279",
+      "T1371"
+     ]
     }
    ]
-  },
-  {
-   "action_id": "A-01216",
-   "decision_id": "D-02596",
-   "user_id": "U-01569",
-   "trigger_event_id": "5583120a-4cb2-4bec-a5d3-449fac931cc3",
-   "published_at": "2026-10-01T17:05:03.097Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1919",
-   "dialect": "d5",
-   "text": {
-    "title": "Continue Pibha Tibalo (English)",
-    "body": "Episode 2 of Pibha Tibalo (English) is waiting for you."
-   },
-   "deeplink": "ott://title/T1919"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-01569",
    "arm": "agent",
-   "goal_instance_id": "G-01424",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01430",
+   "goal_id": "G09",
+   "goal_name": "weekly_habit_14d",
    "started_at": "2026-10-01T17:05:03.093Z",
-   "deadline": "2026-10-04T17:05:03.093Z",
+   "deadline": "2026-10-15T17:05:03.093Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-01215",
-    "A-01216"
+    "A-01090"
    ]
   }
  ]

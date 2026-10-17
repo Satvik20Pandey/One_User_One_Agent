@@ -203,7 +203,7 @@
    "D-00276"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T03:49:19.347Z"
+  "updated_at": "2026-10-01T03:49:19.345Z"
  },
  "decisions": [
   {
@@ -251,35 +251,151 @@
     {
      "ref": "trigger:42c9de8b-659a-47ea-9882-bc3161588b74",
      "source": "event",
-     "observed_at": "2026-10-01T03:49:19.344Z"
+     "observed_at": "2026-10-01T03:49:19.344Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00949@2026-09-29T04:39:10.123Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:39:10.123Z"
+     "observed_at": "2026-09-29T04:39:10.123Z",
+     "age_s": 169809
     },
     {
      "ref": "event:5ea053e8-f3a5-4708-8adc-8e9b5963a815",
      "source": "event",
-     "observed_at": "2026-09-21T00:42:34.144Z"
+     "observed_at": "2026-09-21T00:42:34.144Z",
+     "age_s": 875205
     },
     {
      "ref": "event:b142c26f-0985-4026-aa43-83ad1071cd97",
      "source": "event",
-     "observed_at": "2026-09-21T00:45:18.822Z"
+     "observed_at": "2026-09-21T00:45:18.822Z",
+     "age_s": 875040
     },
     {
      "ref": "event:fd68214e-39d6-4152-b58c-25b194ad15c9",
      "source": "event",
-     "observed_at": "2026-09-29T14:47:33.482Z"
+     "observed_at": "2026-09-29T14:47:33.482Z",
+     "age_s": 133305
     },
     {
      "ref": "events:U-00949:count=18",
      "source": "derived",
-     "observed_at": "2026-10-01T03:49:19.344Z"
+     "observed_at": "2026-10-01T03:49:19.344Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T03:49:19.344Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T03:49:19.344Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T03:49:19.344Z"
+    },
+    "signup_at": {
+     "value": "2026-05-15T09:57:33.921Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:39:10.123Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:39:10.123Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:39:10.123Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:39:10.123Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:39:10.123Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-21T00:42:34.144Z",
+      "last_at": "2026-09-21T00:42:34.144Z",
+      "days_in_last_14": [
+       "2026-09-21"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-21T00:42:34.144Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-21T00:45:18.822Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-21T00:45:18.822Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-21T00:42:34.144Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 29,
+       "evidence": "event:5ea053e8-f3a5-4708-8adc-8e9b5963a815"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-21T00:42:34.144Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-29T14:47:33.482Z",
+     "source": "event",
+     "observed_at": "2026-09-29T14:47:33.482Z"
+    },
+    "history_depth": {
+     "value": 18,
+     "source": "derived",
+     "observed_at": "2026-10-01T03:49:19.344Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d5, profile=d1, deeplink=None -> used d5 (app_setting)"
    ],
@@ -294,7 +410,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -306,9 +424,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T03:49:19.347Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T03:49:19.345Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

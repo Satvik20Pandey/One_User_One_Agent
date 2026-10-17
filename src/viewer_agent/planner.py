@@ -63,7 +63,8 @@ class Proposal:
     message: MessageDraft | None
     no_action_reason: str | None
     assumptions: list[str] = field(default_factory=list)
-    model: dict = field(default_factory=lambda: {"provider": None, "calls": 0, "used": False, "rejected": None})
+    model: dict = field(default_factory=lambda: {"provider": None, "calls": 0, "used": False, "rejected": None,
+                                                 "failure": None, "skipped": None})
 
     def actions(self) -> list[str]:
         out = []
@@ -95,7 +96,22 @@ def propose(facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, setting
     if message_block:
         proposal.assumptions.append(message_block)
 
-    if provider is not None and budget.can_call_model() and (page or message):
+    # A push or WhatsApp reaches the viewer outside the app, so it needs stronger evidence than a home page.
+    confidence, _ = facts.confidence()
+    if message and message.channel in ("push", "whatsapp") and confidence < settings.message_min_confidence:
+        proposal.message = None
+        proposal.assumptions.append(f"evidence confidence {confidence:.2f} is below the {settings.message_min_confidence} "
+                                    "a push or WhatsApp needs; home page only")
+
+    # The model is asked only when it can add something: copy to write, or a hero the evidence did not decide.
+    useful = (proposal.message is not None and proposal.message.channel != "whatsapp") or              (proposal.page is not None and proposal.page.hero_reason == "most popular")
+    if provider is not None and not useful:
+        proposal.model.update(provider=provider.name,
+                              skipped="not needed: the hero and the copy were decided by evidence or an approved template")
+    elif provider is not None and budget.remaining_s() <= settings.model_timeout_s:
+        proposal.model.update(provider=provider.name,
+                              skipped=f"only {budget.remaining_s():.0f}s of the time budget left; rules decided alone")
+    elif provider is not None and budget.can_call_model():
         proposal = _ask_model(proposal, facts, eligible, pack, settings, now, provider, budget)
 
     if proposal.page is None and proposal.message is None:
@@ -121,7 +137,8 @@ def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibilit
                      reason=proposal.goal.reason, evidence=proposal.goal.evidence)
     request = AdviceRequest(facts.user_id, facts.trigger["event_id"], now,
                             build_prompt(facts, eligible, proposal.page, pack), default, settings.model_timeout_s, budget)
-    proposal.model = {"provider": provider.name, "calls": 1, "used": False, "rejected": None, "failure": None}
+    proposal.model = {"provider": provider.name, "calls": 1, "used": False, "rejected": None, "failure": None,
+                      "skipped": None}
     budget.model()
     try:
         advice = provider.advise(request)
@@ -145,7 +162,7 @@ def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibilit
     if proposal.page and advice.hero_title_id and advice.hero_title_id in proposal.page.candidate_ids:
         proposal.page.hero_title_id = advice.hero_title_id
         proposal.page.rows = [r for r in proposal.page.rows if advice.hero_title_id not in r.title_ids]
-    if proposal.message and proposal.message.channel == "push" and advice.push_title and advice.push_body:
+    if proposal.message and proposal.message.channel != "whatsapp" and advice.push_title and advice.push_body:
         proposal.message.text = {"title": advice.push_title[:40], "body": advice.push_body[:120]}
     proposal.model["used"] = True
     proposal.model["reason"] = advice.reason[:300]
@@ -184,9 +201,10 @@ class MockProvider:
     asks for a fault at this trigger, or the model dependency is inside an outage window."""
     name = "mock"
 
-    def __init__(self, faults: list[dict] | None = None):
+    def __init__(self, faults: list[dict] | None = None, latency_s: float = 0.0):
         self.faults = {f["trigger_event_id"]: f for f in (faults or [])}
         self.outages: list[tuple[datetime, datetime]] = []
+        self.latency_s = latency_s  # charged to the decision's clock, like a real call would be
 
     def set_outage(self, start: datetime, until: datetime) -> None:
         self.outages.append((start, until))
@@ -194,15 +212,18 @@ class MockProvider:
     def advise(self, request: AdviceRequest) -> Advice:
         for start, until in self.outages:
             if start <= request.now < until:
+                request.budget.wait(0.2)
                 raise ProviderError("HTTP 503 from model provider")
         fault = self.faults.get(request.trigger_event_id)
         if fault is None:
+            request.budget.wait(self.latency_s)
             return request.default
         if fault["fault"] == "timeout":
             request.budget.wait(min(float(fault.get("seconds", 60)), request.timeout_s))
             raise ProviderTimeout(f"no answer within {request.timeout_s:.0f}s")
         if "model_output" not in fault:  # any other scripted failure (an HTTP error, a refusal...) fails the call
             raise ProviderError(f"scripted fault: {fault['fault']}")
+        request.budget.wait(self.latency_s)
         output = fault["model_output"]
         if isinstance(output, str):
             output = json.loads(output)  # raises ValueError on the malformed fault, as a real client would

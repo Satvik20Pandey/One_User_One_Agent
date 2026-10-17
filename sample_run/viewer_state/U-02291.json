@@ -3,21 +3,22 @@
   "user_id": "U-02291",
   "active_goal": {
    "instance_id": "G-00062",
-   "goal_id": "G02",
-   "name": "first_full_episode_3d",
+   "goal_id": "G09",
+   "name": "weekly_habit_14d",
    "started_at": "2026-09-30T23:46:03.780Z",
-   "deadline": "2026-10-03T23:46:03.780Z",
-   "success_signal": "episode_completed (any episode) within 72h",
+   "deadline": "2026-10-14T23:46:03.780Z",
+   "success_signal": "play_started (on 3 distinct IST days) within 336h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "no episode_completed on record",
+   "eligibility_reason": "active subscriber with plays on 0 day(s) in the last 14",
    "evidence": [
-    "events:U-02291:episode_completed=0"
+    "profile:U-02291@2026-09-29T00:26:30.232Z",
+    "event:2864a16b-d6c3-4d88-9e9d-d8d0725b25a4"
    ],
    "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no episode_completed matching 'any episode' before the deadline",
+    "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -27,7 +28,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-03T23:46:03.780Z judged: G02 failed (holdout_no_action; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
+   "2026-10-14T23:46:03.780Z judged: G09 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'on 3 distinct IST days' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -195,7 +196,7 @@
    "D-00069"
   ],
   "actions": [],
-  "updated_at": "2026-09-30T23:46:03.782Z"
+  "updated_at": "2026-09-30T23:46:03.781Z"
  },
  "decisions": [
   {
@@ -213,12 +214,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
+    "id": "G09",
+    "name": "weekly_habit_14d",
     "instance_id": "G-00062",
     "started_at": "2026-09-30T23:46:03.780Z",
-    "deadline": "2026-10-03T23:46:03.780Z",
-    "success_signal": "episode_completed (any episode) within 72h",
+    "deadline": "2026-10-14T23:46:03.780Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -241,53 +242,168 @@
     {
      "ref": "trigger:4703312a-cf0d-40e5-a05f-52aea34ce807",
      "source": "event",
-     "observed_at": "2026-09-30T23:46:03.780Z"
+     "observed_at": "2026-09-30T23:46:03.780Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02291@2026-09-29T00:26:30.232Z",
      "source": "profile",
-     "observed_at": "2026-09-29T00:26:30.232Z"
+     "observed_at": "2026-09-29T00:26:30.232Z",
+     "age_s": 170373
     },
     {
      "ref": "event:28aa510d-f8ce-407f-bb3d-291e36ef328e",
      "source": "event",
-     "observed_at": "2026-09-29T00:26:30.232Z"
+     "observed_at": "2026-09-19T17:15:28.088Z",
+     "age_s": 973835
     },
     {
      "ref": "event:2864a16b-d6c3-4d88-9e9d-d8d0725b25a4",
      "source": "event",
-     "observed_at": "2026-09-09T02:52:04.818Z"
+     "observed_at": "2026-09-09T02:52:04.818Z",
+     "age_s": 1889638
     },
     {
      "ref": "events:U-02291:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:c3cabbc7-3ca4-4ce8-bf48-057af0cb2257",
      "source": "event",
-     "observed_at": "2026-09-19T17:02:27.380Z"
+     "observed_at": "2026-09-19T17:02:27.380Z",
+     "age_s": 974616
     },
     {
      "ref": "events:U-02291:count=20",
      "source": "derived",
-     "observed_at": "2026-09-30T23:46:03.780Z"
+     "observed_at": "2026-09-30T23:46:03.780Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T23:46:03.780Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T23:46:03.780Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T23:46:03.780Z"
+    },
+    "signup_at": {
+     "value": "2025-04-24T04:43:41.407Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T00:26:30.232Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T00:26:30.232Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T00:26:30.232Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T00:26:30.232Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T00:26:30.232Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-09T02:52:04.818Z",
+      "last_at": "2026-09-09T02:52:04.818Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Action",
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-09T02:52:04.818Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "molo-d2",
+       "title_id": "T0521",
+       "last_played_at": "2026-09-09T02:52:04.818Z",
+       "next_episode_id": "molo-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 7,
+       "evidence": "event:2864a16b-d6c3-4d88-9e9d-d8d0725b25a4"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-09T02:52:04.818Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-19T17:02:27.380Z",
+     "source": "event",
+     "observed_at": "2026-09-19T17:02:27.380Z"
+    },
+    "history_depth": {
+     "value": 20,
+     "source": "derived",
+     "observed_at": "2026-09-30T23:46:03.780Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 0 day(s) in the last 14",
     "evidence": [
-     "events:U-02291:episode_completed=0"
+     "profile:U-02291@2026-09-29T00:26:30.232Z",
+     "event:2864a16b-d6c3-4d88-9e9d-d8d0725b25a4"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -299,9 +415,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-09-30T23:46:03.782Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-09-30T23:46:03.781Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -310,15 +428,15 @@
    "user_id": "U-02291",
    "arm": "holdout",
    "goal_instance_id": "G-00062",
-   "goal_id": "G02",
-   "goal_name": "first_full_episode_3d",
+   "goal_id": "G09",
+   "goal_name": "weekly_habit_14d",
    "started_at": "2026-09-30T23:46:03.780Z",
-   "deadline": "2026-10-03T23:46:03.780Z",
+   "deadline": "2026-10-14T23:46:03.780Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no episode_completed matching 'any episode' before the deadline",
+   "reason": "no play_started matching 'on 3 distinct IST days' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

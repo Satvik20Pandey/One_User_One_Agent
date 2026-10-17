@@ -18,7 +18,7 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "purchase_completed matched 'is_trial = false'",
-    "success_event_id": "oua-009535",
+    "success_event_id": "oua-009468",
     "success_at": "2026-10-06T06:37:00.000Z",
     "attribution": "holdout_no_action",
     "exposure": {},
@@ -182,7 +182,7 @@
    "D-00018"
   ],
   "actions": [],
-  "updated_at": "2026-09-30T19:16:22.267Z"
+  "updated_at": "2026-09-30T19:16:22.263Z"
  },
  "decisions": [
   {
@@ -228,34 +228,134 @@
     {
      "ref": "trigger:1530a7cb-ffc6-49e5-a074-cabd7f0a0fac",
      "source": "event",
-     "observed_at": "2026-09-30T19:16:22.262Z"
+     "observed_at": "2026-09-30T19:16:22.262Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01386@2026-09-29T02:39:29.834Z",
      "source": "profile",
-     "observed_at": "2026-09-29T02:39:29.834Z"
+     "observed_at": "2026-09-29T02:39:29.834Z",
+     "age_s": 146212
     },
     {
      "ref": "event:f5f314e9-4683-4266-a799-3c41c5b58594",
      "source": "event",
-     "observed_at": "2026-09-16T04:59:17.582Z"
+     "observed_at": "2026-09-16T04:59:17.582Z",
+     "age_s": 1261024
     },
     {
      "ref": "event:eda93e8c-e5ab-456c-bef1-f1150957f907",
      "source": "event",
-     "observed_at": "2026-09-16T06:41:24.398Z"
+     "observed_at": "2026-09-16T06:41:24.398Z",
+     "age_s": 1254897
     },
     {
      "ref": "event:f0da8fa6-5080-4f1c-bae5-7e202d0e4f9a",
      "source": "event",
-     "observed_at": "2026-09-22T06:46:09.585Z"
+     "observed_at": "2026-09-22T06:46:09.585Z",
+     "age_s": 736212
     },
     {
      "ref": "events:U-01386:count=17",
      "source": "derived",
-     "observed_at": "2026-09-30T19:16:22.262Z"
+     "observed_at": "2026-09-30T19:16:22.262Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T19:16:22.262Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:16:22.262Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T19:16:22.262Z"
+    },
+    "signup_at": {
+     "value": "2026-08-15T22:14:54.659Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:39:29.834Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:39:29.834Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:39:29.834Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:39:29.834Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:39:29.834Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-16T04:59:17.582Z",
+      "last_at": "2026-09-16T04:59:17.582Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Drama",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T04:59:17.582Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-16T06:41:24.398Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T06:41:24.398Z"
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-22T06:46:09.585Z",
+     "source": "event",
+     "observed_at": "2026-09-22T06:46:09.585Z"
+    },
+    "history_depth": {
+     "value": 17,
+     "source": "derived",
+     "observed_at": "2026-09-30T19:16:22.262Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -269,7 +369,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -281,9 +383,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-09-30T19:16:22.267Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-09-30T19:16:22.263Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -301,7 +405,7 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "purchase_completed matched 'is_trial = false'",
-   "success_event_id": "oua-009535",
+   "success_event_id": "oua-009468",
    "success_at": "2026-10-06T06:37:00.000Z",
    "attribution": "holdout_no_action",
    "exposure": {},

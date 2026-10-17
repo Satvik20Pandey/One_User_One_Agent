@@ -25,15 +25,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 2,
-     "message_delivered": 1
+     "home_page_shown": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T10:55:43.845Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T10:55:43.845Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -206,11 +205,10 @@
    "D-01677"
   ],
   "actions": [
-   "A-00623",
-   "A-00624",
-   "A-00776"
+   "A-00559",
+   "A-00694"
   ],
-  "updated_at": "2026-10-01T13:18:21.593Z"
+  "updated_at": "2026-10-01T13:18:21.594Z"
  },
  "decisions": [
   {
@@ -248,34 +246,146 @@
     {
      "ref": "trigger:81ef6c0f-b6cc-41e4-8f80-351bab240388",
      "source": "event",
-     "observed_at": "2026-10-01T04:46:09.293Z"
+     "observed_at": "2026-09-30T05:41:46.288Z",
+     "age_s": 83063
     },
     {
      "ref": "profile:U-01711@2026-09-28T18:53:49.940Z",
      "source": "profile",
-     "observed_at": "2026-09-28T18:53:49.940Z"
+     "observed_at": "2026-09-28T18:53:49.940Z",
+     "age_s": 208339
     },
     {
      "ref": "event:a94b9256-e4da-4196-a34e-b5371d979539",
      "source": "event",
-     "observed_at": "2026-09-05T13:46:13.138Z"
+     "observed_at": "2026-09-05T13:46:13.138Z",
+     "age_s": 2213996
     },
     {
      "ref": "event:a27fbcdc-b2ae-4d71-b69b-fc0477b221d0",
      "source": "event",
-     "observed_at": "2026-09-05T13:48:03.496Z"
+     "observed_at": "2026-09-05T13:48:03.496Z",
+     "age_s": 2213885
     },
     {
      "ref": "event:183748f8-b030-446c-b6c7-9e90496ae0fe",
      "source": "event",
-     "observed_at": "2026-09-21T14:19:55.559Z"
+     "observed_at": "2026-09-21T14:19:55.559Z",
+     "age_s": 829573
     },
     {
      "ref": "events:U-01711:count=18",
      "source": "derived",
-     "observed_at": "2026-10-01T04:46:09.293Z"
+     "observed_at": "2026-10-01T04:46:09.293Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 83063,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:46:09.293Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:46:09.293Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:46:09.293Z"
+    },
+    "signup_at": {
+     "value": "2025-07-19T02:53:38.946Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-05T13:46:13.138Z",
+      "last_at": "2026-09-05T13:46:13.138Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-05T13:48:03.496Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:48:03.496Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "radi-d4",
+       "title_id": "T0918",
+       "last_played_at": "2026-09-05T13:46:13.138Z",
+       "next_episode_id": "radi-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 57,
+       "evidence": "event:a94b9256-e4da-4196-a34e-b5371d979539"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-21T14:19:55.559Z",
+     "source": "event",
+     "observed_at": "2026-09-21T14:19:55.559Z"
+    },
+    "history_depth": {
+     "value": 18,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:46:09.293Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
@@ -285,7 +395,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -297,9 +409,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T04:46:09.294Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T04:46:09.293Z",
+   "status": "NO_ACTION",
+   "during_surge": true
   },
   {
    "decision_id": "D-01367",
@@ -329,8 +443,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -391,35 +504,149 @@
     {
      "ref": "trigger:a1303961-3501-4062-8062-235981155227",
      "source": "event",
-     "observed_at": "2026-10-01T10:55:43.845Z"
+     "observed_at": "2026-10-01T10:55:43.845Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01711@2026-09-28T18:53:49.940Z",
      "source": "profile",
-     "observed_at": "2026-09-28T18:53:49.940Z"
+     "observed_at": "2026-09-28T18:53:49.940Z",
+     "age_s": 230513
     },
     {
      "ref": "event:a94b9256-e4da-4196-a34e-b5371d979539",
      "source": "event",
-     "observed_at": "2026-09-05T13:46:13.138Z"
+     "observed_at": "2026-09-05T13:46:13.138Z",
+     "age_s": 2236170
     },
     {
      "ref": "event:a27fbcdc-b2ae-4d71-b69b-fc0477b221d0",
      "source": "event",
-     "observed_at": "2026-09-05T13:48:03.496Z"
+     "observed_at": "2026-09-05T13:48:03.496Z",
+     "age_s": 2236060
     },
     {
      "ref": "event:81ef6c0f-b6cc-41e4-8f80-351bab240388",
      "source": "event",
-     "observed_at": "2026-09-30T05:41:46.288Z"
+     "observed_at": "2026-09-30T05:41:46.288Z",
+     "age_s": 105237
     },
     {
      "ref": "events:U-01711:count=19",
      "source": "derived",
-     "observed_at": "2026-10-01T10:55:43.845Z"
+     "observed_at": "2026-10-01T10:55:43.845Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T10:55:43.845Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:55:43.845Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T10:55:43.845Z"
+    },
+    "signup_at": {
+     "value": "2025-07-19T02:53:38.946Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-05T13:46:13.138Z",
+      "last_at": "2026-09-05T13:46:13.138Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-05T13:48:03.496Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:48:03.496Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "radi-d4",
+       "title_id": "T0918",
+       "last_played_at": "2026-09-05T13:46:13.138Z",
+       "next_episode_id": "radi-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 57,
+       "evidence": "event:a94b9256-e4da-4196-a34e-b5371d979539"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T05:41:46.288Z",
+     "source": "event",
+     "observed_at": "2026-09-30T05:41:46.288Z"
+    },
+    "history_depth": {
+     "value": 19,
+     "source": "derived",
+     "observed_at": "2026-10-01T10:55:43.845Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
@@ -432,11 +659,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series radi-d4 (1/57 episodes), last played 2026-09-05"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -445,25 +672,21 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 12,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T10:55:43.851Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T10:55:43.847Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-01677",
@@ -554,36 +777,148 @@
     {
      "ref": "trigger:612ddd34-1b44-478f-8ec0-414b09f159bc",
      "source": "event",
-     "observed_at": "2026-10-01T13:18:21.591Z"
+     "observed_at": "2026-10-01T13:18:21.591Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01711@2026-09-28T18:53:49.940Z",
      "source": "profile",
-     "observed_at": "2026-09-28T18:53:49.940Z"
+     "observed_at": "2026-09-28T18:53:49.940Z",
+     "age_s": 239071
     },
     {
      "ref": "event:a94b9256-e4da-4196-a34e-b5371d979539",
      "source": "event",
-     "observed_at": "2026-09-05T13:46:13.138Z"
+     "observed_at": "2026-09-05T13:46:13.138Z",
+     "age_s": 2244728
     },
     {
      "ref": "event:a27fbcdc-b2ae-4d71-b69b-fc0477b221d0",
      "source": "event",
-     "observed_at": "2026-09-05T13:48:03.496Z"
+     "observed_at": "2026-09-05T13:48:03.496Z",
+     "age_s": 2244618
     },
     {
      "ref": "event:a1303961-3501-4062-8062-235981155227",
      "source": "event",
-     "observed_at": "2026-10-01T10:55:43.845Z"
+     "observed_at": "2026-10-01T10:55:43.845Z",
+     "age_s": 8557
     },
     {
      "ref": "events:U-01711:count=20",
      "source": "derived",
-     "observed_at": "2026-10-01T13:18:21.591Z"
+     "observed_at": "2026-10-01T13:18:21.591Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T13:18:21.591Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T13:18:21.591Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T13:18:21.591Z"
+    },
+    "signup_at": {
+     "value": "2025-07-19T02:53:38.946Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:53:49.940Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-05T13:46:13.138Z",
+      "last_at": "2026-09-05T13:46:13.138Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-05T13:48:03.496Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:48:03.496Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "radi-d4",
+       "title_id": "T0918",
+       "last_played_at": "2026-09-05T13:46:13.138Z",
+       "next_episode_id": "radi-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 57,
+       "evidence": "event:a94b9256-e4da-4196-a34e-b5371d979539"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-05T13:46:13.138Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T10:55:43.845Z",
+     "source": "event",
+     "observed_at": "2026-10-01T10:55:43.845Z"
+    },
+    "history_depth": {
+     "value": 20,
+     "source": "derived",
+     "observed_at": "2026-10-01T13:18:21.591Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
@@ -597,11 +932,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series radi-d4 (1/57 episodes), last played 2026-09-05"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -610,29 +945,30 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T13:18:21.593Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T13:18:21.594Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00623",
+   "action_id": "A-00559",
    "decision_id": "D-01367",
    "user_id": "U-01711",
    "trigger_event_id": "a1303961-3501-4062-8062-235981155227",
-   "published_at": "2026-10-01T10:55:43.851Z",
+   "published_at": "2026-10-01T10:55:43.847Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d4",
@@ -701,28 +1037,11 @@
    ]
   },
   {
-   "action_id": "A-00624",
-   "decision_id": "D-01367",
-   "user_id": "U-01711",
-   "trigger_event_id": "a1303961-3501-4062-8062-235981155227",
-   "published_at": "2026-10-01T10:55:43.851Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0918",
-   "dialect": "d4",
-   "text": {
-    "title": "Continue Radi",
-    "body": "Episode 2 of Radi is waiting for you."
-   },
-   "deeplink": "ott://title/T0918"
-  },
-  {
-   "action_id": "A-00776",
+   "action_id": "A-00694",
    "decision_id": "D-01677",
    "user_id": "U-01711",
    "trigger_event_id": "612ddd34-1b44-478f-8ec0-414b09f159bc",
-   "published_at": "2026-10-01T13:18:21.593Z",
+   "published_at": "2026-10-01T13:18:21.594Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d4",
@@ -809,13 +1128,11 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 2,
-    "message_delivered": 1
+    "home_page_shown": 2
    },
    "actions": [
-    "A-00623",
-    "A-00624",
-    "A-00776"
+    "A-00559",
+    "A-00694"
    ]
   }
  ]

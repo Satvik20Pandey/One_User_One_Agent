@@ -2,25 +2,23 @@
  "state": {
   "user_id": "U-03035",
   "active_goal": {
-   "instance_id": "G-00901",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-00902",
+   "goal_id": "G06",
+   "name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T12:46:04.547Z",
-   "deadline": "2026-10-04T12:46:04.547Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-15T12:46:04.547Z",
+   "success_signal": "purchase_completed (any paid plan) within 336h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series tidha-dakachu-d1 (6/17 episodes), last played 2026-09-26",
+   "eligibility_reason": "lapsed recently",
    "evidence": [
-    "event:96052718-441a-42aa-88a4-10969a9abdac"
+    "profile:U-03035@2026-09-28T23:07:27.066Z",
+    "event:47a3488d-6a27-4d24-927e-a105c66b8ffc"
    ],
-   "context": {
-    "slug": "tidha-dakachu-d1",
-    "title_id": "T0005"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +28,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T12:46:04.547Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-15T12:46:04.547Z judged: G06 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'any paid plan' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -238,12 +236,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-00901",
+    "id": "G06",
+    "name": "reactivate_lapsed_14d",
+    "instance_id": "G-00902",
     "started_at": "2026-10-01T12:46:04.547Z",
-    "deadline": "2026-10-04T12:46:04.547Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-15T12:46:04.547Z",
+    "success_signal": "purchase_completed (any paid plan) within 336h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": true
@@ -266,73 +264,208 @@
     {
      "ref": "trigger:4944df2c-3f3a-4c95-aba3-ba50fe072b8f",
      "source": "event",
-     "observed_at": "2026-10-01T12:46:04.547Z"
+     "observed_at": "2026-10-01T12:46:04.547Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-03035@2026-09-28T23:07:27.066Z",
      "source": "profile",
-     "observed_at": "2026-09-28T23:07:27.066Z"
+     "observed_at": "2026-09-28T23:07:27.066Z",
+     "age_s": 221917
     },
     {
      "ref": "event:47a3488d-6a27-4d24-927e-a105c66b8ffc",
      "source": "event",
-     "observed_at": "2026-09-03T11:04:42.298Z"
+     "observed_at": "2026-09-03T11:04:42.298Z",
+     "age_s": 2425282
     },
     {
      "ref": "event:96052718-441a-42aa-88a4-10969a9abdac",
      "source": "event",
-     "observed_at": "2026-09-23T02:12:03.797Z"
+     "observed_at": "2026-09-26T03:57:33.377Z",
+     "age_s": 463711
     },
     {
      "ref": "event:053c8903-3b1f-4b75-b7ff-cab7a93f9ff0",
      "source": "event",
-     "observed_at": "2026-09-23T02:12:03.797Z"
+     "observed_at": "2026-09-25T08:17:59.641Z",
+     "age_s": 534484
     },
     {
      "ref": "event:54b14424-a365-4d80-aeac-751c9c5a7e94",
      "source": "event",
-     "observed_at": "2026-09-23T02:12:03.797Z"
+     "observed_at": "2026-09-23T02:12:03.797Z",
+     "age_s": 729240
     },
     {
      "ref": "event:529fa3b0-c8ef-401d-8d9e-60bdc2e13d44",
      "source": "event",
-     "observed_at": "2026-09-23T02:35:59.084Z"
+     "observed_at": "2026-09-25T08:39:08.431Z",
+     "age_s": 533216
     },
     {
      "ref": "event:c6c07b1d-617d-4614-a2e5-d4ce213b71d7",
      "source": "event",
-     "observed_at": "2026-09-23T02:35:59.084Z"
+     "observed_at": "2026-09-23T02:35:59.084Z",
+     "age_s": 727805
     },
     {
      "ref": "event:ebec749b-2fb6-404a-8e2c-26b2dc4509f8",
      "source": "event",
-     "observed_at": "2026-09-26T03:57:33.377Z"
+     "observed_at": "2026-09-09T12:02:44.265Z",
+     "age_s": 1903400
     },
     {
      "ref": "event:8019f3fb-cc09-4729-aff1-78fd60e6df77",
      "source": "event",
-     "observed_at": "2026-09-27T14:02:55.412Z"
+     "observed_at": "2026-09-27T14:02:55.412Z",
+     "age_s": 340989
     },
     {
      "ref": "events:U-03035:count=128",
      "source": "derived",
-     "observed_at": "2026-10-01T12:46:04.547Z"
+     "observed_at": "2026-10-01T12:46:04.547Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T12:46:04.547Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:46:04.547Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:46:04.547Z"
+    },
+    "signup_at": {
+     "value": "2025-11-01T13:39:04.236Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T23:07:27.066Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-28T23:07:27.066Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T23:07:27.066Z"
+    },
+    "lapsed_at": {
+     "value": "2026-09-03T11:04:42.298Z",
+     "source": "event",
+     "observed_at": "2026-09-03T11:04:42.298Z"
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T23:07:27.066Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T23:07:27.066Z"
+    },
+    "plays": {
+     "value": {
+      "count": 15,
+      "first_at": "2026-09-01T16:27:53.464Z",
+      "last_at": "2026-09-23T02:12:03.797Z",
+      "days_in_last_14": [
+       "2026-09-22",
+       "2026-09-23",
+       "2026-09-25",
+       "2026-09-26"
+      ],
+      "top_genres": [
+       "Action",
+       "Drama",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-23T02:12:03.797Z"
+    },
+    "completions": {
+     "value": {
+      "count": 9,
+      "last_at": "2026-09-23T02:35:59.084Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-23T02:35:59.084Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "tidha-dakachu-d1",
+       "title_id": "T0005",
+       "last_played_at": "2026-09-26T03:57:33.377Z",
+       "next_episode_id": "tidha-dakachu-d1-s1e7",
+       "next_episode_number": 7,
+       "watched": 6,
+       "total": 17,
+       "evidence": "event:96052718-441a-42aa-88a4-10969a9abdac"
+      },
+      {
+       "slug": "bagugu-gigupi-d1",
+       "title_id": "T0009",
+       "last_played_at": "2026-09-09T12:02:44.265Z",
+       "next_episode_id": "bagugu-gigupi-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 8,
+       "evidence": "event:ebec749b-2fb6-404a-8e2c-26b2dc4509f8"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-26T03:57:33.377Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T14:02:55.412Z",
+     "source": "event",
+     "observed_at": "2026-09-27T14:02:55.412Z"
+    },
+    "history_depth": {
+     "value": 128,
+     "source": "derived",
+     "observed_at": "2026-10-01T12:46:04.547Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series tidha-dakachu-d1 (6/17 episodes), last played 2026-09-26",
+    "goal": "G06",
+    "reason": "lapsed recently",
     "evidence": [
-     "event:96052718-441a-42aa-88a4-10969a9abdac"
+     "profile:U-03035@2026-09-28T23:07:27.066Z",
+     "event:47a3488d-6a27-4d24-927e-a105c66b8ffc"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -344,9 +477,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 3,
    "published_at": "2026-10-01T12:46:04.550Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -354,16 +489,16 @@
   {
    "user_id": "U-03035",
    "arm": "holdout",
-   "goal_instance_id": "G-00901",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-00902",
+   "goal_id": "G06",
+   "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T12:46:04.547Z",
-   "deadline": "2026-10-04T12:46:04.547Z",
+   "deadline": "2026-10-15T12:46:04.547Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'any paid plan' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

@@ -199,7 +199,7 @@
    "D-01192"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T09:27:27.772Z"
+  "updated_at": "2026-10-01T09:27:27.771Z"
  },
  "decisions": [
   {
@@ -247,34 +247,147 @@
     {
      "ref": "trigger:d5a19777-3ab1-48c5-a5de-402ef5cc3127",
      "source": "event",
-     "observed_at": "2026-10-01T09:27:27.770Z"
+     "observed_at": "2026-10-01T09:27:27.770Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-03680@2026-09-28T19:44:36.893Z",
      "source": "profile",
-     "observed_at": "2026-09-28T19:44:36.893Z"
+     "observed_at": "2026-09-28T19:44:36.893Z",
+     "age_s": 222170
     },
     {
      "ref": "event:7082ef64-c4e2-4c3b-ba6b-37c8c7ee2e7c",
      "source": "event",
-     "observed_at": "2026-09-14T11:28:37.418Z"
+     "observed_at": "2026-09-14T11:28:37.418Z",
+     "age_s": 1461530
     },
     {
      "ref": "events:U-03680:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:accb64ab-4385-4264-9be4-70d99c967cc1",
      "source": "event",
-     "observed_at": "2026-09-30T08:32:30.659Z"
+     "observed_at": "2026-09-30T08:32:30.659Z",
+     "age_s": 89697
     },
     {
      "ref": "events:U-03680:count=23",
      "source": "derived",
-     "observed_at": "2026-10-01T09:27:27.770Z"
+     "observed_at": "2026-10-01T09:27:27.770Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T09:27:27.770Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:27:27.770Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:27:27.770Z"
+    },
+    "signup_at": {
+     "value": "2024-10-17T06:06:39.648Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T19:44:36.893Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T19:44:36.893Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T19:44:36.893Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T19:44:36.893Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T19:44:36.893Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-14T11:28:37.418Z",
+      "last_at": "2026-09-14T11:28:37.418Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Comedy",
+       "Romance"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-14T11:28:37.418Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "sakopi-d5",
+       "title_id": "T1198",
+       "last_played_at": "2026-09-14T11:28:37.418Z",
+       "next_episode_id": "sakopi-d5-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 7,
+       "evidence": "event:7082ef64-c4e2-4c3b-ba6b-37c8c7ee2e7c"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-14T11:28:37.418Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T08:32:30.659Z",
+     "source": "event",
+     "observed_at": "2026-09-30T08:32:30.659Z"
+    },
+    "history_depth": {
+     "value": 23,
+     "source": "derived",
+     "observed_at": "2026-10-01T09:27:27.770Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d5, profile=d1, deeplink=None -> used d5 (app_setting)"
@@ -290,7 +403,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -302,9 +417,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T09:27:27.772Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T09:27:27.771Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01224",
@@ -348,7 +465,7 @@
     {
      "ref": "decision:D-01192",
      "source": "store",
-     "observed_at": "2026-10-01T09:27:27.772Z"
+     "observed_at": "2026-10-01T09:27:27.771Z"
     }
    ],
    "assumptions": [],
@@ -373,7 +490,8 @@
    "fallback_used": null,
    "decided_in_ms": 0,
    "published_at": "2026-10-01T09:42:26.362Z",
-   "status": "DUPLICATE"
+   "status": "DUPLICATE",
+   "during_surge": false
   }
  ],
  "actions": [],

@@ -250,34 +250,147 @@
     {
      "ref": "trigger:33e77605-3622-4a09-9217-2b4899024bfe",
      "source": "event",
-     "observed_at": "2026-10-01T08:17:55.299Z"
+     "observed_at": "2026-10-01T08:17:55.299Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02312@2026-09-29T02:04:41.076Z",
      "source": "profile",
-     "observed_at": "2026-09-29T02:04:41.076Z"
+     "observed_at": "2026-09-29T02:04:41.076Z",
+     "age_s": 195194
     },
     {
      "ref": "event:a75bf37e-9a6e-4888-80b1-462a161f6458",
      "source": "event",
-     "observed_at": "2026-09-08T13:53:28.947Z"
+     "observed_at": "2026-09-08T13:53:28.947Z",
+     "age_s": 1967066
     },
     {
      "ref": "event:fadfa472-f1eb-4e5e-89d4-f40c10aeea64",
      "source": "event",
-     "observed_at": "2026-09-08T13:57:09.474Z"
+     "observed_at": "2026-09-08T13:57:09.474Z",
+     "age_s": 1966845
     },
     {
      "ref": "event:24979317-68b8-425b-bc82-54dc0be42e81",
      "source": "event",
-     "observed_at": "2026-09-27T04:25:07.574Z"
+     "observed_at": "2026-09-27T04:25:07.574Z",
+     "age_s": 359567
     },
     {
      "ref": "events:U-02312:count=27",
      "source": "derived",
-     "observed_at": "2026-10-01T08:17:55.299Z"
+     "observed_at": "2026-10-01T08:17:55.299Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T08:17:55.299Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d5"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:17:55.299Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:17:55.299Z"
+    },
+    "signup_at": {
+     "value": "2025-08-01T04:03:55.548Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:04:41.076Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T02:04:41.076Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:04:41.076Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:04:41.076Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T02:04:41.076Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-08T13:53:28.947Z",
+      "last_at": "2026-09-08T13:53:28.947Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Action",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-08T13:53:28.947Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-08T13:57:09.474Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-08T13:57:09.474Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "diti-kochu-d5",
+       "title_id": "T1906",
+       "last_played_at": "2026-09-08T13:53:28.947Z",
+       "next_episode_id": "diti-kochu-d5-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 32,
+       "evidence": "event:a75bf37e-9a6e-4888-80b1-462a161f6458"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-08T13:53:28.947Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T04:25:07.574Z",
+     "source": "event",
+     "observed_at": "2026-09-27T04:25:07.574Z"
+    },
+    "history_depth": {
+     "value": 27,
+     "source": "derived",
+     "observed_at": "2026-10-01T08:17:55.299Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d4, profile=d5, deeplink=None -> used d4 (app_setting)"
@@ -293,7 +406,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -305,9 +420,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 2,
    "published_at": "2026-10-01T08:17:55.301Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

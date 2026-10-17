@@ -161,7 +161,7 @@
    "D-00418"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T04:45:42.135Z"
+  "updated_at": "2026-10-01T04:45:42.134Z"
  },
  "decisions": [
   {
@@ -199,34 +199,136 @@
     {
      "ref": "trigger:7385cb97-7baa-4ae7-8a87-edfeaee95cfd",
      "source": "event",
-     "observed_at": "2026-10-01T04:45:42.133Z"
+     "observed_at": "2026-09-30T18:30:56.847Z",
+     "age_s": 36885
     },
     {
      "ref": "profile:U-03234@2026-09-28T18:07:24.425Z",
      "source": "profile",
-     "observed_at": "2026-09-28T18:07:24.425Z"
+     "observed_at": "2026-09-28T18:07:24.425Z",
+     "age_s": 211097
     },
     {
      "ref": "event:acc3db63-2f56-4e50-9ef2-8830f0b77efd",
      "source": "event",
-     "observed_at": "2026-09-09T02:59:47.796Z"
+     "observed_at": "2026-09-09T02:59:47.796Z",
+     "age_s": 1907154
     },
     {
      "ref": "events:U-03234:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:feb2561a-982d-4d1f-9769-b1fb1dd9bbde",
      "source": "event",
-     "observed_at": "2026-09-30T16:51:18.353Z"
+     "observed_at": "2026-09-30T16:51:18.353Z",
+     "age_s": 42863
     },
     {
      "ref": "events:U-03234:count=28",
      "source": "derived",
-     "observed_at": "2026-10-01T04:45:42.133Z"
+     "observed_at": "2026-10-01T04:45:42.133Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 36885,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:45:42.133Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:42.133Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:42.133Z"
+    },
+    "signup_at": {
+     "value": "2025-06-28T01:51:08.392Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:07:24.425Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-28T18:07:24.425Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:07:24.425Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:07:24.425Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T18:07:24.425Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-09T02:59:47.796Z",
+      "last_at": "2026-09-09T02:59:47.796Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Romance",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-09T02:59:47.796Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T16:51:18.353Z",
+     "source": "event",
+     "observed_at": "2026-09-30T16:51:18.353Z"
+    },
+    "history_depth": {
+     "value": 28,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:45:42.133Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d4, profile=d2, deeplink=None -> used d4 (app_setting)"
@@ -236,7 +338,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -248,9 +352,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T04:45:42.135Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T04:45:42.134Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": true
   }
  ],
  "actions": [],

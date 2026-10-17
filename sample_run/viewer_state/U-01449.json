@@ -3,27 +3,24 @@
   "user_id": "U-01449",
   "active_goal": {
    "instance_id": "G-00335",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T05:35:52.980Z",
-   "deadline": "2026-10-04T05:35:52.980Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T05:35:52.980Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series yadha-kopa-d3 (1/7 episodes), last played 2026-09-27",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:5f2d8394-3783-4b9d-aa49-11d5b900f994"
+    "profile:U-01449@2026-09-29T10:19:32.891Z"
    ],
-   "context": {
-    "slug": "yadha-kopa-d3",
-    "title_id": "T0905"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+    "success_event_id": "oua-010001",
+    "success_at": "2026-10-01T05:37:57.980Z",
+    "attribution": "exposed_before_success",
     "exposure": {
      "home_page_shown": 1
     },
@@ -32,7 +29,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T05:35:52.980Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-01T05:37:57.980Z judged: G08 succeeded (exposed_before_success; page shown 1x, message delivered 0x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -242,10 +239,10 @@
    "D-00690"
   ],
   "actions": [
-   "A-00247",
-   "A-00248"
+   "A-00218",
+   "A-00219"
   ],
-  "updated_at": "2026-10-01T05:35:52.986Z"
+  "updated_at": "2026-10-01T05:35:54.184Z"
  },
  "decisions": [
   {
@@ -263,12 +260,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G08",
+    "name": "try_new_release_7d",
     "instance_id": "G-00335",
     "started_at": "2026-10-01T05:35:52.980Z",
-    "deadline": "2026-10-04T05:35:52.980Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T05:35:52.980Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": false
@@ -286,18 +283,18 @@
     "conflicts": []
    },
    "content": [
+    "title:T0901",
+    "title:T0904",
+    "title:T0902",
     "title:T0905",
     "title:T0903",
-    "title:T0914",
-    "title:T0908",
-    "title:T0901",
     "title:T0907",
-    "title:T0904",
+    "title:T0908",
+    "title:T0914",
     "title:T0913",
     "title:T0910",
     "title:T0909",
     "title:T0906",
-    "title:T0902",
     "title:T0911"
    ],
    "confidence": {
@@ -308,66 +305,219 @@
     {
      "ref": "trigger:61e0556b-cbea-4231-a30d-6226598bdcd2",
      "source": "event",
-     "observed_at": "2026-10-01T05:35:52.980Z"
+     "observed_at": "2026-10-01T05:35:52.980Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01449@2026-09-29T10:19:32.891Z",
      "source": "profile",
-     "observed_at": "2026-09-29T10:19:32.891Z"
+     "observed_at": "2026-09-29T10:19:32.891Z",
+     "age_s": 155780
     },
     {
      "ref": "event:bfd7080c-b829-464e-a473-2ca0ff383b6e",
      "source": "event",
-     "observed_at": "2026-09-29T10:19:32.891Z"
+     "observed_at": "2026-09-25T23:34:43.736Z",
+     "age_s": 453669
     },
     {
      "ref": "event:fb702ba8-4f3d-409b-8787-1ab466e59723",
      "source": "event",
-     "observed_at": "2026-09-26T11:42:06.451Z"
+     "observed_at": "2026-09-24T09:25:44.302Z",
+     "age_s": 591008
     },
     {
      "ref": "event:5f2d8394-3783-4b9d-aa49-11d5b900f994",
      "source": "event",
-     "observed_at": "2026-09-26T11:42:06.451Z"
+     "observed_at": "2026-09-27T00:03:59.804Z",
+     "age_s": 365513
     },
     {
      "ref": "event:50209e61-62ac-4a71-a4b8-6b0984ba7c32",
      "source": "event",
-     "observed_at": "2026-09-26T11:42:06.451Z"
+     "observed_at": "2026-09-26T11:42:06.451Z",
+     "age_s": 410026
     },
     {
      "ref": "event:fcc200ef-177b-4666-ad06-73d850875ff9",
      "source": "event",
-     "observed_at": "2026-09-27T00:37:06.329Z"
+     "observed_at": "2026-09-24T10:20:50.413Z",
+     "age_s": 587702
     },
     {
      "ref": "event:0ed72f00-cb44-4782-8884-ddc4c66020d5",
      "source": "event",
-     "observed_at": "2026-09-27T00:37:06.329Z"
+     "observed_at": "2026-09-27T00:37:06.329Z",
+     "age_s": 363526
     },
     {
      "ref": "event:2333d421-b0bc-477e-ad79-e9eb7f661c60",
      "source": "event",
-     "observed_at": "2026-09-27T00:03:59.804Z"
+     "observed_at": "2026-09-16T07:06:14.695Z",
+     "age_s": 1290578
     },
     {
      "ref": "event:136f0c7f-8f87-4c8a-b60c-b3b06ce31a42",
      "source": "event",
-     "observed_at": "2026-09-29T10:33:43.416Z"
+     "observed_at": "2026-09-29T10:33:43.416Z",
+     "age_s": 154929
     },
     {
      "ref": "events:U-01449:count=103",
      "source": "derived",
-     "observed_at": "2026-10-01T05:35:52.980Z"
+     "observed_at": "2026-10-01T05:35:52.980Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:35:52.980Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:35:52.980Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:35:52.980Z"
+    },
+    "signup_at": {
+     "value": "2025-12-16T06:31:47.300Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:19:32.891Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T10:19:32.891Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T10:19:32.891Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:19:32.891Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T10:19:32.891Z"
+    },
+    "plays": {
+     "value": {
+      "count": 14,
+      "first_at": "2026-09-03T07:17:33.087Z",
+      "last_at": "2026-09-26T11:42:06.451Z",
+      "days_in_last_14": [
+       "2026-09-19",
+       "2026-09-20",
+       "2026-09-24",
+       "2026-09-26",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Action",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-26T11:42:06.451Z"
+    },
+    "completions": {
+     "value": {
+      "count": 8,
+      "last_at": "2026-09-27T00:37:06.329Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T00:37:06.329Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yadha-kopa-d3",
+       "title_id": "T0905",
+       "last_played_at": "2026-09-27T00:03:59.804Z",
+       "next_episode_id": "yadha-kopa-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 7,
+       "evidence": "event:5f2d8394-3783-4b9d-aa49-11d5b900f994"
+      },
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-26T11:42:06.451Z",
+       "next_episode_id": "yane-tegi-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 20,
+       "evidence": "event:50209e61-62ac-4a71-a4b8-6b0984ba7c32"
+      },
+      {
+       "slug": "ririgi-d3",
+       "title_id": "T0914",
+       "last_played_at": "2026-09-16T07:06:14.695Z",
+       "next_episode_id": "ririgi-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 9,
+       "evidence": "event:2333d421-b0bc-477e-ad79-e9eb7f661c60"
+      },
+      {
+       "slug": "lomobha-moni-d3",
+       "title_id": "T0908",
+       "last_played_at": "2026-09-16T06:46:38.151Z",
+       "next_episode_id": "lomobha-moni-d3-s1e5",
+       "next_episode_number": 5,
+       "watched": 4,
+       "total": 35,
+       "evidence": "event:a8ca4bb5-a46b-4c7c-8537-839020baacd4"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T00:03:59.804Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-29T10:33:43.416Z",
+     "source": "event",
+     "observed_at": "2026-09-29T10:33:43.416Z"
+    },
+    "history_depth": {
+     "value": 103,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:35:52.980Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series yadha-kopa-d3 (1/7 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:5f2d8394-3783-4b9d-aa49-11d5b900f994"
+     "profile:U-01449@2026-09-29T10:19:32.891Z"
     ]
    },
    "model": {
@@ -376,7 +526,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series yadha-kopa-d3 (1/7 episodes), last played 2026-09-27"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -398,66 +549,68 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T05:35:52.986Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T05:35:54.184Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00247",
+   "action_id": "A-00218",
    "decision_id": "D-00690",
    "user_id": "U-01449",
    "trigger_event_id": "61e0556b-cbea-4231-a30d-6226598bdcd2",
-   "published_at": "2026-10-01T05:35:52.986Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T05:35:54.184Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d3",
-   "hero_title_id": "T0905",
+   "hero_title_id": "T0901",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0903",
-      "T0914",
-      "T0908",
-      "T0901",
-      "T0907",
       "T0904",
-      "T0913",
-      "T0910",
-      "T0909"
+      "T0902",
+      "T0905"
      ]
     },
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
+      "T0903",
+      "T0907",
+      "T0908",
+      "T0914",
+      "T0913",
+      "T0910",
+      "T0909",
       "T0906",
-      "T0902",
       "T0911"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00248",
+   "action_id": "A-00219",
    "decision_id": "D-00690",
    "user_id": "U-01449",
    "trigger_event_id": "61e0556b-cbea-4231-a30d-6226598bdcd2",
-   "published_at": "2026-10-01T05:35:52.986Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T05:35:54.184Z",
+   "goal_id": "G08",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0905",
+   "title_id": "T0904",
    "dialect": "d3",
    "text": {
-    "title": "Continue Yadha Kopa",
-    "body": "Episode 2 of Yadha Kopa is waiting for you."
+    "title": "New in D3: Jakasa Dapi",
+    "body": "Jakasa Dapi just released. Start watching now."
    },
-   "deeplink": "ott://title/T0905"
+   "deeplink": "ott://title/T0904"
   }
  ],
  "outcomes": [
@@ -465,24 +618,24 @@
    "user_id": "U-01449",
    "arm": "agent",
    "goal_instance_id": "G-00335",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T05:35:52.980Z",
-   "deadline": "2026-10-04T05:35:52.980Z",
+   "deadline": "2026-10-08T05:35:52.980Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+   "success_event_id": "oua-010001",
+   "success_at": "2026-10-01T05:37:57.980Z",
+   "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 1
    },
    "actions": [
-    "A-00247",
-    "A-00248"
+    "A-00218",
+    "A-00219"
    ]
   }
  ]

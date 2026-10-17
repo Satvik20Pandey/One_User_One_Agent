@@ -2,25 +2,22 @@
  "state": {
   "user_id": "U-02061",
   "active_goal": {
-   "instance_id": "G-01091",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01092",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T14:42:12.221Z",
-   "deadline": "2026-10-04T14:42:12.221Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T14:42:12.221Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series bagugu-gigupi-d1 (0/8 episodes), last played 2026-09-02",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:7b18382b-b530-4d78-9721-5e168deee816"
+    "profile:U-02061@2026-09-29T01:45:08.054Z"
    ],
-   "context": {
-    "slug": "bagugu-gigupi-d1",
-    "title_id": "T1504"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
@@ -32,7 +29,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T14:42:12.221Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T14:42:12.221Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -220,10 +217,10 @@
    "D-01958"
   ],
   "actions": [
-   "A-00921",
-   "A-00922"
+   "A-00825",
+   "A-00826"
   ],
-  "updated_at": "2026-10-01T14:42:12.225Z"
+  "updated_at": "2026-10-01T14:42:13.426Z"
  },
  "decisions": [
   {
@@ -241,12 +238,12 @@
     "device_clock_trusted": false
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01091",
+    "id": "G08",
+    "name": "try_new_release_7d",
+    "instance_id": "G-01092",
     "started_at": "2026-10-01T14:42:12.221Z",
-    "deadline": "2026-10-04T14:42:12.221Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T14:42:12.221Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -264,17 +261,27 @@
     "conflicts": []
    },
    "content": [
-    "title:T1504",
     "title:T0002",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
     "title:T0005",
     "title:T0004",
+    "title:T0003",
+    "title:T0009",
     "title:T0015",
     "title:T0013",
     "title:T0006",
-    "title:T0007",
+    "title:T0014",
     "title:T0008",
     "title:T0012",
-    "title:T0010",
     "title:T0011",
     "title:T0018",
     "title:T0026",
@@ -284,27 +291,17 @@
     "title:T0058",
     "title:T0023",
     "title:T0168",
-    "title:T0028",
-    "title:T0003",
-    "title:T0014",
-    "title:T0034",
+    "title:T0100",
+    "title:T0010",
     "title:T0016",
-    "title:T0084",
-    "title:T0067",
-    "title:T0044",
-    "title:T0037",
-    "title:T0029",
-    "title:T0019",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0435",
-    "title:T0195",
-    "title:T0036"
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041"
    ],
    "confidence": {
     "value": 0.75,
@@ -314,66 +311,198 @@
     {
      "ref": "trigger:163c9567-972d-47b4-ab2c-749350cfde49",
      "source": "event",
-     "observed_at": "2026-10-01T14:42:12.221Z"
+     "observed_at": "2026-10-01T14:42:12.221Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02061@2026-09-29T01:45:08.054Z",
      "source": "profile",
-     "observed_at": "2026-09-29T01:45:08.054Z"
+     "observed_at": "2026-09-29T01:45:08.054Z",
+     "age_s": 219424
     },
     {
      "ref": "event:e3e4a895-5834-4887-b3d8-cb7052d7f5f4",
      "source": "event",
-     "observed_at": "2026-09-29T01:45:08.054Z"
+     "observed_at": "2026-09-11T15:12:05.965Z",
+     "age_s": 1726206
     },
     {
      "ref": "event:4bdf33e0-862e-467b-b226-a6f978cdf531",
      "source": "event",
-     "observed_at": "2026-09-29T17:05:57.429Z"
+     "observed_at": "2026-09-23T14:51:30.560Z",
+     "age_s": 690641
     },
     {
      "ref": "event:65c57c67-3329-4855-82d3-f4779f3e9ff0",
      "source": "event",
-     "observed_at": "2026-09-29T17:05:57.429Z"
+     "observed_at": "2026-09-28T15:59:41.864Z",
+     "age_s": 254550
     },
     {
      "ref": "event:37e42826-29bf-4939-b683-68fd2d515007",
      "source": "event",
-     "observed_at": "2026-09-29T17:05:57.429Z"
+     "observed_at": "2026-09-29T17:05:57.429Z",
+     "age_s": 164174
     },
     {
      "ref": "event:215f6a7d-4b97-4e31-bd00-2f196f44425b",
      "source": "event",
-     "observed_at": "2026-09-21T09:30:01.749Z"
+     "observed_at": "2026-09-14T19:08:02.467Z",
+     "age_s": 1452849
     },
     {
      "ref": "event:8ec17469-b72a-4adc-aedc-186edd118cc1",
      "source": "event",
-     "observed_at": "2026-09-21T09:30:01.749Z"
+     "observed_at": "2026-09-21T09:30:01.749Z",
+     "age_s": 882730
     },
     {
      "ref": "event:7b18382b-b530-4d78-9721-5e168deee816",
      "source": "event",
-     "observed_at": "2026-09-29T17:05:57.429Z"
+     "observed_at": "2026-09-02T16:45:47.234Z",
+     "age_s": 2498184
     },
     {
      "ref": "event:5a3a2952-ef76-4634-9dca-8aaaffc08938",
      "source": "event",
-     "observed_at": "2026-09-29T17:03:47.120Z"
+     "observed_at": "2026-09-29T17:03:47.120Z",
+     "age_s": 164305
     },
     {
      "ref": "events:U-02061:count=75",
      "source": "derived",
-     "observed_at": "2026-10-01T14:42:12.221Z"
+     "observed_at": "2026-10-01T14:42:12.221Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": false
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:42:12.221Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:42:12.221Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:42:12.221Z"
+    },
+    "signup_at": {
+     "value": "2026-04-01T23:00:48.902Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T01:45:08.054Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T01:45:08.054Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T01:45:08.054Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T01:45:08.054Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T01:45:08.054Z"
+    },
+    "plays": {
+     "value": {
+      "count": 10,
+      "first_at": "2026-09-02T16:45:47.234Z",
+      "last_at": "2026-09-29T17:05:57.429Z",
+      "days_in_last_14": [
+       "2026-09-21",
+       "2026-09-23",
+       "2026-09-28",
+       "2026-09-29"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Drama",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-29T17:05:57.429Z"
+    },
+    "completions": {
+     "value": {
+      "count": 3,
+      "last_at": "2026-09-21T09:30:01.749Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-21T09:30:01.749Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-29T17:05:57.429Z",
+       "next_episode_id": "hama-chudibha-d1-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 36,
+       "evidence": "event:37e42826-29bf-4939-b683-68fd2d515007"
+      },
+      {
+       "slug": "bagugu-gigupi-d1",
+       "title_id": "T1504",
+       "last_played_at": "2026-09-02T16:45:47.234Z",
+       "next_episode_id": "bagugu-gigupi-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 8,
+       "evidence": "event:7b18382b-b530-4d78-9721-5e168deee816"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-29T17:05:57.429Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-29T17:03:47.120Z",
+     "source": "event",
+     "observed_at": "2026-09-29T17:03:47.120Z"
+    },
+    "history_depth": {
+     "value": 75,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:42:12.221Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series bagugu-gigupi-d1 (0/8 episodes), last played 2026-09-02",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:7b18382b-b530-4d78-9721-5e168deee816"
+     "profile:U-02061@2026-09-29T01:45:08.054Z"
     ]
    },
    "model": {
@@ -382,7 +511,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series bagugu-gigupi-d1 (0/8 episodes), last played 2026-09-02"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -404,39 +534,56 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T14:42:12.225Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1205,
+   "published_at": "2026-10-01T14:42:13.426Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00921",
+   "action_id": "A-00825",
    "decision_id": "D-01958",
    "user_id": "U-02061",
    "trigger_event_id": "163c9567-972d-47b4-ab2c-749350cfde49",
-   "published_at": "2026-10-01T14:42:12.225Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T14:42:13.426Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T1504",
+   "hero_title_id": "T0002",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T0002",
+      "T0007",
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
       "T0005",
       "T0004",
+      "T0003",
+      "T0009",
       "T0015",
       "T0013",
       "T0006",
-      "T0007",
+      "T0014",
       "T0008",
-      "T0012",
-      "T0010"
+      "T0012"
      ]
     },
     {
@@ -451,73 +598,58 @@
       "T0058",
       "T0023",
       "T0168",
-      "T0028"
+      "T0100"
      ]
     },
     {
-     "row_type": "popular_in_dialect",
+     "row_type": "genre",
      "title_ids": [
-      "T0003",
-      "T0014",
-      "T0034",
+      "T0010",
       "T0016",
-      "T0084",
-      "T0067",
-      "T0044",
-      "T0037",
-      "T0029",
-      "T0019"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0031",
-      "T0070",
-      "T0047",
-      "T0127",
-      "T0063",
-      "T0426",
-      "T0382",
-      "T0435",
-      "T0195",
-      "T0036"
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00922",
+   "action_id": "A-00826",
    "decision_id": "D-01958",
    "user_id": "U-02061",
    "trigger_event_id": "163c9567-972d-47b4-ab2c-749350cfde49",
-   "published_at": "2026-10-01T14:42:12.225Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T14:42:13.426Z",
+   "goal_id": "G08",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1504",
+   "title_id": "T0007",
    "dialect": "d1",
    "text": {
-    "title": "Continue Bagugu Gigupi (English)",
-    "body": "Episode 1 of Bagugu Gigupi (English) is waiting for you."
+    "title": "New in D1: Tiya Bhamaro",
+    "body": "Tiya Bhamaro just released. Start watching now."
    },
-   "deeplink": "ott://title/T1504"
+   "deeplink": "ott://title/T0007"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-02061",
    "arm": "agent",
-   "goal_instance_id": "G-01091",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01092",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T14:42:12.221Z",
-   "deadline": "2026-10-04T14:42:12.221Z",
+   "deadline": "2026-10-08T14:42:12.221Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
@@ -525,8 +657,8 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00921",
-    "A-00922"
+    "A-00825",
+    "A-00826"
    ]
   }
  ]

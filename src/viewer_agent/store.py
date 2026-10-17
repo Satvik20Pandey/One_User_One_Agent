@@ -219,15 +219,17 @@ class Store:
             args.append(user_id)
         return [json.loads(r["record"]) for r in self.conn.execute(sql, args)]
 
-    def messages_on_day(self, user_id: str, day) -> list[dict]:
-        """Push and WhatsApp actions whose send time falls on the given IST calendar day."""
+    def messages_on_day(self, user_id: str, day, types: tuple[str, ...] = ("push", "whatsapp")) -> list[dict]:
+        """Messages of the given types (default: push and WhatsApp, which share one daily cap) whose send time falls
+        on the given IST calendar day. Cancelled messages do not count."""
+        marks = ",".join("?" * len(types))
         rows = self.conn.execute(
-            "SELECT record FROM actions WHERE user_id = ? AND type IN ('push', 'whatsapp')", (user_id,)).fetchall()
+            f"SELECT record FROM actions WHERE user_id = ? AND type IN ({marks})", (user_id, *types)).fetchall()
         out = []
         for r in rows:
             rec = json.loads(r["record"])
             when = parse_ts(rec.get("send_at") or rec["published_at"])
-            if when and ist_day(when) == day:
+            if when and ist_day(when) == day and not rec.get("cancelled_at"):
                 out.append(rec)
         return out
 

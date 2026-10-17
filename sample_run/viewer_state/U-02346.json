@@ -2,38 +2,37 @@
  "state": {
   "user_id": "U-02346",
   "active_goal": {
-   "instance_id": "G-01301",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01304",
+   "goal_id": "G09",
+   "name": "weekly_habit_14d",
    "started_at": "2026-10-01T15:46:19.397Z",
-   "deadline": "2026-10-04T15:46:19.397Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-15T15:46:19.397Z",
+   "success_signal": "play_started (on 3 distinct IST days) within 336h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series hama-chudibha-d1 (5/36 episodes), last played 2026-09-16",
+   "eligibility_reason": "active subscriber with plays on 1 day(s) in the last 14",
    "evidence": [
+    "profile:U-02346@2026-09-29T00:28:57.526Z",
+    "event:60a8e294-c311-4a4a-876f-506c98618dd9",
+    "event:e5359abc-7c60-4bd4-ad26-97a5b273bd89",
     "event:ad7f7c76-8bcd-44fa-9866-a8f9ec2f4550"
    ],
-   "context": {
-    "slug": "hama-chudibha-d1",
-    "title_id": "T0002"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "plays on 5 distinct IST days",
+    "success_event_id": "oua-015100",
+    "success_at": "2026-10-04T06:59:15.000Z",
+    "attribution": "exposed_before_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T15:46:19.397Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T06:59:15.000Z judged: G09 succeeded (exposed_before_success; page shown 1x, message delivered 0x). plays on 5 distinct IST days"
   ],
   "arm": "agent",
   "facts": {
@@ -222,10 +221,9 @@
    "D-02323"
   ],
   "actions": [
-   "A-01099",
-   "A-01100"
+   "A-00992"
   ],
-  "updated_at": "2026-10-01T15:46:19.402Z"
+  "updated_at": "2026-10-01T15:46:20.602Z"
  },
  "decisions": [
   {
@@ -243,12 +241,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01301",
+    "id": "G09",
+    "name": "weekly_habit_14d",
+    "instance_id": "G-01304",
     "started_at": "2026-10-01T15:46:19.397Z",
-    "deadline": "2026-10-04T15:46:19.397Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-15T15:46:19.397Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -256,8 +254,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -269,16 +266,6 @@
    },
    "content": [
     "title:T0002",
-    "title:T0012",
-    "title:T0005",
-    "title:T0004",
-    "title:T0009",
-    "title:T0015",
-    "title:T0013",
-    "title:T0006",
-    "title:T0007",
-    "title:T0008",
-    "title:T0010",
     "title:T0011",
     "title:T0018",
     "title:T0026",
@@ -289,16 +276,16 @@
     "title:T0023",
     "title:T0168",
     "title:T0028",
+    "title:T0005",
+    "title:T0004",
     "title:T0003",
+    "title:T0009",
+    "title:T0015",
+    "title:T0013",
+    "title:T0006",
+    "title:T0007",
     "title:T0014",
-    "title:T0034",
-    "title:T0016",
-    "title:T0084",
-    "title:T0067",
-    "title:T0044",
-    "title:T0037",
-    "title:T0029",
-    "title:T0019",
+    "title:T0008",
     "title:T0031",
     "title:T0070",
     "title:T0047",
@@ -308,7 +295,17 @@
     "title:T0382",
     "title:T0435",
     "title:T0195",
-    "title:T0036"
+    "title:T0036",
+    "title:T0010",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041"
    ],
    "confidence": {
     "value": 0.55,
@@ -318,67 +315,201 @@
     {
      "ref": "trigger:798bc6f7-7d89-4508-9a2b-e25c3265a646",
      "source": "event",
-     "observed_at": "2026-10-01T15:46:19.397Z"
+     "observed_at": "2026-10-01T15:46:19.397Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02346@2026-09-29T00:28:57.526Z",
      "source": "profile",
-     "observed_at": "2026-09-29T00:28:57.526Z"
+     "observed_at": "2026-09-29T00:28:57.526Z",
+     "age_s": 227841
     },
     {
      "ref": "event:cc8d48fd-42ed-405f-84f2-bb12c858cb4c",
      "source": "event",
-     "observed_at": "2026-09-29T00:28:57.526Z"
+     "observed_at": "2026-09-13T04:26:02.487Z",
+     "age_s": 1596016
     },
     {
      "ref": "event:60a8e294-c311-4a4a-876f-506c98618dd9",
      "source": "event",
-     "observed_at": "2026-09-16T11:24:25.289Z"
+     "observed_at": "2026-09-20T01:21:56.975Z",
+     "age_s": 1002262
     },
     {
      "ref": "event:e5359abc-7c60-4bd4-ad26-97a5b273bd89",
      "source": "event",
-     "observed_at": "2026-09-16T11:24:25.289Z"
+     "observed_at": "2026-09-20T05:16:05.268Z",
+     "age_s": 988214
     },
     {
      "ref": "event:ad7f7c76-8bcd-44fa-9866-a8f9ec2f4550",
      "source": "event",
-     "observed_at": "2026-09-16T11:24:25.289Z"
+     "observed_at": "2026-09-16T11:24:25.289Z",
+     "age_s": 1311714
     },
     {
      "ref": "event:2fe0c342-cf02-4a8f-9f14-bb7474fede54",
      "source": "event",
-     "observed_at": "2026-09-16T11:26:16.861Z"
+     "observed_at": "2026-09-20T07:06:27.735Z",
+     "age_s": 981591
     },
     {
      "ref": "event:789fb146-d3df-4839-b53e-d014adf4b98d",
      "source": "event",
-     "observed_at": "2026-09-16T11:26:16.861Z"
+     "observed_at": "2026-09-16T11:26:16.861Z",
+     "age_s": 1311602
     },
     {
      "ref": "event:e65f589c-ebff-4cb4-bb47-0c1718701db7",
      "source": "event",
-     "observed_at": "2026-09-16T11:24:25.289Z"
+     "observed_at": "2026-09-08T14:29:40.139Z",
+     "age_s": 1991799
     },
     {
      "ref": "event:baa6db21-ca8b-4e42-b78a-98b14a081cf8",
      "source": "event",
-     "observed_at": "2026-09-20T05:14:21.111Z"
+     "observed_at": "2026-09-20T05:14:21.111Z",
+     "age_s": 988318
     },
     {
      "ref": "events:U-02346:count=86",
      "source": "derived",
-     "observed_at": "2026-10-01T15:46:19.397Z"
+     "observed_at": "2026-10-01T15:46:19.397Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T15:46:19.397Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:46:19.397Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:46:19.397Z"
+    },
+    "signup_at": {
+     "value": "2025-12-20T08:40:12.542Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T00:28:57.526Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T00:28:57.526Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T00:28:57.526Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T00:28:57.526Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T00:28:57.526Z"
+    },
+    "plays": {
+     "value": {
+      "count": 11,
+      "first_at": "2026-09-02T15:42:15.462Z",
+      "last_at": "2026-09-16T11:24:25.289Z",
+      "days_in_last_14": [
+       "2026-09-20"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Comedy",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T11:24:25.289Z"
+    },
+    "completions": {
+     "value": {
+      "count": 8,
+      "last_at": "2026-09-16T11:26:16.861Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-16T11:26:16.861Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-16T11:24:25.289Z",
+       "next_episode_id": "hama-chudibha-d1-s1e6",
+       "next_episode_number": 6,
+       "watched": 5,
+       "total": 36,
+       "evidence": "event:ad7f7c76-8bcd-44fa-9866-a8f9ec2f4550"
+      },
+      {
+       "slug": "nini-namoko-d1",
+       "title_id": "T0012",
+       "last_played_at": "2026-09-08T14:29:40.139Z",
+       "next_episode_id": "nini-namoko-d1-s1e3",
+       "next_episode_number": 3,
+       "watched": 2,
+       "total": 36,
+       "evidence": "event:e65f589c-ebff-4cb4-bb47-0c1718701db7"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-16T11:24:25.289Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-20T05:14:21.111Z",
+     "source": "event",
+     "observed_at": "2026-09-20T05:14:21.111Z"
+    },
+    "history_depth": {
+     "value": 86,
+     "source": "derived",
+     "observed_at": "2026-10-01T15:46:19.397Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d1, profile=d6, deeplink=None -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (5/36 episodes), last played 2026-09-16",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 1 day(s) in the last 14",
     "evidence": [
+     "profile:U-02346@2026-09-29T00:28:57.526Z",
+     "event:60a8e294-c311-4a4a-876f-506c98618dd9",
+     "event:e5359abc-7c60-4bd4-ad26-97a5b273bd89",
      "event:ad7f7c76-8bcd-44fa-9866-a8f9ec2f4550"
     ]
    },
@@ -388,7 +519,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series hama-chudibha-d1 (5/36 episodes), last played 2026-09-16"
+    "skipped": null,
+    "reason": "active subscriber with plays on 1 day(s) in the last 14"
    },
    "checks": {
     "passed": [
@@ -398,53 +530,35 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T15:46:19.402Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1205,
+   "published_at": "2026-10-01T15:46:20.602Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-01099",
+   "action_id": "A-00992",
    "decision_id": "D-02323",
    "user_id": "U-02346",
    "trigger_event_id": "798bc6f7-7d89-4508-9a2b-e25c3265a646",
-   "published_at": "2026-10-01T15:46:19.402Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T15:46:20.602Z",
+   "goal_id": "G09",
    "type": "home_page",
    "dialect": "d1",
    "hero_title_id": "T0002",
    "rows": [
-    {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T0012",
-      "T0005",
-      "T0004",
-      "T0009",
-      "T0015",
-      "T0013",
-      "T0006",
-      "T0007",
-      "T0008",
-      "T0010"
-     ]
-    },
     {
      "row_type": "because_you_watched",
      "title_ids": [
@@ -463,16 +577,16 @@
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
+      "T0005",
+      "T0004",
       "T0003",
+      "T0009",
+      "T0015",
+      "T0013",
+      "T0006",
+      "T0007",
       "T0014",
-      "T0034",
-      "T0016",
-      "T0084",
-      "T0067",
-      "T0044",
-      "T0037",
-      "T0029",
-      "T0019"
+      "T0008"
      ]
     },
     {
@@ -489,51 +603,47 @@
       "T0195",
       "T0036"
      ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0010",
+      "T0016",
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041"
+     ]
     }
    ]
-  },
-  {
-   "action_id": "A-01100",
-   "decision_id": "D-02323",
-   "user_id": "U-02346",
-   "trigger_event_id": "798bc6f7-7d89-4508-9a2b-e25c3265a646",
-   "published_at": "2026-10-01T15:46:19.402Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0002",
-   "dialect": "d1",
-   "text": {
-    "title": "Continue Hama Chudibha",
-    "body": "Episode 6 of Hama Chudibha is waiting for you."
-   },
-   "deeplink": "ott://title/T0002"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-02346",
    "arm": "agent",
-   "goal_instance_id": "G-01301",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01304",
+   "goal_id": "G09",
+   "goal_name": "weekly_habit_14d",
    "started_at": "2026-10-01T15:46:19.397Z",
-   "deadline": "2026-10-04T15:46:19.397Z",
+   "deadline": "2026-10-15T15:46:19.397Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "plays on 5 distinct IST days",
+   "success_event_id": "oua-015100",
+   "success_at": "2026-10-04T06:59:15.000Z",
+   "attribution": "exposed_before_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-01099",
-    "A-01100"
+    "A-00992"
    ]
   }
  ]

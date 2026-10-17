@@ -183,7 +183,7 @@
    "D-00830"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T06:43:38.317Z"
+  "updated_at": "2026-10-01T06:43:38.316Z"
  },
  "decisions": [
   {
@@ -229,39 +229,140 @@
     {
      "ref": "trigger:87a98f78-5a59-480c-be65-6effbccaaacf",
      "source": "event",
-     "observed_at": "2026-10-01T06:43:38.314Z"
+     "observed_at": "2026-10-01T06:43:38.314Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02667@2026-09-28T21:40:17.072Z",
      "source": "profile",
-     "observed_at": "2026-09-28T21:40:17.072Z"
+     "observed_at": "2026-09-28T21:40:17.072Z",
+     "age_s": 205401
     },
     {
      "ref": "event:0e5c848d-473c-4e97-a3ec-f85347718931",
      "source": "event",
-     "observed_at": "2026-09-28T21:40:17.072Z"
+     "observed_at": "2026-09-02T08:29:14.182Z",
+     "age_s": 2499264
     },
     {
      "ref": "event:81f89a2f-7830-4038-b9b0-8aa39010a86e",
      "source": "event",
-     "observed_at": "2026-09-05T11:56:58.324Z"
+     "observed_at": "2026-09-05T11:56:58.324Z",
+     "age_s": 2227599
     },
     {
      "ref": "event:c57ea183-e366-409b-8003-80fe803c655c",
      "source": "event",
-     "observed_at": "2026-09-05T13:55:40.690Z"
+     "observed_at": "2026-09-05T13:55:40.690Z",
+     "age_s": 2220477
     },
     {
      "ref": "event:47f3b71f-65ce-45e5-ad9b-f478a6be8e11",
      "source": "event",
-     "observed_at": "2026-09-30T13:51:50.402Z"
+     "observed_at": "2026-09-30T13:51:50.402Z",
+     "age_s": 60707
     },
     {
      "ref": "events:U-02667:count=23",
      "source": "derived",
-     "observed_at": "2026-10-01T06:43:38.314Z"
+     "observed_at": "2026-10-01T06:43:38.314Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T06:43:38.314Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T06:43:38.314Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T06:43:38.314Z"
+    },
+    "signup_at": {
+     "value": "2025-08-08T08:39:45.321Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T21:40:17.072Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-28T21:40:17.072Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-28T21:40:17.072Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T21:40:17.072Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T21:40:17.072Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-05T11:56:58.324Z",
+      "last_at": "2026-09-05T11:56:58.324Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Devotional",
+       "Action"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T11:56:58.324Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-05T13:55:40.690Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-05T13:55:40.690Z"
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T13:51:50.402Z",
+     "source": "event",
+     "observed_at": "2026-09-30T13:51:50.402Z"
+    },
+    "history_depth": {
+     "value": 23,
+     "source": "derived",
+     "observed_at": "2026-10-01T06:43:38.314Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -276,7 +377,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -288,9 +391,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T06:43:38.317Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T06:43:38.316Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

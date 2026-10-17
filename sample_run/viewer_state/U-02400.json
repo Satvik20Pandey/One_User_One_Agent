@@ -2,25 +2,22 @@
  "state": {
   "user_id": "U-02400",
   "active_goal": {
-   "instance_id": "G-01025",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01026",
+   "goal_id": "G12",
+   "name": "return_after_absence_7d",
    "started_at": "2026-10-01T14:11:01.098Z",
-   "deadline": "2026-10-04T14:11:01.098Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T14:11:01.098Z",
+   "success_signal": "play_started (any title) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series bagi-baya-d4 (0/40 episodes), last played 2026-09-02",
+   "eligibility_reason": "no visit for 18 days before this open",
    "evidence": [
-    "event:0d87a012-a039-4855-8e6b-2f898679e1d6"
+    "event:6e663236-4d0b-4991-afd8-7ebdc3a3ee08"
    ],
-   "context": {
-    "slug": "bagi-baya-d4",
-    "title_id": "T0916"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no play_started matching 'any title' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T14:11:01.098Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T14:11:01.098Z judged: G12 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'any title' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -236,12 +233,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01025",
+    "id": "G12",
+    "name": "return_after_absence_7d",
+    "instance_id": "G-01026",
     "started_at": "2026-10-01T14:11:01.098Z",
-    "deadline": "2026-10-04T14:11:01.098Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T14:11:01.098Z",
+    "success_signal": "play_started (any title) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": true
@@ -267,55 +264,182 @@
     {
      "ref": "trigger:28c31190-959d-47e7-b0dd-103eae547219",
      "source": "event",
-     "observed_at": "2026-10-01T14:11:01.098Z"
+     "observed_at": "2026-10-01T14:11:01.098Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02400@2026-09-29T14:10:20.401Z",
      "source": "profile",
-     "observed_at": "2026-09-29T14:10:20.401Z"
+     "observed_at": "2026-09-29T14:10:20.401Z",
+     "age_s": 172840
     },
     {
      "ref": "event:0d87a012-a039-4855-8e6b-2f898679e1d6",
      "source": "event",
-     "observed_at": "2026-09-12T16:54:19.503Z"
+     "observed_at": "2026-09-02T16:41:50.193Z",
+     "age_s": 2496550
     },
     {
      "ref": "event:8599b066-a850-4781-992c-97af75a08dc2",
      "source": "event",
-     "observed_at": "2026-09-12T16:54:19.503Z"
+     "observed_at": "2026-09-12T16:54:19.503Z",
+     "age_s": 1631801
     },
     {
      "ref": "event:addaecb8-655b-422a-a02a-90b6a2d0be86",
      "source": "event",
-     "observed_at": "2026-09-12T18:36:26.551Z"
+     "observed_at": "2026-09-12T18:36:26.551Z",
+     "age_s": 1625674
     },
     {
      "ref": "event:6e663236-4d0b-4991-afd8-7ebdc3a3ee08",
      "source": "event",
-     "observed_at": "2026-09-12T17:58:36.605Z"
+     "observed_at": "2026-09-12T17:58:36.605Z",
+     "age_s": 1627944
     },
     {
      "ref": "events:U-02400:count=22",
      "source": "derived",
-     "observed_at": "2026-10-01T14:11:01.098Z"
+     "observed_at": "2026-10-01T14:11:01.098Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:11:01.098Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1",
+       "deeplink:d3"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:11:01.098Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:11:01.098Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp008",
+      "dialect": "d3",
+      "title_id": "T0907"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T14:11:01.098Z"
+    },
+    "signup_at": {
+     "value": "2026-08-22T05:50:36.379Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:10:20.401Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:10:20.401Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:10:20.401Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:10:20.401Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:10:20.401Z"
+    },
+    "plays": {
+     "value": {
+      "count": 2,
+      "first_at": "2026-09-02T16:41:50.193Z",
+      "last_at": "2026-09-12T16:54:19.503Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Romance",
+       "Drama",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-12T16:54:19.503Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-12T18:36:26.551Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-12T18:36:26.551Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bagi-baya-d4",
+       "title_id": "T0916",
+       "last_played_at": "2026-09-02T16:41:50.193Z",
+       "next_episode_id": "bagi-baya-d4-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 40,
+       "evidence": "event:0d87a012-a039-4855-8e6b-2f898679e1d6"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-02T16:41:50.193Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-12T17:58:36.605Z",
+     "source": "event",
+     "observed_at": "2026-09-12T17:58:36.605Z"
+    },
+    "history_depth": {
+     "value": 22,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:11:01.098Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d4, profile=d1, deeplink=d3 -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series bagi-baya-d4 (0/40 episodes), last played 2026-09-02",
+    "goal": "G12",
+    "reason": "no visit for 18 days before this open",
     "evidence": [
-     "event:0d87a012-a039-4855-8e6b-2f898679e1d6"
+     "event:6e663236-4d0b-4991-afd8-7ebdc3a3ee08"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -327,9 +451,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 1,
    "published_at": "2026-10-01T14:11:01.099Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -337,16 +463,16 @@
   {
    "user_id": "U-02400",
    "arm": "holdout",
-   "goal_instance_id": "G-01025",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01026",
+   "goal_id": "G12",
+   "goal_name": "return_after_absence_7d",
    "started_at": "2026-10-01T14:11:01.098Z",
-   "deadline": "2026-10-04T14:11:01.098Z",
+   "deadline": "2026-10-08T14:11:01.098Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no play_started matching 'any title' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

@@ -212,34 +212,147 @@
     {
      "ref": "trigger:e5c3f8b9-ff83-4311-adf4-e431f19b3d4a",
      "source": "event",
-     "observed_at": "2026-10-01T04:47:09.348Z"
+     "observed_at": "2026-09-22T17:07:10.582Z",
+     "age_s": 733198
     },
     {
      "ref": "profile:U-00747@2026-09-28T22:39:40.178Z",
      "source": "profile",
-     "observed_at": "2026-09-28T22:39:40.178Z"
+     "observed_at": "2026-09-28T22:39:40.178Z",
+     "age_s": 194849
     },
     {
      "ref": "event:1ec78b84-8240-476d-8e01-fadc6c8fe1c0",
      "source": "event",
-     "observed_at": "2026-09-04T14:35:18.261Z"
+     "observed_at": "2026-09-04T14:35:18.261Z",
+     "age_s": 2297511
     },
     {
      "ref": "event:cd21a500-39df-45e5-9e33-2930df6f7a13",
      "source": "event",
-     "observed_at": "2026-09-04T14:38:59.352Z"
+     "observed_at": "2026-09-04T14:38:59.352Z",
+     "age_s": 2297289
     },
     {
      "ref": "event:f6a1db59-e275-4d64-8bf8-b3d516bf17c3",
      "source": "event",
-     "observed_at": "2026-09-04T15:52:44.545Z"
+     "observed_at": "2026-09-04T15:52:44.545Z",
+     "age_s": 2292864
     },
     {
      "ref": "events:U-00747:count=13",
      "source": "derived",
-     "observed_at": "2026-10-01T04:47:09.348Z"
+     "observed_at": "2026-10-01T04:47:09.348Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 733198,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:47:09.348Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d1"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:09.348Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:09.348Z"
+    },
+    "signup_at": {
+     "value": "2026-04-20T15:06:24.433Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T22:39:40.178Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-28T22:39:40.178Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T22:39:40.178Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T22:39:40.178Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T22:39:40.178Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-04T14:35:18.261Z",
+      "last_at": "2026-09-04T14:35:18.261Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T14:35:18.261Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-04T14:38:59.352Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T14:38:59.352Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-04T14:35:18.261Z",
+       "next_episode_id": "yane-tegi-d3-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 20,
+       "evidence": "event:1ec78b84-8240-476d-8e01-fadc6c8fe1c0"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-04T14:35:18.261Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-04T15:52:44.545Z",
+     "source": "event",
+     "observed_at": "2026-09-04T15:52:44.545Z"
+    },
+    "history_depth": {
+     "value": 13,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:47:09.348Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d3, profile=d1, deeplink=None -> used d3 (app_setting)"
@@ -249,7 +362,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -261,9 +376,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 0,
    "published_at": "2026-10-01T04:47:09.348Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": true
   }
  ],
  "actions": [],

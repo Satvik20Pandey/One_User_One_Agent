@@ -2,27 +2,24 @@
  "state": {
   "user_id": "U-01432",
   "active_goal": {
-   "instance_id": "G-00896",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-00897",
+   "goal_id": "G08",
+   "name": "try_new_release_7d",
    "started_at": "2026-10-01T12:40:33.362Z",
-   "deadline": "2026-10-04T12:40:33.362Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T12:40:33.362Z",
+   "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series rasuya-moni-d6 (3/9 episodes), last played 2026-09-27",
+   "eligibility_reason": "active subscriber",
    "evidence": [
-    "event:c85b3273-5237-49de-a51e-6f2b9f8dbc5c"
+    "profile:U-01432@2026-09-29T15:24:12.138Z"
    ],
-   "context": {
-    "slug": "rasuya-moni-d6",
-    "title_id": "T1976"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
+    "verdict": "succeeded",
+    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+    "success_event_id": "oua-009812",
+    "success_at": "2026-10-01T12:43:20.362Z",
     "attribution": "published_but_never_seen",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T12:40:33.362Z judged: G07 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-01T12:43:20.362Z judged: G08 succeeded (published_but_never_seen; nothing of ours was seen). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -212,10 +209,9 @@
    "D-01592"
   ],
   "actions": [
-   "A-00734",
-   "A-00735"
+   "A-00654"
   ],
-  "updated_at": "2026-10-01T12:40:33.366Z"
+  "updated_at": "2026-10-01T12:40:34.566Z"
  },
  "decisions": [
   {
@@ -233,12 +229,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-00896",
+    "id": "G08",
+    "name": "try_new_release_7d",
+    "instance_id": "G-00897",
     "started_at": "2026-10-01T12:40:33.362Z",
-    "deadline": "2026-10-04T12:40:33.362Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T12:40:33.362Z",
+    "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -246,8 +242,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -258,43 +253,46 @@
     ]
    },
    "content": [
-    "title:T1976",
-    "title:T1389",
-    "title:T1390",
+    "title:T1387",
     "title:T1393",
-    "title:T1398",
-    "title:T1500",
-    "title:T1397",
-    "title:T1395",
-    "title:T1406",
-    "title:T1428",
-    "title:T1407",
-    "title:T1402",
-    "title:T1499",
-    "title:T1419",
-    "title:T1484",
-    "title:T1456",
-    "title:T1455",
-    "title:T1459",
-    "title:T1416",
-    "title:T1481",
-    "title:T1434",
-    "title:T1392",
-    "title:T1391",
-    "title:T1394",
-    "title:T1396",
-    "title:T1400",
-    "title:T1414",
-    "title:T1399",
-    "title:T1437",
-    "title:T1404",
-    "title:T1450",
     "title:T1486",
     "title:T1421",
     "title:T1461",
     "title:T1468",
     "title:T1491",
-    "title:T1472"
+    "title:T1484",
+    "title:T1472",
+    "title:T1456",
+    "title:T1392",
+    "title:T1389",
+    "title:T1391",
+    "title:T1390",
+    "title:T1398",
+    "title:T1500",
+    "title:T1397",
+    "title:T1395",
+    "title:T1406",
+    "title:T1394",
+    "title:T1407",
+    "title:T1402",
+    "title:T1499",
+    "title:T1419",
+    "title:T1455",
+    "title:T1459",
+    "title:T1416",
+    "title:T1481",
+    "title:T1434",
+    "title:T1432",
+    "title:T1428",
+    "title:T1396",
+    "title:T1437",
+    "title:T1404",
+    "title:T1426",
+    "title:T1444",
+    "title:T1465",
+    "title:T1494",
+    "title:T1425",
+    "title:T1490"
    ],
    "confidence": {
     "value": 0.5,
@@ -304,63 +302,189 @@
     {
      "ref": "trigger:63deaaf3-2e89-41ea-90e8-a5d52c60697b",
      "source": "event",
-     "observed_at": "2026-10-01T12:40:33.362Z"
+     "observed_at": "2026-10-01T12:35:42.369Z",
+     "age_s": 290
     },
     {
      "ref": "profile:U-01432@2026-09-29T15:24:12.138Z",
      "source": "profile",
-     "observed_at": "2026-09-29T15:24:12.138Z"
+     "observed_at": "2026-09-29T15:24:12.138Z",
+     "age_s": 162981
     },
     {
      "ref": "event:e78c77ff-7112-4c13-b0b4-d06b79daad0c",
      "source": "event",
-     "observed_at": "2026-09-29T15:24:12.138Z"
+     "observed_at": "2026-09-27T12:50:49.393Z",
+     "age_s": 344983
     },
     {
      "ref": "event:e24429bc-bf87-47db-b4de-633905a4e5eb",
      "source": "event",
-     "observed_at": "2026-09-27T10:29:27.467Z"
+     "observed_at": "2026-09-25T09:35:54.618Z",
+     "age_s": 529478
     },
     {
      "ref": "event:1797c1be-8cd4-4402-b9ef-2842d6cbd592",
      "source": "event",
-     "observed_at": "2026-09-27T10:29:27.467Z"
+     "observed_at": "2026-09-27T02:46:55.229Z",
+     "age_s": 381218
     },
     {
      "ref": "event:c85b3273-5237-49de-a51e-6f2b9f8dbc5c",
      "source": "event",
-     "observed_at": "2026-09-27T10:29:27.467Z"
+     "observed_at": "2026-09-27T10:29:27.467Z",
+     "age_s": 353465
     },
     {
      "ref": "event:09184a63-b544-438f-bcbd-88b97b4eca76",
      "source": "event",
-     "observed_at": "2026-09-27T03:12:40.844Z"
+     "observed_at": "2026-09-24T10:04:19.988Z",
+     "age_s": 614173
     },
     {
      "ref": "event:a02764dc-f7b1-45c1-a408-7d2b9af61e92",
      "source": "event",
-     "observed_at": "2026-09-27T03:12:40.844Z"
+     "observed_at": "2026-09-27T03:12:40.844Z",
+     "age_s": 379672
     },
     {
      "ref": "event:ab843312-a478-4ef7-812e-e0712468befc",
      "source": "event",
-     "observed_at": "2026-09-27T10:28:23.999Z"
+     "observed_at": "2026-09-27T10:28:23.999Z",
+     "age_s": 353529
     },
     {
      "ref": "events:U-01432:count=75",
      "source": "derived",
-     "observed_at": "2026-10-01T12:40:33.362Z"
+     "observed_at": "2026-10-01T12:40:33.362Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 290,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T12:40:33.362Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d6",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:40:33.362Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:40:33.362Z"
+    },
+    "signup_at": {
+     "value": "2025-05-09T22:48:34.395Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T15:24:12.138Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T15:24:12.138Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T15:24:12.138Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T15:24:12.138Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T15:24:12.138Z"
+    },
+    "plays": {
+     "value": {
+      "count": 12,
+      "first_at": "2026-09-02T18:06:10.976Z",
+      "last_at": "2026-09-27T10:29:27.467Z",
+      "days_in_last_14": [
+       "2026-09-17",
+       "2026-09-19",
+       "2026-09-24",
+       "2026-09-25",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Devotional",
+       "Thriller",
+       "Comedy"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T10:29:27.467Z"
+    },
+    "completions": {
+     "value": {
+      "count": 4,
+      "last_at": "2026-09-27T03:12:40.844Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T03:12:40.844Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "rasuya-moni-d6",
+       "title_id": "T1976",
+       "last_played_at": "2026-09-27T10:29:27.467Z",
+       "next_episode_id": "rasuya-moni-d6-s1e4",
+       "next_episode_number": 4,
+       "watched": 3,
+       "total": 9,
+       "evidence": "event:c85b3273-5237-49de-a51e-6f2b9f8dbc5c"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T10:29:27.467Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T10:28:23.999Z",
+     "source": "event",
+     "observed_at": "2026-09-27T10:28:23.999Z"
+    },
+    "history_depth": {
+     "value": 75,
+     "source": "derived",
+     "observed_at": "2026-10-01T12:40:33.362Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.50 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d6, profile=d4, deeplink=None -> used d6 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (3/9 episodes), last played 2026-09-27",
+    "goal": "G08",
+    "reason": "active subscriber",
     "evidence": [
-     "event:c85b3273-5237-49de-a51e-6f2b9f8dbc5c"
+     "profile:U-01432@2026-09-29T15:24:12.138Z"
     ]
    },
    "model": {
@@ -369,7 +493,8 @@
     "used": true,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series rasuya-moni-d6 (3/9 episodes), last played 2026-09-27"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
     "passed": [
@@ -379,135 +504,117 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T12:40:33.366Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T12:40:34.566Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00734",
+   "action_id": "A-00654",
    "decision_id": "D-01592",
    "user_id": "U-01432",
    "trigger_event_id": "63deaaf3-2e89-41ea-90e8-a5d52c60697b",
-   "published_at": "2026-10-01T12:40:33.366Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T12:40:34.566Z",
+   "goal_id": "G08",
    "type": "home_page",
    "dialect": "d6",
-   "hero_title_id": "T1976",
+   "hero_title_id": "T1387",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "new_releases",
      "title_ids": [
-      "T1389",
-      "T1390",
       "T1393",
-      "T1398",
-      "T1500",
-      "T1397",
-      "T1395",
-      "T1406",
-      "T1428",
-      "T1407"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T1402",
-      "T1499",
-      "T1419",
+      "T1486",
+      "T1421",
+      "T1461",
+      "T1468",
+      "T1491",
       "T1484",
-      "T1456",
-      "T1455",
-      "T1459",
-      "T1416",
-      "T1481",
-      "T1434"
+      "T1472",
+      "T1456"
      ]
     },
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
       "T1392",
+      "T1389",
       "T1391",
-      "T1394",
-      "T1396",
-      "T1400",
-      "T1414",
-      "T1399",
-      "T1437",
-      "T1404",
-      "T1450"
+      "T1390",
+      "T1398",
+      "T1500",
+      "T1397",
+      "T1395",
+      "T1406",
+      "T1394"
      ]
     },
     {
-     "row_type": "new_releases",
+     "row_type": "because_you_watched",
      "title_ids": [
-      "T1486",
-      "T1421",
-      "T1461",
-      "T1468",
-      "T1491",
-      "T1472"
+      "T1407",
+      "T1402",
+      "T1499",
+      "T1419",
+      "T1455",
+      "T1459",
+      "T1416",
+      "T1481",
+      "T1434",
+      "T1432"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1428",
+      "T1396",
+      "T1437",
+      "T1404",
+      "T1426",
+      "T1444",
+      "T1465",
+      "T1494",
+      "T1425",
+      "T1490"
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00735",
-   "decision_id": "D-01592",
-   "user_id": "U-01432",
-   "trigger_event_id": "63deaaf3-2e89-41ea-90e8-a5d52c60697b",
-   "published_at": "2026-10-01T12:40:33.366Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1976",
-   "dialect": "d6",
-   "text": {
-    "title": "Continue Rasuya Moni (English)",
-    "body": "Episode 4 of Rasuya Moni (English) is waiting for you."
-   },
-   "deeplink": "ott://title/T1976"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-01432",
    "arm": "agent",
-   "goal_instance_id": "G-00896",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-00897",
+   "goal_id": "G08",
+   "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T12:40:33.362Z",
-   "deadline": "2026-10-04T12:40:33.362Z",
+   "deadline": "2026-10-08T12:40:33.362Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
+   "verdict": "succeeded",
+   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+   "success_event_id": "oua-009812",
+   "success_at": "2026-10-01T12:43:20.362Z",
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00734",
-    "A-00735"
+    "A-00654"
    ]
   }
  ]

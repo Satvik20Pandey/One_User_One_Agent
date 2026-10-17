@@ -2,38 +2,35 @@
  "state": {
   "user_id": "U-03894",
   "active_goal": {
-   "instance_id": "G-01070",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "instance_id": "G-01071",
+   "goal_id": "G06",
+   "name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T14:29:32.922Z",
-   "deadline": "2026-10-04T14:29:32.922Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-15T14:29:32.922Z",
+   "success_signal": "purchase_completed (any paid plan) within 336h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series pila-robha-d4 (0/23 episodes), last played 2026-09-23",
+   "eligibility_reason": "lapsed recently",
    "evidence": [
-    "event:188e603a-4de1-4380-a771-b47b6ae2aa00"
+    "profile:U-03894@2026-09-29T03:58:02.763Z",
+    "event:238873c8-45c9-4489-a495-dd5bf52028fb"
    ],
-   "context": {
-    "slug": "pila-robha-d4",
-    "title_id": "T1817"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T14:29:32.922Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-15T14:29:32.922Z judged: G06 failed (exposed_no_success; page shown 1x, message delivered 0x). no purchase_completed matching 'any paid plan' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -243,8 +240,7 @@
    "D-01915"
   ],
   "actions": [
-   "A-00899",
-   "A-00900"
+   "A-00806"
   ],
   "updated_at": "2026-10-01T14:29:32.926Z"
  },
@@ -264,12 +260,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-01070",
+    "id": "G06",
+    "name": "reactivate_lapsed_14d",
+    "instance_id": "G-01071",
     "started_at": "2026-10-01T14:29:32.922Z",
-    "deadline": "2026-10-04T14:29:32.922Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-15T14:29:32.922Z",
+    "success_signal": "purchase_completed (any paid plan) within 336h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -277,8 +273,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -288,46 +283,46 @@
    },
    "content": [
     "title:T0915",
-    "title:T1817",
-    "title:T0978",
-    "title:T1811",
-    "title:T0932",
-    "title:T0922",
-    "title:T0918",
-    "title:T0928",
-    "title:T0938",
-    "title:T0926",
-    "title:T0925",
-    "title:T0933",
-    "title:T0946",
-    "title:T0955",
-    "title:T0985",
-    "title:T1175",
-    "title:T0966",
-    "title:T1040",
-    "title:T1107",
-    "title:T1162",
-    "title:T1150",
     "title:T0921",
     "title:T0919",
-    "title:T0917",
-    "title:T0920",
+    "title:T0933",
     "title:T0924",
-    "title:T0923",
-    "title:T0927",
     "title:T0942",
-    "title:T0931",
-    "title:T0939",
+    "title:T0946",
+    "title:T0936",
     "title:T0956",
     "title:T0974",
     "title:T0999",
-    "title:T1155",
-    "title:T0937",
+    "title:T1040",
+    "title:T1107",
     "title:T1116",
     "title:T1014",
-    "title:T1048",
     "title:T1101",
-    "title:T1031"
+    "title:T1150",
+    "title:T1031",
+    "title:T1083",
+    "title:T0971",
+    "title:T1124",
+    "title:T1175",
+    "title:T0983",
+    "title:T1021",
+    "title:T1170",
+    "title:T1066",
+    "title:T1088",
+    "title:T1005",
+    "title:T1002",
+    "title:T1136",
+    "title:T1054",
+    "title:T0957",
+    "title:T1041",
+    "title:T1076",
+    "title:T0934",
+    "title:T0940",
+    "title:T1171",
+    "title:T1013",
+    "title:T1169",
+    "title:T1160",
+    "title:T0977"
    ],
    "confidence": {
     "value": 0.75,
@@ -337,75 +332,224 @@
     {
      "ref": "trigger:5982f123-7e90-4e03-bc96-2b50bc25fa9d",
      "source": "event",
-     "observed_at": "2026-10-01T14:29:32.922Z"
+     "observed_at": "2026-10-01T14:29:32.922Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-03894@2026-09-29T03:58:02.763Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:58:02.763Z"
+     "observed_at": "2026-09-29T03:58:02.763Z",
+     "age_s": 210690
     },
     {
      "ref": "event:238873c8-45c9-4489-a495-dd5bf52028fb",
      "source": "event",
-     "observed_at": "2026-09-02T17:30:46.352Z"
+     "observed_at": "2026-09-02T17:30:46.352Z",
+     "age_s": 2494726
     },
     {
      "ref": "event:71e624a5-48b7-486f-9606-87479b397088",
      "source": "event",
-     "observed_at": "2026-09-23T08:52:18.488Z"
+     "observed_at": "2026-09-14T10:23:53.672Z",
+     "age_s": 1483539
     },
     {
      "ref": "event:af2b3b8c-3f17-4307-b045-bc71c40a5bb5",
      "source": "event",
-     "observed_at": "2026-09-23T08:52:18.488Z"
+     "observed_at": "2026-09-23T07:52:11.518Z",
+     "age_s": 715041
     },
     {
      "ref": "event:188e603a-4de1-4380-a771-b47b6ae2aa00",
      "source": "event",
-     "observed_at": "2026-09-23T08:52:18.488Z"
+     "observed_at": "2026-09-23T08:52:18.488Z",
+     "age_s": 711434
     },
     {
      "ref": "event:7be98655-ce49-44c4-a03b-820caa22c40e",
      "source": "event",
-     "observed_at": "2026-09-12T18:20:41.813Z"
+     "observed_at": "2026-09-12T18:20:41.813Z",
+     "age_s": 1627731
     },
     {
      "ref": "event:aff75d0b-c756-4051-88df-57b7e1da35c5",
      "source": "event",
-     "observed_at": "2026-09-23T08:52:18.488Z"
+     "observed_at": "2026-09-12T17:39:19.761Z",
+     "age_s": 1630213
     },
     {
      "ref": "event:890475fd-5c0f-4e81-9165-db65ddbfe4e5",
      "source": "event",
-     "observed_at": "2026-09-23T08:52:18.488Z"
+     "observed_at": "2026-09-04T16:23:18.644Z",
+     "age_s": 2325974
     },
     {
      "ref": "event:fb22d7e1-bc3c-4582-8338-2f105a4ae85a",
      "source": "event",
-     "observed_at": "2026-09-27T07:21:57.685Z"
+     "observed_at": "2026-09-27T07:21:57.685Z",
+     "age_s": 371255
     },
     {
      "ref": "events:U-03894:count=48",
      "source": "derived",
-     "observed_at": "2026-10-01T14:29:32.922Z"
+     "observed_at": "2026-10-01T14:29:32.922Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T14:29:32.922Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:29:32.922Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T14:29:32.922Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp048",
+      "dialect": "d4",
+      "title_id": "T0915"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T14:29:32.922Z"
+    },
+    "signup_at": {
+     "value": "2024-11-19T00:27:59.551Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:58:02.763Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:58:02.763Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:58:02.763Z"
+    },
+    "lapsed_at": {
+     "value": "2026-09-02T17:30:46.352Z",
+     "source": "event",
+     "observed_at": "2026-09-02T17:30:46.352Z"
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:58:02.763Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:58:02.763Z"
+    },
+    "plays": {
+     "value": {
+      "count": 6,
+      "first_at": "2026-09-02T10:19:25.897Z",
+      "last_at": "2026-09-23T08:52:18.488Z",
+      "days_in_last_14": [
+       "2026-09-23"
+      ],
+      "top_genres": [
+       "Thriller",
+       "Romance",
+       "Family"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-23T08:52:18.488Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-12T18:20:41.813Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-12T18:20:41.813Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "pila-robha-d4",
+       "title_id": "T1817",
+       "last_played_at": "2026-09-23T08:52:18.488Z",
+       "next_episode_id": "pila-robha-d4-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 23,
+       "evidence": "event:188e603a-4de1-4380-a771-b47b6ae2aa00"
+      },
+      {
+       "slug": "gimo-nati-d4",
+       "title_id": "T0978",
+       "last_played_at": "2026-09-12T17:39:19.761Z",
+       "next_episode_id": "gimo-nati-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 13,
+       "evidence": "event:aff75d0b-c756-4051-88df-57b7e1da35c5"
+      },
+      {
+       "slug": "bagi-baya-d4",
+       "title_id": "T1811",
+       "last_played_at": "2026-09-04T16:23:18.644Z",
+       "next_episode_id": "bagi-baya-d4-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 40,
+       "evidence": "event:890475fd-5c0f-4e81-9165-db65ddbfe4e5"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-23T08:52:18.488Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T07:21:57.685Z",
+     "source": "event",
+     "observed_at": "2026-09-27T07:21:57.685Z"
+    },
+    "history_depth": {
+     "value": 48,
+     "source": "derived",
+     "observed_at": "2026-10-01T14:29:32.922Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series pila-robha-d4 (0/23 episodes), last played 2026-09-23",
+    "goal": "G06",
+    "reason": "lapsed recently",
     "evidence": [
-     "event:188e603a-4de1-4380-a771-b47b6ae2aa00"
+     "profile:U-03894@2026-09-29T03:58:02.763Z",
+     "event:238873c8-45c9-4489-a495-dd5bf52028fb"
     ]
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series pila-robha-d4 (0/23 episodes), last played 2026-09-23"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -414,143 +558,120 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 12,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
+   "queue_wait_ms": 0,
    "decided_in_ms": 4,
    "published_at": "2026-10-01T14:29:32.926Z",
-   "status": "PUBLISHED"
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00899",
+   "action_id": "A-00806",
    "decision_id": "D-01915",
    "user_id": "U-03894",
    "trigger_event_id": "5982f123-7e90-4e03-bc96-2b50bc25fa9d",
    "published_at": "2026-10-01T14:29:32.926Z",
-   "goal_id": "G07",
+   "goal_id": "G06",
    "type": "home_page",
    "dialect": "d4",
    "hero_title_id": "T0915",
    "rows": [
     {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T1817",
-      "T0978",
-      "T1811",
-      "T0932",
-      "T0922",
-      "T0918",
-      "T0928",
-      "T0938",
-      "T0926",
-      "T0925"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0933",
-      "T0946",
-      "T0955",
-      "T0985",
-      "T1175",
-      "T0966",
-      "T1040",
-      "T1107",
-      "T1162",
-      "T1150"
-     ]
-    },
-    {
      "row_type": "popular_in_dialect",
      "title_ids": [
       "T0921",
       "T0919",
-      "T0917",
-      "T0920",
+      "T0933",
       "T0924",
-      "T0923",
-      "T0927",
       "T0942",
-      "T0931",
-      "T0939"
+      "T0946",
+      "T0936",
+      "T0956",
+      "T0974",
+      "T0999"
      ]
     },
     {
      "row_type": "new_releases",
      "title_ids": [
-      "T0956",
-      "T0974",
-      "T0999",
-      "T1155",
-      "T0937",
+      "T1040",
+      "T1107",
       "T1116",
       "T1014",
-      "T1048",
       "T1101",
-      "T1031"
+      "T1150",
+      "T1031",
+      "T1083",
+      "T0971",
+      "T1124"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T1175",
+      "T0983",
+      "T1021",
+      "T1170",
+      "T1066",
+      "T1088",
+      "T1005",
+      "T1002",
+      "T1136",
+      "T1054"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0957",
+      "T1041",
+      "T1076",
+      "T0934",
+      "T0940",
+      "T1171",
+      "T1013",
+      "T1169",
+      "T1160",
+      "T0977"
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00900",
-   "decision_id": "D-01915",
-   "user_id": "U-03894",
-   "trigger_event_id": "5982f123-7e90-4e03-bc96-2b50bc25fa9d",
-   "published_at": "2026-10-01T14:29:32.926Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1817",
-   "dialect": "d4",
-   "text": {
-    "title": "Continue Pila Robha (English)",
-    "body": "Episode 1 of Pila Robha (English) is waiting for you."
-   },
-   "deeplink": "ott://title/T1817"
   }
  ],
  "outcomes": [
   {
    "user_id": "U-03894",
    "arm": "agent",
-   "goal_instance_id": "G-01070",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_instance_id": "G-01071",
+   "goal_id": "G06",
+   "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T14:29:32.922Z",
-   "deadline": "2026-10-04T14:29:32.922Z",
+   "deadline": "2026-10-15T14:29:32.922Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'any paid plan' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-00899",
-    "A-00900"
+    "A-00806"
    ]
   }
  ]

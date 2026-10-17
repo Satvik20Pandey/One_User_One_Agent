@@ -19,21 +19,22 @@
    },
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "play_started matched 'same content_slug as the unfinished series'",
+    "success_event_id": "oua-015505",
+    "success_at": "2026-10-02T14:32:15.000Z",
+    "attribution": "exposed_before_success",
     "exposure": {
      "home_page_shown": 1,
-     "message_delivered": 1
+     "message_delivered": 1,
+     "message_clicked": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T09:05:38.237Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-02T14:32:15.000Z judged: G07 succeeded (exposed_before_success; page shown 1x, message delivered 1x). play_started matched 'same content_slug as the unfinished series'"
   ],
   "arm": "agent",
   "facts": {
@@ -216,10 +217,10 @@
    "D-01138"
   ],
   "actions": [
-   "A-00514",
-   "A-00515"
+   "A-00462",
+   "A-00463"
   ],
-  "updated_at": "2026-10-01T09:05:38.241Z"
+  "updated_at": "2026-10-01T09:05:39.440Z"
  },
  "decisions": [
   {
@@ -310,39 +311,161 @@
     {
      "ref": "trigger:801720ad-b44a-4486-9cb6-3c6e32bc8561",
      "source": "event",
-     "observed_at": "2026-10-01T09:05:38.237Z"
+     "observed_at": "2026-10-01T09:05:38.237Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02431@2026-09-29T13:14:45.049Z",
      "source": "profile",
-     "observed_at": "2026-09-29T13:14:45.049Z"
+     "observed_at": "2026-09-29T13:14:45.049Z",
+     "age_s": 157853
     },
     {
      "ref": "event:9eeb96cb-1af9-4ef1-8172-a63e9810ea44",
      "source": "event",
-     "observed_at": "2026-09-14T06:01:46.978Z"
+     "observed_at": "2026-09-02T11:18:41.939Z",
+     "age_s": 2497616
     },
     {
      "ref": "event:e7f5e5ef-bd39-4f52-a482-870217e77773",
      "source": "event",
-     "observed_at": "2026-09-14T06:01:46.978Z"
+     "observed_at": "2026-09-14T06:01:46.978Z",
+     "age_s": 1479831
     },
     {
      "ref": "event:59d44ce6-464f-44f7-ab4d-c697b3208e08",
      "source": "event",
-     "observed_at": "2026-09-14T06:04:30.694Z"
+     "observed_at": "2026-09-14T06:04:30.694Z",
+     "age_s": 1479667
     },
     {
      "ref": "event:67b7950c-5a69-4633-9f98-6481ec4c9db8",
      "source": "event",
-     "observed_at": "2026-09-27T10:13:31.263Z"
+     "observed_at": "2026-09-27T10:13:31.263Z",
+     "age_s": 341526
     },
     {
      "ref": "events:U-02431:count=29",
      "source": "derived",
-     "observed_at": "2026-10-01T09:05:38.237Z"
+     "observed_at": "2026-10-01T09:05:38.237Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T09:05:38.237Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:05:38.237Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T09:05:38.237Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp015",
+      "dialect": "d5",
+      "title_id": "T1179"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T09:05:38.237Z"
+    },
+    "signup_at": {
+     "value": "2024-10-11T16:31:43.954Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T13:14:45.049Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T13:14:45.049Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T13:14:45.049Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T13:14:45.049Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T13:14:45.049Z"
+    },
+    "plays": {
+     "value": {
+      "count": 2,
+      "first_at": "2026-09-02T11:18:41.939Z",
+      "last_at": "2026-09-14T06:01:46.978Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Comedy",
+       "Family",
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-14T06:01:46.978Z"
+    },
+    "completions": {
+     "value": {
+      "count": 1,
+      "last_at": "2026-09-14T06:04:30.694Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-14T06:04:30.694Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "kova-sako-d5",
+       "title_id": "T1180",
+       "last_played_at": "2026-09-14T06:01:46.978Z",
+       "next_episode_id": "kova-sako-d5-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 30,
+       "evidence": "event:e7f5e5ef-bd39-4f52-a482-870217e77773"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-14T06:01:46.978Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T10:13:31.263Z",
+     "source": "event",
+     "observed_at": "2026-09-27T10:13:31.263Z"
+    },
+    "history_depth": {
+     "value": 29,
+     "source": "derived",
+     "observed_at": "2026-10-01T09:05:38.237Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -358,6 +481,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "unfinished series kova-sako-d5 (1/30 episodes), last played 2026-09-14"
    },
    "checks": {
@@ -380,21 +504,23 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T09:05:38.241Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T09:05:39.440Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00514",
+   "action_id": "A-00462",
    "decision_id": "D-01138",
    "user_id": "U-02431",
    "trigger_event_id": "801720ad-b44a-4486-9cb6-3c6e32bc8561",
-   "published_at": "2026-10-01T09:05:38.241Z",
+   "published_at": "2026-10-01T09:05:39.440Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
@@ -463,11 +589,11 @@
    ]
   },
   {
-   "action_id": "A-00515",
+   "action_id": "A-00463",
    "decision_id": "D-01138",
    "user_id": "U-02431",
    "trigger_event_id": "801720ad-b44a-4486-9cb6-3c6e32bc8561",
-   "published_at": "2026-10-01T09:05:38.241Z",
+   "published_at": "2026-10-01T09:05:39.440Z",
    "goal_id": "G07",
    "type": "push",
    "send_at": "2026-10-02T13:30:00.000Z",
@@ -492,18 +618,19 @@
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "play_started matched 'same content_slug as the unfinished series'",
+   "success_event_id": "oua-015505",
+   "success_at": "2026-10-02T14:32:15.000Z",
+   "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 1,
-    "message_delivered": 1
+    "message_delivered": 1,
+    "message_clicked": 1
    },
    "actions": [
-    "A-00514",
-    "A-00515"
+    "A-00462",
+    "A-00463"
    ]
   }
  ]

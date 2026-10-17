@@ -1,56 +1,40 @@
 # Known limitations
 
-What was left out on purpose within the 10-12 hour budget, and every assumption that the brief or the pack did
-not settle. Each assumption is a setting in `config.py` or a named constant in `goals.py`.
+What the brief or the pack left open, how I settled it, and what I would do next. Every assumption is a setting in
+`config.py` or a named constant in `goals.py`, so it can be changed in one place.
 
 ## Assumptions
 
 | Rule in the code | Status | Basis |
 |---|---|---|
-| A trigger buffered on the device for more than 10 minutes is not a live visit (`live_visit_max_age_s`) | assumption | the pack simulator ignores such sessions with the same 600 s cut-off; a page has a 120 min TTL, so acting on a days-old open helps nobody |
+| A trigger buffered on the device for more than 10 minutes is not a live visit (`live_visit_max_age_s`) | assumption | the pack simulator uses the same 600 s cut-off; a page lives 120 minutes, so acting on a days-old open helps nobody |
 | "Recently lapsed" for G06 means within 30 days (`g06_recent_days`) | assumption | `goals.json` gives no number |
 | G10 and G11 are never chosen | derived from data | G10 names no success event; `tv_app_open` never occurs in 142,906 events (checked at start-up, not hard-coded) |
-| Priority when several goals are eligible: G01, G03, G02, G07, G04, G12, G06, G09, G08, G05 (`goal_priority`) | assumption | shortest windows and first-value goals first; engagement before monetisation. Consequences: G03 is rarely chosen because new viewers without a play get G01, and G07 (resume a series) covers about half of all goals while succeeding only about 4% of the time, which lowers the power of the holdout comparison. The pilot data has no G07 rows to tune this on; the next step is to rank goals by their measured uplift per arm |
-| Page dialect is the app's dialect on the trigger; profile and deeplink are fallbacks for messages only | derived | `interventions.json`: the app requests the page of the dialect it is set to |
-| Messages only for G07, G08 and G04, sent at 19:00 IST the next day, WhatsApp before push | design choice | proportionate actions; the brief asks for one channel and respects quiet hours |
+| Goal order per lifecycle stage (`GOAL_PRIORITY_BY_STAGE`) | assumption | new viewers: first value; trial: convert; subscribers: habit and new releases; lapsed: come back; free viewers: first full episode, then resume. Broad success signals before narrow ones, so the holdout comparison has power |
+| Page dialect is the app's dialect on the trigger; profile and deeplink are fallbacks for push and WhatsApp only | derived | `interventions.json`: the app requests the page of the dialect it is set to |
+| A push or WhatsApp needs evidence confidence of at least 0.6 (`message_min_confidence`); otherwise page only | design choice | a message outside the app is the action most likely to land in the wrong dialect or annoy; a page is always in the app's dialect |
+| Messages only for goals with a concrete hook (resume, new release, trial ending), sent at 19:00 IST the next day; in-app at the next open | design choice | proportionate actions inside quiet hours and caps |
+| A goal that failed for a viewer is not retried for 7 days (`retry_failed_goal_days`) | design choice | learn from the outcome instead of repeating the same plan |
 | G06 success counts any `purchase_completed`, including the 1 rupee trial | assumption | `goals.json` says "any paid plan" |
-| `decided_in_ms` includes simulated waits (10 s model timeout, 8 s store timeout, 2 s slow read) | design choice | the replay runs faster than real time; this keeps the latency report honest about dependency failures |
-| Confidence = 0.4 + 0.15 profile + 0.1 history depth + 0.05 dialect agreement + 0.05 fresh trigger, minus 0.15 for dialect conflicts, 0.2 for a fallback, 0.1 for a veto | heuristic | the brief asks for a number with a reason; this is about evidence completeness, not the model's self-report |
+| Four decision workers share one queue (`workers`); a surge is 2.5 times the previous hour's rate (`surge_ratio`) | assumption | sized for the replay; the latency report shows the queue never formed with four |
+| The mock model costs 1.2 s per call (`mock_model_latency_s`) | assumption | keeps latency figures realistic in mock mode |
+| Confidence = 0.4 + 0.15 profile + 0.1 history depth + 0.05 dialect agreement + 0.05 fresh trigger, minus 0.15 for a dialect conflict, 0.2 for a fallback, 0.1 for a veto | heuristic | the brief asks for a number with a reason; it measures evidence completeness, not a model's self-report |
 
-## Left incomplete
+## Left open
 
-- **Concurrency.** The replay is single-threaded and processes triggers in delivery order. The design shards by
-  `user_id` (agents are independent, the store is the only shared state) but no worker pool is implemented.
-- **Learning is recorded, not yet acted on.** Each viewer's state carries plain-language learnings from the judge.
-  The next plan reconciles the active goal and the message cap, but does not yet change strategy based on past
-  verdicts (for example, preferring a message after a page failed twice).
-- **In-app messages** are supported in the action schema but never chosen; the simulator only queues them.
-- **Dialect names.** The WhatsApp template wants a `dialect_name`; the pack has only codes, so the code is sent
-  in upper case.
-- **Live provider untested against a real API.** The OpenAI-compatible adapter is exercised with a fake client in
-  the tests. The sample run is mock mode so evaluators can reproduce it without a key.
-- **Exposure detection relies on simulator events.** `home_page_shown` with `page_action_id` and
-  `message_delivered` with `action_id` are how the judge knows a viewer saw something; a production stream would
-  need the same join keys.
-- **Store degradation is simulated at the read layer** of our own SQLite store; the replay cannot make SQLite
-  itself slow.
-- **Sample size.** The agent-minus-holdout difference in the sample run has a confidence interval that includes
-  zero. The report says so rather than claiming an effect.
-- **The model is consulted more often than it needs to be.** It is asked on every agent-arm decision that has
-  something to publish (909 calls in the sample run). A production version would ask only when there is push copy
-  to write or several hero titles tie, to save latency and cost; the rules already decide everything else.
-- **Full fact tables are kept for the latest decision only.** Every decision record keeps its evidence refs with
-  their timestamps, conflicts and assumptions, and the event store keeps every event, so any moment can be rebuilt;
-  but the per-viewer state stores the complete fact table only as of the last decision.
-- **The demo app is a local tool, not a product UI.** It runs the agent in mock mode only and serves on localhost.
-  "Try the agent" starts each what-if from the viewer's 30-day history, so it ignores what the agent did for that
-  viewer earlier on the replay day; the saved run is the record of that.
-- **No "continue watching" WhatsApp template.** The approved `wa_new_episode_v2` says "Naya episode aa gaya" (a new
-  episode is here), which is untrue for a series the viewer left weeks ago. Resume messages therefore use the
-  neutral `wa_recommend_title_v1`, and the verifier vetoes "new episode" copy for any title that is not a recent
-  release. A dedicated template would be better copy; templates cannot be invented.
+- **No real model run.** The OpenAI-compatible adapter is tested with a fake client only. The sample run uses the
+  mock, which reproduces every scripted fault in `model_faults.jsonl`, so evaluators need no key.
+- **One effect estimate is noisy.** On the sample run the agent-minus-holdout interval includes zero. Across other
+  simulator seeds the estimate moves by a few points. The report says "not proven" instead of claiming a win.
 - **Attribution is about order, not cause.** "Exposed before success" only says the viewer saw an agent action
-  before reaching the goal. Some purchases on the replay day were scripted to happen regardless of the agent; only
-  the arm comparison measures effect.
-- **Decision and action ids are counters within one run.** `run-all` always starts from a fresh store; resuming a
-  half-finished replay into the same store is not supported.
+  before reaching the goal; some replay-day purchases were scripted to happen regardless. Only the arm comparison
+  measures effect.
+- **Exposure comes from simulator events.** `home_page_shown` with `page_action_id` and `message_delivered` with
+  `action_id` are how the judge knows a viewer saw something; a production stream needs the same join keys.
+- **No "continue watching" WhatsApp template.** `wa_new_episode_v2` ("Naya episode aa gaya") would be untrue for a
+  series left weeks ago, so resume messages use the neutral `wa_recommend_title_v1`; templates cannot be invented.
+- **Dialect names.** WhatsApp templates want a `dialect_name`; the pack has only codes, so the code is sent.
+- **Learning works across goals, not across runs.** The planner uses judged outcomes stored in the viewer's state;
+  `run-all` starts from a fresh store each time, so a second day would need the store kept between runs.
+- **The demo app runs mock mode on localhost only.** Each what-if starts from the viewer's history and that day's
+  events before the open; it is a window onto the agent, not a product screen.

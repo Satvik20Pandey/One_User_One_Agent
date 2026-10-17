@@ -23,16 +23,14 @@
     "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "published_but_never_seen",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T08:06:02.143Z judged: G07 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T08:06:02.143Z judged: G07 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -222,10 +220,9 @@
    "D-01008"
   ],
   "actions": [
-   "A-00442",
-   "A-00443"
+   "A-00397"
   ],
-  "updated_at": "2026-10-01T08:06:02.148Z"
+  "updated_at": "2026-10-01T08:06:02.145Z"
  },
  "decisions": [
   {
@@ -256,8 +253,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -319,45 +315,174 @@
     {
      "ref": "trigger:a38f9d53-6afd-4e3d-988f-e09a094f4f22",
      "source": "event",
-     "observed_at": "2026-10-01T08:06:02.143Z"
+     "observed_at": "2026-10-01T08:06:02.143Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-02594@2026-09-29T15:58:52.230Z",
      "source": "profile",
-     "observed_at": "2026-09-29T15:58:52.230Z"
+     "observed_at": "2026-09-29T15:58:52.230Z",
+     "age_s": 144429
     },
     {
      "ref": "event:71314fae-3dae-4338-9bba-340061f5f6ad",
      "source": "event",
-     "observed_at": "2026-09-24T01:28:18.711Z"
+     "observed_at": "2026-09-20T14:35:47.502Z",
+     "age_s": 927014
     },
     {
      "ref": "event:1f0c7923-2245-4495-a1b6-fdf556f9e48e",
      "source": "event",
-     "observed_at": "2026-09-24T01:28:18.711Z"
+     "observed_at": "2026-09-24T01:28:18.711Z",
+     "age_s": 628663
     },
     {
      "ref": "event:161eb14e-357d-4e52-a246-f7bb9f73c63b",
      "source": "event",
-     "observed_at": "2026-09-24T01:31:05.773Z"
+     "observed_at": "2026-09-20T14:38:32.407Z",
+     "age_s": 926849
     },
     {
      "ref": "event:94f550ae-e8cc-4a88-ac33-8422c55d2dbf",
      "source": "event",
-     "observed_at": "2026-09-24T01:31:05.773Z"
+     "observed_at": "2026-09-24T01:31:05.773Z",
+     "age_s": 628496
     },
     {
      "ref": "event:3ce527ab-e96e-4c0b-8e1d-6405f05f9cb4",
      "source": "event",
-     "observed_at": "2026-09-24T01:26:24.613Z"
+     "observed_at": "2026-09-24T01:26:24.613Z",
+     "age_s": 628777
     },
     {
      "ref": "events:U-02594:count=28",
      "source": "derived",
-     "observed_at": "2026-10-01T08:06:02.143Z"
+     "observed_at": "2026-10-01T08:06:02.143Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T08:06:02.143Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d5",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d3",
+       "deeplink:d4"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:06:02.143Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T08:06:02.143Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp040",
+      "dialect": "d4",
+      "title_id": "T0915"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T08:06:02.143Z"
+    },
+    "signup_at": {
+     "value": "2026-01-14T08:19:55.560Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T15:58:52.230Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T15:58:52.230Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T15:58:52.230Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T15:58:52.230Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T15:58:52.230Z"
+    },
+    "plays": {
+     "value": {
+      "count": 2,
+      "first_at": "2026-09-20T14:35:47.502Z",
+      "last_at": "2026-09-24T01:28:18.711Z",
+      "days_in_last_14": [
+       "2026-09-20",
+       "2026-09-24"
+      ],
+      "top_genres": [
+       "Devotional"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T01:28:18.711Z"
+    },
+    "completions": {
+     "value": {
+      "count": 2,
+      "last_at": "2026-09-24T01:31:05.773Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-24T01:31:05.773Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "gubava-gihaya-d5",
+       "title_id": "T1177",
+       "last_played_at": "2026-09-24T01:28:18.711Z",
+       "next_episode_id": "gubava-gihaya-d5-s1e3",
+       "next_episode_number": 3,
+       "watched": 2,
+       "total": 29,
+       "evidence": "event:1f0c7923-2245-4495-a1b6-fdf556f9e48e"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-24T01:28:18.711Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-24T01:26:24.613Z",
+     "source": "event",
+     "observed_at": "2026-09-24T01:26:24.613Z"
+    },
+    "history_depth": {
+     "value": 28,
+     "source": "derived",
+     "observed_at": "2026-10-01T08:06:02.143Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d5, profile=d3, deeplink=d4 -> used d5 (app_setting)"
    ],
@@ -370,11 +495,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "unfinished series gubava-gihaya-d5 (2/29 episodes), last played 2026-09-24"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -383,34 +508,30 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 12,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T08:06:02.148Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T08:06:02.145Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00442",
+   "action_id": "A-00397",
    "decision_id": "D-01008",
    "user_id": "U-02594",
    "trigger_event_id": "a38f9d53-6afd-4e3d-988f-e09a094f4f22",
-   "published_at": "2026-10-01T08:06:02.148Z",
+   "published_at": "2026-10-01T08:06:02.145Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
@@ -477,23 +598,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00443",
-   "decision_id": "D-01008",
-   "user_id": "U-02594",
-   "trigger_event_id": "a38f9d53-6afd-4e3d-988f-e09a094f4f22",
-   "published_at": "2026-10-01T08:06:02.148Z",
-   "goal_id": "G07",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1177",
-   "dialect": "d5",
-   "text": {
-    "title": "Continue Gubava Gihaya",
-    "body": "Episode 3 of Gubava Gihaya is waiting for you."
-   },
-   "deeplink": "ott://title/T1177"
   }
  ],
  "outcomes": [
@@ -512,13 +616,10 @@
    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
+   "attribution": "published_but_never_seen",
+   "exposure": {},
    "actions": [
-    "A-00442",
-    "A-00443"
+    "A-00397"
    ]
   }
  ]

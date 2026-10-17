@@ -72,15 +72,17 @@ class RuleBook:
         return True, ""
 
     # ------------------------------------------------------------------ eligibility
-    def eligible(self, facts: ViewerFacts) -> list[Eligibility]:
-        """Eligible goals in priority order. Unmeasurable goals are never offered."""
+    def eligible(self, facts: ViewerFacts, skip: dict[str, str] | None = None) -> list[Eligibility]:
+        """Eligible goals in the priority order of the viewer's lifecycle stage. Unmeasurable goals are never
+        offered, and goals in `skip` (goal_id -> reason, from what the agent learned) are left out."""
         if not facts.known():
             return []
-        order = list(self.settings.goal_priority) + [g for g in self.goals if g not in self.settings.goal_priority]
+        stage = facts.value("subscription_status") or "unknown"
+        order = list(self.settings.goal_priority.get(stage, self.settings.goal_priority["unknown"]))
         out = []
         for goal_id in order:
             ok, _ = self.measurable(goal_id)
-            if ok:
+            if ok and goal_id not in (skip or {}):
                 e = self.check(goal_id, facts)
                 if e.eligible:
                     out.append(e)

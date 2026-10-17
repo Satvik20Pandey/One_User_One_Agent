@@ -18,19 +18,18 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-    "success_event_id": "oua-006113",
+    "success_event_id": "oua-006065",
     "success_at": "2026-10-01T00:46:57.335Z",
     "attribution": "exposed_before_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-01T00:46:57.335Z judged: G08 succeeded (exposed_before_success; page shown 1x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
+   "2026-10-01T00:46:57.335Z judged: G08 succeeded (exposed_before_success; page shown 1x, message delivered 0x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -236,11 +235,10 @@
    "D-00665"
   ],
   "actions": [
-   "A-00054",
-   "A-00055",
-   "A-00238"
+   "A-00048",
+   "A-00210"
   ],
-  "updated_at": "2026-10-01T05:25:49.269Z"
+  "updated_at": "2026-10-01T05:25:49.268Z"
  },
  "decisions": [
   {
@@ -271,8 +269,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -305,55 +302,190 @@
     {
      "ref": "trigger:39cff869-21fc-43f1-aa9b-2d941c365a1a",
      "source": "event",
-     "observed_at": "2026-10-01T00:44:00.335Z"
+     "observed_at": "2026-10-01T00:44:00.335Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00903@2026-09-29T14:03:36.995Z",
      "source": "profile",
-     "observed_at": "2026-09-29T14:03:36.995Z"
+     "observed_at": "2026-09-29T14:03:36.995Z",
+     "age_s": 124823
     },
     {
      "ref": "event:730c8e51-e669-4fb2-be89-ce28130d29f6",
      "source": "event",
-     "observed_at": "2026-09-29T14:03:36.995Z"
+     "observed_at": "2026-09-02T01:52:38.067Z",
+     "age_s": 2501482
     },
     {
      "ref": "event:437b4d39-29fd-4825-aa74-222615f84841",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-28T12:26:13.543Z",
+     "age_s": 217066
     },
     {
      "ref": "event:fdd4998a-01f5-426d-b10c-625b693bcd10",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-30T00:30:41.418Z",
+     "age_s": 87198
     },
     {
      "ref": "event:385dfd13-6cf3-43d2-bc6a-7e8cb9604aca",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-30T08:30:29.550Z",
+     "age_s": 58410
     },
     {
      "ref": "event:6e958ee7-21c2-41e1-83c2-0e1a0458ea69",
      "source": "event",
-     "observed_at": "2026-09-30T08:53:30.972Z"
+     "observed_at": "2026-09-30T00:33:27.318Z",
+     "age_s": 87033
     },
     {
      "ref": "event:1dee293c-a180-4c1a-847c-7b805ef18c46",
      "source": "event",
-     "observed_at": "2026-09-30T08:53:30.972Z"
+     "observed_at": "2026-09-30T08:53:30.972Z",
+     "age_s": 57029
     },
     {
      "ref": "event:e104b9f1-ecdb-4a98-bf18-28035040d054",
      "source": "event",
-     "observed_at": "2026-09-30T17:00:33.738Z"
+     "observed_at": "2026-09-30T17:00:33.738Z",
+     "age_s": 27806
     },
     {
      "ref": "events:U-00903:count=86",
      "source": "derived",
-     "observed_at": "2026-10-01T00:44:00.335Z"
+     "observed_at": "2026-10-01T00:44:00.335Z",
+     "age_s": 0
     }
    ],
-   "assumptions": [],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T00:44:00.335Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T00:44:00.335Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T00:44:00.335Z"
+    },
+    "signup_at": {
+     "value": "2025-01-11T14:32:56.900Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "plays": {
+     "value": {
+      "count": 8,
+      "first_at": "2026-09-09T13:10:45.440Z",
+      "last_at": "2026-09-30T08:30:29.550Z",
+      "days_in_last_14": [
+       "2026-09-20",
+       "2026-09-26",
+       "2026-09-28",
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Crime",
+       "Comedy",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T08:30:29.550Z"
+    },
+    "completions": {
+     "value": {
+      "count": 6,
+      "last_at": "2026-09-30T08:53:30.972Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T08:53:30.972Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "salosa-valo-d1",
+       "title_id": "T0015",
+       "last_played_at": "2026-09-30T08:30:29.550Z",
+       "next_episode_id": "salosa-valo-d1-s1e5",
+       "next_episode_number": 5,
+       "watched": 4,
+       "total": 12,
+       "evidence": "event:385dfd13-6cf3-43d2-bc6a-7e8cb9604aca"
+      },
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-30T00:30:41.418Z",
+       "next_episode_id": "yane-tegi-d3-s1e3",
+       "next_episode_number": 3,
+       "watched": 2,
+       "total": 20,
+       "evidence": "event:fdd4998a-01f5-426d-b10c-625b693bcd10"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-30T08:30:29.550Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T17:00:33.738Z",
+     "source": "event",
+     "observed_at": "2026-09-30T17:00:33.738Z"
+    },
+    "history_depth": {
+     "value": 86,
+     "source": "derived",
+     "observed_at": "2026-10-01T00:44:00.335Z"
+    }
+   },
+   "assumptions": [
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
+   ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d2, deeplink=None -> used d3 (app_setting)"
    ],
@@ -370,6 +502,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "active subscriber"
    },
    "checks": {
@@ -380,24 +513,21 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T00:44:00.340Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T00:44:01.538Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   },
   {
    "decision_id": "D-00665",
@@ -460,56 +590,198 @@
     {
      "ref": "trigger:2adf400f-1037-4068-adcc-e22ce1bdd6ed",
      "source": "event",
-     "observed_at": "2026-10-01T05:25:49.264Z"
+     "observed_at": "2026-10-01T05:25:49.264Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00903@2026-09-29T14:03:36.995Z",
      "source": "profile",
-     "observed_at": "2026-09-29T14:03:36.995Z"
+     "observed_at": "2026-09-29T14:03:36.995Z",
+     "age_s": 141732
     },
     {
      "ref": "event:730c8e51-e669-4fb2-be89-ce28130d29f6",
      "source": "event",
-     "observed_at": "2026-09-29T14:03:36.995Z"
+     "observed_at": "2026-09-02T01:52:38.067Z",
+     "age_s": 2518391
     },
     {
      "ref": "event:437b4d39-29fd-4825-aa74-222615f84841",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-28T12:26:13.543Z",
+     "age_s": 233975
     },
     {
      "ref": "event:fdd4998a-01f5-426d-b10c-625b693bcd10",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-30T00:30:41.418Z",
+     "age_s": 104107
     },
     {
      "ref": "event:385dfd13-6cf3-43d2-bc6a-7e8cb9604aca",
      "source": "event",
-     "observed_at": "2026-09-30T08:30:29.550Z"
+     "observed_at": "2026-09-30T08:30:29.550Z",
+     "age_s": 75319
     },
     {
      "ref": "event:6e958ee7-21c2-41e1-83c2-0e1a0458ea69",
      "source": "event",
-     "observed_at": "2026-09-30T08:53:30.972Z"
+     "observed_at": "2026-09-30T00:33:27.318Z",
+     "age_s": 103941
     },
     {
      "ref": "event:1dee293c-a180-4c1a-847c-7b805ef18c46",
      "source": "event",
-     "observed_at": "2026-09-30T08:53:30.972Z"
+     "observed_at": "2026-09-30T08:53:30.972Z",
+     "age_s": 73938
     },
     {
      "ref": "event:39cff869-21fc-43f1-aa9b-2d941c365a1a",
      "source": "event",
-     "observed_at": "2026-10-01T00:44:00.335Z"
+     "observed_at": "2026-10-01T00:44:00.335Z",
+     "age_s": 16908
     },
     {
      "ref": "events:U-00903:count=87",
      "source": "derived",
-     "observed_at": "2026-10-01T05:25:49.264Z"
+     "observed_at": "2026-10-01T05:25:49.264Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:25:49.264Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:25:49.264Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:25:49.264Z"
+    },
+    "campaign_deeplink": {
+     "value": {
+      "campaign": "cmp026",
+      "dialect": "d3",
+      "title_id": "T0903"
+     },
+     "source": "deeplink",
+     "observed_at": "2026-10-01T05:25:49.264Z"
+    },
+    "signup_at": {
+     "value": "2025-01-11T14:32:56.900Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T14:03:36.995Z"
+    },
+    "plays": {
+     "value": {
+      "count": 8,
+      "first_at": "2026-09-09T13:10:45.440Z",
+      "last_at": "2026-09-30T08:30:29.550Z",
+      "days_in_last_14": [
+       "2026-09-20",
+       "2026-09-26",
+       "2026-09-28",
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Crime",
+       "Comedy",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T08:30:29.550Z"
+    },
+    "completions": {
+     "value": {
+      "count": 6,
+      "last_at": "2026-09-30T08:53:30.972Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T08:53:30.972Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "salosa-valo-d1",
+       "title_id": "T0015",
+       "last_played_at": "2026-09-30T08:30:29.550Z",
+       "next_episode_id": "salosa-valo-d1-s1e5",
+       "next_episode_number": 5,
+       "watched": 4,
+       "total": 12,
+       "evidence": "event:385dfd13-6cf3-43d2-bc6a-7e8cb9604aca"
+      },
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-30T00:30:41.418Z",
+       "next_episode_id": "yane-tegi-d3-s1e3",
+       "next_episode_number": 3,
+       "watched": 2,
+       "total": 20,
+       "evidence": "event:fdd4998a-01f5-426d-b10c-625b693bcd10"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-30T08:30:29.550Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T00:44:00.335Z",
+     "source": "event",
+     "observed_at": "2026-10-01T00:44:00.335Z"
+    },
+    "history_depth": {
+     "value": 87,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:25:49.264Z"
+    }
+   },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d3, profile=d2, deeplink=d3 -> used d3 (app_setting)"
@@ -523,11 +795,11 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "reason": "active subscriber"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
     "passed": [
@@ -536,29 +808,30 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action",
-     "injection"
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
+    "model_calls": 0,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T05:25:49.269Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T05:25:49.268Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00054",
+   "action_id": "A-00048",
    "decision_id": "D-00090",
    "user_id": "U-00903",
    "trigger_event_id": "39cff869-21fc-43f1-aa9b-2d941c365a1a",
-   "published_at": "2026-10-01T00:44:00.340Z",
+   "published_at": "2026-10-01T00:44:01.538Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d3",
@@ -589,28 +862,11 @@
    ]
   },
   {
-   "action_id": "A-00055",
-   "decision_id": "D-00090",
-   "user_id": "U-00903",
-   "trigger_event_id": "39cff869-21fc-43f1-aa9b-2d941c365a1a",
-   "published_at": "2026-10-01T00:44:00.340Z",
-   "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0904",
-   "dialect": "d3",
-   "text": {
-    "title": "New in D3: Jakasa Dapi",
-    "body": "Jakasa Dapi just released. Start watching now."
-   },
-   "deeplink": "ott://title/T0904"
-  },
-  {
-   "action_id": "A-00238",
+   "action_id": "A-00210",
    "decision_id": "D-00665",
    "user_id": "U-00903",
    "trigger_event_id": "2adf400f-1037-4068-adcc-e22ce1bdd6ed",
-   "published_at": "2026-10-01T05:25:49.269Z",
+   "published_at": "2026-10-01T05:25:49.268Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d3",
@@ -655,17 +911,15 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-   "success_event_id": "oua-006113",
+   "success_event_id": "oua-006065",
    "success_at": "2026-10-01T00:46:57.335Z",
    "attribution": "exposed_before_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-00054",
-    "A-00055",
-    "A-00238"
+    "A-00048",
+    "A-00210"
    ]
   }
  ]

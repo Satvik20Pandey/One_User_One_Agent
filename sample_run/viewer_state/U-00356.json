@@ -184,7 +184,7 @@
    "D-00886"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T07:14:52.589Z"
+  "updated_at": "2026-10-01T07:14:52.588Z"
  },
  "decisions": [
   {
@@ -230,34 +230,136 @@
     {
      "ref": "trigger:d76f68b5-70da-4d71-9d68-6971e09c5671",
      "source": "event",
-     "observed_at": "2026-10-01T07:14:52.587Z"
+     "observed_at": "2026-10-01T07:14:52.587Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-00356@2026-09-29T03:53:50.106Z",
      "source": "profile",
-     "observed_at": "2026-09-29T03:53:50.106Z"
+     "observed_at": "2026-09-29T03:53:50.106Z",
+     "age_s": 184862
     },
     {
      "ref": "event:6af0de5c-9889-4c4b-aae5-1412cc8f3343",
      "source": "event",
-     "observed_at": "2026-09-30T06:59:35.877Z"
+     "observed_at": "2026-09-30T06:59:35.877Z",
+     "age_s": 87316
     },
     {
      "ref": "events:U-00356:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:36785571-244a-4671-920f-cde4ac6138da",
      "source": "event",
-     "observed_at": "2026-09-30T06:59:00.276Z"
+     "observed_at": "2026-09-30T06:59:00.276Z",
+     "age_s": 87352
     },
     {
      "ref": "events:U-00356:count=9",
      "source": "derived",
-     "observed_at": "2026-10-01T07:14:52.587Z"
+     "observed_at": "2026-10-01T07:14:52.587Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T07:14:52.587Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:14:52.587Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T07:14:52.587Z"
+    },
+    "signup_at": {
+     "value": "2025-05-14T21:27:26.927Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:53:50.106Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-29T03:53:50.106Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:53:50.106Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:53:50.106Z"
+    },
+    "consent_whatsapp": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T03:53:50.106Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-30T06:59:35.877Z",
+      "last_at": "2026-09-30T06:59:35.877Z",
+      "days_in_last_14": [
+       "2026-09-30"
+      ],
+      "top_genres": [
+       "Drama",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T06:59:35.877Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T06:59:00.276Z",
+     "source": "event",
+     "observed_at": "2026-09-30T06:59:00.276Z"
+    },
+    "history_depth": {
+     "value": 9,
+     "source": "derived",
+     "observed_at": "2026-10-01T07:14:52.587Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -271,7 +373,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -283,9 +387,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T07:14:52.589Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T07:14:52.588Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-00888",
@@ -327,7 +433,7 @@
     {
      "ref": "decision:D-00886",
      "source": "store",
-     "observed_at": "2026-10-01T07:14:52.589Z"
+     "observed_at": "2026-10-01T07:14:52.588Z"
     }
    ],
    "assumptions": [],
@@ -352,7 +458,8 @@
    "fallback_used": null,
    "decided_in_ms": 0,
    "published_at": "2026-10-01T07:15:16.936Z",
-   "status": "DUPLICATE"
+   "status": "DUPLICATE",
+   "during_surge": false
   }
  ],
  "actions": [],

@@ -172,7 +172,7 @@
    "D-00544"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T04:47:28.645Z"
+  "updated_at": "2026-10-01T04:47:28.644Z"
  },
  "decisions": [
   {
@@ -208,34 +208,147 @@
     {
      "ref": "trigger:0e3452cf-23c2-4087-90cb-69cf5e1eaaff",
      "source": "event",
-     "observed_at": "2026-10-01T04:47:28.644Z"
+     "observed_at": "2026-09-30T18:33:26.319Z",
+     "age_s": 36842
     },
     {
      "ref": "profile:U-01606@2026-09-29T16:58:49.611Z",
      "source": "profile",
-     "observed_at": "2026-09-29T16:58:49.611Z"
+     "observed_at": "2026-09-29T16:58:49.611Z",
+     "age_s": 128919
     },
     {
      "ref": "event:1309f107-c502-4e0b-b372-524bf975c374",
      "source": "event",
-     "observed_at": "2026-09-26T06:40:24.488Z"
+     "observed_at": "2026-09-26T06:40:24.488Z",
+     "age_s": 425224
     },
     {
      "ref": "events:U-01606:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:78a5fcc5-8690-4630-915b-9e2f5412f05c",
      "source": "event",
-     "observed_at": "2026-09-26T13:34:10.339Z"
+     "observed_at": "2026-09-26T13:34:10.339Z",
+     "age_s": 400398
     },
     {
      "ref": "events:U-01606:count=11",
      "source": "derived",
-     "observed_at": "2026-10-01T04:47:28.644Z"
+     "observed_at": "2026-10-01T04:47:28.644Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 36842,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:47:28.644Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:28.644Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:47:28.644Z"
+    },
+    "signup_at": {
+     "value": "2025-03-22T04:45:30.976Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:58:49.611Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:58:49.611Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:58:49.611Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:58:49.611Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:58:49.611Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-26T06:40:24.488Z",
+      "last_at": "2026-09-26T06:40:24.488Z",
+      "days_in_last_14": [
+       "2026-09-26"
+      ],
+      "top_genres": [
+       "Comedy",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-26T06:40:24.488Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "hama-chudibha-d1",
+       "title_id": "T0002",
+       "last_played_at": "2026-09-26T06:40:24.488Z",
+       "next_episode_id": "hama-chudibha-d1-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 36,
+       "evidence": "event:1309f107-c502-4e0b-b372-524bf975c374"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-26T06:40:24.488Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-26T13:34:10.339Z",
+     "source": "event",
+     "observed_at": "2026-09-26T13:34:10.339Z"
+    },
+    "history_depth": {
+     "value": 11,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:47:28.644Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": null,
@@ -243,7 +356,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -255,9 +370,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T04:47:28.645Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T04:47:28.644Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": true
   }
  ],
  "actions": [],

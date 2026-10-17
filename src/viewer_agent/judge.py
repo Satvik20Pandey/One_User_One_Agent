@@ -274,11 +274,37 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
     impact_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     final_path = out_dir / "final_report.md"
-    final_path.write_text(_final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi), encoding="utf-8")
+    faults = read_jsonl(pack_dir / "replay" / "model_faults.jsonl") if (pack_dir / "replay" / "model_faults.jsonl").exists() else []
+    final_path.write_text(_final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi, faults), encoding="utf-8")
     return [impact_path, final_path]
 
 
-def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -> str:
+def _fault_lines(faults: list[dict], decisions: list[dict]) -> list[str]:
+    """How each scripted model fault was met. The mock returns the scripted answer whenever the agent asks."""
+    first = {}
+    for dec in decisions:
+        if dec["status"] != "DUPLICATE":
+            first.setdefault(dec["trigger"]["event_id"], dec)
+    lines = ["", "## Scripted model faults", "", "| Viewer | Scripted fault | What happened |", "|---|---|---|"]
+    for f in faults:
+        dec = first.get(f["trigger_event_id"])
+        if dec is None:
+            what = "trigger not in this replay"
+        elif dec["model"].get("rejected"):
+            what = f"model asked; answer rejected: {dec['model']['rejected']}"
+        elif dec["model"].get("failure"):
+            what = f"model asked; it failed ({dec['model']['failure']}); rules decided, {dec['status']}"
+        elif dec["model"].get("skipped"):
+            what = f"model not asked ({dec['model']['skipped']}); {dec['status']}"
+        else:
+            what = f"model not asked: {dec.get('no_action_reason') or dec['status']}"
+        lines.append(f"| {f['user_id']} | {f['fault']} | {what} |")
+    lines += ["", "Every fault type is also forced through the full agent in `tests/test_failures.py`, so each one is "
+              "exercised even when the agent has no reason to ask the model in the replay."]
+    return lines
+
+
+def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi, faults=()) -> str:
     status = summary["decisions_by_status"]
     verdicts = Counter((o["arm"], o["verdict"]) for o in outcomes)
     no_action = summary["no_action_reasons"]
@@ -294,14 +320,21 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -
     lines += ["", "## Real-time behaviour", "",
               f"- Every decision published within the {latency['budget_s']} s budget: {latency['within_budget']}/{latency['decisions']}; "
               f"late {latency['late']}, failed {latency['failed']}.",
-              f"- p50 {latency['p50_ms']} ms, p95 {latency['p95_ms']} ms, max {latency['max_ms']} ms "
-              f"({latency['with_simulated_wait']} decisions waited on a degraded dependency).",
-              f"- Peak load {latency['peak_triggers_per_minute']} triggers in one minute ({latency['peak_minute_utc']} UTC, the offline-buffer burst).",
+              f"- p50 {latency['p50_ms']} ms, p95 {latency['p95_ms']} ms, max {latency['max_ms']} ms, including mock model "
+              f"latency and {latency['with_simulated_wait']} decisions that waited on a slow dependency.",
+              f"- {latency.get('workers', 1)} decision workers share one queue: queue wait p95 {latency.get('queue_wait_p95_ms', 0)} ms, "
+              f"max {latency.get('queue_wait_max_ms', 0)} ms. Peak load {latency['peak_triggers_per_minute']} opens in one minute "
+              f"({latency['peak_minute_utc']} UTC).",
               f"- Duplicate triggers recognised: {status.get('DUPLICATE', 0)}. Fallbacks: " +
               (", ".join(f"{v} {k}" for k, v in summary["fallbacks"].items()) or "none") + ".",
               f"- Model: {summary['model']['calls']} calls, advice used {summary['model']['advice_used']}, "
-              f"rejected {summary['model']['advice_rejected']}, provider failures {summary['model']['failures']}.",
+              f"rejected {summary['model']['advice_rejected']}, provider failures {summary['model']['failures']}, "
+              f"not asked because it had nothing to add {summary['model'].get('skipped_not_needed', 0)}, "
+              f"skipped during a traffic surge {summary['model'].get('skipped_surge', 0)}.",
               "", "## Changed conditions noticed during the day", ""]
+    for w in summary.get("traffic_surges", []):
+        lines.append(f"- {w['start']} to {w['end']} traffic surge: {w['opens_in_10_min']} opens in 10 minutes against "
+                     f"{w['baseline_per_10_min']} per 10 minutes in the hour before; optional model calls were skipped.")
     for c in controls:
         if c["type"] == "title_withdrawn":
             lines.append(f"- {c['at']} title {c['title_id']} withdrawn: {len(c['live_pages_republished'])} live pages republished without it, "
@@ -309,16 +342,20 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -
         elif c["type"] == "goal_rule_corrected":
             lines.append(f"- {c['at']} success rule for {c['goal_id']} corrected: {c['open_goals_affected']} open goals re-tagged; "
                          f"all {c['goal_id']} goals judged under the corrected rule (version {c['rule_version']}).")
+        elif c.get("dependency"):
+            state = "down" if c["type"] == "dependency_unavailable" else "degraded"
+            lines.append(f"- {c['at']} {c['dependency']} {state} until {c['until']}: {c.get('detail')}.")
         else:
-            lines.append(f"- {c['at']} {c['dependency']} {c['type'].split('_')[1]} until {c['until']}: {c.get('detail')}.")
+            lines.append(f"- {c['at']} control event `{c['type']}` received and logged; no handler needed it.")
     flagged = summary.get("catalogue_text_flagged", [])
     if flagged:
         lines.append(f"- Catalogue descriptions that read like instructions to an AI, flagged and ignored: "
                      f"{', '.join(f['title_id'] for f in flagged)}. Descriptions are never sent to the model; "
                      "the titles themselves remain normal content.")
     lines += [f"- Plan revisions triggered by live events: {len(summary['plan_revisions_from_live_events'])} "
-              "(purchases that closed an open goal before its deadline).", "",
-              "## Simulator verdict on the published actions", "",
+              "(purchases that closed an open goal before its deadline)."]
+    lines += _fault_lines(list(faults), decisions)
+    lines += ["", "## Simulator verdict on the published actions", "",
               f"- Policy problems: **{sim['policy_problem_count']}** (holdout, consent, quiet hours, frequency cap).",
               f"- Pages accepted {sim['counts'].get('home_page_accepted', 0)}, shown personalised {sim['counts'].get('home_page_shown_personalised', 0)}, "
               f"published but not shown {sim['counts'].get('home_page_published_but_not_shown', 0)}.",

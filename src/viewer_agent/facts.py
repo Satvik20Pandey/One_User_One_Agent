@@ -64,13 +64,52 @@ class ViewerFacts:
         return {name: f.as_dict() for name, f in self.facts.items()}
 
     def evidence(self) -> list[dict]:
+        """Every evidence ref once, with its own time and its age at decision time (its freshness)."""
+        times = {e["event_id"]: e["_at"] for e in self.events}
         out, seen = [], set()
         for f in self.facts.values():
             for ref in f.evidence:
-                if ref not in seen:
-                    seen.add(ref)
-                    out.append({"ref": ref, "source": f.source, "observed_at": f.observed_at})
+                if ref in seen:
+                    continue
+                seen.add(ref)
+                kind, _, key = ref.partition(":")
+                at = None
+                if kind in ("event", "trigger"):
+                    at = times.get(key) or (parse_ts(self.trigger["received_at"]) if kind == "trigger" else None)
+                elif kind == "profile":
+                    at = parse_ts(key.split("@", 1)[1])
+                at = at or parse_ts(f.observed_at)
+                out.append({"ref": ref, "source": f.source, "observed_at": iso(at) if at else None,
+                            "age_s": int((self.now - at).total_seconds()) if at else None})
         return out
+
+    def confidence(self) -> tuple[float, list[str]]:
+        """How complete and consistent the evidence is. This is about the data, not about any model's opinion."""
+        score, why = 0.4, []
+        if self.has_profile:
+            score += 0.15
+            why.append("profile row present")
+        else:
+            why.append("no profile row")
+        depth = self.value("history_depth", 0)
+        if depth >= 10:
+            score += 0.1
+            why.append(f"{depth} events of history")
+        elif depth == 0:
+            score -= 0.15
+            why.append("no event history")
+        else:
+            why.append(f"only {depth} events of history")
+        if (self.value("dialect") or {}).get("conflicts"):
+            score -= 0.15
+            why.append("dialect sources disagree")
+        else:
+            score += 0.05
+            why.append("dialect sources agree")
+        if (self.value("trigger_freshness") or {}).get("event_age_s", 0) <= 60:
+            score += 0.05
+            why.append("trigger is fresh")
+        return score, why
 
 
 def event_time(e: dict) -> datetime:

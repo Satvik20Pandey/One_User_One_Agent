@@ -196,7 +196,7 @@
    "D-02050"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:02:03.767Z"
+  "updated_at": "2026-10-01T15:02:03.766Z"
  },
  "decisions": [
   {
@@ -242,34 +242,144 @@
     {
      "ref": "trigger:642b8d02-975e-491c-acd9-807e104a05a8",
      "source": "event",
-     "observed_at": "2026-09-30T18:37:55.110Z"
+     "observed_at": "2026-09-30T18:37:55.110Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01268@2026-09-29T04:29:06.280Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:29:06.280Z"
+     "observed_at": "2026-09-29T04:29:06.280Z",
+     "age_s": 137328
     },
     {
      "ref": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9",
      "source": "event",
-     "observed_at": "2026-09-09T14:09:20.080Z"
+     "observed_at": "2026-09-09T14:09:20.080Z",
+     "age_s": 1830515
     },
     {
      "ref": "events:U-01268:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:06dbafb9-8c47-4c41-8f87-f1e45f15617a",
      "source": "event",
-     "observed_at": "2026-09-19T16:39:36.660Z"
+     "observed_at": "2026-09-19T16:39:36.660Z",
+     "age_s": 957498
     },
     {
      "ref": "events:U-01268:count=20",
      "source": "derived",
-     "observed_at": "2026-09-30T18:37:55.110Z"
+     "observed_at": "2026-09-30T18:37:55.110Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-09-30T18:37:55.110Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-09-30T18:37:55.110Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-09-30T18:37:55.110Z"
+    },
+    "signup_at": {
+     "value": "2024-11-09T08:04:36.906Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-09T14:09:20.080Z",
+      "last_at": "2026-09-09T14:09:20.080Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bhaja-moguba-d2",
+       "title_id": "T1678",
+       "last_played_at": "2026-09-09T14:09:20.080Z",
+       "next_episode_id": "bhaja-moguba-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-19T16:39:36.660Z",
+     "source": "event",
+     "observed_at": "2026-09-19T16:39:36.660Z"
+    },
+    "history_depth": {
+     "value": 20,
+     "source": "derived",
+     "observed_at": "2026-09-30T18:37:55.110Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -283,7 +393,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -295,9 +407,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-09-30T18:37:55.112Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-09-30T18:37:55.111Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-01513",
@@ -342,34 +456,144 @@
     {
      "ref": "trigger:72facd38-b662-4003-8204-3d94d862c01f",
      "source": "event",
-     "observed_at": "2026-10-01T12:00:39.480Z"
+     "observed_at": "2026-10-01T12:00:39.480Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01268@2026-09-29T04:29:06.280Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:29:06.280Z"
+     "observed_at": "2026-09-29T04:29:06.280Z",
+     "age_s": 199893
     },
     {
      "ref": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9",
      "source": "event",
-     "observed_at": "2026-09-09T14:09:20.080Z"
+     "observed_at": "2026-09-09T14:09:20.080Z",
+     "age_s": 1893079
     },
     {
      "ref": "events:U-01268:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:642b8d02-975e-491c-acd9-807e104a05a8",
      "source": "event",
-     "observed_at": "2026-09-30T18:37:55.110Z"
+     "observed_at": "2026-09-30T18:37:55.110Z",
+     "age_s": 62564
     },
     {
      "ref": "events:U-01268:count=21",
      "source": "derived",
-     "observed_at": "2026-10-01T12:00:39.480Z"
+     "observed_at": "2026-10-01T12:00:39.480Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T12:00:39.480Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:00:39.480Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T12:00:39.480Z"
+    },
+    "signup_at": {
+     "value": "2024-11-09T08:04:36.906Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-09T14:09:20.080Z",
+      "last_at": "2026-09-09T14:09:20.080Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bhaja-moguba-d2",
+       "title_id": "T1678",
+       "last_played_at": "2026-09-09T14:09:20.080Z",
+       "next_episode_id": "bhaja-moguba-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T18:37:55.110Z",
+     "source": "event",
+     "observed_at": "2026-09-30T18:37:55.110Z"
+    },
+    "history_depth": {
+     "value": 21,
+     "source": "derived",
+     "observed_at": "2026-10-01T12:00:39.480Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -383,7 +607,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -395,9 +621,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T12:00:39.482Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T12:00:39.481Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-02050",
@@ -442,34 +670,144 @@
     {
      "ref": "trigger:222f2a3f-424e-42ef-9db4-e795b97f2a2f",
      "source": "event",
-     "observed_at": "2026-10-01T15:02:03.765Z"
+     "observed_at": "2026-10-01T15:02:03.765Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01268@2026-09-29T04:29:06.280Z",
      "source": "profile",
-     "observed_at": "2026-09-29T04:29:06.280Z"
+     "observed_at": "2026-09-29T04:29:06.280Z",
+     "age_s": 210777
     },
     {
      "ref": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9",
      "source": "event",
-     "observed_at": "2026-09-09T14:09:20.080Z"
+     "observed_at": "2026-09-09T14:09:20.080Z",
+     "age_s": 1903963
     },
     {
      "ref": "events:U-01268:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:72facd38-b662-4003-8204-3d94d862c01f",
      "source": "event",
-     "observed_at": "2026-10-01T12:00:39.480Z"
+     "observed_at": "2026-10-01T12:00:39.480Z",
+     "age_s": 10884
     },
     {
      "ref": "events:U-01268:count=22",
      "source": "derived",
-     "observed_at": "2026-10-01T15:02:03.765Z"
+     "observed_at": "2026-10-01T15:02:03.765Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T15:02:03.765Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d2",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d2",
+      "message_dialect": "d2"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:02:03.765Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:02:03.765Z"
+    },
+    "signup_at": {
+     "value": "2024-11-09T08:04:36.906Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T04:29:06.280Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-09T14:09:20.080Z",
+      "last_at": "2026-09-09T14:09:20.080Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bhaja-moguba-d2",
+       "title_id": "T1678",
+       "last_played_at": "2026-09-09T14:09:20.080Z",
+       "next_episode_id": "bhaja-moguba-d2-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 34,
+       "evidence": "event:eb180d37-ed8d-4218-b56b-26eefb80a5c9"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-09T14:09:20.080Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T12:00:39.480Z",
+     "source": "event",
+     "observed_at": "2026-10-01T12:00:39.480Z"
+    },
+    "history_depth": {
+     "value": 22,
+     "source": "derived",
+     "observed_at": "2026-10-01T15:02:03.765Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -483,7 +821,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -495,9 +835,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:02:03.767Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T15:02:03.766Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],

@@ -2,35 +2,66 @@
  "state": {
   "user_id": "U-01703",
   "active_goal": {
-   "instance_id": "G-00317",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
-   "started_at": "2026-10-01T05:25:59.574Z",
-   "deadline": "2026-10-04T05:25:59.574Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
-   "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series bagi-baya-d4 (1/40 episodes), last played 2026-09-27",
+   "instance_id": "G-01298",
+   "goal_id": "G09",
+   "name": "weekly_habit_14d",
+   "started_at": "2026-10-01T15:42:29.448Z",
+   "deadline": "2026-10-15T15:42:29.448Z",
+   "success_signal": "play_started (on 3 distinct IST days) within 336h",
+   "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "eligibility_reason": "active subscriber with plays on 1 day(s) in the last 14",
    "evidence": [
+    "event:ef105520-3dd0-4e83-9f53-b7d10a05a305",
+    "event:f8fb0e7b-6776-4185-bd72-182e097a2454",
+    "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc",
     "event:9c8849d7-a327-499d-bf43-2d54a524c132"
    ],
-   "context": {
-    "slug": "bagi-baya-d4",
-    "title_id": "T0916"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
+    "verdict": "succeeded",
+    "reason": "plays on 5 distinct IST days",
+    "success_event_id": "oua-011308",
+    "success_at": "2026-10-06T13:19:56.000Z",
     "attribution": "holdout_no_action",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
    }
   },
-  "goal_history": [],
+  "goal_history": [
+   {
+    "instance_id": "G-00317",
+    "goal_id": "G06",
+    "name": "reactivate_lapsed_14d",
+    "started_at": "2026-10-01T05:25:59.574Z",
+    "deadline": "2026-10-15T05:25:59.574Z",
+    "success_signal": "purchase_completed (any paid plan) within 336h",
+    "rule_version": "goals.json@2026-09-30",
+    "eligibility_reason": "lapsed recently",
+    "evidence": [
+     "profile:U-01703@2026-09-28T20:47:49.127Z",
+     "event:087320d7-d9d2-4cd8-a92c-7292d0e886e3"
+    ],
+    "context": {},
+    "shadow": true,
+    "closed_at": "2026-10-01T05:28:14.359Z",
+    "close_reason": "success_signal_received",
+    "close_event_id": "ef105520-3dd0-4e83-9f53-b7d10a05a305",
+    "outcome": {
+     "verdict": "succeeded",
+     "reason": "purchase_completed matched 'any paid plan'",
+     "success_event_id": "ef105520-3dd0-4e83-9f53-b7d10a05a305",
+     "success_at": "2026-10-01T05:28:14.359Z",
+     "attribution": "holdout_no_action",
+     "exposure": {},
+     "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    }
+   }
+  ],
   "learnings": [
-   "2026-10-04T05:25:59.574Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-01T05:28:14.359Z purchase_completed arrived at 2026-10-01T05:28:14.359Z; success signal for G06 received, goal closed for judgement",
+   "2026-10-01T05:28:14.359Z judged: G06 succeeded (holdout_no_action; nothing of ours was seen). purchase_completed matched 'any paid plan'",
+   "2026-10-06T13:19:56.000Z judged: G09 succeeded (holdout_no_action; nothing of ours was seen). plays on 5 distinct IST days"
   ],
   "arm": "holdout",
   "facts": {
@@ -221,7 +252,8 @@
    "D-02312"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:42:29.451Z"
+  "updated_at": "2026-10-01T15:42:29.452Z",
+  "replan_reason": "purchase_completed arrived at 2026-10-01T05:28:14.359Z; success signal for G06 received, goal closed for judgement"
  },
  "decisions": [
   {
@@ -257,54 +289,183 @@
     {
      "ref": "trigger:45ff22f6-abad-46eb-b974-a455f460996f",
      "source": "event",
-     "observed_at": "2026-10-01T04:45:00.665Z"
+     "observed_at": "2026-09-30T18:48:57.891Z",
+     "age_s": 35762
     },
     {
      "ref": "profile:U-01703@2026-09-28T20:47:49.127Z",
      "source": "profile",
-     "observed_at": "2026-09-28T20:47:49.127Z"
+     "observed_at": "2026-09-28T20:47:49.127Z",
+     "age_s": 201431
     },
     {
      "ref": "event:087320d7-d9d2-4cd8-a92c-7292d0e886e3",
      "source": "event",
-     "observed_at": "2026-09-11T03:03:57.135Z"
+     "observed_at": "2026-09-11T03:03:57.135Z",
+     "age_s": 1734063
     },
     {
      "ref": "event:f8fb0e7b-6776-4185-bd72-182e097a2454",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-15T22:18:21.939Z",
+     "age_s": 1319198
     },
     {
      "ref": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-17T06:53:25.557Z",
+     "age_s": 1201895
     },
     {
      "ref": "event:9c8849d7-a327-499d-bf43-2d54a524c132",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-27T13:42:48.615Z",
+     "age_s": 313332
     },
     {
      "ref": "event:9d0d4039-3ff6-4ebb-8ed1-0fd4d1e2f2ac",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-17T06:56:11.103Z",
+     "age_s": 1201729
     },
     {
      "ref": "event:e7b28ed7-1cf7-4df5-99ca-74ed5fdd9ed5",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-27T13:46:30.463Z",
+     "age_s": 313110
     },
     {
      "ref": "event:bc172ec5-4cec-4e66-bf88-ca21b512d6a9",
      "source": "event",
-     "observed_at": "2026-09-27T13:41:19.672Z"
+     "observed_at": "2026-09-27T13:41:19.672Z",
+     "age_s": 313420
     },
     {
      "ref": "events:U-01703:count=93",
      "source": "derived",
-     "observed_at": "2026-10-01T04:45:00.665Z"
+     "observed_at": "2026-10-01T04:45:00.665Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 35762,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:45:00.665Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:00.665Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:00.665Z"
+    },
+    "signup_at": {
+     "value": "2025-05-05T02:14:26.366Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "lapsed_at": {
+     "value": "2026-09-11T03:03:57.135Z",
+     "source": "event",
+     "observed_at": "2026-09-11T03:03:57.135Z"
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "plays": {
+     "value": {
+      "count": 10,
+      "first_at": "2026-09-01T15:02:14.257Z",
+      "last_at": "2026-09-27T13:42:48.615Z",
+      "days_in_last_14": [
+       "2026-09-17",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Family",
+       "Romance",
+       "Drama"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "completions": {
+     "value": {
+      "count": 5,
+      "last_at": "2026-09-27T13:46:30.463Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:46:30.463Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bagi-baya-d4",
+       "title_id": "T0916",
+       "last_played_at": "2026-09-27T13:42:48.615Z",
+       "next_episode_id": "bagi-baya-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 40,
+       "evidence": "event:9c8849d7-a327-499d-bf43-2d54a524c132"
+      },
+      {
+       "slug": "koha-kagite-d4",
+       "title_id": "T1815",
+       "last_played_at": "2026-09-17T06:53:25.557Z",
+       "next_episode_id": "koha-kagite-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 45,
+       "evidence": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T13:41:19.672Z",
+     "source": "event",
+     "observed_at": "2026-09-27T13:41:19.672Z"
+    },
+    "history_depth": {
+     "value": 93,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:45:00.665Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": null,
@@ -312,7 +473,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -324,9 +487,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T04:45:00.668Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T04:45:00.666Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-00666",
@@ -343,12 +508,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G06",
+    "name": "reactivate_lapsed_14d",
     "instance_id": "G-00317",
     "started_at": "2026-10-01T05:25:59.574Z",
-    "deadline": "2026-10-04T05:25:59.574Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-15T05:25:59.574Z",
+    "success_signal": "purchase_completed (any paid plan) within 336h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -371,68 +536,200 @@
     {
      "ref": "trigger:2605f78a-bc62-41c2-8aba-6a38383cd478",
      "source": "event",
-     "observed_at": "2026-10-01T05:25:59.574Z"
+     "observed_at": "2026-10-01T05:25:59.574Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01703@2026-09-28T20:47:49.127Z",
      "source": "profile",
-     "observed_at": "2026-09-28T20:47:49.127Z"
+     "observed_at": "2026-09-28T20:47:49.127Z",
+     "age_s": 203890
     },
     {
      "ref": "event:087320d7-d9d2-4cd8-a92c-7292d0e886e3",
      "source": "event",
-     "observed_at": "2026-09-11T03:03:57.135Z"
+     "observed_at": "2026-09-11T03:03:57.135Z",
+     "age_s": 1736522
     },
     {
      "ref": "event:f8fb0e7b-6776-4185-bd72-182e097a2454",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-15T22:18:21.939Z",
+     "age_s": 1321657
     },
     {
      "ref": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-17T06:53:25.557Z",
+     "age_s": 1204354
     },
     {
      "ref": "event:9c8849d7-a327-499d-bf43-2d54a524c132",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-27T13:42:48.615Z",
+     "age_s": 315790
     },
     {
      "ref": "event:9d0d4039-3ff6-4ebb-8ed1-0fd4d1e2f2ac",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-17T06:56:11.103Z",
+     "age_s": 1204188
     },
     {
      "ref": "event:e7b28ed7-1cf7-4df5-99ca-74ed5fdd9ed5",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-27T13:46:30.463Z",
+     "age_s": 315569
     },
     {
      "ref": "event:45ff22f6-abad-46eb-b974-a455f460996f",
      "source": "event",
-     "observed_at": "2026-09-30T18:48:57.891Z"
+     "observed_at": "2026-09-30T18:48:57.891Z",
+     "age_s": 38221
     },
     {
      "ref": "events:U-01703:count=94",
      "source": "derived",
-     "observed_at": "2026-10-01T05:25:59.574Z"
+     "observed_at": "2026-10-01T05:25:59.574Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:25:59.574Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:25:59.574Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:25:59.574Z"
+    },
+    "signup_at": {
+     "value": "2025-05-05T02:14:26.366Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "subscription_status": {
+     "value": "lapsed",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "lapsed_at": {
+     "value": "2026-09-11T03:03:57.135Z",
+     "source": "event",
+     "observed_at": "2026-09-11T03:03:57.135Z"
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "plays": {
+     "value": {
+      "count": 10,
+      "first_at": "2026-09-01T15:02:14.257Z",
+      "last_at": "2026-09-27T13:42:48.615Z",
+      "days_in_last_14": [
+       "2026-09-17",
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Family",
+       "Romance",
+       "Drama"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "completions": {
+     "value": {
+      "count": 5,
+      "last_at": "2026-09-27T13:46:30.463Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:46:30.463Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bagi-baya-d4",
+       "title_id": "T0916",
+       "last_played_at": "2026-09-27T13:42:48.615Z",
+       "next_episode_id": "bagi-baya-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 40,
+       "evidence": "event:9c8849d7-a327-499d-bf43-2d54a524c132"
+      },
+      {
+       "slug": "koha-kagite-d4",
+       "title_id": "T1815",
+       "last_played_at": "2026-09-17T06:53:25.557Z",
+       "next_episode_id": "koha-kagite-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 45,
+       "evidence": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-30T18:48:57.891Z",
+     "source": "event",
+     "observed_at": "2026-09-30T18:48:57.891Z"
+    },
+    "history_depth": {
+     "value": 94,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:25:59.574Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series bagi-baya-d4 (1/40 episodes), last played 2026-09-27",
+    "goal": "G06",
+    "reason": "lapsed recently",
     "evidence": [
-     "event:9c8849d7-a327-499d-bf43-2d54a524c132"
+     "profile:U-01703@2026-09-28T20:47:49.127Z",
+     "event:087320d7-d9d2-4cd8-a92c-7292d0e886e3"
     ]
    },
    "model": {
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -444,9 +741,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T05:25:59.577Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T05:25:59.576Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   },
   {
    "decision_id": "D-02312",
@@ -463,14 +762,14 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
-    "instance_id": "G-00317",
-    "started_at": "2026-10-01T05:25:59.574Z",
-    "deadline": "2026-10-04T05:25:59.574Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
-    "rule_version": "goals.json@2026-09-30",
-    "committed_now": false,
+    "id": "G09",
+    "name": "weekly_habit_14d",
+    "instance_id": "G-01298",
+    "started_at": "2026-10-01T15:42:29.448Z",
+    "deadline": "2026-10-15T15:42:29.448Z",
+    "success_signal": "play_started (on 3 distinct IST days) within 336h",
+    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+    "committed_now": true,
     "shadow": true
    },
    "no_goal_reason": null,
@@ -491,67 +790,199 @@
     {
      "ref": "trigger:4bf04969-d71e-4913-9c24-f6fe30343124",
      "source": "event",
-     "observed_at": "2026-10-01T15:42:29.448Z"
+     "observed_at": "2026-10-01T15:42:29.448Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-01703@2026-09-28T20:47:49.127Z",
      "source": "profile",
-     "observed_at": "2026-09-28T20:47:49.127Z"
+     "observed_at": "2026-09-28T20:47:49.127Z",
+     "age_s": 240880
     },
     {
      "ref": "event:ef105520-3dd0-4e83-9f53-b7d10a05a305",
      "source": "event",
-     "observed_at": "2026-10-01T05:28:14.359Z"
+     "observed_at": "2026-10-01T05:28:14.359Z",
+     "age_s": 36855
     },
     {
      "ref": "event:087320d7-d9d2-4cd8-a92c-7292d0e886e3",
      "source": "event",
-     "observed_at": "2026-09-11T03:03:57.135Z"
+     "observed_at": "2026-09-11T03:03:57.135Z",
+     "age_s": 1773512
     },
     {
      "ref": "event:f8fb0e7b-6776-4185-bd72-182e097a2454",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-15T22:18:21.939Z",
+     "age_s": 1358647
     },
     {
      "ref": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-17T06:53:25.557Z",
+     "age_s": 1241343
     },
     {
      "ref": "event:9c8849d7-a327-499d-bf43-2d54a524c132",
      "source": "event",
-     "observed_at": "2026-09-27T13:42:48.615Z"
+     "observed_at": "2026-09-27T13:42:48.615Z",
+     "age_s": 352780
     },
     {
      "ref": "event:9d0d4039-3ff6-4ebb-8ed1-0fd4d1e2f2ac",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-17T06:56:11.103Z",
+     "age_s": 1241178
     },
     {
      "ref": "event:e7b28ed7-1cf7-4df5-99ca-74ed5fdd9ed5",
      "source": "event",
-     "observed_at": "2026-09-27T13:46:30.463Z"
+     "observed_at": "2026-09-27T13:46:30.463Z",
+     "age_s": 352558
     },
     {
      "ref": "event:2605f78a-bc62-41c2-8aba-6a38383cd478",
      "source": "event",
-     "observed_at": "2026-10-01T05:25:59.574Z"
+     "observed_at": "2026-10-01T05:25:59.574Z",
+     "age_s": 36989
     },
     {
      "ref": "events:U-01703:count=96",
      "source": "derived",
-     "observed_at": "2026-10-01T15:42:29.448Z"
+     "observed_at": "2026-10-01T15:42:29.448Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T15:42:29.448Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d4",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:42:29.448Z"
+    },
+    "app_language": {
+     "value": "hin",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T15:42:29.448Z"
+    },
+    "signup_at": {
+     "value": "2025-05-05T02:14:26.366Z",
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "subscription_status": {
+     "value": "active",
+     "source": "event",
+     "observed_at": "2026-10-01T05:28:14.359Z"
+    },
+    "ever_paid": {
+     "value": true,
+     "source": "event",
+     "observed_at": "2026-10-01T05:28:14.359Z"
+    },
+    "lapsed_at": {
+     "value": "2026-09-11T03:03:57.135Z",
+     "source": "event",
+     "observed_at": "2026-09-11T03:03:57.135Z"
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-28T20:47:49.127Z"
+    },
+    "plays": {
+     "value": {
+      "count": 10,
+      "first_at": "2026-09-01T15:02:14.257Z",
+      "last_at": "2026-09-27T13:42:48.615Z",
+      "days_in_last_14": [
+       "2026-09-27"
+      ],
+      "top_genres": [
+       "Family",
+       "Romance",
+       "Drama"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "completions": {
+     "value": {
+      "count": 5,
+      "last_at": "2026-09-27T13:46:30.463Z"
+     },
+     "source": "event",
+     "observed_at": "2026-09-27T13:46:30.463Z"
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "bagi-baya-d4",
+       "title_id": "T0916",
+       "last_played_at": "2026-09-27T13:42:48.615Z",
+       "next_episode_id": "bagi-baya-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 40,
+       "evidence": "event:9c8849d7-a327-499d-bf43-2d54a524c132"
+      },
+      {
+       "slug": "koha-kagite-d4",
+       "title_id": "T1815",
+       "last_played_at": "2026-09-17T06:53:25.557Z",
+       "next_episode_id": "koha-kagite-d4-s1e2",
+       "next_episode_number": 2,
+       "watched": 1,
+       "total": 45,
+       "evidence": "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-27T13:42:48.615Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-10-01T05:25:59.574Z",
+     "source": "event",
+     "observed_at": "2026-10-01T05:25:59.574Z"
+    },
+    "history_depth": {
+     "value": 96,
+     "source": "derived",
+     "observed_at": "2026-10-01T15:42:29.448Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "subscription_status: profile=lapsed (2026-09-28T20:47:49.127Z), purchase_completed at 2026-10-01T05:28:14.359Z -> used active"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series bagi-baya-d4 (1/40 episodes), last played 2026-09-27",
+    "goal": "G09",
+    "reason": "active subscriber with plays on 1 day(s) in the last 14",
     "evidence": [
+     "event:ef105520-3dd0-4e83-9f53-b7d10a05a305",
+     "event:f8fb0e7b-6776-4185-bd72-182e097a2454",
+     "event:7094b19b-9478-4dde-83d9-dfeaa31b04bc",
      "event:9c8849d7-a327-499d-bf43-2d54a524c132"
     ]
    },
@@ -559,7 +990,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -571,9 +1004,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:42:29.451Z",
-   "status": "HOLDOUT_NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:42:29.452Z",
+   "status": "HOLDOUT_NO_ACTION",
+   "during_surge": false
   }
  ],
  "actions": [],
@@ -582,17 +1017,36 @@
    "user_id": "U-01703",
    "arm": "holdout",
    "goal_instance_id": "G-00317",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G06",
+   "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T05:25:59.574Z",
-   "deadline": "2026-10-04T05:25:59.574Z",
+   "deadline": "2026-10-15T05:25:59.574Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "closed_early": "success_signal_received",
+   "verdict": "succeeded",
+   "reason": "purchase_completed matched 'any paid plan'",
+   "success_event_id": "ef105520-3dd0-4e83-9f53-b7d10a05a305",
+   "success_at": "2026-10-01T05:28:14.359Z",
+   "attribution": "holdout_no_action",
+   "exposure": {},
+   "actions": []
+  },
+  {
+   "user_id": "U-01703",
+   "arm": "holdout",
+   "goal_instance_id": "G-01298",
+   "goal_id": "G09",
+   "goal_name": "weekly_habit_14d",
+   "started_at": "2026-10-01T15:42:29.448Z",
+   "deadline": "2026-10-15T15:42:29.448Z",
+   "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
+   "verdict": "succeeded",
+   "reason": "plays on 5 distinct IST days",
+   "success_event_id": "oua-011308",
+   "success_at": "2026-10-06T13:19:56.000Z",
    "attribution": "holdout_no_action",
    "exposure": {},
    "actions": []

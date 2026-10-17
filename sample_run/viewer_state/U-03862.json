@@ -161,7 +161,7 @@
    "D-00479"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T04:46:31.549Z"
+  "updated_at": "2026-10-01T04:46:31.548Z"
  },
  "decisions": [
   {
@@ -199,34 +199,136 @@
     {
      "ref": "trigger:52909e21-3254-4336-a7e2-4fdcbac36e65",
      "source": "event",
-     "observed_at": "2026-10-01T04:46:31.548Z"
+     "observed_at": "2026-09-24T07:36:53.868Z",
+     "age_s": 594577
     },
     {
      "ref": "profile:U-03862@2026-09-29T08:34:35.148Z",
      "source": "profile",
-     "observed_at": "2026-09-29T08:34:35.148Z"
+     "observed_at": "2026-09-29T08:34:35.148Z",
+     "age_s": 159116
     },
     {
      "ref": "event:7e5438ee-7500-4d4c-92cd-fcbbc56bdcbe",
      "source": "event",
-     "observed_at": "2026-09-04T03:45:28.625Z"
+     "observed_at": "2026-09-04T03:45:28.625Z",
+     "age_s": 2336462
     },
     {
      "ref": "events:U-03862:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:9704c014-f536-4fc5-b0c9-9c387a68fb58",
      "source": "event",
-     "observed_at": "2026-09-22T14:46:56.141Z"
+     "observed_at": "2026-09-22T14:46:56.141Z",
+     "age_s": 741575
     },
     {
      "ref": "events:U-03862:count=18",
      "source": "derived",
-     "observed_at": "2026-10-01T04:46:31.548Z"
+     "observed_at": "2026-10-01T04:46:31.548Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 594577,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:46:31.548Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d1",
+      "source": "app_setting",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:46:31.548Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:46:31.548Z"
+    },
+    "signup_at": {
+     "value": "2025-02-04T18:37:45.161Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T08:34:35.148Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T08:34:35.148Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T08:34:35.148Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T08:34:35.148Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T08:34:35.148Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-04T03:45:28.625Z",
+      "last_at": "2026-09-04T03:45:28.625Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Drama",
+       "Thriller"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-04T03:45:28.625Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [],
+     "source": "event",
+     "observed_at": null
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-22T14:46:56.141Z",
+     "source": "event",
+     "observed_at": "2026-09-22T14:46:56.141Z"
+    },
+    "history_depth": {
+     "value": 18,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:46:31.548Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d1, profile=d2, deeplink=None -> used d1 (app_setting)"
@@ -236,7 +338,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -248,9 +352,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T04:46:31.549Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T04:46:31.548Z",
+   "status": "NO_ACTION",
+   "during_surge": true
   }
  ],
  "actions": [],

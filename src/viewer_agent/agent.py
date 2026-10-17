@@ -37,6 +37,7 @@ class Budget:
         self.tool_calls = 0
         self.tools: list[str] = []
         self.simulated_wait_s = 0.0
+        self.queued_s = 0.0
         self._start = time.perf_counter()
 
     def tool(self, name: str) -> None:
@@ -53,6 +54,9 @@ class Budget:
     def can_call_model(self) -> bool:
         return self.model_calls < self.settings.max_model_calls
 
+    def remaining_s(self) -> float:
+        return self.settings.latency_budget_s - self.elapsed_ms() / 1000
+
     def wait(self, seconds: float) -> None:
         self.simulated_wait_s += seconds
 
@@ -65,10 +69,17 @@ class Budget:
 
 
 class Ids:
-    def __init__(self):
-        self.decisions = 0
-        self.actions = 0
-        self.goals = 0
+    """Sequential ids. Started from what the store already holds, so a second run into the same store never collides
+    (a goal is created by at most one decision, so the decision count is a safe start for goal ids too)."""
+
+    def __init__(self, decisions: int = 0, actions: int = 0):
+        self.decisions = decisions
+        self.actions = actions
+        self.goals = decisions
+
+    @classmethod
+    def after(cls, store: Store) -> "Ids":
+        return cls(store.count("decisions"), store.count("actions"))
 
     def decision(self) -> str:
         self.decisions += 1
@@ -91,6 +102,7 @@ class Deps:
     settings: Settings
     provider: ModelProvider | None = None
     ids: Ids = field(default_factory=Ids)
+    shed_model: bool = False  # set by the harness during a traffic surge: skip optional model calls
 
 
 class ViewerAgent:
@@ -99,10 +111,13 @@ class ViewerAgent:
         self.d = deps
 
     # ------------------------------------------------------------------ triggers
-    def handle_trigger(self, trigger: dict, now: datetime) -> tuple[dict, list[dict]]:
-        """Decide for one app open. Returns the decision record and the actions to publish (possibly none)."""
+    def handle_trigger(self, trigger: dict, now: datetime, queued_s: float = 0.0) -> tuple[dict, list[dict]]:
+        """Decide for one app open. Returns the decision record and the actions to publish (possibly none).
+        `queued_s` is how long the open waited for a free worker; it counts against the same 60 s budget."""
         s, store, pack = self.d.settings, self.d.store, self.d.pack
         budget = Budget(now, s)
+        budget.wait(queued_s)
+        budget.queued_s = queued_s
 
         budget.tool("store:find_decision")
         earlier = store.find_decision(trigger["event_id"])
@@ -228,18 +243,40 @@ class ViewerAgent:
     def _plan(self, state: dict, facts: ViewerFacts, arm: str | None, now: datetime, budget: Budget) -> Proposal:
         """Goal first, then what to change. Every step here counts against the tool and model budget."""
         keep = self._reconcile_goal(state, facts, now)
+        learned = self._learned_skips(state, now)
         budget.tool("rules:eligible")
-        eligible = self.d.rules.eligible(facts)
+        eligible = self.d.rules.eligible(facts, skip=learned)
         live_page = self._live_page(facts, now, budget) if arm == "agent" else None
         if live_page:
             goal = next((e for e in eligible if e.goal_id == keep), None) or (eligible[0] if eligible else None)
             return Proposal(goal, None, None, f"home page {live_page['action_id']} for this viewer is still live "
                                               f"(published {live_page['published_at']}); nothing to change")
         # The model is only consulted when its advice can be used: never for holdout shadow decisions.
-        provider = self.d.provider if arm == "agent" else None
+        provider = self.d.provider if arm == "agent" and not self.d.shed_model else None
         message_block = self._message_block(now, budget) if arm == "agent" else None
-        return propose(facts, eligible, self.d.pack, self.d.settings, now, provider, budget, keep_goal=keep,
-                       message_block=message_block)
+        proposal = propose(facts, eligible, self.d.pack, self.d.settings, now, provider, budget, keep_goal=keep,
+                           message_block=message_block)
+        if proposal.message and proposal.message.channel == "in_app_message" and self.d.store.messages_on_day(
+                self.user_id, ist_day(now), types=("in_app_message",)):
+            proposal.message = None
+            proposal.assumptions.append("an in-app message was already shown today; page only")
+        proposal.assumptions += [f"learned: {why}" for why in learned.values()]
+        if arm == "agent" and self.d.shed_model:
+            proposal.model["skipped"] = "traffic surge: optional model call skipped to keep decisions fast"
+        return proposal
+
+    def _learned_skips(self, state: dict, now: datetime) -> dict[str, str]:
+        """Goals that already failed for this viewer, after the agent had acted, are not retried for a while.
+        This is where judged outcomes feed back into the next plan."""
+        skip = {}
+        for goal in state.get("goal_history", []):
+            outcome = goal.get("outcome") or {}
+            ended = parse_ts(goal["deadline"])
+            if outcome.get("verdict") == "failed" and now - ended < timedelta(days=self.d.settings.retry_failed_goal_days):
+                skip[goal["goal_id"]] = (f"{goal['goal_id']} failed on {goal['deadline'][:10]} "
+                                         f"({outcome.get('attribution', 'unknown').replace('_', ' ')}); "
+                                         f"not retried for {self.d.settings.retry_failed_goal_days} days")
+        return skip
 
     def _cancel_scheduled(self, channel: str | None, now: datetime, reason: str) -> list[str]:
         """Scheduled push/WhatsApp messages that have not gone out yet can still be withdrawn."""
@@ -405,6 +442,9 @@ class ViewerAgent:
             "content": content,
             "confidence": confidence,
             "evidence": facts.evidence(),
+            # what the agent knew at this moment, so any past decision can be audited without replaying it
+            "facts": {name: {"value": f.value, "source": f.source, "observed_at": f.observed_at}
+                      for name, f in facts.facts.items()},
             "assumptions": facts.assumptions + proposal.assumptions,
             "conflicts": facts.conflicts,
             "eligibility": {"goal": proposal.goal.goal_id, "reason": proposal.goal.reason,
@@ -413,6 +453,7 @@ class ViewerAgent:
             "checks": checks.as_dict() if checks else {"passed": [], "failed": []},
             "budget": budget.as_dict(),
             "fallback_used": fallback,
+            "queue_wait_ms": int(round(budget.queued_s * 1000)),
             "decided_in_ms": decided_ms,
             "published_at": iso(published_at),
             "status": status,
@@ -420,31 +461,8 @@ class ViewerAgent:
 
     @staticmethod
     def _confidence(facts: ViewerFacts, proposal: Proposal, fallback, checks) -> dict:
-        """Confidence is about the evidence behind the decision, not about the model's self-report."""
-        score, why = 0.4, []
-        if facts.has_profile:
-            score += 0.15
-            why.append("profile row present")
-        else:
-            why.append("no profile row")
-        depth = facts.value("history_depth", 0)
-        if depth >= 10:
-            score += 0.1
-            why.append(f"{depth} events of history")
-        elif depth == 0:
-            score -= 0.15
-            why.append("no event history")
-        else:
-            why.append(f"only {depth} events of history")
-        if (facts.value("dialect") or {}).get("conflicts"):
-            score -= 0.15
-            why.append("dialect sources disagree")
-        else:
-            score += 0.05
-            why.append("dialect sources agree")
-        if (facts.value("trigger_freshness") or {}).get("event_age_s", 0) <= 60:
-            score += 0.05
-            why.append("trigger is fresh")
+        """Evidence confidence (see ViewerFacts.confidence), lowered when the agent had to fall back or was vetoed."""
+        score, why = facts.confidence()
         if fallback:
             score -= 0.2
             why.append(f"fallback: {fallback}")

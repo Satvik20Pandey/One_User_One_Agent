@@ -198,9 +198,9 @@
    "D-00622"
   ],
   "actions": [
-   "A-00217"
+   "A-00188"
   ],
-  "updated_at": "2026-10-01T05:06:41.902Z"
+  "updated_at": "2026-10-01T05:06:43.100Z"
  },
  "decisions": [
   {
@@ -236,34 +236,145 @@
     {
      "ref": "trigger:279af5b7-daab-4950-b58f-57e408435057",
      "source": "event",
-     "observed_at": "2026-10-01T04:45:23.689Z"
+     "observed_at": "2026-09-27T22:30:31.298Z",
+     "age_s": 281692
     },
     {
      "ref": "profile:U-03541@2026-09-29T16:45:57.053Z",
      "source": "profile",
-     "observed_at": "2026-09-29T16:45:57.053Z"
+     "observed_at": "2026-09-29T16:45:57.053Z",
+     "age_s": 129566
     },
     {
      "ref": "event:ae5c471c-0cea-4d1c-a945-fc494fd8ec7f",
      "source": "event",
-     "observed_at": "2026-09-03T01:40:26.083Z"
+     "observed_at": "2026-09-03T01:40:26.083Z",
+     "age_s": 2430297
     },
     {
      "ref": "events:U-03541:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:7f23b780-16ad-4e77-b8f9-dce8b30ce93c",
      "source": "event",
-     "observed_at": "2026-09-26T15:46:38.441Z"
+     "observed_at": "2026-09-26T15:46:38.441Z",
+     "age_s": 392325
     },
     {
      "ref": "events:U-03541:count=15",
      "source": "derived",
-     "observed_at": "2026-10-01T04:45:23.689Z"
+     "observed_at": "2026-10-01T04:45:23.689Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 281692,
+      "live_visit": false,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T04:45:23.689Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:23.689Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T04:45:23.689Z"
+    },
+    "signup_at": {
+     "value": "2025-12-21T17:53:20.033Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-03T01:40:26.083Z",
+      "last_at": "2026-09-03T01:40:26.083Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-03T01:40:26.083Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-03T01:40:26.083Z",
+       "next_episode_id": "yane-tegi-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 20,
+       "evidence": "event:ae5c471c-0cea-4d1c-a945-fc494fd8ec7f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-03T01:40:26.083Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-26T15:46:38.441Z",
+     "source": "event",
+     "observed_at": "2026-09-26T15:46:38.441Z"
+    },
+    "history_depth": {
+     "value": 15,
+     "source": "derived",
+     "observed_at": "2026-10-01T04:45:23.689Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": null,
@@ -271,7 +382,9 @@
     "provider": null,
     "calls": 0,
     "used": false,
-    "rejected": null
+    "rejected": null,
+    "failure": null,
+    "skipped": null
    },
    "checks": {
     "passed": [],
@@ -283,9 +396,11 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T04:45:23.690Z",
-   "status": "NO_ACTION"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 0,
+   "published_at": "2026-10-01T04:45:23.689Z",
+   "status": "NO_ACTION",
+   "during_surge": true
   },
   {
    "decision_id": "D-00622",
@@ -344,34 +459,145 @@
     {
      "ref": "trigger:dce5e11f-bd9f-4f1f-972a-c0dd13798744",
      "source": "event",
-     "observed_at": "2026-10-01T05:06:41.899Z"
+     "observed_at": "2026-10-01T05:06:41.899Z",
+     "age_s": 0
     },
     {
      "ref": "profile:U-03541@2026-09-29T16:45:57.053Z",
      "source": "profile",
-     "observed_at": "2026-09-29T16:45:57.053Z"
+     "observed_at": "2026-09-29T16:45:57.053Z",
+     "age_s": 130844
     },
     {
      "ref": "event:ae5c471c-0cea-4d1c-a945-fc494fd8ec7f",
      "source": "event",
-     "observed_at": "2026-09-03T01:40:26.083Z"
+     "observed_at": "2026-09-03T01:40:26.083Z",
+     "age_s": 2431575
     },
     {
      "ref": "events:U-03541:episode_completed=0",
      "source": "event",
-     "observed_at": null
+     "observed_at": null,
+     "age_s": null
     },
     {
      "ref": "event:279af5b7-daab-4950-b58f-57e408435057",
      "source": "event",
-     "observed_at": "2026-09-27T22:30:31.298Z"
+     "observed_at": "2026-09-27T22:30:31.298Z",
+     "age_s": 282970
     },
     {
      "ref": "events:U-03541:count=16",
      "source": "derived",
-     "observed_at": "2026-10-01T05:06:41.899Z"
+     "observed_at": "2026-10-01T05:06:41.899Z",
+     "age_s": 0
     }
    ],
+   "facts": {
+    "trigger_freshness": {
+     "value": {
+      "event_age_s": 0,
+      "live_visit": true,
+      "device_clock_trusted": true
+     },
+     "source": "event",
+     "observed_at": "2026-10-01T05:06:41.899Z"
+    },
+    "dialect": {
+     "value": {
+      "used": "d3",
+      "source": "app_setting",
+      "conflicts": [],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
+     },
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:06:41.899Z"
+    },
+    "app_language": {
+     "value": "en",
+     "source": "app_setting",
+     "observed_at": "2026-10-01T05:06:41.899Z"
+    },
+    "signup_at": {
+     "value": "2025-12-21T17:53:20.033Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "subscription_status": {
+     "value": "never",
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "ever_paid": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "lapsed_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
+    "consent_push": {
+     "value": true,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "consent_whatsapp": {
+     "value": false,
+     "source": "profile",
+     "observed_at": "2026-09-29T16:45:57.053Z"
+    },
+    "plays": {
+     "value": {
+      "count": 1,
+      "first_at": "2026-09-03T01:40:26.083Z",
+      "last_at": "2026-09-03T01:40:26.083Z",
+      "days_in_last_14": [],
+      "top_genres": [
+       "Thriller",
+       "Crime"
+      ]
+     },
+     "source": "event",
+     "observed_at": "2026-09-03T01:40:26.083Z"
+    },
+    "completions": {
+     "value": {
+      "count": 0,
+      "last_at": null
+     },
+     "source": "event",
+     "observed_at": null
+    },
+    "unfinished_series": {
+     "value": [
+      {
+       "slug": "yane-tegi-d3",
+       "title_id": "T0903",
+       "last_played_at": "2026-09-03T01:40:26.083Z",
+       "next_episode_id": "yane-tegi-d3-s1e1",
+       "next_episode_number": 1,
+       "watched": 0,
+       "total": 20,
+       "evidence": "event:ae5c471c-0cea-4d1c-a945-fc494fd8ec7f"
+      }
+     ],
+     "source": "event",
+     "observed_at": "2026-09-03T01:40:26.083Z"
+    },
+    "last_visit_before_trigger": {
+     "value": "2026-09-27T22:30:31.298Z",
+     "source": "event",
+     "observed_at": "2026-09-27T22:30:31.298Z"
+    },
+    "history_depth": {
+     "value": 16,
+     "source": "derived",
+     "observed_at": "2026-10-01T05:06:41.899Z"
+    }
+   },
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
@@ -387,6 +613,7 @@
     "used": true,
     "rejected": null,
     "failure": null,
+    "skipped": null,
     "reason": "no episode_completed on record"
    },
    "checks": {
@@ -404,21 +631,23 @@
    "budget": {
     "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T05:06:41.902Z",
-   "status": "PUBLISHED"
+   "queue_wait_ms": 0,
+   "decided_in_ms": 1201,
+   "published_at": "2026-10-01T05:06:43.100Z",
+   "status": "PUBLISHED",
+   "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00217",
+   "action_id": "A-00188",
    "decision_id": "D-00622",
    "user_id": "U-03541",
    "trigger_event_id": "dce5e11f-bd9f-4f1f-972a-c0dd13798744",
-   "published_at": "2026-10-01T05:06:41.902Z",
+   "published_at": "2026-10-01T05:06:43.100Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d3",
@@ -463,7 +692,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00217"
+    "A-00188"
    ]
   }
  ]
