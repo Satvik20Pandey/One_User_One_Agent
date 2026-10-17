@@ -47,9 +47,11 @@ class StoreTimeout(Exception):
 
 
 class Store:
-    def __init__(self, path: str | Path):
+    def __init__(self, path: str | Path, shared: bool = False):
+        # shared=True lets other threads read this connection (the demo app keeps one read-only copy of the
+        # history and serves each request on a new thread); everything else uses one connection per thread
         self.path = Path(path)
-        self.conn = sqlite3.connect(str(self.path))
+        self.conn = sqlite3.connect(str(self.path), check_same_thread=not shared)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
         self._degraded_until: datetime | None = None
@@ -60,6 +62,12 @@ class Store:
 
     def close(self) -> None:
         self.conn.close()
+
+    def snapshot(self) -> "Store":
+        """An in-memory copy. A what-if run on the copy can never change the real state."""
+        copy = Store(":memory:")
+        self.conn.backup(copy.conn)
+        return copy
 
     # ----------------------------------------------------------------- events
     def ingest_history(self, events_path: str | Path) -> dict:

@@ -26,17 +26,22 @@ flowchart LR
     J --> I[impact vs holdout]
 ```
 
-## Demo page
+## Demo app
 
-`run-all` also writes `sample_run/demo.html`. Open it in any browser, no server or internet needed. It is a
-read-only view over the run's output files, with no decision logic of its own, so it cannot disagree with what the
-agent actually did. It has three tabs:
+```bash
+streamlit run app.py          # opens http://localhost:8501
+```
 
-- **Overview**: what happened on the replay day, why the agent did nothing when it did, and the changed conditions it noticed.
-- **Inspect a viewer**: walk any viewer from app open to judged outcome: facts with source and time, the goal and
-  why, the page or message, every check, confidence, and what happened afterwards. Twelve one-click examples cover the
-  situations in the brief (holdout, buffered open, duplicate, dialect conflict, unsupported model claim, outages...).
-- **Impact vs holdout**: the arm comparison with its interval, by goal, and why "served vs not served" misleads.
+| Tab | What you can do |
+|---|---|
+| **Overview** | See the replay day at a glance: decisions, time budget, policy violations, why the agent did nothing, the surprises it handled. |
+| **Explore a viewer** | Pick a situation from the brief (holdout, dialect conflict, false model claim, outage, duplicate…) and walk that viewer from app open to judged outcome. |
+| **Try the agent** | Run the real agent live on one app open. Change the hour, the app dialect, or how long the open sat offline, and break things on purpose (model down, false claim, broken JSON, data store down, duplicate delivery). See the decision, every check and the machine-readable record. |
+| **Impact vs holdout** | Agent arm vs randomized holdout, overall or per goal, with the honest verdict. |
+
+The app reads `sample_run/` and the pack at `./pack` (override with `VIEWER_AGENT_RUN` / `VIEWER_AGENT_PACK`).
+"Try the agent" works on an in-memory copy of the data, so it never changes the saved run. The app serves on
+localhost only, because the pack is personal data.
 
 ## Quick start
 
@@ -47,7 +52,7 @@ Python 3.10 or newer. The data pack is not in this repository (it is treated as 
 pip install -r requirements.txt
 pip install -e .
 
-# one command: replay the trigger stream, run the pack simulator, judge every goal, write the reports and demo.html
+# one command: replay the trigger stream, run the pack simulator, judge every goal, write the reports
 python -m viewer_agent run-all --pack ./pack --out sample_run
 
 # the same, step by step
@@ -55,7 +60,9 @@ python -m viewer_agent replay   --pack ./pack --out sample_run
 python -m viewer_agent simulate --pack ./pack --out sample_run --seed oua-practice
 python -m viewer_agent judge    --pack ./pack --out sample_run
 python -m viewer_agent impact   --pack ./pack --out sample_run
-python -m viewer_agent demo     --pack ./pack --out sample_run
+
+# the demo app
+streamlit run app.py
 
 # everything the agent knew, decided and observed for one viewer
 python -m viewer_agent inspect U-00649 --out sample_run
@@ -93,12 +100,12 @@ descriptions and other free text never do.
 | `sample_run/replay_summary.json` | Counts, control events handled, plan revisions from live events |
 | `sample_run/impact_report.md` | Agent arm vs holdout arm, by goal, and why the simpler comparison misleads |
 | `sample_run/final_report.md` | One-page summary of the sample run |
-| `sample_run/demo.html` | The demo page described above |
 | `sample_run/sim/` | The pack simulator's outcome events and report |
 
 ## Layout
 
 ```
+app.py          the Streamlit demo app
 src/viewer_agent/
   pack.py       catalogue, profiles, arms, config (read-only)
   store.py      SQLite: event history + per-viewer state, decisions, actions
@@ -110,9 +117,8 @@ src/viewer_agent/
   agent.py      one agent per viewer; budget; degraded modes
   replay.py     the replay harness and its outputs
   judge.py      outcomes, attribution, impact report
-  demo.py       builds demo.html from a run's outputs (template: demo_template.html)
   cli.py        commands
-tests/          43 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI)
+tests/          47 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI, app)
 sample_run/     output of run-all on the supplied pack (state.db is not committed; run-all rebuilds it)
 ```
 

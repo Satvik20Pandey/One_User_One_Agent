@@ -36,8 +36,9 @@ not settle. Each assumption is a setting in `config.py` or a named constant in `
   itself slow.
 - **Sample size.** The agent-minus-holdout difference in the sample run has a confidence interval that includes
   zero. The report says so rather than claiming an effect.
-- **The demo page is a static snapshot.** `demo.html` shows one finished run in mock mode; it does not run the agent
-  or call a model. It embeds every viewer of the run, so it is about 10 MB.
+- **The demo app is a local tool, not a product UI.** It runs the agent in mock mode only and serves on localhost.
+  "Try the agent" starts each what-if from the viewer's 30-day history, so it ignores what the agent did for that
+  viewer earlier on the replay day; the saved run is the record of that.
 - **WhatsApp wording for resume goals.** The only approved template that names an episode is `wa_new_episode_v2`
   ("Naya episode aa gaya"). It is used to point at the viewer's next unwatched episode, which exists but is not new.
   A dedicated "continue watching" template would be more honest copy; templates cannot be invented.

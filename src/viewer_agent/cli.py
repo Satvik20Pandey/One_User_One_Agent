@@ -36,14 +36,11 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("impact", help="write impact_report.md and final_report.md")
     _common(p)
 
-    p = sub.add_parser("demo", help="write demo.html, a read-only page over the run's outputs")
-    _common(p)
-
     p = sub.add_parser("inspect", help="show what the agent knew, decided and observed for one viewer")
     _common(p)
     p.add_argument("user_id")
 
-    p = sub.add_parser("run-all", help="replay, simulate, judge, impact and demo in one go")
+    p = sub.add_parser("run-all", help="replay, simulate, judge and impact in one go")
     _common(p)
     p.add_argument("--provider", choices=["mock", "openai"], default="mock")
     p.add_argument("--seed", default="oua-practice")
@@ -76,11 +73,6 @@ def cmd_impact(args) -> None:
     print("\n".join(str(p) for p in paths))
 
 
-def cmd_demo(args) -> None:
-    from .demo import build_demo
-    print(build_demo(Path(args.pack), Path(args.out)))
-
-
 def cmd_inspect(args) -> None:
     from .judge import inspect_viewer
     print(json.dumps(inspect_viewer(Path(args.out), args.user_id), indent=2, ensure_ascii=False))
@@ -91,10 +83,9 @@ def cmd_run_all(args) -> None:
     cmd_simulate(args)
     cmd_judge(args)
     cmd_impact(args)
-    cmd_demo(args)
 
 
-COMMANDS = {"replay": cmd_replay, "simulate": cmd_simulate, "judge": cmd_judge, "impact": cmd_impact, "demo": cmd_demo,
+COMMANDS = {"replay": cmd_replay, "simulate": cmd_simulate, "judge": cmd_judge, "impact": cmd_impact,
             "inspect": cmd_inspect, "run-all": cmd_run_all}
 
 
