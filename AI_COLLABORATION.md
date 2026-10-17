@@ -18,7 +18,7 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 48 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 55 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
 - Reports are generated from program output. I did not type a number into a document.
@@ -51,6 +51,21 @@ file records what they did, how I checked their output, and what I rejected.
 - **ChatGPT's suggestion to drop SQLite for JSON files.** Rejected: idempotency by `event_id` and "find every open
   G03 goal" at the rule correction need an index, and four small tables are easier to explain than a hand-rolled
   one.
+
+## A cold review before submitting
+
+I gave a fresh AI session only the brief, the pack and this repository, with no notes from me, and asked it to
+grade the work as a hiring panel would. I checked each finding in the code and the outputs before acting:
+
+| Finding | What I found | What I did |
+|---|---|---|
+| The verifier reused the planner's facts, so it could not disagree on eligibility or consent; the docs said otherwise | true | It now re-reads the store and derives consent with separate code; the docs say exactly what is and is not independent |
+| 139 WhatsApp messages said "Naya episode aa gaya" about episodes that were not new | true, and I had only documented it | Resume messages use the neutral template; the verifier vetoes "new episode" copy for old titles |
+| Re-running the judge stacked duplicate learnings, visible in the shipped sample | true | Judge learnings are replaced on every run; a test judges twice |
+| A live event closed a goal by its type, without checking the condition (a trial purchase would close G05) | true | Goals close early only when the event really meets the success condition |
+| Opens from phones with fast clocks were treated as live even when buffered for hours | true for 2 opens; wrong that anything was published (both viewers were holdout) | The phone's own send-minus-occur gap is used whatever its clock says, as the simulator does |
+| Instructions hidden in catalogue text were avoided but never noticed | true | The catalogue is scanned at load; flagged titles appear in the run summary |
+| G07 takes half the goals at a 4% success rate | true | Kept as a documented choice; KNOWN_LIMITATIONS says what it costs and what I would change |
 
 ## Where AI output was wrong and I only noticed by running it
 

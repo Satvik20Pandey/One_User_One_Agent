@@ -61,3 +61,15 @@ def _outcome(user_id, event, at, props):
     return {"event_id": f"sim-{user_id}-{event}", "user_id": user_id, "event": event, "occurred_at": iso(at),
             "sent_at": iso(at), "received_at": iso(at), "session_id": "sim", "app_dialect": "d1",
             "app_language": None, "platform": None, "app_version": None, "properties": props}
+
+
+def test_judging_twice_gives_the_same_state(tmp_path):
+    out = tmp_path / "out"
+    run_replay(MINI, out)
+    (out / "sim").mkdir()
+    write_jsonl(out / "sim" / "outcome_events.jsonl", [])
+    run_judge(MINI, out)
+    first = json.loads((out / "viewer_state" / "U-A1.json").read_text(encoding="utf-8"))["state"]["learnings"]
+    run_judge(MINI, out)
+    second = json.loads((out / "viewer_state" / "U-A1.json").read_text(encoding="utf-8"))["state"]["learnings"]
+    assert first == second and len(second) == len(set(second))

@@ -12,16 +12,16 @@ from the rate but shown.
 | Arm | Viewers | Judged | Succeeded | Inconclusive | Success rate |
 |---|---|---|---|---|---|
 | agent | 757 | 757 | 87 | 0 | 11.5% |
-| holdout | 746 | 746 | 70 | 0 | 9.4% |
+| holdout | 744 | 744 | 70 | 0 | 9.4% |
 
 Difference (agent minus holdout): **+2.1 pp**, 95% interval -1.0 pp to +5.2 pp.
 The interval includes zero: at this sample size the data does not show that the agent changed the outcome. That is the honest reading, not a failure of the measurement.
 
 ### Who is counted
 
-- 1505 goals were judged in total for 1503 viewers. 2 viewer(s) got a second goal the same
+- 1503 goals were judged in total for 1501 viewers. 2 viewer(s) got a second goal the same
   day after the first closed early (the viewer stopped qualifying); the table above counts the first goal only.
-- Triggered viewers: agent 863, holdout 883. Viewers without any goal: agent 106, holdout 137. Nearly all of them only had app opens that were
+- Triggered viewers: agent 863, holdout 883. Viewers without any goal: agent 106, holdout 139. Nearly all of them only had app opens that were
   buffered offline for hours or days, which the same rule treats as "not a live visit" in both arms.
 
 ## By goal
@@ -31,10 +31,10 @@ The interval includes zero: at this sample size the data does not show that the 
 | G01 | 59 | 37.3% | 51 | 29.4% | +7.9 pp |
 | G02 | 224 | 15.2% | 206 | 13.1% | +2.1 pp |
 | G03 | 1 | 0.0% | 0 | n/a | n/a |
-| G05 | 35 | 5.7% | 41 | 7.3% | -1.6 pp |
+| G05 | 35 | 5.7% | 40 | 7.5% | -1.8 pp |
 | G06 | 7 | 0.0% | 6 | 16.7% | -16.7 pp |
 | G07 | 391 | 4.1% | 395 | 3.0% | +1.1 pp |
-| G08 | 28 | 32.1% | 36 | 25.0% | +7.1 pp |
+| G08 | 28 | 32.1% | 35 | 25.7% | +6.4 pp |
 | G09 | 11 | 27.3% | 8 | 25.0% | +2.3 pp |
 | G12 | 1 | 100.0% | 3 | 33.3% | +66.7 pp |
 
@@ -80,5 +80,5 @@ Difference: -1.3 pp. The headline uplift was selection, not effect.
 `exposed_before_success` is the only bucket where the agent could have caused the outcome; even there
 the arm comparison, not the exposure, is the evidence of effect.
 
-Data: 1505 judged goals from `outcomes.jsonl`; outcome events from the pack simulator
+Data: 1503 judged goals from `outcomes.jsonl`; outcome events from the pack simulator
 (seed `oua-practice`, 32032 events). Evaluators re-run with their own seed and replay day.

@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-02299",
   "active_goal": {
-   "instance_id": "G-01326",
+   "instance_id": "G-01324",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T15:57:41.607Z",
@@ -33,8 +33,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T15:57:41.607Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "2026-10-04T15:57:41.607Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T15:57:41.607Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -49,7 +48,7 @@
     "evidence": [
      "trigger:cdd2ce06-4d48-44d4-87c4-8cb7ed2e2bf4"
     ],
-    "note": "device clock ahead of server; used received_at"
+    "note": "device clock is ahead of the server; the buffering delay it reports is still used"
    },
    "dialect": {
     "value": {
@@ -256,7 +255,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01326",
+    "instance_id": "G-01324",
     "started_at": "2026-10-01T15:57:41.607Z",
     "deadline": "2026-10-04T15:57:41.607Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -385,9 +384,7 @@
      "observed_at": "2026-10-01T15:57:41.607Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -424,7 +421,7 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 11,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
@@ -518,10 +515,10 @@
    "send_at": "2026-10-02T13:30:00.000Z",
    "title_id": "T0013",
    "dialect": "d1",
-   "template_id": "wa_new_episode_v2",
+   "template_id": "wa_recommend_title_v1",
    "variables": {
     "title_name": "Kopibha Niya",
-    "episode_number": "1"
+    "dialect_name": "D1"
    }
   }
  ],
@@ -529,7 +526,7 @@
   {
    "user_id": "U-02299",
    "arm": "agent",
-   "goal_instance_id": "G-01326",
+   "goal_instance_id": "G-01324",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T15:57:41.607Z",

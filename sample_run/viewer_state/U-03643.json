@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-03643",
   "active_goal": {
-   "instance_id": "G-00631",
+   "instance_id": "G-00629",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T09:05:33.808Z",
@@ -33,8 +33,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T09:05:33.808Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "2026-10-04T09:05:33.808Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T09:05:33.808Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -49,7 +48,7 @@
     "evidence": [
      "trigger:ab68432d-cca1-4b2c-bb2f-67f4db36c74c"
     ],
-    "note": "device clock ahead of server; used received_at"
+    "note": "device clock is ahead of the server; the buffering delay it reports is still used"
    },
    "dialect": {
     "value": {
@@ -209,7 +208,7 @@
    "A-00512",
    "A-00513"
   ],
-  "updated_at": "2026-10-01T09:05:33.811Z"
+  "updated_at": "2026-10-01T09:05:33.812Z"
  },
  "decisions": [
   {
@@ -229,7 +228,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-00631",
+    "instance_id": "G-00629",
     "started_at": "2026-10-01T09:05:33.808Z",
     "deadline": "2026-10-04T09:05:33.808Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -333,9 +332,7 @@
      "observed_at": "2026-10-01T09:05:33.808Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -372,12 +369,12 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 11,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T09:05:33.811Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T09:05:33.812Z",
    "status": "PUBLISHED"
   }
  ],
@@ -387,7 +384,7 @@
    "decision_id": "D-01137",
    "user_id": "U-03643",
    "trigger_event_id": "ab68432d-cca1-4b2c-bb2f-67f4db36c74c",
-   "published_at": "2026-10-01T09:05:33.811Z",
+   "published_at": "2026-10-01T09:05:33.812Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -460,16 +457,16 @@
    "decision_id": "D-01137",
    "user_id": "U-03643",
    "trigger_event_id": "ab68432d-cca1-4b2c-bb2f-67f4db36c74c",
-   "published_at": "2026-10-01T09:05:33.811Z",
+   "published_at": "2026-10-01T09:05:33.812Z",
    "goal_id": "G07",
    "type": "whatsapp",
    "send_at": "2026-10-02T13:30:00.000Z",
    "title_id": "T1504",
    "dialect": "d1",
-   "template_id": "wa_new_episode_v2",
+   "template_id": "wa_recommend_title_v1",
    "variables": {
     "title_name": "Bagugu Gigupi (English)",
-    "episode_number": "1"
+    "dialect_name": "D1"
    }
   }
  ],
@@ -477,7 +474,7 @@
   {
    "user_id": "U-03643",
    "arm": "agent",
-   "goal_instance_id": "G-00631",
+   "goal_instance_id": "G-00629",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T09:05:33.808Z",

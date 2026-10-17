@@ -51,4 +51,13 @@ def test_device_clock_ahead_is_treated_as_live(env):
     record, _ = env.decide(trigger)
     assert record["trigger"]["live_visit"] is True
     assert record["trigger"]["device_clock_trusted"] is False
-    assert any("clock" in a for a in record["assumptions"])
+    assert any("timestamps are inconsistent" in a for a in record["assumptions"])
+
+
+def test_fast_phone_clock_does_not_hide_a_buffered_open(env):
+    # the phone clock is 5 h ahead, and the phone held the open for 14 h before sending it
+    sent = NOW + timedelta(hours=5)
+    trigger = make_trigger("U-A1", sent_at=iso(sent), occurred_at=iso(sent - timedelta(hours=14)))
+    record, actions = env.decide(trigger)
+    assert record["trigger"]["live_visit"] is False and actions == []
+    assert "buffered offline" in record["no_action_reason"]

@@ -170,7 +170,8 @@ def build_message(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, s
         t = pack.title(s["title_id"])
         msg = MessageDraft(channel, dialect, t.title_id, send_at, hook="unfinished series")
         if channel == "whatsapp":
-            msg.template_id, msg.variables = "wa_new_episode_v2", {"title_name": t.name, "episode_number": str(s["next_episode_number"])}
+            # not wa_new_episode_v2: "Naya episode aa gaya" would claim a new episode, and the next one is not new
+            msg.template_id, msg.variables = "wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()}
         else:
             msg.text = _push_copy(f"Continue {t.name}", f"Episode {s['next_episode_number']} of {t.name} is waiting for you.")
             msg.deeplink = f"ott://title/{t.title_id}"

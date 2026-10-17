@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import date, datetime
@@ -15,6 +16,13 @@ from pathlib import Path
 from .times import parse_ts
 
 CATALOGUE_DIALECTS = ("d1", "d2", "d3", "d4", "d5", "d6")
+
+# Text that addresses an AI or tries to change its rules. Used to flag catalogue data (which is never followed) and to
+# drop model output that echoes such text.
+INSTRUCTION_LIKE = re.compile(
+    r"(?:ignore|disregard|override) (?:all |any |your |the )?(?:previous|prior|above|earlier|existing)"
+    r"|system (?:note|prompt|message)|assistant instruction|ai agents?|llm"
+    r"|(?:every|all) (?:users?|viewers?)|opted out|pre-?approved|mark (?:every|all)", re.I)
 
 
 @dataclass
@@ -55,6 +63,7 @@ class Pack:
         self.profile_versions: dict[str, list[dict]] = defaultdict(list)
         self.arms: dict[str, str] = {}
         self.popularity: Counter = Counter()  # play_started per title_id, filled from the history by the store
+        self.flagged_text: dict[str, str] = {}  # title_id -> description that reads like an instruction
         self._load()
 
     # ----------------------------------------------------------------- loading
@@ -69,6 +78,8 @@ class Pack:
                     is_premium=_bool(r["is_premium"]) or False, description=r.get("description", ""),
                 )
                 self.titles[t.title_id] = t
+                if INSTRUCTION_LIKE.search(t.description):
+                    self.flagged_text[t.title_id] = t.description
                 self.variants[t.slug].append(t.title_id)
 
         with open(self.root / "data" / "episodes.csv", encoding="utf-8") as f:

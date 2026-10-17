@@ -73,12 +73,18 @@ the decision and action records inlined; `inspect <user_id>` prints the same.
 
 ## Verification
 
-`verifier.py` runs after the planner and can veto it. It re-derives rather than re-reads: eligibility is computed
-again from the facts, consent from the snapshot plus opt-out events, the daily cap from stored actions, page
-rules from the catalogue, availability at publish time (withdrawals included). Each check has a scope: a failed
-message check drops the message and keeps the page; a failed page check drops the page; holdout or eligibility
-failures drop everything. Model output is generated text: a goal claim without an eligible rule behind it is
-rejected with the eligible set cited, and copy that contains instruction-like phrases is discarded.
+`verifier.py` runs after the planner and can veto it. It does not trust the planner's facts: it re-reads the
+viewer's events from the store and recomputes eligibility on that fresh read (an event that arrived after planning
+can still stop the action), and it derives consent with its own code straight from the profile row and opt-out
+events. The holdout arm, page dialect, availability at publish time (withdrawals included), page rules, the daily
+cap from stored actions, templates and copy are checked against the pack and policy. "New episode" copy is allowed
+only for a recent release. Each check has a scope: a failed message check drops the message and keeps the page; a
+failed page check drops the page; holdout or eligibility failures drop everything. The rule code itself is shared
+with the planner, so a wrong rule would pass both; the tests pin each rule instead.
+
+Model output is generated text: a goal claim without an eligible rule behind it is rejected with the eligible set
+cited, and copy that contains instruction-like phrases is discarded. The same pattern scans the catalogue at load,
+so descriptions that try to instruct an AI are flagged in the run summary (they are never sent to the model).
 
 ## Latency and budget
 

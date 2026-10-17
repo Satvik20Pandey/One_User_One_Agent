@@ -182,6 +182,7 @@ class Replay:
                       "advice_rejected": sum(1 for d in self.decisions if d["model"].get("rejected")),
                       "failures": sum(1 for d in self.decisions if d["model"].get("failure"))},
             "history_ingest": self.history["counts"],
+            "catalogue_text_flagged": [{"title_id": tid, "excerpt": text[:140]} for tid, text in sorted(self.pack.flagged_text.items())],
             "unmeasurable_goals": {g: self.rules.measurable(g)[1] for g in self.rules.goals if not self.rules.measurable(g)[0]},
             "control_events": self.control_log,
             "plan_revisions_from_live_events": self.event_notes,

@@ -130,14 +130,18 @@ def build_facts(user_id: str, trigger: dict, events: list[dict], pack: Pack, now
 def _trigger_freshness(fx: ViewerFacts, settings: Settings) -> None:
     t = fx.trigger
     received, sent, occurred = parse_ts(t["received_at"]), parse_ts(t.get("sent_at")), parse_ts(t.get("occurred_at"))
-    clock_ok = bool(sent and occurred and occurred <= sent and occurred <= received + timedelta(seconds=60))
-    true_time = event_time(t) if clock_ok else received
-    age_s = max(0, int((fx.now - true_time).total_seconds()))
+    # A phone whose clock is wrong is still right about how long it held the event: sent minus occurred is the
+    # buffering delay even when both are hours off. Only when occurred is after sent is that gap unusable.
+    clock_ok = bool(sent and occurred and occurred <= received + timedelta(seconds=60))
+    gap_ok = bool(sent and occurred and occurred <= sent)
+    age_s = max(0, int((fx.now - event_time(t)).total_seconds()))
     live = age_s <= settings.live_visit_max_age_s
     note = ""
-    if not clock_ok:
-        note = "device clock ahead of server; used received_at"
-        fx.assumptions.append("trigger device clock is untrusted (occurred_at after sent_at); treated as a live open")
+    if not gap_ok:
+        note = "occurred_at is after sent_at; buffering delay unknown, used received_at"
+        fx.assumptions.append("trigger timestamps are inconsistent (occurred_at after sent_at); treated as a live open")
+    elif not clock_ok and live:
+        note = "device clock is ahead of the server; the buffering delay it reports is still used"
     elif not live:
         note = f"buffered on the device for {age_s // 3600}h{(age_s % 3600) // 60:02d}m; not a live visit"
     fx.add(Fact("trigger_freshness", {"event_age_s": age_s, "live_visit": live, "device_clock_trusted": clock_ok},

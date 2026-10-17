@@ -66,3 +66,14 @@ def test_resume_goal_only_counts_the_same_series(env):
     same = _event("play_started", NOW + timedelta(hours=2), title_id="T0004", episode_id="hapi-d1-s1e2")
     assert env.rules.judge(goal, [other], end, env.pack).verdict == "failed"
     assert env.rules.judge(goal, [other, same], end, env.pack).success_event_id == same["event_id"]
+
+
+def test_a_trial_purchase_does_not_close_a_first_paid_goal_as_success(env):
+    goal = _goal("G05", hours=168)
+    trial = {"event": "purchase_completed", "event_id": "p1", "received_at": iso(NOW + timedelta(hours=1)),
+             "sent_at": iso(NOW + timedelta(hours=1)), "occurred_at": iso(NOW + timedelta(hours=1)),
+             "properties": {"plan_id": "P_TRIAL", "price_inr": 1, "is_trial": True}}
+    assert env.rules.signal_met(goal, trial, env.pack) is False
+    paid = {**trial, "event_id": "p2", "properties": {"plan_id": "P_MONTH", "price_inr": 149, "is_trial": False}}
+    assert env.rules.signal_met(goal, paid, env.pack) is True
+    assert env.rules.signal_met(_goal("G09", hours=336), {**paid, "event": "play_started"}, env.pack) is False

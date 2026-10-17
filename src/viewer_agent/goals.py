@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
 from .config import Settings
-from .facts import ViewerFacts
+from .facts import ViewerFacts, event_time
 from .pack import Pack
 from .times import iso, ist_day, parse_ts
 
@@ -192,6 +192,14 @@ class RuleBook:
         if observed_until >= deadline:
             return Verdict("failed", f"no {success['event']} matching '{success['condition']}' before the deadline")
         return Verdict("inconclusive", f"window still open; observed up to {iso(observed_until)}")
+
+    def signal_met(self, goal: dict, event: dict, pack: Pack) -> bool:
+        """Does this single live event already satisfy the goal? (Never true for the 3-day habit goal.)"""
+        success = self.goals[goal["goal_id"]]["success"]
+        if goal["goal_id"] == "G09" or event["event"] != success["event"]:
+            return False
+        event = {**event, "_at": event_time(event)}
+        return parse_ts(goal["started_at"]) < event["_at"] <= parse_ts(goal["deadline"]) and self._matches(goal, event, pack)
 
     def _matches(self, goal: dict, e: dict, pack: Pack) -> bool:
         goal_id, props = goal["goal_id"], e["properties"]

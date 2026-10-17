@@ -1,7 +1,9 @@
 """Independent checks that run after the planner and can veto it.
 
-Everything is re-derived from the store, the pack and the policy. Nothing the planner or the model produced is
-trusted: eligibility is recomputed from events, consent from the snapshot plus later opt-outs, and so on.
+The verifier does not trust the planner's facts. It re-reads the viewer's events from the store itself, recomputes
+eligibility on that fresh read, and derives consent with its own code from the raw profile row and opt-out events.
+Holdout, dialect, availability, page rules, daily cap, templates and copy are checked against the pack and policy.
+Nothing the model produced counts as evidence.
 """
 from __future__ import annotations
 
@@ -10,18 +12,16 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 from .config import Settings
-from .facts import ViewerFacts
+from .facts import ViewerFacts, build_facts, event_time
 from .goals import RuleBook
-from .pack import Pack
+from .pack import INSTRUCTION_LIKE, Pack
 from .planner import Proposal
-from .store import Store
-from .times import in_quiet_hours, ist_day
+from .store import Store, StoreTimeout
+from .times import in_quiet_hours, ist_day, parse_ts
 
 FORBIDDEN_DEFAULT = ("last chance", "hurry", "only today", "free forever", "guaranteed")
 PRICE_PATTERN = re.compile(r"(?:rs\.?|inr|₹)\s*(\d+)|(\d+)\s*(?:rs|inr|rupees)", re.I)
-INJECTION_PATTERN = re.compile(
-    r"ignore (?:your |all |the )?(?:previous|prior|above)|system note|\[assistant instruction\]|every user|all users|"
-    r"including users who opted out|pre-approved", re.I)
+INJECTION_PATTERN = INSTRUCTION_LIKE
 
 
 @dataclass
@@ -52,8 +52,18 @@ def verify(proposal: Proposal, facts: ViewerFacts, arm: str | None, rules: RuleB
     else:
         r.ok("holdout")
 
+    events = None
+    if proposal.goal is not None or msg is not None:
+        budget.tool("store:events_for (verifier re-read)")
+        try:
+            events = store.events_for(facts.user_id, budget)
+        except StoreTimeout as exc:
+            r.fail("re_read", f"could not re-read the viewer's events to verify: {exc}", "all")
+            return r
+
     if proposal.goal is not None:
-        again = rules.check(proposal.goal.goal_id, facts)  # recomputed from the facts, not copied from the planner
+        fresh = build_facts(facts.user_id, facts.trigger, events, pack, now, settings)
+        again = rules.check(proposal.goal.goal_id, fresh)
         measurable, why = rules.measurable(proposal.goal.goal_id)
         if not again.eligible:
             r.fail("eligibility", f"{proposal.goal.goal_id}: {again.reason}", "all")
@@ -65,7 +75,7 @@ def verify(proposal: Proposal, facts: ViewerFacts, arm: str | None, rules: RuleB
     if page is not None:
         _check_page(r, page, facts, store, pack, settings, now, budget)
     if msg is not None:
-        _check_message(r, msg, facts, store, pack, settings, now, budget)
+        _check_message(r, msg, facts, events, store, pack, settings, now, budget)
     if proposal.model.get("used"):
         _check_injection(r, proposal)
     return r
@@ -111,12 +121,26 @@ def _check_page(r: CheckResult, page, facts: ViewerFacts, store: Store, pack: Pa
         r.ok("duplicate_action")
 
 
-def _check_message(r: CheckResult, msg, facts: ViewerFacts, store: Store, pack: Pack, settings: Settings,
-                   now: datetime, budget) -> None:
+def raw_consent(user_id: str, channel: str, events: list[dict], pack: Pack) -> tuple[bool, str]:
+    """Consent straight from the sources, written separately from facts.py on purpose."""
+    profile = pack.profiles.get(user_id)
+    if profile is None:
+        return False, "no profile row, consent unknown"
+    flag = profile["notifications_opt_in" if channel == "push" else "whatsapp_opt_in"]
+    snapshot_at = parse_ts(profile["updated_at"])
+    for e in events:
+        if (e["event"] == "notification_opt_out" and e["properties"].get("channel") == channel
+                and event_time(e) > snapshot_at):
+            return False, f"opted out at {e['received_at']} (event {e['event_id']})"
+    return flag is True, f"profile flag {flag} as of {profile['updated_at']}"
+
+
+def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], store: Store, pack: Pack,
+                   settings: Settings, now: datetime, budget) -> None:
     channel = msg.channel
-    consent = facts.value(f"consent_{channel}")
-    if consent is not True:
-        r.fail("consent", f"{channel} consent is {consent} ({facts.facts[f'consent_{channel}'].source})", "message")
+    consented, why = raw_consent(facts.user_id, channel, events, pack)
+    if not consented:
+        r.fail("consent", f"{channel}: {why}", "message")
     else:
         r.ok("consent")
 
@@ -148,6 +172,9 @@ def _check_message(r: CheckResult, msg, facts: ViewerFacts, store: Store, pack: 
             r.fail("template", f"{msg.template_id} is not an approved template", "message")
         elif set(t["variables"]) != set((msg.variables or {}).keys()):
             r.fail("template", f"variables {sorted(msg.variables or {})} do not match {t['variables']}", "message")
+        elif "naya episode" in t["text"].lower() and not _recent_release(pack.title(msg.title_id), msg.send_at):
+            # honest copy (policy rule 4): "a new episode is here" only for a title that is actually new
+            r.fail("template", f"{msg.template_id} announces a new episode but {msg.title_id} is not a recent release", "message")
         else:
             r.ok("template")
         text = " ".join(str(v) for v in (msg.variables or {}).values())
@@ -180,3 +207,7 @@ def _check_injection(r: CheckResult, proposal: Proposal) -> None:
         r.fail("injection", "model text contains instruction-like content; dropping model-written copy", "message")
     else:
         r.ok("injection")
+
+
+def _recent_release(title, at: datetime, days: int = 30) -> bool:
+    return title is not None and (at.date() - title.release_date).days <= days

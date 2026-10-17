@@ -22,6 +22,7 @@ from .store import Store
 from .times import iso, parse_ts
 
 EXPOSURE_EVENTS = ("home_page_shown", "message_delivered", "message_clicked")
+JUDGED = " judged: "  # marks learnings written by the judge
 
 
 def load_rules(pack: Pack, store: Store, pack_dir: Path, settings: Settings) -> RuleBook:
@@ -68,6 +69,8 @@ def run_judge(pack_dir: Path, out_dir: Path) -> dict:
         events += outcome_events.get(user_id, [])
         actions = [a for a in store.actions_for(user_id) if not a.get("cancelled_at")]
 
+        # judging is repeatable: verdicts from an earlier judge run are replaced, never stacked
+        state["learnings"] = [line for line in state.get("learnings", []) if JUDGED not in line]
         for goal in goals:
             verdict = rules.judge(goal, events, observed_until, pack)
             exposure = _exposure(goal, events, actions, verdict.success_at)
@@ -129,7 +132,7 @@ def _learning(goal: dict, outcome: dict) -> str:
     delivered = outcome["exposure"].get("message_delivered", 0)
     seen = f"page shown {shown}x, message delivered {delivered}x" if (shown or delivered) else "nothing of ours was seen"
     known_at = outcome["success_at"] or outcome["deadline"]  # the moment the verdict became certain
-    return f"{known_at} {goal['goal_id']} {outcome['verdict']} ({outcome['attribution']}; {seen}). {outcome['reason']}"
+    return f"{known_at}{JUDGED}{goal['goal_id']} {outcome['verdict']} ({outcome['attribution']}; {seen}). {outcome['reason']}"
 
 
 # --------------------------------------------------------------------------- impact
@@ -308,6 +311,11 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -
                          f"all {c['goal_id']} goals judged under the corrected rule (version {c['rule_version']}).")
         else:
             lines.append(f"- {c['at']} {c['dependency']} {c['type'].split('_')[1]} until {c['until']}: {c.get('detail')}.")
+    flagged = summary.get("catalogue_text_flagged", [])
+    if flagged:
+        lines.append(f"- Catalogue descriptions that read like instructions to an AI, flagged and ignored: "
+                     f"{', '.join(f['title_id'] for f in flagged)}. Descriptions are never sent to the model; "
+                     "the titles themselves remain normal content.")
     lines += [f"- Plan revisions triggered by live events: {len(summary['plan_revisions_from_live_events'])} "
               "(purchases that closed an open goal before its deadline).", "",
               "## Simulator verdict on the published actions", "",

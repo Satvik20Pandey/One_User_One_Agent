@@ -208,8 +208,7 @@ class ViewerAgent:
             return None
         goal = state["active_goal"]
         note = None
-        success = self.d.rules.goals[goal["goal_id"]]["success"]
-        if event["event"] == success["event"]:
+        if self.d.rules.signal_met(goal, event, self.d.pack):
             note = f"{event['event']} arrived at {event['received_at']}; success signal for {goal['goal_id']} received, goal closed for judgement"
             self._close_goal(state, now, "success_signal_received", event["event_id"])
         elif event["event"] == "subscription_lapsed" and goal["goal_id"] in SUBSCRIBER_GOALS:

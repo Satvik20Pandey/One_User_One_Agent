@@ -1,41 +1,15 @@
 {
  "state": {
   "user_id": "U-03732",
-  "active_goal": {
-   "instance_id": "G-00267",
-   "goal_id": "G05",
-   "name": "first_paid_7d",
-   "started_at": "2026-10-01T04:45:09.417Z",
-   "deadline": "2026-10-08T04:45:09.417Z",
-   "success_signal": "purchase_completed (is_trial = false) within 168h",
-   "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "never had a paid plan",
-   "evidence": [
-    "profile:U-03732@2026-09-29T01:07:47.952Z"
-   ],
-   "context": {},
-   "shadow": true,
-   "outcome": {
-    "verdict": "failed",
-    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "holdout_no_action",
-    "exposure": {},
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
-   }
-  },
+  "active_goal": null,
   "goal_history": [],
-  "learnings": [
-   "2026-10-08T04:45:09.417Z G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline",
-   "2026-10-08T04:45:09.417Z G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
-  ],
+  "learnings": [],
   "arm": "holdout",
   "facts": {
    "trigger_freshness": {
     "value": {
-     "event_age_s": 0,
-     "live_visit": true,
+     "event_age_s": 52858,
+     "live_visit": false,
      "device_clock_trusted": false
     },
     "source": "event",
@@ -43,7 +17,7 @@
     "evidence": [
      "trigger:c7e4c9a7-83e4-4b9c-8515-02087df35534"
     ],
-    "note": "device clock ahead of server; used received_at"
+    "note": "buffered on the device for 14h40m; not a live visit"
    },
    "dialect": {
     "value": {
@@ -204,25 +178,15 @@
     "session_id": "5b58e50f-68ce-41a8-87c9-066670291ac2",
     "received_at": "2026-10-01T04:45:09.417Z",
     "delivered_at": "2026-10-01T04:45:09.417Z",
-    "event_age_s": 0,
-    "live_visit": true,
+    "event_age_s": 52858,
+    "live_visit": false,
     "device_clock_trusted": false
    },
-   "goal": {
-    "id": "G05",
-    "name": "first_paid_7d",
-    "instance_id": "G-00267",
-    "started_at": "2026-10-01T04:45:09.417Z",
-    "deadline": "2026-10-08T04:45:09.417Z",
-    "success_signal": "purchase_completed (is_trial = false) within 168h",
-    "rule_version": "goals.json@2026-09-30",
-    "committed_now": true,
-    "shadow": true
-   },
-   "no_goal_reason": null,
+   "goal": null,
+   "no_goal_reason": "trigger is 0d 14h 40m old (buffered offline); the viewer is not in the app now",
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "viewer is in the randomized holdout arm",
+   "no_action_reason": "trigger is 0d 14h 40m old (buffered offline); the viewer is not in the app now",
    "dialect": {
     "used": "d4",
     "source": "app_setting",
@@ -230,8 +194,8 @@
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 59 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.7,
+    "reason": "profile row present; 59 events of history; dialect sources agree"
    },
    "evidence": [
     {
@@ -280,17 +244,9 @@
      "observed_at": "2026-10-01T04:45:09.417Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [],
-   "eligibility": {
-    "goal": "G05",
-    "reason": "never had a paid plan",
-    "evidence": [
-     "profile:U-03732@2026-09-29T01:07:47.952Z"
-    ]
-   },
+   "eligibility": null,
    "model": {
     "provider": null,
     "calls": 0,
@@ -303,7 +259,7 @@
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 7,
+    "tool_calls": 4,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
@@ -313,25 +269,5 @@
   }
  ],
  "actions": [],
- "outcomes": [
-  {
-   "user_id": "U-03732",
-   "arm": "holdout",
-   "goal_instance_id": "G-00267",
-   "goal_id": "G05",
-   "goal_name": "first_paid_7d",
-   "started_at": "2026-10-01T04:45:09.417Z",
-   "deadline": "2026-10-08T04:45:09.417Z",
-   "rule_version_at_commit": "goals.json@2026-09-30",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "closed_early": null,
-   "verdict": "failed",
-   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "holdout_no_action",
-   "exposure": {},
-   "actions": []
-  }
- ]
+ "outcomes": []
 }

@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-01412",
   "active_goal": {
-   "instance_id": "G-01028",
+   "instance_id": "G-01026",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T14:11:17.434Z",
@@ -33,8 +33,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T14:11:17.434Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline",
-   "2026-10-04T14:11:17.434Z G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T14:11:17.434Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -49,7 +48,7 @@
     "evidence": [
      "trigger:38ed20ac-f937-405f-ba79-8d7eb8718bff"
     ],
-    "note": "device clock ahead of server; used received_at"
+    "note": "device clock is ahead of the server; the buffering delay it reports is still used"
    },
    "dialect": {
     "value": {
@@ -232,7 +231,7 @@
    "A-00852",
    "A-00853"
   ],
-  "updated_at": "2026-10-01T15:02:39.060Z"
+  "updated_at": "2026-10-01T15:02:39.057Z"
  },
  "decisions": [
   {
@@ -252,7 +251,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01028",
+    "instance_id": "G-01026",
     "started_at": "2026-10-01T14:11:17.434Z",
     "deadline": "2026-10-04T14:11:17.434Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -376,9 +375,7 @@
      "observed_at": "2026-10-01T14:11:17.434Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d3, deeplink=None -> used d6 (app_setting)"
    ],
@@ -417,12 +414,12 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 11,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T14:11:17.437Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T14:11:17.439Z",
    "status": "PUBLISHED"
   },
   {
@@ -442,7 +439,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01028",
+    "instance_id": "G-01026",
     "started_at": "2026-10-01T14:11:17.434Z",
     "deadline": "2026-10-04T14:11:17.434Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -453,7 +450,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00852 for this viewer is still live (published 2026-10-01T14:11:17.437Z); nothing to change",
+   "no_action_reason": "home page A-00852 for this viewer is still live (published 2026-10-01T14:11:17.439Z); nothing to change",
    "dialect": {
     "used": "d6",
     "source": "app_setting",
@@ -523,9 +520,7 @@
      "observed_at": "2026-10-01T15:02:35.085Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d3, deeplink=None -> used d6 (app_setting)"
    ],
@@ -552,8 +547,8 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T15:02:35.090Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T15:02:35.087Z",
    "status": "NO_ACTION"
   },
   {
@@ -573,7 +568,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01028",
+    "instance_id": "G-01026",
     "started_at": "2026-10-01T14:11:17.434Z",
     "deadline": "2026-10-04T14:11:17.434Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -584,7 +579,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00852 for this viewer is still live (published 2026-10-01T14:11:17.437Z); nothing to change",
+   "no_action_reason": "home page A-00852 for this viewer is still live (published 2026-10-01T14:11:17.439Z); nothing to change",
    "dialect": {
     "used": "d6",
     "source": "app_setting",
@@ -654,9 +649,7 @@
      "observed_at": "2026-10-01T15:02:39.056Z"
     }
    ],
-   "assumptions": [
-    "trigger device clock is untrusted (occurred_at after sent_at); treated as a live open"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d6, profile=d3, deeplink=None -> used d6 (app_setting)"
    ],
@@ -683,8 +676,8 @@
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:02:39.060Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T15:02:39.057Z",
    "status": "NO_ACTION"
   }
  ],
@@ -694,7 +687,7 @@
    "decision_id": "D-01838",
    "user_id": "U-01412",
    "trigger_event_id": "e96f32e6-599d-42cc-852c-53fdc342cbe3",
-   "published_at": "2026-10-01T14:11:17.437Z",
+   "published_at": "2026-10-01T14:11:17.439Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d6",
@@ -765,16 +758,16 @@
    "decision_id": "D-01838",
    "user_id": "U-01412",
    "trigger_event_id": "e96f32e6-599d-42cc-852c-53fdc342cbe3",
-   "published_at": "2026-10-01T14:11:17.437Z",
+   "published_at": "2026-10-01T14:11:17.439Z",
    "goal_id": "G07",
    "type": "whatsapp",
    "send_at": "2026-10-02T13:30:00.000Z",
    "title_id": "T1407",
    "dialect": "d6",
-   "template_id": "wa_new_episode_v2",
+   "template_id": "wa_recommend_title_v1",
    "variables": {
     "title_name": "Loyate",
-    "episode_number": "1"
+    "dialect_name": "D6"
    }
   }
  ],
@@ -782,7 +775,7 @@
   {
    "user_id": "U-01412",
    "arm": "agent",
-   "goal_instance_id": "G-01028",
+   "goal_instance_id": "G-01026",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T14:11:17.434Z",

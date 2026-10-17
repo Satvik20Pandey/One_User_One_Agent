@@ -10,7 +10,7 @@ not settle. Each assumption is a setting in `config.py` or a named constant in `
 | A trigger buffered on the device for more than 10 minutes is not a live visit (`live_visit_max_age_s`) | assumption | the pack simulator ignores such sessions with the same 600 s cut-off; a page has a 120 min TTL, so acting on a days-old open helps nobody |
 | "Recently lapsed" for G06 means within 30 days (`g06_recent_days`) | assumption | `goals.json` gives no number |
 | G10 and G11 are never chosen | derived from data | G10 names no success event; `tv_app_open` never occurs in 142,906 events (checked at start-up, not hard-coded) |
-| Priority when several goals are eligible: G01, G03, G02, G07, G04, G12, G06, G09, G08, G05 (`goal_priority`) | assumption | shortest windows and first-value goals first; engagement before monetisation. A consequence: G03 is rarely chosen because new viewers without a play get G01 |
+| Priority when several goals are eligible: G01, G03, G02, G07, G04, G12, G06, G09, G08, G05 (`goal_priority`) | assumption | shortest windows and first-value goals first; engagement before monetisation. Consequences: G03 is rarely chosen because new viewers without a play get G01, and G07 (resume a series) covers about half of all goals while succeeding only about 4% of the time, which lowers the power of the holdout comparison. The pilot data has no G07 rows to tune this on; the next step is to rank goals by their measured uplift per arm |
 | Page dialect is the app's dialect on the trigger; profile and deeplink are fallbacks for messages only | derived | `interventions.json`: the app requests the page of the dialect it is set to |
 | Messages only for G07, G08 and G04, sent at 19:00 IST the next day, WhatsApp before push | design choice | proportionate actions; the brief asks for one channel and respects quiet hours |
 | G06 success counts any `purchase_completed`, including the 1 rupee trial | assumption | `goals.json` says "any paid plan" |
@@ -45,6 +45,12 @@ not settle. Each assumption is a setting in `config.py` or a named constant in `
 - **The demo app is a local tool, not a product UI.** It runs the agent in mock mode only and serves on localhost.
   "Try the agent" starts each what-if from the viewer's 30-day history, so it ignores what the agent did for that
   viewer earlier on the replay day; the saved run is the record of that.
-- **WhatsApp wording for resume goals.** The only approved template that names an episode is `wa_new_episode_v2`
-  ("Naya episode aa gaya"). It is used to point at the viewer's next unwatched episode, which exists but is not new.
-  A dedicated "continue watching" template would be more honest copy; templates cannot be invented.
+- **No "continue watching" WhatsApp template.** The approved `wa_new_episode_v2` says "Naya episode aa gaya" (a new
+  episode is here), which is untrue for a series the viewer left weeks ago. Resume messages therefore use the
+  neutral `wa_recommend_title_v1`, and the verifier vetoes "new episode" copy for any title that is not a recent
+  release. A dedicated template would be better copy; templates cannot be invented.
+- **Attribution is about order, not cause.** "Exposed before success" only says the viewer saw an agent action
+  before reaching the goal. Some purchases on the replay day were scripted to happen regardless of the agent; only
+  the arm comparison measures effect.
+- **Decision and action ids are counters within one run.** `run-all` always starts from a fresh store; resuming a
+  half-finished replay into the same store is not supported.
