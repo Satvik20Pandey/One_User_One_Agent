@@ -1,4 +1,4 @@
-"""The Streamlit app, driven headlessly: every tab renders and "Try the agent" returns real agent decisions."""
+"""The Streamlit app, driven headlessly: it renders and every scenario runs the real agent."""
 import json
 from datetime import timedelta
 from pathlib import Path
@@ -47,43 +47,37 @@ def app(mini_run, monkeypatch):
     return at
 
 
-def _run_agent(at, viewer, **switches):
-    at.selectbox(key="try_viewer").set_value(viewer)
-    for name, on in switches.items():
-        at.checkbox(key=f"try_{name}").set_value(on)
-    at.button(key="try_run").click().run()
+def _loop(at, viewer, scenario="Normal"):
+    at.selectbox(key="viewer").set_value(viewer)
+    at.selectbox(key="scenario").set_value(scenario)
+    at.run()
     assert not at.exception, at.exception
-    return at.session_state["try_result"]
+    return at.session_state["last_result"]
 
 
-def test_every_tab_renders(app):
-    assert [t.label for t in app.tabs] == ["Overview", "Explore a viewer", "Try the agent", "Impact vs holdout"]
+def test_page_renders_with_headline_numbers(app):
     labels = [m.label for m in app.metric]
-    assert "Policy violations" in labels and "Difference" in labels
-    assert any("U-" in str(s.value) for s in app.selectbox) or app.text_input
+    assert labels == ["App opens decided", "On time (≤ 60 s)", "Acted / chose not to", "Policy violations"]
+    assert [s.value for s in app.subheader] == ["Run the loop for one viewer", "Did the agent help?"]
 
 
-def test_try_the_agent_runs_the_real_agent(app):
-    result = _run_agent(app, "U-S1")
-    assert result["decision"]["status"] == "PUBLISHED"
-    assert result["decision"]["goal"]["id"] == "G07"
-    assert {a["type"] for a in result["actions"]} >= {"home_page"}
+def test_normal_run_matches_the_recorded_decision(app, mini_run):
+    result = _loop(app, "U-S1")
+    recorded = next(d for d in read_jsonl(mini_run / "decisions.jsonl") if d["viewer_id"] == "U-S1")
+    assert result["decision"]["status"] == recorded["status"] == "PUBLISHED"
+    assert result["decision"]["goal"]["id"] == recorded["goal"]["id"]
 
 
-def test_try_the_agent_with_failures(app):
-    claimed = _run_agent(app, "U-S1", claim=True)["decision"]
-    assert "G04" in claimed["model"]["rejected"]
-
-    down = _run_agent(app, "U-S1", claim=False, outage=True)["decision"]
-    assert down["fallback_used"] == "model_unavailable" and down["status"] == "PUBLISHED"
-
-    blind = _run_agent(app, "U-S1", outage=False, store=True)["decision"]
+def test_every_failure_scenario(app):
+    assert "G04" in _loop(app, "U-S1", "Model gives a false answer")["decision"]["model"]["rejected"]
+    assert _loop(app, "U-S1", "Model is down")["decision"]["fallback_used"] == "model_unavailable"
+    blind = _loop(app, "U-S1", "Data store is down")["decision"]
     assert blind["fallback_used"] == "store_degraded" and blind["goal"] is None
-
-    twice = _run_agent(app, "U-S1", store=False, twice=True)
-    assert twice["duplicate"]["status"] == "DUPLICATE"
+    assert _loop(app, "U-S1", "Same open arrives twice")["second"]["status"] == "DUPLICATE"
+    late = _loop(app, "U-S1", "Open arrives 2 days late")["decision"]
+    assert late["status"] == "NO_ACTION" and "buffered offline" in late["no_action_reason"]
 
 
 def test_holdout_viewer_never_gets_an_action(app):
-    result = _run_agent(app, "U-H1")
+    result = _loop(app, "U-H1")
     assert result["decision"]["status"] == "HOLDOUT_NO_ACTION" and result["actions"] == []

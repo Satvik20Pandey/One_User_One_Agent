@@ -32,16 +32,19 @@ flowchart LR
 streamlit run app.py          # opens http://localhost:8501
 ```
 
-| Tab | What you can do |
-|---|---|
-| **Overview** | See the replay day at a glance: decisions, time budget, policy violations, why the agent did nothing, the surprises it handled. |
-| **Explore a viewer** | Pick a situation from the brief (holdout, dialect conflict, false model claim, outage, duplicate…) and walk that viewer from app open to judged outcome. |
-| **Try the agent** | Run the real agent live on one app open. Change the hour, the app dialect, or how long the open sat offline, and break things on purpose (model down, false claim, broken JSON, data store down, duplicate delivery). See the decision, every check and the machine-readable record. |
-| **Impact vs holdout** | Agent arm vs randomized holdout, overall or per goal, with the honest verdict. |
+One page, built around the loop. Pick a viewer and, if you like, something that goes wrong (the model gives a
+false answer, the model is down, the data store is down, the same open arrives twice, the open arrives two days
+late). The real agent runs live on that viewer's app open and the page shows:
 
-The app reads `sample_run/` and the pack at `./pack` (override with `VIEWER_AGENT_RUN` / `VIEWER_AGENT_PACK`).
-"Try the agent" works on an in-memory copy of the data, so it never changes the saved run. The app serves on
-localhost only, because the pack is personal data.
+1. **Decide**: the goal it chose and why, or why there is no goal.
+2. **Act**: what it published, or why it did nothing, and how many independent checks passed.
+3. **Measure**: what that viewer actually did afterwards in the sample run.
+
+Below that, **Did the agent help?** compares the agent arm with the randomized holdout.
+
+The app reads `sample_run/` and the pack at `./pack` (override with `VIEWER_AGENT_RUN` / `VIEWER_AGENT_PACK`). It
+runs on an in-memory copy of the data, so it never changes the saved run, and it serves on localhost only because
+the pack is personal data.
 
 ## Quick start
 
