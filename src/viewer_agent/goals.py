@@ -183,7 +183,7 @@ class RuleBook:
         if goal_id == "G09":
             days = sorted({ist_day(e["_at"]) for e in hits})
             if len(days) >= HABIT_DAYS_NEEDED:
-                third = min(e for e in hits if ist_day(e["_at"]) == days[HABIT_DAYS_NEEDED - 1])
+                third = min((e for e in hits if ist_day(e["_at"]) == days[HABIT_DAYS_NEEDED - 1]), key=lambda e: e["_at"])
                 return Verdict("succeeded", f"plays on {len(days)} distinct IST days", third["event_id"], iso(third["_at"]))
             hits = []
         if hits:

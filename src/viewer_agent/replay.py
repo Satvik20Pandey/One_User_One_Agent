@@ -19,7 +19,7 @@ from .goals import RuleBook
 from .pack import Pack
 from .planner import MockProvider, OpenAIProvider
 from .store import Store
-from .times import iso, parse_ts
+from .times import IST, iso, parse_ts
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -169,6 +169,7 @@ class Replay:
         (out / "latency_report.json").write_text(json.dumps(latency, indent=2), encoding="utf-8")
 
         summary = {
+            "replay_day_ist": _main_day(self.decisions),
             "triggers": len(self.decisions),
             "viewers": len({d["viewer_id"] for d in self.decisions}),
             "decisions_by_status": dict(Counter(d["status"] for d in self.decisions)),
@@ -213,6 +214,12 @@ class Replay:
             "note": "decided_in_ms = measured processing time + simulated waiting on degraded dependencies; "
                     "published_at = deliver_at + decided_in_ms",
         }
+
+
+def _main_day(decisions: list[dict]) -> str | None:
+    """The IST calendar day most triggers were delivered on."""
+    days = Counter(parse_ts(d["trigger"]["delivered_at"]).astimezone(IST).date().isoformat() for d in decisions)
+    return days.most_common(1)[0][0] if days else None
 
 
 def _reason_key(d: dict) -> str:

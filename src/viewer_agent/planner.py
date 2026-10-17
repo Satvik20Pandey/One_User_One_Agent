@@ -201,6 +201,8 @@ class MockProvider:
         if fault["fault"] == "timeout":
             request.budget.wait(min(float(fault.get("seconds", 60)), request.timeout_s))
             raise ProviderTimeout(f"no answer within {request.timeout_s:.0f}s")
+        if "model_output" not in fault:  # any other scripted failure (an HTTP error, a refusal...) fails the call
+            raise ProviderError(f"scripted fault: {fault['fault']}")
         output = fault["model_output"]
         if isinstance(output, str):
             output = json.loads(output)  # raises ValueError on the malformed fault, as a real client would

@@ -18,7 +18,7 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 47 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 48 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
 - Reports are generated from program output. I did not type a number into a document.
@@ -62,5 +62,8 @@ on an empty outcome stream. Building the demo page exposed a real agent bug: for
 hero and the message promoted the most recently played series, not the one the goal was about and would be judged
 on. The content builders now take the goal's own series, and a test pins it. The first version of the app's live
 tab crashed on the second click: Streamlit serves each interaction on a new thread and SQLite refused the cached
-connection. The app test caught it before I opened a browser. All of these were caught by running or looking at
-the output, not by reading the code.
+connection. The app test caught it before I opened a browser. Finally, because the evaluators use their own
+simulator seed and a second replay day, I re-ran the pipeline with four other seeds and a shifted day: one seed
+crashed the judge on the weekly-habit goal (two plays on the deciding day), the final report printed a hard-coded
+date, and an unknown scripted model fault would have crashed the mock provider. All three are fixed and tested.
+All of these were caught by running or looking at the output, not by reading the code.

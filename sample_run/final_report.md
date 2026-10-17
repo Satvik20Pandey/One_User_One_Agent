@@ -30,7 +30,7 @@ Goals committed (both arms): G07 786, G02 430, G01 110, G05 77, G08 65, G09 19, 
 ## Real-time behaviour
 
 - Every decision published within the 60 s budget: 2769/2769; late 0, failed 0.
-- p50 2 ms, p95 3 ms, max 18001 ms (16 decisions waited on a degraded dependency).
+- p50 2 ms, p95 5 ms, max 18001 ms (16 decisions waited on a degraded dependency).
 - Peak load 79 triggers in one minute (2026-10-01T04:45 UTC, the offline-buffer burst).
 - Duplicate triggers recognised: 90. Fallbacks: 11 model_unavailable, 1 store_degraded.
 - Model: 909 calls, advice used 897, rejected 1, provider failures 11.

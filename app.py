@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import os
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT / "src"))  # so the app also runs without `pip insta
 from viewer_agent.agent import Deps, ViewerAgent  # noqa: E402
 from viewer_agent.config import Settings  # noqa: E402
 from viewer_agent.goals import RuleBook  # noqa: E402
-from viewer_agent.judge import _diff_ci, _rate, pilot_reanalysis  # noqa: E402
+from viewer_agent.judge import _diff_ci, _pp, _rate, pilot_reanalysis  # noqa: E402
 from viewer_agent.pack import Pack  # noqa: E402
 from viewer_agent.planner import MockProvider  # noqa: E402
 from viewer_agent.replay import read_jsonl  # noqa: E402
@@ -34,7 +34,6 @@ from viewer_agent.times import IST, UTC, iso, parse_ts  # noqa: E402
 
 RUN = Path(os.environ.get("VIEWER_AGENT_RUN", ROOT / "sample_run"))
 PACK = Path(os.environ.get("VIEWER_AGENT_PACK", ROOT / "pack"))
-REPLAY_DAY = datetime(2026, 10, 1, tzinfo=IST)
 AGENT, HOLDOUT = "#2a78d6", "#eb6834"
 
 st.set_page_config(page_title="One User, One Agent", page_icon="🎬", layout="wide")
@@ -84,11 +83,13 @@ def load_engine(pack_dir: str) -> dict:
     for c in controls:
         if c["type"] == "title_withdrawn":
             after.withdraw(c["title_id"], parse_ts(c["at"]))
-    first_trigger = {}
+    first_trigger, days = {}, Counter()
     for t in read_jsonl(pack_dir / "replay" / "triggers.jsonl"):
         first_trigger.setdefault(t["user_id"], t)
+        days[parse_ts(t["deliver_at"]).astimezone(IST).date()] += 1
+    replay_day = datetime.combine(days.most_common(1)[0][0], datetime.min.time(), tzinfo=IST)  # the day most opens fall on
     return {"settings": settings, "store": store, "known_events": stats["event_names"], "controls": controls,
-            "pack_before": before, "pack_after": after, "first_trigger": first_trigger}
+            "pack_before": before, "pack_after": after, "first_trigger": first_trigger, "replay_day": replay_day}
 
 
 def pack_ready() -> bool:
@@ -199,7 +200,7 @@ def explain_decision(d: dict, actions: list[dict]) -> None:
 def tab_overview(run: dict) -> None:
     s, lat, sim = run["summary"], run["latency"], run["sim"]
     st_ = s["decisions_by_status"]
-    st.caption("The replay day, 1 Oct 2026: every app open handled by that viewer's agent.")
+    st.caption(f"Replay day {s.get('replay_day_ist', '')} (IST): every app open handled by that viewer's agent.")
     c = st.columns(5)
     c[0].metric("App opens", f"{s['triggers']:,}", help=f"{s['viewers']:,} viewers", border=True)
     c[1].metric("Acted", f"{st_.get('PUBLISHED', 0):,}", help="home page and/or one message", border=True)
@@ -334,7 +335,7 @@ def run_agent(eng: dict, user_id: str, hour: int, dialect: str, offline_h: int, 
               broken: bool, store_down: bool, twice: bool) -> dict:
     """One live decision with the real agent, verifier and rules, on a private copy of the store."""
     settings: Settings = eng["settings"]
-    now = (REPLAY_DAY + timedelta(hours=hour, minutes=5)).astimezone(UTC)
+    now = (eng["replay_day"] + timedelta(hours=hour, minutes=5)).astimezone(UTC)
     base = eng["first_trigger"][user_id]
     trigger = dict(base, event_id=f"whatif-{user_id}-{hour}-{offline_h}-{int(outage)}{int(claim)}{int(broken)}{int(store_down)}",
                    session_id=f"whatif-{user_id}", occurred_at=iso(now - timedelta(hours=offline_h)), sent_at=iso(now),
@@ -388,7 +389,7 @@ def tab_impact(run: dict) -> None:
     d, lo, hi = _diff_ci(a, h)
 
     pct = lambda x: "n/a" if x is None else f"{100 * x:.1f}%"  # noqa: E731
-    pp = lambda x: "n/a" if x is None else f"{100 * x:+.1f} pp"  # noqa: E731
+    pp = _pp
     c = st.columns(3)
     c[0].metric("Agent arm reached goal", pct(a["rate"]), help=f"{a['succeeded']} of {a['judged']} viewers", border=True)
     c[1].metric("Holdout arm reached goal", pct(h["rate"]), help=f"{h['succeeded']} of {h['judged']} viewers", border=True)

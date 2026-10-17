@@ -36,6 +36,12 @@ not settle. Each assumption is a setting in `config.py` or a named constant in `
   itself slow.
 - **Sample size.** The agent-minus-holdout difference in the sample run has a confidence interval that includes
   zero. The report says so rather than claiming an effect.
+- **The model is consulted more often than it needs to be.** It is asked on every agent-arm decision that has
+  something to publish (909 calls in the sample run). A production version would ask only when there is push copy
+  to write or several hero titles tie, to save latency and cost; the rules already decide everything else.
+- **Full fact tables are kept for the latest decision only.** Every decision record keeps its evidence refs with
+  their timestamps, conflicts and assumptions, and the event store keeps every event, so any moment can be rebuilt;
+  but the per-viewer state stores the complete fact table only as of the last decision.
 - **The demo app is a local tool, not a product UI.** It runs the agent in mock mode only and serves on localhost.
   "Try the agent" starts each what-if from the viewer's 30-day history, so it ignores what the agent did for that
   viewer earlier on the replay day; the saved run is the record of that.

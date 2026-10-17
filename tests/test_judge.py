@@ -52,6 +52,8 @@ def test_habit_goal_needs_three_distinct_days(env):
     plays = [_event("play_started", NOW + timedelta(days=d, hours=2), title_id="T0001") for d in (1, 1, 2)]
     end = NOW + timedelta(days=15)
     assert env.rules.judge(goal, plays, end, env.pack).verdict == "failed"
+    # two plays on the third day: the earlier one is the success moment (this crashed once with another seed)
+    plays.append(_event("play_started", NOW + timedelta(days=5, hours=3), title_id="T0001"))
     plays.append(_event("play_started", NOW + timedelta(days=5), title_id="T0001"))
     verdict = env.rules.judge(goal, plays, end, env.pack)
     assert verdict.verdict == "succeeded" and verdict.success_at == iso(NOW + timedelta(days=5))

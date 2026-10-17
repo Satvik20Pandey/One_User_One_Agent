@@ -118,7 +118,7 @@ src/viewer_agent/
   replay.py     the replay harness and its outputs
   judge.py      outcomes, attribution, impact report
   cli.py        commands
-tests/          47 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI, app)
+tests/          48 tests on a hand-made mini pack (duplicates, late triggers, conflicts, faults, corrections, policy, CLI, app)
 sample_run/     output of run-all on the supplied pack (state.db is not committed; run-all rebuilds it)
 ```
 

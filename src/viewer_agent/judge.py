@@ -156,7 +156,10 @@ def _pct(x: float | None) -> str:
 
 
 def _pp(x: float | None) -> str:
-    return "n/a" if x is None else f"{100 * x:+.1f} pp"
+    if x is None:
+        return "n/a"
+    value = round(100 * x, 1) + 0.0  # + 0.0 turns -0.0 into 0.0
+    return f"{value:+.1f} pp"
 
 
 def pilot_reanalysis(pack_dir: Path) -> dict | None:
@@ -278,7 +281,7 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi) -
     no_action = summary["no_action_reasons"]
     controls = summary["control_events"]
     lines = ["# Final report: sample replay", "",
-             f"Replay day 2026-10-01 IST, {summary['triggers']} triggers from {summary['viewers']} viewers, mock model provider.", "",
+             f"Replay day {summary.get('replay_day_ist', 'unknown')} IST, {summary['triggers']} triggers from {summary['viewers']} viewers, mock model provider.", "",
              "## What the agents did", "", "| Status | Decisions |", "|---|---|"]
     lines += [f"| {k} | {v} |" for k, v in sorted(status.items(), key=lambda kv: -kv[1])]
     lines += ["", "Actions published: " + ", ".join(f"{v} {k}" for k, v in summary["actions_by_type"].items()) + ".", "",
