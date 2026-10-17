@@ -12,7 +12,10 @@ What the brief or the pack left open, how I settled it, and what I would do next
 | G10 and G11 are never chosen | derived from data | G10 names no success event; `tv_app_open` never occurs in 142,906 events (checked at start-up, not hard-coded) |
 | Goal order per lifecycle stage (`GOAL_PRIORITY_BY_STAGE`) | assumption | new viewers: first value; trial: convert; subscribers: habit and new releases; lapsed: come back; free viewers: first full episode, then resume. Broad success signals before narrow ones, so the holdout comparison has power |
 | Page dialect is the app's dialect on the trigger; profile and deeplink are fallbacks for push and WhatsApp only | derived | `interventions.json`: the app requests the page of the dialect it is set to |
+| Below evidence confidence 0.4 the agent does not act (`min_confidence_to_act`) | design choice | "not enough evidence" is a valid decision in the brief; the goal is still recorded so the holdout comparison stays fair |
 | A push or WhatsApp needs evidence confidence of at least 0.6 (`message_min_confidence`); otherwise page only | design choice | a message outside the app is the action most likely to land in the wrong dialect or annoy; a page is always in the app's dialect |
+| Titles whose catalogue text tries to instruct an AI are not promoted until reviewed | design choice | the text is ignored either way; holding the title back is the cautious response to tampered data |
+| "Trial ending" copy only when the trial ends within 3 days of the send time | design choice | the template says "your trial is ending soon"; it must be true when sent |
 | Messages only for goals with a concrete hook (resume, new release, trial ending), sent at 19:00 IST the next day; in-app at the next open | design choice | proportionate actions inside quiet hours and caps |
 | A goal that failed for a viewer is not retried for 7 days (`retry_failed_goal_days`) | design choice | learn from the outcome instead of repeating the same plan |
 | G06 success counts any `purchase_completed`, including the 1 rupee trial | assumption | `goals.json` says "any paid plan" |
@@ -34,7 +37,10 @@ What the brief or the pack left open, how I settled it, and what I would do next
 - **No "continue watching" WhatsApp template.** `wa_new_episode_v2` ("Naya episode aa gaya") would be untrue for a
   series left weeks ago, so resume messages use the neutral `wa_recommend_title_v1`; templates cannot be invented.
 - **Dialect names.** WhatsApp templates want a `dialect_name`; the pack has only codes, so the code is sent.
-- **Learning works across goals, not across runs.** The planner uses judged outcomes stored in the viewer's state;
-  `run-all` starts from a fresh store each time, so a second day would need the store kept between runs.
+- **Learning needs a judged earlier day.** The planner reads judged outcomes from the viewer's state. `run-all`
+  starts fresh, so for the sample run nothing has been judged yet; `replay --continue-from` carries a judged day
+  into the next one, and `tests/test_learning.py` shows a failed goal changing the next day's plan.
+- **Single process.** The worker queue is simulated inside one process. State documents are versioned, so a second
+  writer is refused rather than overwriting, but there is no distributed lock or real worker pool.
 - **The demo app runs mock mode on localhost only.** Each what-if starts from the viewer's history and that day's
   events before the open; it is a window onto the agent, not a product screen.

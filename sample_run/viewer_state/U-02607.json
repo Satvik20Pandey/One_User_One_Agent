@@ -24,7 +24,7 @@
     "exposure": {
      "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -111,6 +111,13 @@
     "note": ""
    },
    "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
     "value": null,
     "source": "none",
     "observed_at": null,
@@ -212,9 +219,10 @@
    "D-01458"
   ],
   "actions": [
-   "A-00596"
+   "A-00579"
   ],
-  "updated_at": "2026-10-01T11:45:18.381Z"
+  "updated_at": "2026-10-01T11:45:19.585Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -254,13 +262,11 @@
     "conflicts": []
    },
    "content": [
-    "title:T0002",
-    "title:T1501",
+    "title:T1503",
     "title:T0005",
     "title:T0004",
     "title:T1504",
     "title:T1502",
-    "title:T1503",
     "title:T0015",
     "title:T1505",
     "title:T0013",
@@ -275,6 +281,7 @@
     "title:T0063",
     "title:T0426",
     "title:T1626",
+    "title:T1647",
     "title:T1510",
     "title:T0034",
     "title:T1508",
@@ -294,7 +301,7 @@
     "title:T0226",
     "title:T0352",
     "title:T1675",
-    "title:T1647"
+    "title:T0036"
    ],
    "confidence": {
     "value": 0.75,
@@ -405,6 +412,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -464,7 +476,9 @@
      "observed_at": "2026-10-01T11:45:18.378Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "events can arrive late; 'no completion' means none received yet"
+   ],
    "conflicts": [],
    "eligibility": {
     "goal": "G02",
@@ -475,11 +489,13 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T1503",
+    "reason": "Hate (English) is the most popular allowed title in the viewer's top genre, Comedy"
    },
    "checks": {
     "passed": [
@@ -488,54 +504,53 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T11:45:18.381Z",
+   "decided_in_ms": 1207,
+   "published_at": "2026-10-01T11:45:19.585Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00596",
+   "action_id": "A-00579",
    "decision_id": "D-01458",
    "user_id": "U-02607",
    "trigger_event_id": "ff9bf114-acea-4d53-be4d-0e8a4e171863",
-   "published_at": "2026-10-01T11:45:18.381Z",
+   "published_at": "2026-10-01T11:45:19.585Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0002",
+   "hero_title_id": "T1503",
    "rows": [
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T1501",
       "T0005",
       "T0004",
       "T1504",
       "T1502",
-      "T1503",
       "T0015",
       "T1505",
       "T0013",
-      "T1507"
+      "T1507",
+      "T0007"
      ]
     },
     {
      "row_type": "new_releases",
      "title_ids": [
-      "T0007",
       "T1523",
       "T1540",
       "T1520",
@@ -544,7 +559,8 @@
       "T0047",
       "T0063",
       "T0426",
-      "T1626"
+      "T1626",
+      "T1647"
      ]
     },
     {
@@ -574,7 +590,7 @@
       "T0226",
       "T0352",
       "T1675",
-      "T1647"
+      "T0036"
      ]
     }
    ]
@@ -590,7 +606,7 @@
    "started_at": "2026-10-01T11:45:18.378Z",
    "deadline": "2026-10-04T11:45:18.378Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no episode_completed matching 'any episode' before the deadline",
@@ -601,7 +617,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00596"
+    "A-00579"
    ]
   }
  ]

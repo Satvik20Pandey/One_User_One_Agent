@@ -25,7 +25,7 @@
     "exposure": {
      "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -107,6 +107,13 @@
     "evidence": [
      "event:b292a43f-e1c4-4eff-94b4-b5f16b3e00ea"
     ],
+    "note": ""
+   },
+   "trial_ends_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
     "note": ""
    },
    "consent_push": {
@@ -247,9 +254,10 @@
    "D-00796"
   ],
   "actions": [
-   "A-00272"
+   "A-00269"
   ],
-  "updated_at": "2026-10-01T06:28:22.755Z"
+  "updated_at": "2026-10-01T06:28:22.761Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -291,7 +299,6 @@
     ]
    },
    "content": [
-    "title:T0001",
     "title:T0005",
     "title:T0015",
     "title:T0013",
@@ -459,6 +466,11 @@
      "source": "event",
      "observed_at": "2026-09-19T05:29:09.063Z"
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -556,7 +568,9 @@
      "observed_at": "2026-10-01T06:28:21.549Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "'recently lapsed' read as within 30 days (not defined in goals.json)"
+   ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d3, deeplink=None -> used d1 (app_setting)"
    ],
@@ -575,7 +589,8 @@
     "rejected": null,
     "failure": null,
     "skipped": null,
-    "reason": "lapsed recently"
+    "changed": "hero -> T0005",
+    "reason": "Tidha Dakachu is the most popular allowed title in the viewer's top genre, Action"
    },
    "checks": {
     "passed": [
@@ -596,28 +611,27 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1206,
-   "published_at": "2026-10-01T06:28:22.755Z",
+   "decided_in_ms": 1212,
+   "published_at": "2026-10-01T06:28:22.761Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00272",
+   "action_id": "A-00269",
    "decision_id": "D-00796",
    "user_id": "U-01810",
    "trigger_event_id": "32f37464-fde4-4ee9-abbc-35bbab32fe31",
-   "published_at": "2026-10-01T06:28:22.755Z",
+   "published_at": "2026-10-01T06:28:22.761Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0001",
+   "hero_title_id": "T0005",
    "rows": [
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T0005",
       "T0015",
       "T0013",
       "T0034",
@@ -675,81 +689,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00320",
-   "decision_id": "D-00796",
-   "user_id": "U-01810",
-   "trigger_event_id": "32f37464-fde4-4ee9-abbc-35bbab32fe31",
-   "published_at": "2026-10-01T07:00:00.000Z",
-   "goal_id": "G06",
-   "type": "home_page",
-   "dialect": "d1",
-   "hero_title_id": null,
-   "rows": [
-    {
-     "row_type": "popular_in_dialect",
-     "title_ids": [
-      "T0005",
-      "T0015",
-      "T0013",
-      "T0034",
-      "T0011",
-      "T0018",
-      "T0037",
-      "T0029",
-      "T0019",
-      "T0035"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0028",
-      "T0031",
-      "T0070",
-      "T0127",
-      "T0426",
-      "T0413",
-      "T0126",
-      "T0419",
-      "T0076",
-      "T0072"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0030",
-      "T0520",
-      "T0022",
-      "T0518",
-      "T0226",
-      "T0352",
-      "T0060",
-      "T0274",
-      "T0097",
-      "T0447"
-     ]
-    },
-    {
-     "row_type": "genre",
-     "title_ids": [
-      "T0026",
-      "T0027",
-      "T0422",
-      "T0023",
-      "T0168",
-      "T0157",
-      "T0039",
-      "T0211",
-      "T0196",
-      "T0384"
-     ]
-    }
-   ],
-   "replaces": "A-00272",
-   "reason": "T0001 withdrawn"
   }
  ],
  "outcomes": [
@@ -762,7 +701,7 @@
    "started_at": "2026-10-01T06:28:21.549Z",
    "deadline": "2026-10-15T06:28:21.549Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
@@ -773,8 +712,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00272",
-    "A-00320"
+    "A-00269"
    ]
   }
  ]

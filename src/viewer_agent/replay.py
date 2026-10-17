@@ -48,7 +48,8 @@ def make_provider(name: str, faults: list[dict], settings: Settings):
 
 
 class Replay:
-    def __init__(self, pack_dir: Path, out_dir: Path, provider_name: str = "mock", settings: Settings | None = None):
+    def __init__(self, pack_dir: Path, out_dir: Path, provider_name: str = "mock", settings: Settings | None = None,
+                 state_db: Path | None = None):
         self.pack_dir, self.out_dir = Path(pack_dir), Path(out_dir)
         self.out_dir.mkdir(parents=True, exist_ok=True)
         self.settings = settings or Settings()
@@ -56,6 +57,9 @@ class Replay:
         for p in (db, Path(str(db) + "-journal")):
             if p.exists():
                 p.unlink()
+        if state_db:  # continue from an earlier day: viewers keep their goals, outcomes and learnings
+            import shutil
+            shutil.copyfile(state_db, db)
         self.pack = Pack(self.pack_dir)
         self.store = Store(db)
         self.history = self.store.ingest_history(self.pack_dir / "data" / "events.jsonl")
@@ -82,6 +86,7 @@ class Replay:
         timeline += [("control", parse_ts(c["at"]), c) for c in read_jsonl(replay / "control_events.jsonl")]
         order = {"control": 0, "event": 1, "trigger": 2}
         timeline.sort(key=lambda x: (x[1], order[x[0]]))
+        self.started_at = iso(timeline[0][1]) if timeline else ""
 
         triggers_seen = 0
         free_at = [0.0] * self.settings.workers  # when each decision worker is next free (epoch seconds)
@@ -171,7 +176,9 @@ class Replay:
         write_jsonl(out / "decisions.jsonl", self.decisions)
         actions = []
         for user_id, _ in self.store.all_states():
-            actions += [a for a in self.store.actions_for(user_id) if not a.get("cancelled_at")]
+            # this run's actions only (a continued run's store also holds earlier days)
+            actions += [a for a in self.store.actions_for(user_id)
+                        if not a.get("cancelled_at") and a["published_at"] >= getattr(self, "started_at", "")]
         actions.sort(key=lambda a: (a["published_at"], a["action_id"]))
         write_jsonl(out / "actions.jsonl", actions)
 
@@ -277,11 +284,12 @@ class SurgeMonitor:
 def _reason_key(d: dict) -> str:
     reason = d.get("no_action_reason") or ""
     for key in ("holdout", "duplicate", "buffered offline", "still live", "no catalogue content", "dialect unknown",
-                "no evidence", "no measurable goal", "vetoed", "user_data_store", "budget"):
+                "not enough evidence", "no evidence", "no measurable goal", "vetoed", "user_data_store", "budget"):
         if key in reason:
             return key
     return reason[:60] or "unspecified"
 
 
-def run_replay(pack_dir: Path, out_dir: Path, provider_name: str = "mock", limit: int | None = None) -> dict:
-    return Replay(pack_dir, out_dir, provider_name).run(limit=limit)
+def run_replay(pack_dir: Path, out_dir: Path, provider_name: str = "mock", limit: int | None = None,
+               state_db: Path | None = None) -> dict:
+    return Replay(pack_dir, out_dir, provider_name, state_db=state_db).run(limit=limit)

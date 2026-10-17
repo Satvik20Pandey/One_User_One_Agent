@@ -69,8 +69,8 @@ class Budget:
 
 
 class Ids:
-    """Sequential ids. Started from what the store already holds, so a second run into the same store never collides
-    (a goal is created by at most one decision, so the decision count is a safe start for goal ids too)."""
+    """Sequential ids. Started after the highest id the store already holds, so a run that continues an earlier
+    store never collides (a goal is created by at most one decision, so that is a safe start for goal ids too)."""
 
     def __init__(self, decisions: int = 0, actions: int = 0):
         self.decisions = decisions
@@ -79,7 +79,7 @@ class Ids:
 
     @classmethod
     def after(cls, store: Store) -> "Ids":
-        return cls(store.count("decisions"), store.count("actions"))
+        return cls(store.highest_number("decisions", "decision_id"), store.highest_number("actions", "action_id"))
 
     def decision(self) -> str:
         self.decisions += 1
@@ -122,7 +122,9 @@ class ViewerAgent:
         budget.tool("store:find_decision")
         earlier = store.find_decision(trigger["event_id"])
         if earlier:
-            return self._duplicate(trigger, now, earlier, budget), []
+            record = self._duplicate(trigger, now, earlier, budget)
+            store.save_decision(record)  # kept for the audit trail; the lookup above skips duplicates
+            return record, []
 
         state, events, degraded = self._load(budget)
         budget.tool("pack:arms")
@@ -139,13 +141,13 @@ class ViewerAgent:
         goal_for_record, new_goal = None, False
         freshness = facts.value("trigger_freshness")
 
-        if degraded:
-            # Smallest safe action: a page that needs nothing about the viewer beyond the dialect the app sent.
-            proposal = self._dialect_only_proposal(facts, now, budget)
-        elif not freshness["live_visit"]:
+        if not freshness["live_visit"]:
             age = freshness["event_age_s"]
             proposal = Proposal(None, None, None, f"trigger is {age // 86400}d {age % 86400 // 3600}h {age % 3600 // 60}m old "
                                                   "(buffered offline); the viewer is not in the app now")
+        elif degraded:
+            # Smallest safe action: a page that needs nothing about the viewer beyond the dialect the app sent.
+            proposal = self._dialect_only_proposal(facts, now, budget)
         else:
             try:
                 proposal = self._plan(state, facts, arm, now, budget)
@@ -233,6 +235,10 @@ class ViewerAgent:
             note = f"{event['event']} arrived; {goal['goal_id']} is moot, goal closed for judgement"
             self._close_goal(state, now, "state_changed:" + event["event"], event["event_id"])
         if note:
+            cancelled = self._cancel_scheduled(None, now, f"goal {goal['goal_id']} closed: {event['event']}",
+                                               goal_id=goal["goal_id"])
+            if cancelled:
+                note += f"; cancelled scheduled message(s) {', '.join(cancelled)}"
             state.setdefault("learnings", []).append(f"{iso(now)} {note}")
             state["replan_reason"] = note
             store.save_state(self.user_id, state, now)
@@ -252,6 +258,11 @@ class ViewerAgent:
             return Proposal(goal, None, None, f"home page {live_page['action_id']} for this viewer is still live "
                                               f"(published {live_page['published_at']}); nothing to change")
         # The model is only consulted when its advice can be used: never for holdout shadow decisions.
+        confidence, why = facts.confidence()
+        if arm == "agent" and confidence < self.d.settings.min_confidence_to_act:
+            goal = next((e for e in eligible if e.goal_id == keep), None) or (eligible[0] if eligible else None)
+            return Proposal(goal, None, None, f"not enough evidence to act (confidence {confidence:.2f}: "
+                                              f"{'; '.join(why)}); nothing published")
         provider = self.d.provider if arm == "agent" and not self.d.shed_model else None
         message_block = self._message_block(now, budget) if arm == "agent" else None
         proposal = propose(facts, eligible, self.d.pack, self.d.settings, now, provider, budget, keep_goal=keep,
@@ -278,11 +289,13 @@ class ViewerAgent:
                                          f"not retried for {self.d.settings.retry_failed_goal_days} days")
         return skip
 
-    def _cancel_scheduled(self, channel: str | None, now: datetime, reason: str) -> list[str]:
-        """Scheduled push/WhatsApp messages that have not gone out yet can still be withdrawn."""
+    def _cancel_scheduled(self, channel: str | None, now: datetime, reason: str, goal_id: str | None = None) -> list[str]:
+        """Scheduled push/WhatsApp messages that have not gone out yet can still be withdrawn: all of one channel
+        (after an opt-out) or all of one goal (after the goal closed)."""
         cancelled = []
         for a in self.d.store.actions_for(self.user_id):
-            if a["type"] == channel and not a.get("cancelled_at") and parse_ts(a["send_at"]) > now:
+            wanted = a["type"] == channel if channel else (a["type"] in ("push", "whatsapp") and a.get("goal_id") == goal_id)
+            if wanted and not a.get("cancelled_at") and parse_ts(a["send_at"]) > now:
                 self.d.store.cancel_action(a, now, reason)
                 cancelled.append(a["action_id"])
         return cancelled
@@ -445,7 +458,7 @@ class ViewerAgent:
             # what the agent knew at this moment, so any past decision can be audited without replaying it
             "facts": {name: {"value": f.value, "source": f.source, "observed_at": f.observed_at}
                       for name, f in facts.facts.items()},
-            "assumptions": facts.assumptions + proposal.assumptions,
+            "assumptions": facts.assumptions + (proposal.goal.assumptions if proposal.goal else []) + proposal.assumptions,
             "conflicts": facts.conflicts,
             "eligibility": {"goal": proposal.goal.goal_id, "reason": proposal.goal.reason,
                             "evidence": proposal.goal.evidence} if proposal.goal else None,

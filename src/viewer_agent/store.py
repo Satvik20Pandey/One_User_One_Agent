@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE INDEX IF NOT EXISTS events_user ON events (user_id, received_at);
 
 CREATE TABLE IF NOT EXISTS viewers (
-    user_id TEXT PRIMARY KEY, active_goal TEXT, state TEXT NOT NULL, updated_at TEXT NOT NULL);
+    user_id TEXT PRIMARY KEY, active_goal TEXT, state TEXT NOT NULL, updated_at TEXT NOT NULL,
+    version INTEGER NOT NULL DEFAULT 0);
 CREATE INDEX IF NOT EXISTS viewers_goal ON viewers (active_goal);
 
 CREATE TABLE IF NOT EXISTS decisions (
@@ -40,6 +41,10 @@ CREATE TABLE IF NOT EXISTS actions (
     published_at TEXT NOT NULL, send_at TEXT, record TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS actions_user ON actions (user_id, published_at);
 """
+
+
+class StaleState(Exception):
+    """Someone saved this viewer's state after we read it. Re-read and decide again instead of overwriting."""
 
 
 class StoreTimeout(Exception):
@@ -156,13 +161,19 @@ class Store:
         return json.loads(row["state"]) if row else None
 
     def save_state(self, user_id: str, state: dict, now: datetime) -> None:
+        """Optimistic write: succeeds only if nobody saved this viewer since `state` was read (one owner per viewer)."""
         active = (state.get("active_goal") or {}).get("goal_id")
+        read_version = state.get("version", 0)
         with self.conn:
+            row = self.conn.execute("SELECT version FROM viewers WHERE user_id = ?", (user_id,)).fetchone()
+            if (row["version"] if row else 0) != read_version:
+                raise StaleState(f"{user_id}: state is at version {row['version']}, this writer read {read_version}")
+            state["version"] = read_version + 1
             self.conn.execute(
-                "INSERT INTO viewers (user_id, active_goal, state, updated_at) VALUES (?,?,?,?) "
+                "INSERT INTO viewers (user_id, active_goal, state, updated_at, version) VALUES (?,?,?,?,?) "
                 "ON CONFLICT(user_id) DO UPDATE SET active_goal = excluded.active_goal, "
-                "state = excluded.state, updated_at = excluded.updated_at",
-                (user_id, active, json.dumps(state), iso(now)))
+                "state = excluded.state, updated_at = excluded.updated_at, version = excluded.version",
+                (user_id, active, json.dumps(state), iso(now), state["version"]))
 
     def viewers_with_active_goal(self, goal_id: str) -> list[str]:
         rows = self.conn.execute("SELECT user_id FROM viewers WHERE active_goal = ?", (goal_id,)).fetchall()
@@ -232,6 +243,11 @@ class Store:
             if when and ist_day(when) == day and not rec.get("cancelled_at"):
                 out.append(rec)
         return out
+
+    def highest_number(self, table: str, column: str) -> int:
+        """Largest numeric suffix of ids like D-00042 in a table (0 when empty)."""
+        rows = self.conn.execute(f"SELECT {column} FROM {table}").fetchall()
+        return max((int(r[0].split("-")[-1]) for r in rows if r[0].split("-")[-1].isdigit()), default=0)
 
     def count(self, table: str) -> int:
         return self.conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]

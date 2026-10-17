@@ -111,6 +111,10 @@ class Pack:
     def title(self, title_id: str | None) -> Title | None:
         return self.titles.get(title_id) if title_id else None
 
+    def quarantined(self, title_id: str | None) -> bool:
+        """Titles whose catalogue text tries to instruct an AI are held back from promotion until a person reviews them."""
+        return title_id in self.flagged_text
+
     def available(self, title_id: str | None, at: datetime) -> bool:
         t = self.title(title_id)
         return t is not None and t.available_at(at)
@@ -128,7 +132,7 @@ class Pack:
         """
         by_slug: dict[str, Title] = {}
         for t in self.titles.values():
-            if t.dialect != dialect or not t.available_at(at):
+            if t.dialect != dialect or not t.available_at(at) or self.quarantined(t.title_id):
                 continue
             current = by_slug.get(t.slug)
             if current is None or (language and t.language == language and current.language != language):

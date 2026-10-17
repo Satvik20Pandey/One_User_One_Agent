@@ -28,7 +28,9 @@ sequenceDiagram
 
 `ViewerAgent` is created per `user_id` and owns that viewer's goal, single active plan and history. The agent
 object is stateless; everything durable is a single state document in SQLite keyed by `user_id`, so two
-components can never pursue different goals for one viewer. Holdout viewers have an agent too: it chooses the
+components can never pursue different goals for one viewer. The document is versioned: a writer that read an older
+version is refused (`StaleState`) and must re-read and decide again, so a second worker cannot silently overwrite
+the owner's plan. Holdout viewers have an agent too: it chooses the
 goal (a "shadow" goal, so the arms stay comparable) and publishes nothing.
 
 ## Planning
@@ -43,8 +45,10 @@ G10 has no success event and G11's event never occurs in the stream, which the r
 
 The active goal is kept while its window is open and the viewer still qualifies. It is revised on a state change,
 not on a schedule: a live event that meets the success condition closes the goal at once (`handle_event`), a
-purchase makes a monetisation goal moot, a lapse closes subscriber goals. Judged outcomes feed back: a goal that
-failed for this viewer is not retried for seven days, and the decision says so ("learned: ...").
+purchase makes a monetisation goal moot, a lapse closes subscriber goals, and a closing goal cancels any message
+it had scheduled. Judged outcomes feed back: a goal that failed for this viewer is not retried for seven days, and the
+decision says so ("learned: ..."). `replay --continue-from <earlier state.db>` runs the next day on top of an earlier,
+judged day, so this loop runs across days, not only in tests.
 
 Interventions are proportionate. A home page is the default: it needs no consent, the app shows it only while the
 viewer is there, and it is always rendered in the app's own dialect. One message at most, only for goals with a
@@ -52,7 +56,9 @@ concrete hook (resume a series, a new release, a trial ending): WhatsApp if the 
 in-app message, which needs no consent and is shown at the next open. A push or WhatsApp reaches the viewer outside
 the app, so it needs evidence confidence of at least 0.6; when the app, profile and campaign disagree on dialect the
 agent publishes the page only. "Do nothing" is a recorded decision with a reason: holdout, buffered-offline trigger,
-duplicate, page still live, no catalogue in the app's dialect, no evidence yet, no measurable goal, or a veto.
+duplicate, page still live, no catalogue in the app's dialect, no measurable goal, a veto, or not enough evidence:
+below a confidence of 0.4 (no profile and no history, or no profile and disagreeing dialect sources) the agent
+records the goal but publishes nothing.
 
 The model is asked only when it can add something: push or in-app copy to write, or a hero title that the evidence
 (a campaign link or the goal's own series) did not already decide. In the sample run that skips about a fifth of
@@ -96,7 +102,9 @@ the same state. `viewer_state/<user_id>.json` exports everything for one viewer;
 - it derives consent with its own code from the profile row and later opt-out events;
 - holdout arm, page dialect, availability at publish time (withdrawals included), page rules, the daily caps
   (push and WhatsApp share one, in-app has its own), templates and copy are checked against the pack and policy.
-  "New episode" copy is allowed only for a recent release.
+  "New episode" copy is allowed only for a recent release, and "your trial is ending" only when the trial,
+  re-derived from the sources, ends within three days of the send time. Titles whose catalogue text tries to
+  instruct an AI are held back from pages and messages until a person reviews them.
 
 Each check has a scope: a failed message check drops the message and keeps the page; a failed page check drops the
 page; holdout or eligibility failures drop everything. The eligibility rules themselves are shared code with the
@@ -135,6 +143,22 @@ across workers; the store is the only coordination point.
 | a title is withdrawn | catalogue updated; live pages containing it are republished without it; pending messages about it are cancelled |
 | a goal rule is corrected | rule book versioned; only viewers with that goal open are tagged; every open goal is judged under the rule in force |
 | a viewer opts out after a message was scheduled | the scheduled message is cancelled |
+
+## Scale, and what stays human
+
+- **1,000 opens in one minute.** Each open is an independent unit of work keyed by `user_id`; workers pull from one
+  queue, the queue wait counts against the 60 s budget, and optional model calls are the first thing shed. The
+  expensive part (reading one viewer's events) is a single indexed read.
+- **10 million viewers, 40 dialects.** Shard the event store and the viewer documents by `user_id`; the catalogue
+  index is per dialect and small. Goal rules and policy are data (`goals.json`, `interventions.json`), so new
+  dialects need catalogue rows, not code. A rule correction touches only viewers with that goal open (an index on
+  `active_goal`), never everyone.
+- **Never automated.** Prices, offers and plan changes (only `pricing.json` prices, no invented discounts); adding or
+  approving message templates; releasing a quarantined title; changing consent; and rolling the agent out wider. The
+  agent proposes and records; people approve those.
+- **Was doing nothing right?** Holdout viewers get the same goals, and the agent-arm viewers it chose not to act for
+  keep their goals too, so their outcomes are measured against the holdout like everyone else's. Abstentions are
+  recorded with reasons, so a later analysis can compare "abstained" against "acted" within each reason.
 
 ## Trust boundaries
 

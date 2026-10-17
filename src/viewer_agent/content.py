@@ -11,9 +11,10 @@ from datetime import datetime, timedelta
 from .config import Settings
 from .facts import ViewerFacts
 from .pack import Pack, Title
-from .times import next_send_slot
+from .times import next_send_slot, parse_ts
 
 MIN_ROW, MAX_ROW, MAX_ROWS = 3, 10, 6
+TRIAL_ENDING_DAYS = 3
 MONEY_GOALS = {"G04", "G05", "G06"}
 PUSH_TITLE_MAX, PUSH_BODY_MAX = 40, 120
 
@@ -62,7 +63,7 @@ def _series_first(facts: ViewerFacts, pack: Pack, dialect: str, at: datetime, co
     goal_slug = (context or {}).get("slug")
     series = [s for s in facts.value("unfinished_series") or []
               if pack.title(s["title_id"]) and pack.title(s["title_id"]).dialect == dialect
-              and pack.title(s["title_id"]).available_at(at)]
+              and pack.title(s["title_id"]).available_at(at) and not pack.quarantined(s["title_id"])]
     return sorted(series, key=lambda s: s["slug"] != goal_slug)
 
 
@@ -84,7 +85,8 @@ def build_page(goal_id: str, facts: ViewerFacts, pack: Pack, now: datetime, sett
     link = facts.value("campaign_deeplink") or {}
     hero, hero_reason = None, "most popular"
     campaign_title = pack.title(link.get("title_id"))
-    if campaign_title and campaign_title.dialect == dialect and campaign_title.available_at(now):
+    if campaign_title and campaign_title.dialect == dialect and campaign_title.available_at(now) \
+            and not pack.quarantined(campaign_title.title_id):
         hero, hero_reason = campaign_title, "campaign link"
     unfinished = _series_first(facts, pack, dialect, now, context)
     if hero is None and goal_id == "G07" and unfinished:
@@ -196,9 +198,15 @@ def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: dateti
         if not recent:
             return None
         t = recent[0]
-        return t, "new release", (f"New in {dialect.upper()}: {t.name}", f"{t.name} just released. Start watching now."), recommend(t)
+        age = (at.date() - t.release_date).days
+        when = "today" if age == 0 else ("yesterday" if age == 1 else f"{age} days ago")
+        return t, "new release", (f"New in {dialect.upper()}: {t.name}", f"{t.name} came out {when}. Start watching now."), recommend(t)
 
     if goal_id == "G04":
+        # "your trial is ending soon" must be true at send time: the trial ends within three days of the message
+        ends = parse_ts(facts.value("trial_ends_at"))
+        if ends is None or not at <= ends <= at + timedelta(days=TRIAL_ENDING_DAYS):
+            return None
         price = pack.plan_price("P_MONTH")
         t = _rank(pool, pack, premium_first=True)[0]
         return (t, "trial ending", ("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}."),

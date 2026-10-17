@@ -18,10 +18,11 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 68 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 79 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
-- Reports are generated from program output. I did not type a number into a document.
+- Reports are generated from program output. The few figures quoted in the design notes come from earlier runs
+  and say so.
 
 ## What I rejected or changed
 
@@ -75,6 +76,21 @@ grade the work as a hiring panel would. I checked each finding in the code and t
 
 The second pass found one more bug of its own: the final report crashed on a control event type it did not know.
 Fixed, and the unseen-day test now runs through the reports.
+
+A second cold review (again with no notes from me) found smaller things, which I checked and fixed:
+
+| Finding | What I did |
+|---|---|
+| During a data-store outage a days-old buffered open could still get a page | Freshness is checked before the outage fallback |
+| A purchase closed the goal but left its upsell message scheduled | A closing goal cancels the messages it scheduled |
+| "Just released" was used for titles up to 30 days old; "trial ending" ignored when the trial ends | Copy states the real release age; trial-ending only when the trial ends within 3 days (checked again by the verifier) |
+| Eligibility assumptions (like the 30-day "recently lapsed") were missing from decision records | They are copied onto every decision |
+| The G03 correction was applied to G03 goals that had already ended | Corrections apply only to goals still open at correction time |
+| Abstention was almost entirely mechanical | Not enough evidence (confidence below 0.4) is now a recorded no-action |
+| The mock model only echoed the rules | It now picks the most popular allowed title in the viewer's top genre, so advice is accepted or rejected for real |
+| Learning never ran end to end | `replay --continue-from` runs day two on day one's judged state; a test shows the change. Building it exposed an id collision when continuing a store, also fixed |
+| Flagged titles were still promoted | They are held back until a person reviews them |
+| No statement of how big an effect the test could detect | The impact report now gives the minimum detectable effect |
 
 ## Where AI output was wrong and I only noticed by running it
 

@@ -9,10 +9,10 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .config import Settings
-from .facts import ViewerFacts, build_facts, event_time
+from .facts import ViewerFacts, build_facts, event_time, trial_end_from
 from .goals import RuleBook
 from .pack import INSTRUCTION_LIKE, Pack
 from .planner import Proposal
@@ -99,8 +99,11 @@ def _check_page(r: CheckResult, page, facts: ViewerFacts, store: Store, pack: Pa
         r.ok("dialect")
 
     unavailable = [t for t in ids if not pack.available(t, now)]
+    quarantined = [t for t in ids if pack.quarantined(t)]
     if unavailable:
         r.fail("availability", f"not available at publish time: {unavailable}", "page")
+    elif quarantined:
+        r.fail("availability", f"held for review (catalogue text tries to instruct an AI): {quarantined}", "page")
     else:
         r.ok("availability")
 
@@ -150,6 +153,19 @@ def raw_subscription_status(user_id: str, events: list[dict], pack: Pack) -> str
     return status
 
 
+def raw_trial_end(user_id: str, events: list[dict], pack: Pack):
+    """End of the viewer's current trial, from the latest trial purchase or else the profile row."""
+    profile = pack.profiles.get(user_id)
+    snapshot_at = parse_ts(profile["updated_at"]) if profile else None
+    trials = [e for e in events if e["event"] == "purchase_completed" and e["properties"].get("is_trial")
+              and (snapshot_at is None or event_time(e) > snapshot_at)]
+    if trials:
+        return trial_end_from(max(trials, key=event_time), pack)
+    if profile and profile["subscription_status"] == "trial_active":
+        return parse_ts(profile.get("plan_ends_at"))
+    return None
+
+
 def raw_consent(user_id: str, channel: str, events: list[dict], pack: Pack) -> tuple[bool, str]:
     """Consent straight from the sources, written separately from facts.py on purpose."""
     profile = pack.profiles.get(user_id)
@@ -197,8 +213,8 @@ def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], 
     title = pack.title(msg.title_id)
     if title is None or title.dialect != msg.dialect:
         r.fail("message_dialect", f"title {msg.title_id} is not in dialect {msg.dialect}", "message")
-    elif not title.available_at(msg.send_at):
-        r.fail("message_availability", f"title {msg.title_id} not available at send time", "message")
+    elif not title.available_at(msg.send_at) or pack.quarantined(msg.title_id):
+        r.fail("message_availability", f"title {msg.title_id} not available or held for review at send time", "message")
     else:
         r.ok("message_content")
 
@@ -223,6 +239,11 @@ def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], 
             problems.append("title too long")
         if len((msg.text or {}).get("body", "")) > copy_rules["body_max_chars"]:
             problems.append("body too long")
+
+    if msg.hook == "trial ending":
+        ends = raw_trial_end(facts.user_id, events or [], pack)
+        if ends is None or not msg.send_at <= ends <= msg.send_at + timedelta(days=3):
+            problems.append(f"says the trial is ending, but the sources give a trial end of {ends}")
 
     forbidden = [p for p in copy_rules.get("forbidden_phrases", FORBIDDEN_DEFAULT) if p.lower() in text.lower()]
     if forbidden:

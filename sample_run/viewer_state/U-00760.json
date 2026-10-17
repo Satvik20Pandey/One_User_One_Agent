@@ -25,7 +25,7 @@
     "exposure": {
      "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -118,6 +118,13 @@
     "evidence": [
      "event:c3beab3b-781d-4ef3-a052-00e9b2927fc4"
     ],
+    "note": ""
+   },
+   "trial_ends_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
     "note": ""
    },
    "consent_push": {
@@ -255,9 +262,10 @@
    "D-00677"
   ],
   "actions": [
-   "A-00213"
+   "A-00211"
   ],
-  "updated_at": "2026-10-01T05:30:51.209Z"
+  "updated_at": "2026-10-01T05:30:52.410Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -297,8 +305,6 @@
     "conflicts": []
    },
    "content": [
-    "title:T0002",
-    "title:T0001",
     "title:T0005",
     "title:T0015",
     "title:T0013",
@@ -308,6 +314,7 @@
     "title:T1523",
     "title:T1511",
     "title:T0018",
+    "title:T1509",
     "title:T1540",
     "title:T1520",
     "title:T0028",
@@ -466,6 +473,11 @@
      "source": "event",
      "observed_at": "2026-09-22T05:51:21.584Z"
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -562,7 +574,9 @@
      "observed_at": "2026-10-01T05:30:51.204Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "'recently lapsed' read as within 30 days (not defined in goals.json)"
+   ],
    "conflicts": [],
    "eligibility": {
     "goal": "G06",
@@ -574,11 +588,13 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0005",
+    "reason": "Tidha Dakachu is the most popular allowed title in the viewer's top genre, Action"
    },
    "checks": {
     "passed": [
@@ -587,40 +603,39 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T05:30:51.209Z",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T05:30:52.410Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00213",
+   "action_id": "A-00211",
    "decision_id": "D-00677",
    "user_id": "U-00760",
    "trigger_event_id": "e089549e-6300-41d2-a339-6b5616d437d7",
-   "published_at": "2026-10-01T05:30:51.209Z",
+   "published_at": "2026-10-01T05:30:52.410Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0002",
+   "hero_title_id": "T0005",
    "rows": [
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T0001",
-      "T0005",
       "T0015",
       "T0013",
       "T1506",
@@ -628,7 +643,8 @@
       "T0034",
       "T1523",
       "T1511",
-      "T0018"
+      "T0018",
+      "T1509"
      ]
     },
     {
@@ -677,80 +693,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00306",
-   "decision_id": "D-00677",
-   "user_id": "U-00760",
-   "trigger_event_id": "e089549e-6300-41d2-a339-6b5616d437d7",
-   "published_at": "2026-10-01T07:00:00.000Z",
-   "goal_id": "G06",
-   "type": "home_page",
-   "dialect": "d1",
-   "hero_title_id": "T0002",
-   "rows": [
-    {
-     "row_type": "popular_in_dialect",
-     "title_ids": [
-      "T0005",
-      "T0015",
-      "T0013",
-      "T1506",
-      "T1510",
-      "T0034",
-      "T1523",
-      "T1511",
-      "T0018"
-     ]
-    },
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T1540",
-      "T1520",
-      "T0028",
-      "T0031",
-      "T0426",
-      "T0413",
-      "T0126",
-      "T0419",
-      "T0076",
-      "T1525"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0030",
-      "T0520",
-      "T0022",
-      "T0226",
-      "T0352",
-      "T1675",
-      "T1585",
-      "T0097",
-      "T0447",
-      "T0442"
-     ]
-    },
-    {
-     "row_type": "genre",
-     "title_ids": [
-      "T0026",
-      "T0027",
-      "T0422",
-      "T0023",
-      "T0168",
-      "T0157",
-      "T0039",
-      "T1526",
-      "T0211",
-      "T0196"
-     ]
-    }
-   ],
-   "replaces": "A-00213",
-   "reason": "T0001 withdrawn"
   }
  ],
  "outcomes": [
@@ -763,7 +705,7 @@
    "started_at": "2026-10-01T05:30:51.204Z",
    "deadline": "2026-10-15T05:30:51.204Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
@@ -774,8 +716,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00213",
-    "A-00306"
+    "A-00211"
    ]
   }
  ]

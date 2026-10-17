@@ -22,7 +22,7 @@
     "success_at": null,
     "attribution": "published_but_never_seen",
     "exposure": {},
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -115,6 +115,13 @@
     "evidence": [],
     "note": ""
    },
+   "trial_ends_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
    "consent_push": {
     "value": true,
     "source": "profile",
@@ -199,9 +206,10 @@
    "D-01007"
   ],
   "actions": [
-   "A-00396"
+   "A-00381"
   ],
-  "updated_at": "2026-10-01T08:05:31.155Z"
+  "updated_at": "2026-10-01T08:05:32.355Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -241,17 +249,16 @@
     "conflicts": []
    },
    "content": [
-    "title:T0002",
-    "title:T0005",
+    "title:T0015",
     "title:T0004",
     "title:T0003",
     "title:T0009",
-    "title:T0015",
     "title:T0013",
     "title:T0006",
     "title:T0007",
     "title:T0014",
     "title:T0008",
+    "title:T0012",
     "title:T0028",
     "title:T0031",
     "title:T0070",
@@ -386,6 +393,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -437,7 +449,9 @@
      "observed_at": "2026-10-01T08:05:31.153Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "events can arrive late; 'no completion' means none received yet"
+   ],
    "conflicts": [],
    "eligibility": {
     "goal": "G02",
@@ -448,11 +462,13 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0015",
+    "reason": "Salosa Valo is the most popular allowed title in the viewer's top genre, Comedy"
    },
    "checks": {
     "passed": [
@@ -461,48 +477,48 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T08:05:31.155Z",
+   "decided_in_ms": 1202,
+   "published_at": "2026-10-01T08:05:32.355Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00396",
+   "action_id": "A-00381",
    "decision_id": "D-01007",
    "user_id": "U-03176",
    "trigger_event_id": "d6535734-aa3d-4b2f-95b4-c07ea0333593",
-   "published_at": "2026-10-01T08:05:31.155Z",
+   "published_at": "2026-10-01T08:05:32.355Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0002",
+   "hero_title_id": "T0015",
    "rows": [
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T0005",
       "T0004",
       "T0003",
       "T0009",
-      "T0015",
       "T0013",
       "T0006",
       "T0007",
       "T0014",
-      "T0008"
+      "T0008",
+      "T0012"
      ]
     },
     {
@@ -563,7 +579,7 @@
    "started_at": "2026-10-01T08:05:31.153Z",
    "deadline": "2026-10-04T08:05:31.153Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no episode_completed matching 'any episode' before the deadline",
@@ -572,7 +588,7 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00396"
+    "A-00381"
    ]
   }
  ]

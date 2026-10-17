@@ -11,7 +11,7 @@ Replay day 2026-10-01 IST, 2769 triggers from 1746 viewers, mock model provider.
 | NO_ACTION | 430 |
 | DUPLICATE | 90 |
 
-Actions published: 938 home_page, 65 whatsapp, 117 push, 29 in_app_message.
+Actions published: 927 home_page, 62 whatsapp, 110 push, 29 in_app_message.
 
 Goals committed (both arms): G08 467, G02 344, G07 228, G09 131, G06 115, G01 110, G05 76, G12 35, G04 2, G03 1.
 
@@ -21,8 +21,8 @@ Goals committed (both arms): G08 467, G02 344, G07 228, G09 131, G06 115, G01 11
 |---|---|
 | holdout | 1035 |
 | buffered offline | 424 |
-| still live | 154 |
-| no catalogue content | 91 |
+| still live | 153 |
+| no catalogue content | 92 |
 | duplicate | 90 |
 | dialect unknown | 48 |
 | no measurable goal | 3 |
@@ -30,16 +30,16 @@ Goals committed (both arms): G08 467, G02 344, G07 228, G09 131, G06 115, G01 11
 ## Real-time behaviour
 
 - Every decision published within the 60 s budget: 2769/2769; late 0, failed 0.
-- p50 2 ms, p95 1205 ms, max 18001 ms, including mock model latency and 752 decisions that waited on a slow dependency.
+- p50 2 ms, p95 1206 ms, max 18001 ms, including mock model latency and 761 decisions that waited on a slow dependency.
 - 4 decision workers share one queue: queue wait p95 0 ms, max 0 ms. Peak load 79 opens in one minute (2026-10-01T04:45 UTC).
-- Duplicate triggers recognised: 90. Fallbacks: 8 model_unavailable, 1 store_degraded.
-- Model: 741 calls, advice used 732, rejected 1, provider failures 8, not asked because it had nothing to add 218, skipped during a traffic surge 50.
+- Duplicate triggers recognised: 90. Fallbacks: 7 model_unavailable, 1 store_degraded.
+- Model: 750 calls, advice used 742, rejected 1, provider failures 7, not asked because it had nothing to add 210, skipped during a traffic surge 50.
 
 ## Changed conditions noticed during the day
 
 - 2026-10-01T04:45:09.279Z to 2026-10-01T04:56:45.713Z traffic surge: 242 opens in 10 minutes against 14.5 per 10 minutes in the hour before; optional model calls were skipped.
 - 2026-10-01T15:04:01.555Z to 2026-10-01T15:14:39.439Z traffic surge: 166 opens in 10 minutes against 35.8 per 10 minutes in the hour before; optional model calls were skipped.
-- 2026-10-01T07:00:00.000Z title T0001 withdrawn: 24 live pages republished without it, 0 scheduled messages cancelled.
+- 2026-10-01T07:00:00.000Z title T0001 withdrawn: 12 live pages republished without it, 0 scheduled messages cancelled.
 - 2026-10-01T08:30:00.000Z success rule for G03 corrected: 0 open goals re-tagged; all G03 goals judged under the corrected rule (version goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z).
 - 2026-10-01T10:35:00.000Z model_provider down until 2026-10-01T10:42:00.000Z: every model call fails with HTTP 503.
 - 2026-10-01T13:10:00.000Z user_data_store degraded until 2026-10-01T13:17:00.000Z: p95 read latency 8 s and 20% of reads time out.
@@ -61,8 +61,8 @@ Every fault type is also forced through the full agent in `tests/test_failures.p
 ## Simulator verdict on the published actions
 
 - Policy problems: **0** (holdout, consent, quiet hours, frequency cap).
-- Pages accepted 938, shown personalised 832, published but not shown 13.
-- Push delivered 101/117 (invalid tokens 16), WhatsApp delivered 65/65, clicks 2.
+- Pages accepted 927, shown personalised 832, published but not shown 13.
+- Push delivered 96/110 (invalid tokens 14), WhatsApp delivered 62/62, clicks 1.
 
 ## Outcomes
 

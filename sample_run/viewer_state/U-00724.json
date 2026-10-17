@@ -22,15 +22,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 2,
-     "message_delivered": 1
+     "home_page_shown": 2
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T15:25:37.353Z judged: G04 failed (exposed_no_success; page shown 2x, message delivered 1x). no purchase_completed matching 'is_trial = false' before the deadline"
+   "2026-10-08T15:25:37.353Z judged: G04 failed (exposed_no_success; page shown 2x, message delivered 0x). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -103,6 +102,15 @@
     "source": "none",
     "observed_at": null,
     "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
+    "value": null,
+    "source": "profile",
+    "observed_at": "2026-09-29T05:42:21.882Z",
+    "evidence": [
+     "profile:U-00724@2026-09-29T05:42:21.882Z"
+    ],
     "note": ""
    },
    "consent_push": {
@@ -190,10 +198,10 @@
    "D-02450"
   ],
   "actions": [
-   "A-00953",
-   "A-00954"
+   "A-00934"
   ],
-  "updated_at": "2026-10-01T16:24:52.520Z"
+  "updated_at": "2026-10-01T16:24:52.521Z",
+  "version": 5
  },
  "decisions": [
   {
@@ -222,19 +230,15 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "PUSH",
-   "actions": [
-    "PUSH"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "goal G04 chosen but app dialect 'd1' has no catalogue content; no consented message channel",
    "dialect": {
     "used": "d1",
     "source": "profile",
     "conflicts": []
    },
-   "content": [
-    "title:T0005"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 14 events of history; dialect sources agree; trigger is fresh"
@@ -329,6 +333,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:42:21.882Z"
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -392,36 +401,26 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "reason": "subscription status trial_active"
+    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 8,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1202,
-   "published_at": "2026-10-01T15:25:38.555Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T15:25:37.354Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -461,7 +460,7 @@
     "conflicts": []
    },
    "content": [
-    "title:T0005",
+    "title:T0156",
     "title:T0015",
     "title:T0013",
     "title:T1506",
@@ -482,7 +481,6 @@
     "title:T0419",
     "title:T0076",
     "title:T1525",
-    "title:T0156",
     "title:T1515",
     "title:T0198",
     "title:T0466",
@@ -597,6 +595,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:42:21.882Z"
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -647,9 +650,7 @@
      "observed_at": "2026-10-01T15:25:42.924Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G04",
@@ -665,7 +666,8 @@
     "rejected": null,
     "failure": null,
     "skipped": null,
-    "reason": "subscription status trial_active"
+    "changed": "hero -> T0156",
+    "reason": "Lomamo Lonegu is the most popular allowed title in the viewer's top genre, Drama"
    },
    "checks": {
     "passed": [
@@ -681,13 +683,13 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1202,
-   "published_at": "2026-10-01T15:25:44.126Z",
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T15:25:44.128Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -719,7 +721,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00954 for this viewer is still live (published 2026-10-01T15:25:44.126Z); nothing to change",
+   "no_action_reason": "home page A-00934 for this viewer is still live (published 2026-10-01T15:25:44.128Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -828,6 +830,11 @@
      "value": null,
      "source": "none",
      "observed_at": null
+    },
+    "trial_ends_at": {
+     "value": null,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:42:21.882Z"
     },
     "consent_push": {
      "value": true,
@@ -940,7 +947,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00954 for this viewer is still live (published 2026-10-01T15:25:44.126Z); nothing to change",
+   "no_action_reason": "home page A-00934 for this viewer is still live (published 2026-10-01T15:25:44.128Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1041,6 +1048,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "profile",
+     "observed_at": "2026-09-29T05:42:21.882Z"
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -1119,40 +1131,23 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T16:24:52.520Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T16:24:52.521Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00953",
-   "decision_id": "D-02252",
-   "user_id": "U-00724",
-   "trigger_event_id": "0f3ff973-bb04-4b84-b7dd-197ece681d75",
-   "published_at": "2026-10-01T15:25:38.555Z",
-   "goal_id": "G04",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0005",
-   "dialect": "d1",
-   "text": {
-    "title": "Keep watching after your trial",
-    "body": "Continue with the monthly plan at Rs 149."
-   },
-   "deeplink": "ott://title/T0005"
-  },
-  {
-   "action_id": "A-00954",
+   "action_id": "A-00934",
    "decision_id": "D-02253",
    "user_id": "U-00724",
    "trigger_event_id": "542f16d2-6a40-4f58-8337-356c52dcc6f5",
-   "published_at": "2026-10-01T15:25:44.126Z",
+   "published_at": "2026-10-01T15:25:44.128Z",
    "goal_id": "G04",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0005",
+   "hero_title_id": "T0156",
    "rows": [
     {
      "row_type": "popular_in_dialect",
@@ -1187,7 +1182,6 @@
     {
      "row_type": "because_you_watched",
      "title_ids": [
-      "T0156",
       "T1515",
       "T0198",
       "T0466",
@@ -1227,7 +1221,7 @@
    "started_at": "2026-10-01T15:25:37.353Z",
    "deadline": "2026-10-08T15:25:37.353Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
@@ -1235,12 +1229,10 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 2,
-    "message_delivered": 1
+    "home_page_shown": 2
    },
    "actions": [
-    "A-00953",
-    "A-00954"
+    "A-00934"
    ]
   }
  ]

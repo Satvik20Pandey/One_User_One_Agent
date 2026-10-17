@@ -109,7 +109,7 @@ class ViewerFacts:
         if (self.value("trigger_freshness") or {}).get("event_age_s", 0) <= 60:
             score += 0.05
             why.append("trigger is fresh")
-        return score, why
+        return round(score, 2), why  # rounded so the number shown and the thresholds always agree
 
 
 def event_time(e: dict) -> datetime:
@@ -157,6 +157,7 @@ def build_facts(user_id: str, trigger: dict, events: list[dict], pack: Pack, now
     _dialect(fx, profile, profile_ref)
     _signup(fx, profile, profile_ref)
     _subscription(fx, profile, profile_ref, profile_updated)
+    _trial_end(fx, profile, profile_ref, pack)
     _consent(fx, profile, profile_ref, profile_updated)
     _viewing(fx, history, pack)
     _last_visit(fx, history)
@@ -290,6 +291,29 @@ def _subscription(fx: ViewerFacts, profile: dict, profile_ref: str | None, profi
                     "plan_ends_at used as the lapse time"))
     else:
         fx.add(Fact("lapsed_at", None, "none", None, []))
+
+
+def trial_end_from(purchase: dict, pack: Pack) -> datetime | None:
+    """A trial purchase ends after the plan's days in pricing.json."""
+    for plan in pack.pricing["plans"]:
+        if plan["plan_id"] == purchase["properties"].get("plan_id"):
+            return event_time(purchase) + timedelta(days=plan["days"])
+    return None
+
+
+def _trial_end(fx: ViewerFacts, profile: dict, profile_ref: str | None, pack: Pack) -> None:
+    status = fx.facts["subscription_status"]
+    if status.value != "trial_active":
+        fx.add(Fact("trial_ends_at", None, "none", None, []))
+        return
+    if status.source == "event":  # a trial bought after the snapshot: its end follows from the plan length
+        purchase = next(e for e in fx.events if f"event:{e['event_id']}" in status.evidence)
+        end = trial_end_from(purchase, pack)
+        fx.add(Fact("trial_ends_at", iso(end) if end else None, "derived", status.observed_at, status.evidence,
+                    "purchase time plus the plan's days in pricing.json"))
+    else:
+        fx.add(Fact("trial_ends_at", profile.get("plan_ends_at") or None, "profile", profile.get("updated_at"),
+                    [profile_ref] if profile_ref else []))
 
 
 def _consent(fx: ViewerFacts, profile: dict, profile_ref: str | None, profile_updated: datetime | None) -> None:

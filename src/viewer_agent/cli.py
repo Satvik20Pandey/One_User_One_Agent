@@ -25,6 +25,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--provider", choices=["mock", "openai"], default="mock",
                    help="model provider; mock replays the scripted faults and needs no API key")
     p.add_argument("--limit", type=int, default=None, help="stop after N triggers (for quick checks)")
+    p.add_argument("--continue-from", default=None,
+                   help="state.db of an earlier, judged run: viewers keep their goals, outcomes and learnings")
 
     p = sub.add_parser("simulate", help="run the pack's outcome simulator on the published actions")
     _common(p)
@@ -49,7 +51,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 def cmd_replay(args) -> None:
     from .replay import run_replay
-    summary = run_replay(Path(args.pack), Path(args.out), provider_name=args.provider, limit=getattr(args, "limit", None))
+    previous = getattr(args, "continue_from", None)
+    summary = run_replay(Path(args.pack), Path(args.out), provider_name=args.provider, limit=getattr(args, "limit", None),
+                         state_db=Path(previous) if previous else None)
     print(json.dumps(summary, indent=2))
 
 

@@ -67,6 +67,9 @@ python -m viewer_agent impact   --pack ./pack --out sample_run
 # the demo app
 streamlit run app.py
 
+# optional: run a second day on top of a judged first day, so learnings carry over
+python -m viewer_agent replay --pack ./pack_day2 --out day2 --continue-from sample_run/state.db
+
 # everything the agent knew, decided and observed for one viewer
 python -m viewer_agent inspect U-00649 --out sample_run
 
@@ -121,7 +124,7 @@ src/viewer_agent/
   replay.py     the replay harness and its outputs
   judge.py      outcomes, attribution, impact report
   cli.py        commands
-tests/          68 tests on a hand-made mini pack (decisions, duplicates, late triggers, conflicts, faults, load, corrections, policy, CLI, app)
+tests/          79 tests on a hand-made mini pack (decisions, duplicates, late triggers, conflicts, faults, load, corrections, policy, CLI, app)
 sample_run/     output of run-all on the supplied pack (state.db is not committed; run-all rebuilds it)
 ```
 

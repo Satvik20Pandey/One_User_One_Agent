@@ -41,7 +41,8 @@ class Verdict:
 class RuleBook:
     def __init__(self, goals_config: dict, settings: Settings, known_events: set[str] | None = None):
         self.goals = {g["goal_id"]: copy.deepcopy(g) for g in goals_config["goals"]}
-        self.version = f"goals.json@{goals_config['version']}"
+        self.original = copy.deepcopy(self.goals)
+        self.base_version = self.version = f"goals.json@{goals_config['version']}"
         self.corrections: list[dict] = []
         self.settings = settings
         # event names that actually occur in the stream; a goal whose success event never occurs is not measurable
@@ -52,6 +53,17 @@ class RuleBook:
         goal["success"] = {**goal["success"], **correction["new_success"]}
         self.corrections.append(correction)
         self.version += f"+{correction['goal_id']}@{correction['at']}"
+
+    def success_for(self, goal: dict) -> tuple[dict, str]:
+        """The success rule a goal is judged by: corrections apply to goals still open when the correction came
+        (the brief's "corrected halfway through"), not to goals that had already ended."""
+        success, version = dict(self.original[goal["goal_id"]]["success"]), self.base_version
+        ended = parse_ts(goal.get("closed_at") or goal["deadline"])
+        for c in self.corrections:
+            if c["goal_id"] == goal["goal_id"] and parse_ts(c["at"]) < ended:
+                success.update(c["new_success"])
+                version += f"+{c['goal_id']}@{c['at']}"
+        return success, version
 
     def name(self, goal_id: str) -> str:
         return self.goals[goal_id]["name"]
@@ -178,7 +190,7 @@ class RuleBook:
         """Judge one committed goal from events that happened inside its window, under the rule now in force."""
         goal_id = goal["goal_id"]
         start, deadline = parse_ts(goal["started_at"]), parse_ts(goal["deadline"])
-        success = self.goals[goal_id]["success"]
+        success, _ = self.success_for(goal)
         window = [e for e in events if start < e["_at"] <= deadline]
         hits = [e for e in window if e["event"] == success["event"] and self._matches(goal, e, pack)]
 

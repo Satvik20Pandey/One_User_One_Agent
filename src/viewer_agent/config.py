@@ -42,6 +42,10 @@ class Settings:
     # assumption: goal order per lifecycle stage (see GOAL_PRIORITY_BY_STAGE above)
     goal_priority: dict = field(default_factory=lambda: dict(GOAL_PRIORITY_BY_STAGE))
 
+    # design choice: below this evidence confidence the agent does not act at all ("not enough evidence"); with the
+    # formula in facts.py that means no profile and no history, or no profile and disagreeing dialect sources
+    min_confidence_to_act: float = 0.4
+
     # design choice: a push or WhatsApp interrupts the viewer outside the app, so it needs stronger evidence than a
     # home page; below this confidence the agent publishes the page only
     message_min_confidence: float = 0.6

@@ -24,7 +24,7 @@
     "exposure": {
      "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -119,6 +119,13 @@
     "evidence": [],
     "note": ""
    },
+   "trial_ends_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
    "consent_push": {
     "value": true,
     "source": "profile",
@@ -203,9 +210,10 @@
    "D-01877"
   ],
   "actions": [
-   "A-00786"
+   "A-00768"
   ],
-  "updated_at": "2026-10-01T14:21:56.217Z"
+  "updated_at": "2026-10-01T14:21:57.417Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -247,7 +255,6 @@
     ]
    },
    "content": [
-    "title:T0522",
     "title:T0521",
     "title:T1677",
     "title:T1678",
@@ -258,6 +265,7 @@
     "title:T0531",
     "title:T0528",
     "title:T1683",
+    "title:T1681",
     "title:T0545",
     "title:T0676",
     "title:T0552",
@@ -388,6 +396,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -438,7 +451,9 @@
      "observed_at": "2026-10-01T14:21:56.214Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "events can arrive late; 'no completion' means none received yet"
+   ],
    "conflicts": [
     "dialect: app_setting=d2, profile=d3, deeplink=d2 -> used d2 (app_setting)"
    ],
@@ -451,11 +466,12 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "no episode_completed on record"
    },
    "checks": {
     "passed": [
@@ -464,39 +480,39 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T14:21:56.217Z",
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T14:21:57.417Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00786",
+   "action_id": "A-00768",
    "decision_id": "D-01877",
    "user_id": "U-01116",
    "trigger_event_id": "0b301e49-1745-4d27-8ff6-752a6c05db32",
-   "published_at": "2026-10-01T14:21:56.217Z",
+   "published_at": "2026-10-01T14:21:57.417Z",
    "goal_id": "G02",
    "type": "home_page",
    "dialect": "d2",
-   "hero_title_id": "T0522",
+   "hero_title_id": "T0521",
    "rows": [
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T0521",
       "T1677",
       "T1678",
       "T0526",
@@ -505,7 +521,8 @@
       "T0536",
       "T0531",
       "T0528",
-      "T1683"
+      "T1683",
+      "T1681"
      ]
     },
     {
@@ -566,7 +583,7 @@
    "started_at": "2026-10-01T14:21:56.214Z",
    "deadline": "2026-10-04T14:21:56.214Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no episode_completed matching 'any episode' before the deadline",
@@ -577,7 +594,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00786"
+    "A-00768"
    ]
   }
  ]

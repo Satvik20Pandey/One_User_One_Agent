@@ -15,6 +15,7 @@ from the rate but shown.
 | holdout | 744 | 743 | 148 | 1 | 19.9% |
 
 Difference (agent minus holdout): **+2.9 pp**, 95% interval -1.2 pp to +7.1 pp.
+With these sample sizes the smallest difference this comparison can reliably detect (80% power, 5% two-sided) is about 5.9 pp; a true effect smaller than that will usually read as "not proven". More viewers or a longer replay would narrow it.
 The interval includes zero: at this sample size the data does not show that the agent changed the outcome. That is the honest reading, not a failure of the measurement.
 
 ### Who is counted
@@ -34,8 +35,8 @@ The interval includes zero: at this sample size the data does not show that the 
 | G04 | 1 | 0.0% | 1 | 0.0% | +0.0 pp |
 | G05 | 35 | 5.7% | 40 | 7.5% | -1.8 pp |
 | G06 | 52 | 9.6% | 63 | 14.3% | -4.7 pp |
-| G07 | 118 | 2.5% | 108 | 0.9% | +1.6 pp |
-| G08 | 229 | 36.2% | 237 | 28.7% | +7.6 pp |
+| G07 | 118 | 1.7% | 108 | 0.9% | +0.8 pp |
+| G08 | 229 | 36.7% | 237 | 28.7% | +8.0 pp |
 | G09 | 69 | 33.3% | 60 | 31.7% | +1.7 pp |
 | G12 | 11 | 72.7% | 24 | 50.0% | +22.7 pp |
 
@@ -82,4 +83,4 @@ Difference: -1.3 pp. The headline uplift was selection, not effect.
 the arm comparison, not the exposure, is the evidence of effect.
 
 Data: 1509 judged goals from `outcomes.jsonl`; outcome events from the pack simulator
-(seed `oua-practice`, 31813 events). Evaluators re-run with their own seed and replay day.
+(seed `oua-practice`, 31800 events). Evaluators re-run with their own seed and replay day.

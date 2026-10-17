@@ -25,15 +25,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T15:36:35.886Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T15:36:35.886Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -102,6 +101,13 @@
     "note": ""
    },
    "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
     "value": null,
     "source": "none",
     "observed_at": null,
@@ -208,10 +214,11 @@
    "D-02296"
   ],
   "actions": [
-   "A-00977",
-   "A-00978"
+   "A-00956",
+   "A-00957"
   ],
-  "updated_at": "2026-10-01T15:36:36.440Z"
+  "updated_at": "2026-10-01T15:36:37.642Z",
+  "version": 3
  },
  "decisions": [
   {
@@ -242,8 +249,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "WHATSAPP"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -252,7 +258,7 @@
     "conflicts": []
    },
    "content": [
-    "title:T0002",
+    "title:T1506",
     "title:T0005",
     "title:T0004",
     "title:T1504",
@@ -263,7 +269,6 @@
     "title:T0013",
     "title:T0007",
     "title:T0012",
-    "title:T1506",
     "title:T1523",
     "title:T0018",
     "title:T0026",
@@ -273,7 +278,6 @@
     "title:T0422",
     "title:T1546",
     "title:T0023",
-    "title:T1501",
     "title:T1507",
     "title:T1510",
     "title:T0034",
@@ -283,6 +287,7 @@
     "title:T1511",
     "title:T0084",
     "title:T0067",
+    "title:T0044",
     "title:T1540",
     "title:T1520",
     "title:T0028",
@@ -394,6 +399,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -468,11 +478,13 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T1506",
+    "reason": "Raja Badi (English) is the most popular allowed title in the viewer's top genre, Thriller"
    },
    "checks": {
     "passed": [
@@ -482,24 +494,19 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "template",
-     "copy_rules"
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:36:35.889Z",
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T15:36:37.090Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -529,15 +536,58 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "home page A-00977 for this viewer is still live (published 2026-10-01T15:36:35.889Z); nothing to change",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d1",
     "source": "app_setting",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T1506",
+    "title:T0005",
+    "title:T0004",
+    "title:T1504",
+    "title:T1502",
+    "title:T1503",
+    "title:T0015",
+    "title:T1505",
+    "title:T0013",
+    "title:T0007",
+    "title:T0012",
+    "title:T1523",
+    "title:T0018",
+    "title:T0026",
+    "title:T1519",
+    "title:T0027",
+    "title:T0252",
+    "title:T0422",
+    "title:T1546",
+    "title:T0023",
+    "title:T1507",
+    "title:T1510",
+    "title:T0034",
+    "title:T1512",
+    "title:T0016",
+    "title:T1508",
+    "title:T1511",
+    "title:T0084",
+    "title:T0067",
+    "title:T0044",
+    "title:T1540",
+    "title:T1520",
+    "title:T0028",
+    "title:T0031",
+    "title:T0047",
+    "title:T0063",
+    "title:T0426",
+    "title:T1626",
+    "title:T1647",
+    "title:T0195"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 40 events of history; dialect sources agree; trigger is fresh"
@@ -638,6 +688,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -711,41 +766,51 @@
     ]
    },
    "model": {
-    "provider": null,
-    "calls": 0,
-    "used": false,
+    "provider": "mock",
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": null
+    "skipped": null,
+    "changed": "hero -> T1506",
+    "reason": "Raja Badi (English) is the most popular allowed title in the viewer's top genre, Thriller"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 6,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T15:36:36.440Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T15:36:37.642Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00977",
+   "action_id": "A-00956",
    "decision_id": "D-02295",
    "user_id": "U-00899",
    "trigger_event_id": "7fc4f8fb-fb6a-4ee2-b1d8-0f5ab6768773",
-   "published_at": "2026-10-01T15:36:35.889Z",
+   "published_at": "2026-10-01T15:36:37.090Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0002",
+   "hero_title_id": "T1506",
    "rows": [
     {
      "row_type": "next_episode",
@@ -765,7 +830,6 @@
     {
      "row_type": "because_you_watched",
      "title_ids": [
-      "T1506",
       "T1523",
       "T0018",
       "T0026",
@@ -780,7 +844,6 @@
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
-      "T1501",
       "T1507",
       "T1510",
       "T0034",
@@ -789,7 +852,8 @@
       "T1508",
       "T1511",
       "T0084",
-      "T0067"
+      "T0067",
+      "T0044"
      ]
     },
     {
@@ -810,21 +874,76 @@
    ]
   },
   {
-   "action_id": "A-00978",
-   "decision_id": "D-02295",
+   "action_id": "A-00957",
+   "decision_id": "D-02296",
    "user_id": "U-00899",
-   "trigger_event_id": "7fc4f8fb-fb6a-4ee2-b1d8-0f5ab6768773",
-   "published_at": "2026-10-01T15:36:35.889Z",
+   "trigger_event_id": "66ec8470-5393-4489-b44a-cd19ff045d2f",
+   "published_at": "2026-10-01T15:36:37.642Z",
    "goal_id": "G07",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0002",
+   "type": "home_page",
    "dialect": "d1",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Hama Chudibha",
-    "dialect_name": "D1"
-   }
+   "hero_title_id": "T1506",
+   "rows": [
+    {
+     "row_type": "next_episode",
+     "title_ids": [
+      "T0005",
+      "T0004",
+      "T1504",
+      "T1502",
+      "T1503",
+      "T0015",
+      "T1505",
+      "T0013",
+      "T0007",
+      "T0012"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T1523",
+      "T0018",
+      "T0026",
+      "T1519",
+      "T0027",
+      "T0252",
+      "T0422",
+      "T1546",
+      "T0023"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T1507",
+      "T1510",
+      "T0034",
+      "T1512",
+      "T0016",
+      "T1508",
+      "T1511",
+      "T0084",
+      "T0067",
+      "T0044"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1540",
+      "T1520",
+      "T0028",
+      "T0031",
+      "T0047",
+      "T0063",
+      "T0426",
+      "T1626",
+      "T1647",
+      "T0195"
+     ]
+    }
+   ]
   }
  ],
  "outcomes": [
@@ -837,7 +956,7 @@
    "started_at": "2026-10-01T15:36:35.886Z",
    "deadline": "2026-10-04T15:36:35.886Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
@@ -845,12 +964,11 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-00977",
-    "A-00978"
+    "A-00956",
+    "A-00957"
    ]
   }
  ]

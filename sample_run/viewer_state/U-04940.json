@@ -23,7 +23,7 @@
     "success_at": null,
     "attribution": "published_but_never_seen",
     "exposure": {},
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -105,6 +105,13 @@
     "evidence": [
      "event:15f425fc-290f-4e21-a691-d6bf19f36017"
     ],
+    "note": ""
+   },
+   "trial_ends_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
     "note": ""
    },
    "consent_push": {
@@ -253,9 +260,10 @@
    "D-01095"
   ],
   "actions": [
-   "A-00441"
+   "A-00426"
   ],
-  "updated_at": "2026-10-01T08:45:21.482Z"
+  "updated_at": "2026-10-01T08:45:21.484Z",
+  "version": 3
  },
  "decisions": [
   {
@@ -411,6 +419,11 @@
      "source": "event",
      "observed_at": "2026-09-19T14:38:47.117Z"
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -516,7 +529,8 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger; profile preference used for messages only",
+    "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
    "conflicts": [],
    "eligibility": {
@@ -590,11 +604,10 @@
     ]
    },
    "content": [
-    "title:T0525",
+    "title:T0533",
     "title:T0536",
     "title:T0531",
     "title:T0529",
-    "title:T0533",
     "title:T0534",
     "title:T0530",
     "title:T0548",
@@ -752,6 +765,11 @@
      "source": "event",
      "observed_at": "2026-09-19T14:38:47.117Z"
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -856,7 +874,9 @@
      "observed_at": "2026-10-01T08:45:20.278Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "'recently lapsed' read as within 30 days (not defined in goals.json)"
+   ],
    "conflicts": [
     "dialect: app_setting=d2, profile=d1, deeplink=None -> used d2 (app_setting)"
    ],
@@ -875,7 +895,8 @@
     "rejected": null,
     "failure": null,
     "skipped": null,
-    "reason": "lapsed recently"
+    "changed": "hero -> T0533",
+    "reason": "Tidisa Teva is the most popular allowed title in the viewer's top genre, Romance"
    },
    "checks": {
     "passed": [
@@ -896,23 +917,23 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T08:45:21.482Z",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T08:45:21.484Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00441",
+   "action_id": "A-00426",
    "decision_id": "D-01095",
    "user_id": "U-04940",
    "trigger_event_id": "4ee70309-fcb0-491d-bf0b-3a0f8f43dc4e",
-   "published_at": "2026-10-01T08:45:21.482Z",
+   "published_at": "2026-10-01T08:45:21.484Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d2",
-   "hero_title_id": "T0525",
+   "hero_title_id": "T0533",
    "rows": [
     {
      "row_type": "popular_in_dialect",
@@ -920,7 +941,6 @@
       "T0536",
       "T0531",
       "T0529",
-      "T0533",
       "T0534",
       "T0530",
       "T0548",
@@ -987,7 +1007,7 @@
    "started_at": "2026-10-01T08:45:17.217Z",
    "deadline": "2026-10-15T08:45:17.217Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
@@ -996,7 +1016,7 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00441"
+    "A-00426"
    ]
   }
  ]

@@ -78,7 +78,7 @@ def run_judge(pack_dir: Path, out_dir: Path) -> dict:
                 "user_id": user_id, "arm": state.get("arm"), "goal_instance_id": goal["instance_id"],
                 "goal_id": goal["goal_id"], "goal_name": goal["name"], "started_at": goal["started_at"],
                 "deadline": goal["deadline"], "rule_version_at_commit": goal["rule_version"],
-                "rule_version_at_judgement": rules.version, "closed_early": goal.get("close_reason"),
+                "rule_version_at_judgement": rules.success_for(goal)[1], "closed_early": goal.get("close_reason"),
                 "verdict": verdict.verdict, "reason": verdict.reason,
                 "success_event_id": verdict.success_event_id, "success_at": verdict.success_at,
                 "attribution": exposure["attribution"], "exposure": exposure["counts"],
@@ -154,6 +154,14 @@ def _diff_ci(a: dict, b: dict) -> tuple[float | None, float | None, float | None
     return d, d - 1.96 * se, d + 1.96 * se
 
 
+def _min_detectable(a: dict, b: dict) -> float | None:
+    """Minimum detectable difference in success rate for two arms (80% power, 5% two-sided)."""
+    if not a["judged"] or not b["judged"]:
+        return None
+    pooled = (a["succeeded"] + b["succeeded"]) / (a["judged"] + b["judged"])
+    return (1.96 + 0.84) * math.sqrt(pooled * (1 - pooled) * (1 / a["judged"] + 1 / b["judged"]))
+
+
 def _pct(x: float | None) -> str:
     return "n/a" if x is None else f"{100 * x:.1f}%"
 
@@ -209,6 +217,11 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
              f"| agent | {a['n']} | {a['judged']} | {a['succeeded']} | {a['inconclusive']} | {_pct(a['rate'])} |",
              f"| holdout | {h['n']} | {h['judged']} | {h['succeeded']} | {h['inconclusive']} | {_pct(h['rate'])} |", "",
              f"Difference (agent minus holdout): **{_pp(d)}**, 95% interval {_pp(lo)} to {_pp(hi)}."]
+    mde = _min_detectable(a, h)
+    if mde is not None:
+        lines.append(f"With these sample sizes the smallest difference this comparison can reliably detect (80% power, "
+                     f"5% two-sided) is about {100 * mde:.1f} pp; a true effect smaller than that will usually read as "
+                     "\"not proven\". More viewers or a longer replay would narrow it.")
     if d is not None:
         if lo <= 0 <= hi:
             lines.append("The interval includes zero: at this sample size the data does not show that the agent changed "
@@ -258,7 +271,8 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
         served, other, treat, hold = pilot["served"], pilot["not_served"], pilot["treatment"], pilot["holdout"]
         lines += ["", "## The earlier pilot, re-read the same way", "",
                   f"The internal report compared served viewers ({served[0]}, {_pct(served[1])} reached the goal) with everyone",
-                  f"else ({other[0]}, {_pct(other[1])}) and called it a 2.3x uplift. Using the pilot's own randomized arms:", "",
+                  f"else ({other[0]}, {_pct(other[1])}) and called it a {served[1] / other[1]:.1f}x uplift. "
+                  "Using the pilot's own randomized arms:", "",
                   "| Pilot arm | Viewers | Reached goal |", "|---|---|---|",
                   f"| treatment | {treat[0]} | {_pct(treat[1])} |", f"| holdout | {hold[0]} | {_pct(hold[1])} |", "",
                   f"Difference: {_pp(treat[1] - hold[1])}. The headline uplift was selection, not effect."]

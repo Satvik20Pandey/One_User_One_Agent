@@ -27,7 +27,7 @@
     "exposure": {
      "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
@@ -116,6 +116,13 @@
     "note": ""
    },
    "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
     "value": null,
     "source": "none",
     "observed_at": null,
@@ -222,9 +229,10 @@
    "D-01213"
   ],
   "actions": [
-   "A-00489"
+   "A-00473"
   ],
-  "updated_at": "2026-10-01T09:37:20.555Z"
+  "updated_at": "2026-10-01T09:37:21.757Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -266,8 +274,7 @@
     ]
    },
    "content": [
-    "title:T0002",
-    "title:T0005",
+    "title:T0011",
     "title:T0004",
     "title:T0009",
     "title:T0015",
@@ -277,7 +284,7 @@
     "title:T0008",
     "title:T0012",
     "title:T0010",
-    "title:T0011",
+    "title:T0034",
     "title:T0018",
     "title:T0026",
     "title:T0027",
@@ -289,7 +296,6 @@
     "title:T0028",
     "title:T0003",
     "title:T0014",
-    "title:T0034",
     "title:T0016",
     "title:T0025",
     "title:T0084",
@@ -297,6 +303,7 @@
     "title:T0044",
     "title:T0037",
     "title:T0029",
+    "title:T0019",
     "title:T0031",
     "title:T0070",
     "title:T0047",
@@ -419,6 +426,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": false,
      "source": "profile",
@@ -481,9 +493,7 @@
      "observed_at": "2026-10-01T09:37:20.553Z"
     }
    },
-   "assumptions": [
-    "evidence confidence 0.50 is below the 0.6 a push or WhatsApp needs; home page only"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d1, profile=d1, deeplink=d6 -> used d1 (app_setting)"
    ],
@@ -496,11 +506,13 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0011",
+    "reason": "Raja Badi is the most popular allowed title in the viewer's top genre, Thriller"
    },
    "checks": {
     "passed": [
@@ -509,39 +521,39 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T09:37:20.555Z",
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T09:37:21.757Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00489",
+   "action_id": "A-00473",
    "decision_id": "D-01213",
    "user_id": "U-02551",
    "trigger_event_id": "3c1f7b97-6f10-4149-b0ab-c3ae5c3fe880",
-   "published_at": "2026-10-01T09:37:20.555Z",
+   "published_at": "2026-10-01T09:37:21.757Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0002",
+   "hero_title_id": "T0011",
    "rows": [
     {
      "row_type": "next_episode",
      "title_ids": [
-      "T0005",
       "T0004",
       "T0009",
       "T0015",
@@ -550,13 +562,13 @@
       "T0007",
       "T0008",
       "T0012",
-      "T0010"
+      "T0010",
+      "T0034"
      ]
     },
     {
      "row_type": "because_you_watched",
      "title_ids": [
-      "T0011",
       "T0018",
       "T0026",
       "T0027",
@@ -573,14 +585,14 @@
      "title_ids": [
       "T0003",
       "T0014",
-      "T0034",
       "T0016",
       "T0025",
       "T0084",
       "T0067",
       "T0044",
       "T0037",
-      "T0029"
+      "T0029",
+      "T0019"
      ]
     },
     {
@@ -611,7 +623,7 @@
    "started_at": "2026-10-01T09:37:20.553Z",
    "deadline": "2026-10-04T09:37:20.553Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
@@ -622,7 +634,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00489"
+    "A-00473"
    ]
   }
  ]

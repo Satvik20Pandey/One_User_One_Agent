@@ -1,8 +1,9 @@
 """Turns facts and eligible goals into one proposal.
 
-The rules decide. The model, when one is configured, may advise within what the rules allow: pick among the
-eligible goals, pick the hero among the allowed titles, draft push copy. It cannot add a goal, a title or an
-action, and anything it says is checked again by the verifier.
+The rules decide the goal and the actions. The model, when it can add something, advises within what the rules
+allow: which allowed title leads the page, and the wording of push or in-app copy. A goal it names must already be
+eligible or the whole answer is discarded; it cannot add a goal, a title or an action, and the verifier checks
+everything again.
 """
 from __future__ import annotations
 
@@ -14,7 +15,7 @@ from typing import Protocol
 from pydantic import BaseModel, ConfigDict, ValidationError
 
 from .config import Settings
-from .content import MessageDraft, PageDraft, build_message, build_page
+from .content import MessageDraft, PageDraft, Row, build_message, build_page
 from .facts import ViewerFacts
 from .goals import Eligibility
 from .pack import Pack
@@ -45,9 +46,10 @@ class AdviceRequest:
     trigger_event_id: str
     now: datetime
     prompt: str
-    default: Advice  # the rule-based answer; the mock returns it so the full path is exercised
+    default: Advice  # the rule-based answer
     timeout_s: float
     budget: object  # has .wait(seconds); lets a provider charge simulated waiting time
+    context: dict = field(default_factory=dict)  # structured view of the prompt: top genres, candidate titles
 
 
 class ModelProvider(Protocol):
@@ -135,8 +137,11 @@ def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibilit
                      push_title=(proposal.message.text or {}).get("title") if proposal.message else None,
                      push_body=(proposal.message.text or {}).get("body") if proposal.message else None,
                      reason=proposal.goal.reason, evidence=proposal.goal.evidence)
-    request = AdviceRequest(facts.user_id, facts.trigger["event_id"], now,
-                            build_prompt(facts, eligible, proposal.page, pack), default, settings.model_timeout_s, budget)
+    candidates = proposal.page.candidate_ids[:25] if proposal.page else []
+    context = {"top_genres": (facts.value("plays") or {}).get("top_genres") or [],
+               "candidates": [(tid, pack.title(tid).genres, pack.title(tid).name) for tid in candidates]}
+    request = AdviceRequest(facts.user_id, facts.trigger["event_id"], now, build_prompt(facts, eligible, proposal.page, pack),
+                            default, settings.model_timeout_s, budget, context)
     proposal.model = {"provider": provider.name, "calls": 1, "used": False, "rejected": None, "failure": None,
                       "skipped": None}
     budget.model()
@@ -159,9 +164,19 @@ def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibilit
     if advice.goal_id and advice.goal_id != proposal.goal.goal_id:
         proposal.model["note"] = f"model preferred {advice.goal_id}; goal choice stays rule-based ({proposal.goal.goal_id})"
 
-    if proposal.page and advice.hero_title_id and advice.hero_title_id in proposal.page.candidate_ids:
-        proposal.page.hero_title_id = advice.hero_title_id
-        proposal.page.rows = [r for r in proposal.page.rows if advice.hero_title_id not in r.title_ids]
+    page = proposal.page
+    if page and advice.hero_title_id and advice.hero_title_id != page.hero_title_id:
+        if advice.hero_title_id in page.candidate_ids:
+            # the new hero leaves the rows (any language variant of it too: one content_slug per page); a row that
+            # drops below three titles is removed, as the platform would
+            page.hero_title_id = advice.hero_title_id
+            slug = pack.title(advice.hero_title_id).slug
+            page.rows = [Row(r.row_type, [t for t in r.title_ids if pack.title(t).slug != slug]) for r in page.rows]
+            page.rows = [r for r in page.rows if len(r.title_ids) >= 3]
+            page.hero_reason = "model pick among allowed titles"
+            proposal.model["changed"] = f"hero -> {advice.hero_title_id}"
+        else:
+            proposal.model["note"] = f"model suggested hero {advice.hero_title_id}, which is not an allowed title; ignored"
     if proposal.message and proposal.message.channel != "whatsapp" and advice.push_title and advice.push_body:
         proposal.message.text = {"title": advice.push_title[:40], "body": advice.push_body[:120]}
     proposal.model["used"] = True
@@ -217,7 +232,7 @@ class MockProvider:
         fault = self.faults.get(request.trigger_event_id)
         if fault is None:
             request.budget.wait(self.latency_s)
-            return request.default
+            return self._answer(request)
         if fault["fault"] == "timeout":
             request.budget.wait(min(float(fault.get("seconds", 60)), request.timeout_s))
             raise ProviderTimeout(f"no answer within {request.timeout_s:.0f}s")
@@ -228,6 +243,21 @@ class MockProvider:
         if isinstance(output, str):
             output = json.loads(output)  # raises ValueError on the malformed fault, as a real client would
         return Advice.model_validate(output)
+
+
+    @staticmethod
+    def _answer(request: AdviceRequest) -> Advice:
+        """A deterministic stand-in for a model: lead with the most popular allowed title in the viewer's favourite
+        genre (the candidates arrive in popularity order), keep the rules' goal and copy."""
+        advice = request.default.model_copy()
+        genres = request.context.get("top_genres") or []
+        for title_id, title_genres, name in request.context.get("candidates", []):
+            if genres and genres[0] in title_genres:
+                if title_id != advice.hero_title_id:
+                    advice.hero_title_id = title_id
+                    advice.reason = f"{name} is the most popular allowed title in the viewer's top genre, {genres[0]}"
+                break
+        return advice
 
 
 class OpenAIProvider:

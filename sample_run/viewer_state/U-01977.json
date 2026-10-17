@@ -25,15 +25,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T13:55:14.106Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T13:55:14.106Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -102,6 +101,13 @@
     "note": ""
    },
    "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
     "value": null,
     "source": "none",
     "observed_at": null,
@@ -205,10 +211,10 @@
    "D-01788"
   ],
   "actions": [
-   "A-00737",
-   "A-00738"
+   "A-00720"
   ],
-  "updated_at": "2026-10-01T13:55:14.109Z"
+  "updated_at": "2026-10-01T13:55:15.311Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -239,8 +245,7 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "WHATSAPP"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -249,7 +254,6 @@
     "conflicts": []
    },
    "content": [
-    "title:T0522",
     "title:T0521",
     "title:T1677",
     "title:T1678",
@@ -260,6 +264,7 @@
     "title:T1683",
     "title:T0539",
     "title:T1688",
+    "title:T1682",
     "title:T0533",
     "title:T0548",
     "title:T0556",
@@ -273,13 +278,13 @@
     "title:T1679",
     "title:T0525",
     "title:T1681",
-    "title:T1682",
     "title:T1684",
     "title:T0534",
     "title:T0543",
     "title:T1685",
     "title:T1686",
     "title:T0581",
+    "title:T0585",
     "title:T0545",
     "title:T0676",
     "title:T0552",
@@ -385,6 +390,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -458,11 +468,12 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "unfinished series guka-kosusa-d2 (1/41 episodes), last played 2026-09-26"
    },
    "checks": {
     "passed": [
@@ -472,44 +483,38 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "template",
-     "copy_rules"
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 12,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T13:55:14.109Z",
+   "decided_in_ms": 1205,
+   "published_at": "2026-10-01T13:55:15.311Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00737",
+   "action_id": "A-00720",
    "decision_id": "D-01788",
    "user_id": "U-01977",
    "trigger_event_id": "38165865-2518-4f79-9c56-54e61d5fed1f",
-   "published_at": "2026-10-01T13:55:14.109Z",
+   "published_at": "2026-10-01T13:55:15.311Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
-   "hero_title_id": "T0522",
+   "hero_title_id": "T0521",
    "rows": [
     {
      "row_type": "next_episode",
      "title_ids": [
-      "T0521",
       "T1677",
       "T1678",
       "T0526",
@@ -518,7 +523,8 @@
       "T0528",
       "T1683",
       "T0539",
-      "T1688"
+      "T1688",
+      "T1682"
      ]
     },
     {
@@ -542,13 +548,13 @@
       "T1679",
       "T0525",
       "T1681",
-      "T1682",
       "T1684",
       "T0534",
       "T0543",
       "T1685",
       "T1686",
-      "T0581"
+      "T0581",
+      "T0585"
      ]
     },
     {
@@ -567,23 +573,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00738",
-   "decision_id": "D-01788",
-   "user_id": "U-01977",
-   "trigger_event_id": "38165865-2518-4f79-9c56-54e61d5fed1f",
-   "published_at": "2026-10-01T13:55:14.109Z",
-   "goal_id": "G07",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0522",
-   "dialect": "d2",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Guka Kosusa",
-    "dialect_name": "D2"
-   }
   }
  ],
  "outcomes": [
@@ -596,7 +585,7 @@
    "started_at": "2026-10-01T13:55:14.106Z",
    "deadline": "2026-10-04T13:55:14.106Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
@@ -604,12 +593,10 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-00737",
-    "A-00738"
+    "A-00720"
    ]
   }
  ]

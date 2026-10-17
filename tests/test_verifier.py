@@ -88,8 +88,12 @@ def test_injected_description_never_reaches_the_model(env):
     facts = env.facts_for("U-A1")
     page = build_page("G02", facts, env.pack, NOW, env.settings)
     prompt = build_prompt(facts, env.rules.eligible(facts), page, env.pack)
-    assert "T0002" in prompt  # the title itself is fine to recommend
     assert "SYSTEM NOTE" not in prompt and "ignore your previous" not in prompt.lower()
+    # the title itself is held back from promotion until a person reviews it, and the verifier enforces that too
+    assert "T0002" not in prompt and "T0002" not in page.title_ids()
+    held = PageDraft("d1", "T0001", [Row("popular_in_dialect", ["T0002", "T0004", "T0005"])])
+    assert "held for review" in next(f["reason"] for f in _verify(env, facts, "G02", page=held).failed
+                                     if f["check"] == "availability")
 
 
 def test_model_written_copy_with_instructions_is_dropped(env):

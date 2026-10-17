@@ -19,22 +19,21 @@
    },
    "shadow": false,
    "outcome": {
-    "verdict": "succeeded",
-    "reason": "play_started matched 'same content_slug as the unfinished series'",
-    "success_event_id": "oua-015505",
-    "success_at": "2026-10-02T14:32:15.000Z",
-    "attribution": "exposed_before_success",
+    "verdict": "failed",
+    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "success_event_id": null,
+    "success_at": null,
+    "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 1,
-     "message_delivered": 1,
-     "message_clicked": 1
+     "message_delivered": 1
     },
-    "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z"
+    "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-02T14:32:15.000Z judged: G07 succeeded (exposed_before_success; page shown 1x, message delivered 1x). play_started matched 'same content_slug as the unfinished series'"
+   "2026-10-04T09:05:38.237Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -116,6 +115,13 @@
     "note": ""
    },
    "lapsed_at": {
+    "value": null,
+    "source": "none",
+    "observed_at": null,
+    "evidence": [],
+    "note": ""
+   },
+   "trial_ends_at": {
     "value": null,
     "source": "none",
     "observed_at": null,
@@ -217,10 +223,11 @@
    "D-01138"
   ],
   "actions": [
-   "A-00462",
-   "A-00463"
+   "A-00446",
+   "A-00447"
   ],
-  "updated_at": "2026-10-01T09:05:39.440Z"
+  "updated_at": "2026-10-01T09:05:39.440Z",
+  "version": 2
  },
  "decisions": [
   {
@@ -261,7 +268,7 @@
     "conflicts": []
    },
    "content": [
-    "title:T1179",
+    "title:T1178",
     "title:T1180",
     "title:T1177",
     "title:T1185",
@@ -272,7 +279,6 @@
     "title:T1188",
     "title:T1226",
     "title:T1206",
-    "title:T1178",
     "title:T1189",
     "title:T1183",
     "title:T1195",
@@ -406,6 +412,11 @@
      "source": "none",
      "observed_at": null
     },
+    "trial_ends_at": {
+     "value": null,
+     "source": "none",
+     "observed_at": null
+    },
     "consent_push": {
      "value": true,
      "source": "profile",
@@ -482,7 +493,8 @@
     "rejected": null,
     "failure": null,
     "skipped": null,
-    "reason": "unfinished series kova-sako-d5 (1/30 episodes), last played 2026-09-14"
+    "changed": "hero -> T1178",
+    "reason": "Rigu is the most popular allowed title in the viewer's top genre, Comedy"
    },
    "checks": {
     "passed": [
@@ -516,7 +528,7 @@
  ],
  "actions": [
   {
-   "action_id": "A-00462",
+   "action_id": "A-00446",
    "decision_id": "D-01138",
    "user_id": "U-02431",
    "trigger_event_id": "801720ad-b44a-4486-9cb6-3c6e32bc8561",
@@ -524,7 +536,7 @@
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
-   "hero_title_id": "T1179",
+   "hero_title_id": "T1178",
    "rows": [
     {
      "row_type": "next_episode",
@@ -544,7 +556,6 @@
     {
      "row_type": "because_you_watched",
      "title_ids": [
-      "T1178",
       "T1189",
       "T1183",
       "T1195",
@@ -589,7 +600,7 @@
    ]
   },
   {
-   "action_id": "A-00463",
+   "action_id": "A-00447",
    "decision_id": "D-01138",
    "user_id": "U-02431",
    "trigger_event_id": "801720ad-b44a-4486-9cb6-3c6e32bc8561",
@@ -616,21 +627,20 @@
    "started_at": "2026-10-01T09:05:38.237Z",
    "deadline": "2026-10-04T09:05:38.237Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
-   "verdict": "succeeded",
-   "reason": "play_started matched 'same content_slug as the unfinished series'",
-   "success_event_id": "oua-015505",
-   "success_at": "2026-10-02T14:32:15.000Z",
-   "attribution": "exposed_before_success",
+   "verdict": "failed",
+   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "success_event_id": null,
+   "success_at": null,
+   "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 1,
-    "message_delivered": 1,
-    "message_clicked": 1
+    "message_delivered": 1
    },
    "actions": [
-    "A-00462",
-    "A-00463"
+    "A-00446",
+    "A-00447"
    ]
   }
  ]
