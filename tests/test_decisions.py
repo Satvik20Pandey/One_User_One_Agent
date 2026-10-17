@@ -63,3 +63,15 @@ def test_evidence_refs_carry_their_own_time_and_age(env):
     play = next(e for e in record["evidence"] if e["ref"] == "event:e-R1-2")
     assert play["observed_at"].startswith("2026-09-20T15:01") and play["age_s"] > 10 * 86400
     assert record["facts"]["subscription_status"]["value"] == "never"  # the full fact table is on the record
+
+
+def test_a_resume_goal_gives_way_when_its_series_cannot_be_shown(env):
+    # U-R1 qualifies for G07 (resume "Hapi") and G05 (first paid plan). When Hapi is held for review, the agent
+    # cannot show it, so it pursues G05 instead; when Hapi is showable, G07 comes first.
+    record, _ = env.decide(make_trigger("U-R1"))
+    assert record["goal"]["id"] == "G07"
+
+    env.pack.flagged_text["T0004"] = "held for review"
+    other, _ = env.decide(make_trigger("U-R1", at=NOW + timedelta(days=4)), NOW + timedelta(days=4))
+    assert other["goal"]["id"] == "G05"
+    assert any("passed over G07" in a for a in other["assumptions"])

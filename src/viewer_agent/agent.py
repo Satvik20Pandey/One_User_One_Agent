@@ -15,7 +15,7 @@ from .facts import ViewerFacts, build_facts
 from .goals import RuleBook
 from .pack import Pack
 from .planner import ModelProvider, Proposal, propose
-from .store import Store, StoreTimeout
+from .store import StaleState, Store, StoreTimeout
 from .times import iso, ist_day, next_send_slot, parse_ts
 from .verifier import verify
 
@@ -112,6 +112,14 @@ class ViewerAgent:
 
     # ------------------------------------------------------------------ triggers
     def handle_trigger(self, trigger: dict, now: datetime, queued_s: float = 0.0) -> tuple[dict, list[dict]]:
+        """Decide for one app open. If another worker updated this viewer while we were deciding, decide once more on
+        the fresh state instead of overwriting it."""
+        try:
+            return self._decide(trigger, now, queued_s)
+        except StaleState:
+            return self._decide(trigger, now, queued_s, retried=True)
+
+    def _decide(self, trigger: dict, now: datetime, queued_s: float, retried: bool = False) -> tuple[dict, list[dict]]:
         """Decide for one app open. Returns the decision record and the actions to publish (possibly none).
         `queued_s` is how long the open waited for a free worker; it counts against the same 60 s budget."""
         s, store, pack = self.d.settings, self.d.store, self.d.pack
@@ -133,6 +141,8 @@ class ViewerAgent:
         facts = build_facts(self.user_id, trigger, events, pack, now, s)
         if degraded:
             facts.assumptions.append("user_data_store unavailable; decided from the trigger and the pack only")
+        if retried:
+            facts.assumptions.append("decided again: another worker updated this viewer while the first attempt ran")
 
         actions: list[dict] = []
         checks = None
@@ -200,11 +210,12 @@ class ViewerAgent:
         state.setdefault("decisions", []).append(decision_id)
         state.setdefault("actions", []).extend(a["action_id"] for a in actions)
         state["updated_at"] = iso(published_at)
+        if not degraded:
+            # state first: if another worker saved this viewer since we read it, nothing below is written
+            store.save_state(self.user_id, state, published_at)
         store.save_decision(record)
         for a in actions:
             store.save_action(a)
-        if not degraded:
-            store.save_state(self.user_id, state, published_at)
         return record, actions
 
     # ------------------------------------------------------------------ live events

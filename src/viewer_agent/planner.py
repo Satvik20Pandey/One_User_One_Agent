@@ -8,6 +8,7 @@ everything again.
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Protocol
@@ -85,8 +86,11 @@ def propose(facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, setting
         return Proposal(None, None, None, reason)
 
     # The goal is chosen by rules alone (active goal kept while eligible, else first in priority order) so that
-    # treatment and holdout viewers get exactly the same goal assignment.
-    chosen = next((e for e in eligible if e.goal_id == keep_goal), None) or eligible[0]
+    # treatment and holdout viewers get exactly the same goal assignment. A goal the agent cannot serve here (a
+    # series it cannot show in the app's dialect, or one held for review) gives way to the next one.
+    servable = [e for e in eligible if _can_serve(e, facts, pack, now)]
+    skipped = [e.goal_id for e in eligible if e not in servable]
+    chosen = next((e for e in servable if e.goal_id == keep_goal), None) or (servable or eligible)[0]
 
     budget.tool("catalogue:page")
     page = build_page(chosen.goal_id, facts, pack, now, settings, chosen.context)
@@ -95,6 +99,11 @@ def propose(facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, setting
         budget.tool("catalogue:message")
         message = build_message(chosen.goal_id, facts, pack, now, settings, chosen.context)
     proposal = Proposal(chosen, page, message, None)
+    if skipped and servable:
+        proposal.assumptions.append(f"passed over {', '.join(skipped)}: its series cannot be shown in the app's dialect")
+    elif skipped:
+        proposal.assumptions.append(f"kept {chosen.goal_id} although its series cannot be shown here: no other goal applies; "
+                                    "the page uses other titles")
     if message_block:
         proposal.assumptions.append(message_block)
 
@@ -119,15 +128,53 @@ def propose(facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, setting
     if proposal.page is None and proposal.message is None:
         dialect = facts.value("dialect") or {}
         if not dialect.get("page_dialect"):
-            why = f"app dialect {dialect.get('used')!r} has no catalogue content" if dialect.get("used") \
-                else "app dialect unknown, cannot know which page the app would request"
+            if dialect.get("source") == "app_setting":
+                why = f"app dialect {dialect.get('used')!r} has no catalogue content"
+            else:
+                why = "the open carried no app dialect, so the page the app will request is unknown"
             proposal.no_action_reason = f"goal {chosen.goal_id} chosen but {why}; no consented message channel"
         else:
             proposal.no_action_reason = f"goal {chosen.goal_id} chosen but no row reached {3} titles and no message hook"
     return proposal
 
 
+def _can_serve(goal: Eligibility, facts: ViewerFacts, pack: Pack, now: datetime) -> bool:
+    """A resume goal is only worth pursuing if its series can appear on the page the app will request."""
+    if goal.goal_id != "G07":
+        return True
+    dialect = (facts.value("dialect") or {}).get("page_dialect")
+    title = pack.title(goal.context.get("title_id"))
+    if dialect is None or title is None:
+        return True  # no page either way; nothing to decide here
+    return any(pack.titles[t].dialect == dialect and pack.available(t, now) and not pack.quarantined(t)
+               for t in pack.variants.get(title.slug, []))
+
+
 # --------------------------------------------------------------------------- model advice
+def _swap_hero(page: PageDraft, hero_id: str, pack: Pack) -> None:
+    """The model's hero leads the page; the previous hero moves to the front of the first row, so nothing the rules
+    chose is lost. One content_slug per page, so language variants of the new hero leave the rows too."""
+    old = page.hero_title_id
+    slug = pack.title(hero_id).slug
+    page.hero_title_id = hero_id
+    rows = [Row(r.row_type, [t for t in r.title_ids if pack.title(t).slug != slug]) for r in page.rows]
+    if rows and old and pack.title(old).slug != slug:
+        rows[0] = Row(rows[0].row_type, ([old] + rows[0].title_ids)[:10])
+    page.rows = [r for r in rows if len(r.title_ids) >= 3]
+    page.hero_reason = "model pick among allowed titles"
+
+
+def _copy_adds_facts(new: dict, rules_copy: dict, title_name: str) -> str | None:
+    """The model may reword the copy but not add facts: it must name the title, and every number it uses (episode,
+    price, date) must already be in the rule-based copy, which was built from the catalogue and pricing."""
+    text = f"{new['title']} {new['body']}"
+    if title_name.lower() not in text.lower():
+        return f"does not name the title {title_name!r}"
+    allowed = set(re.findall(r"\d+", " ".join(rules_copy.values())))
+    extra = set(re.findall(r"\d+", text)) - allowed
+    return f"adds numbers not in the facts: {sorted(extra)}" if extra else None
+
+
 def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibility], pack: Pack, settings: Settings,
                now: datetime, provider: ModelProvider, budget) -> Proposal:
     """Ask the model for a second opinion on the content: hero title and push copy. The model may also name a
@@ -166,19 +213,22 @@ def _ask_model(proposal: Proposal, facts: ViewerFacts, eligible: list[Eligibilit
 
     page = proposal.page
     if page and advice.hero_title_id and advice.hero_title_id != page.hero_title_id:
-        if advice.hero_title_id in page.candidate_ids:
-            # the new hero leaves the rows (any language variant of it too: one content_slug per page); a row that
-            # drops below three titles is removed, as the platform would
-            page.hero_title_id = advice.hero_title_id
-            slug = pack.title(advice.hero_title_id).slug
-            page.rows = [Row(r.row_type, [t for t in r.title_ids if pack.title(t).slug != slug]) for r in page.rows]
-            page.rows = [r for r in page.rows if len(r.title_ids) >= 3]
-            page.hero_reason = "model pick among allowed titles"
+        if page.hero_reason != "most popular":
+            # the evidence chose this hero (the campaign link or the goal's own series); the model cannot replace it
+            proposal.model["note"] = f"kept the {page.hero_reason} hero; the model's pick {advice.hero_title_id} was not used"
+        elif advice.hero_title_id in page.candidate_ids:
+            _swap_hero(page, advice.hero_title_id, pack)
             proposal.model["changed"] = f"hero -> {advice.hero_title_id}"
         else:
             proposal.model["note"] = f"model suggested hero {advice.hero_title_id}, which is not an allowed title; ignored"
-    if proposal.message and proposal.message.channel != "whatsapp" and advice.push_title and advice.push_body:
-        proposal.message.text = {"title": advice.push_title[:40], "body": advice.push_body[:120]}
+    message = proposal.message
+    if message and message.channel != "whatsapp" and advice.push_title and advice.push_body:
+        new = {"title": advice.push_title[:40], "body": advice.push_body[:120]}
+        problem = _copy_adds_facts(new, message.text or {}, pack.title(message.title_id).name)
+        if problem:
+            proposal.model["note"] = f"model copy not used: {problem}"
+        else:
+            message.text = new
     proposal.model["used"] = True
     proposal.model["reason"] = advice.reason[:300]
     return proposal

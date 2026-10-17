@@ -234,6 +234,7 @@ class Replay:
             "queue_wait_p95_ms": sorted(d.get("queue_wait_ms", 0) for d in self.decisions)[int(len(times) * 0.95)] if times else 0,
             "queue_wait_max_ms": max((d.get("queue_wait_ms", 0) for d in self.decisions), default=0),
             "decisions_during_surge": sum(1 for d in self.decisions if d.get("during_surge")),
+            "capacity_check": capacity_check(self.decisions, self.settings.latency_budget_s),
             "max_simulated_wait_ms": max((d["budget"].get("simulated_wait_ms", 0) for d in self.decisions), default=0),
             "peak_triggers_per_minute": max(per_minute.values()) if per_minute else 0,
             "peak_minute_utc": max(per_minute, key=per_minute.get) if per_minute else None,
@@ -246,6 +247,38 @@ def _main_day(decisions: list[dict]) -> str | None:
     """The IST calendar day most triggers were delivered on."""
     days = Counter(parse_ts(d["trigger"]["delivered_at"]).astimezone(IST).date().isoformat() for d in decisions)
     return days.most_common(1)[0][0] if days else None
+
+
+def _queue(arrivals: list[tuple[float, float]], workers: int) -> list[float]:
+    """Queue waits for (arrival, service seconds) pairs served in order by `workers` parallel workers."""
+    free, waits = [arrivals[0][0]] * workers, []
+    for at, service in arrivals:
+        start = max(at, heapq.heappop(free))
+        waits.append(start - at)
+        heapq.heappush(free, start + service)
+    return waits
+
+
+def capacity_check(decisions: list[dict], budget_s: int) -> dict:
+    """Replays this day's real per-decision service times under heavier load: the whole day at three times the
+    traffic, and 1,000 opens arriving in one minute. Answers "how many workers keep us inside the budget"."""
+    timed = sorted((parse_ts(d["trigger"]["delivered_at"]).timestamp(),
+                    max(0, d["decided_in_ms"] - d.get("queue_wait_ms", 0)) / 1000) for d in decisions)
+    if not timed:
+        return {}
+    t0 = timed[0][0]
+    tripled = [(t0 + (at - t0) / 3, service) for at, service in timed]
+    services = [service for _, service in timed]
+    burst = [(t0 + 60 * i / 1000, services[i % len(services)]) for i in range(1000)]
+    out = {"note": "queue waits using this day's measured service times (model latency and slow reads included)"}
+    for name, arrivals, options in (("day_at_3x_traffic", tripled, (1, 2, 4)), ("1000_opens_in_one_minute", burst, (4, 16, 32))):
+        out[name] = {}
+        for w in options:
+            waits = sorted(_queue(arrivals, w))
+            out[name][f"{w}_workers"] = {"p95_wait_ms": int(waits[int(len(waits) * 0.95)] * 1000),
+                                         "max_wait_ms": int(waits[-1] * 1000),
+                                         "over_budget": sum(1 for x in waits if x > budget_s)}
+    return out
 
 
 class SurgeMonitor:

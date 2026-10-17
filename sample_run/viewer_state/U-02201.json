@@ -16,22 +16,21 @@
    "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "succeeded",
-    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-    "success_event_id": "oua-014313",
-    "success_at": "2026-10-02T14:22:49.000Z",
-    "attribution": "exposed_before_success",
+    "verdict": "failed",
+    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
+    "success_event_id": null,
+    "success_at": null,
+    "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 1,
-     "message_delivered": 1,
-     "message_clicked": 1
+     "message_delivered": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-02T14:22:49.000Z judged: G08 succeeded (exposed_before_success; page shown 1x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
+   "2026-10-08T14:15:33.941Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -214,10 +213,10 @@
    "D-01852"
   ],
   "actions": [
-   "A-00757",
-   "A-00758"
+   "A-00769",
+   "A-00770"
   ],
-  "updated_at": "2026-10-01T14:15:35.146Z",
+  "updated_at": "2026-10-01T14:15:35.147Z",
   "version": 2
  },
  "decisions": [
@@ -260,6 +259,7 @@
    },
    "content": [
     "title:T0015",
+    "title:T0005",
     "title:T0007",
     "title:T0028",
     "title:T0031",
@@ -269,7 +269,6 @@
     "title:T0063",
     "title:T0426",
     "title:T0382",
-    "title:T0435",
     "title:T0004",
     "title:T0003",
     "title:T0009",
@@ -525,8 +524,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T14:15:35.146Z",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T14:15:35.147Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -570,7 +569,7 @@
     {
      "ref": "decision:D-01852",
      "source": "store",
-     "observed_at": "2026-10-01T14:15:35.146Z"
+     "observed_at": "2026-10-01T14:15:35.147Z"
     }
    ],
    "assumptions": [],
@@ -601,11 +600,11 @@
  ],
  "actions": [
   {
-   "action_id": "A-00757",
+   "action_id": "A-00769",
    "decision_id": "D-01852",
    "user_id": "U-02201",
    "trigger_event_id": "515bf2b7-5758-40de-aa67-cff4ac9f5644",
-   "published_at": "2026-10-01T14:15:35.146Z",
+   "published_at": "2026-10-01T14:15:35.147Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -614,6 +613,7 @@
     {
      "row_type": "new_releases",
      "title_ids": [
+      "T0005",
       "T0007",
       "T0028",
       "T0031",
@@ -622,8 +622,7 @@
       "T0127",
       "T0063",
       "T0426",
-      "T0382",
-      "T0435"
+      "T0382"
      ]
     },
     {
@@ -673,11 +672,11 @@
    ]
   },
   {
-   "action_id": "A-00758",
+   "action_id": "A-00770",
    "decision_id": "D-01852",
    "user_id": "U-02201",
    "trigger_event_id": "515bf2b7-5758-40de-aa67-cff4ac9f5644",
-   "published_at": "2026-10-01T14:15:35.146Z",
+   "published_at": "2026-10-01T14:15:35.147Z",
    "goal_id": "G08",
    "type": "whatsapp",
    "send_at": "2026-10-02T13:30:00.000Z",
@@ -702,19 +701,18 @@
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
-   "verdict": "succeeded",
-   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-   "success_event_id": "oua-014313",
-   "success_at": "2026-10-02T14:22:49.000Z",
-   "attribution": "exposed_before_success",
+   "verdict": "failed",
+   "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
+   "success_event_id": null,
+   "success_at": null,
+   "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 1,
-    "message_delivered": 1,
-    "message_clicked": 1
+    "message_delivered": 1
    },
    "actions": [
-    "A-00757",
-    "A-00758"
+    "A-00769",
+    "A-00770"
    ]
   }
  ]

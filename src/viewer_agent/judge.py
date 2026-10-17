@@ -293,6 +293,16 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
     return [impact_path, final_path]
 
 
+def _capacity_line(cap: dict) -> str:
+    if not cap:
+        return "- Capacity check: not available."
+    tri, burst = cap["day_at_3x_traffic"], cap["1000_opens_in_one_minute"]
+    tri_txt = ", ".join(f"{k.split('_')[0]} worker(s) p95 wait {v['p95_wait_ms']:,} ms" for k, v in tri.items())
+    burst_txt = ", ".join(f"{k.split('_')[0]} workers max wait {v['max_wait_ms']:,} ms ({v['over_budget']} over budget)"
+                          for k, v in burst.items())
+    return f"- Capacity, using this day's measured decision times: the whole day at 3x traffic gives {tri_txt}; "            f"1,000 opens in one minute gives {burst_txt}."
+
+
 def _fault_lines(faults: list[dict], decisions: list[dict]) -> list[str]:
     """How each scripted model fault was met. The mock returns the scripted answer whenever the agent asks."""
     first = {}
@@ -339,6 +349,7 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi, f
               f"- {latency.get('workers', 1)} decision workers share one queue: queue wait p95 {latency.get('queue_wait_p95_ms', 0)} ms, "
               f"max {latency.get('queue_wait_max_ms', 0)} ms. Peak load {latency['peak_triggers_per_minute']} opens in one minute "
               f"({latency['peak_minute_utc']} UTC).",
+              _capacity_line(latency.get("capacity_check") or {}),
               f"- Duplicate triggers recognised: {status.get('DUPLICATE', 0)}. Fallbacks: " +
               (", ".join(f"{v} {k}" for k, v in summary["fallbacks"].items()) or "none") + ".",
               f"- Model: {summary['model']['calls']} calls, advice used {summary['model']['advice_used']}, "
@@ -364,8 +375,8 @@ def _final_report(summary, latency, sim, outcomes, decisions, a, h, d, lo, hi, f
     flagged = summary.get("catalogue_text_flagged", [])
     if flagged:
         lines.append(f"- Catalogue descriptions that read like instructions to an AI, flagged and ignored: "
-                     f"{', '.join(f['title_id'] for f in flagged)}. Descriptions are never sent to the model; "
-                     "the titles themselves remain normal content.")
+                     f"{', '.join(f['title_id'] for f in flagged)}. Descriptions are never sent to the model, and "
+                     "these titles are held back from pages and messages until a person reviews them.")
     lines += [f"- Plan revisions triggered by live events: {len(summary['plan_revisions_from_live_events'])} "
               "(purchases that closed an open goal before its deadline)."]
     lines += _fault_lines(list(faults), decisions)

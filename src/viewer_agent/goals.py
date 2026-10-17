@@ -227,5 +227,5 @@ class RuleBook:
             return bool(t and t.slug == goal.get("context", {}).get("slug"))
         if goal_id == "G08":
             t = pack.title(props.get("title_id"))
-            return bool(t and (start.date() - t.release_date).days <= NEW_RELEASE_DAYS)
+            return bool(t and 0 <= (start.date() - t.release_date).days <= NEW_RELEASE_DAYS)
         return True  # G01, G02, G06, G09, G12: any event of the right type

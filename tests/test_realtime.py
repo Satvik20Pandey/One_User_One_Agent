@@ -68,3 +68,16 @@ def test_surge_monitor_compares_against_the_previous_hour():
         assert monitor.add(t + timedelta(minutes=i)) is False
     burst = [monitor.add(t + timedelta(minutes=60, seconds=s)) for s in range(0, 600, 20)]  # 30 more in 10 min
     assert burst[-1] is True and monitor.windows
+
+
+def test_capacity_check_shows_how_many_workers_a_burst_needs():
+    from viewer_agent.replay import capacity_check
+    start = parse_ts("2026-10-01T14:00:00.000Z")
+    # 120 opens over an hour, each taking 2 s to decide
+    decisions = [{"trigger": {"delivered_at": iso(start + timedelta(seconds=30 * i))}, "decided_in_ms": 2000,
+                  "queue_wait_ms": 0} for i in range(120)]
+    cap = capacity_check(decisions, budget_s=60)
+    assert cap["day_at_3x_traffic"]["1_workers"]["max_wait_ms"] == 0          # 10 s apart, 2 s each: no queue
+    burst = cap["1000_opens_in_one_minute"]
+    assert burst["4_workers"]["over_budget"] > 0                               # 1,000 x 2 s / 4 = 500 s of work
+    assert burst["32_workers"]["over_budget"] == 0                             # 62.5 s of work spread over a minute

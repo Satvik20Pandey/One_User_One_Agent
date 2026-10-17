@@ -3,24 +3,21 @@
   "user_id": "U-04455",
   "active_goal": {
    "instance_id": "G-01240",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-10-01T15:09:48.079Z",
-   "deadline": "2026-10-04T15:09:48.079Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T15:09:48.079Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series diti-kochu-d5 (1/32 episodes), last played 2026-09-19",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:9686e219-a9c5-481f-9727-4e716b037110"
+    "profile:U-04455@2026-09-28T20:44:56.293Z"
    ],
-   "context": {
-    "slug": "diti-kochu-d5",
-    "title_id": "T1906"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
@@ -32,7 +29,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T15:09:48.079Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T15:09:48.079Z judged: G05 failed (exposed_no_success; page shown 1x, message delivered 0x). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -217,9 +214,9 @@
    "D-02180"
   ],
   "actions": [
-   "A-00909"
+   "A-00921"
   ],
-  "updated_at": "2026-10-01T15:09:48.081Z",
+  "updated_at": "2026-10-01T15:09:48.083Z",
   "version": 2
  },
  "decisions": [
@@ -238,12 +235,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-01240",
     "started_at": "2026-10-01T15:09:48.079Z",
-    "deadline": "2026-10-04T15:09:48.079Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T15:09:48.079Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -263,40 +260,45 @@
    },
    "content": [
     "title:T1976",
-    "title:T1978",
-    "title:T1390",
-    "title:T1393",
+    "title:T1392",
+    "title:T1391",
     "title:T1398",
-    "title:T1984",
-    "title:T1500",
-    "title:T1397",
-    "title:T1395",
-    "title:T1985",
-    "title:T1406",
     "title:T1980",
-    "title:T1414",
+    "title:T1406",
+    "title:T1987",
+    "title:T1981",
     "title:T1399",
     "title:T1982",
     "title:T1450",
-    "title:T2003",
     "title:T1461",
-    "title:T2004",
     "title:T2012",
-    "title:T1465",
-    "title:T1392",
-    "title:T1391",
-    "title:T1979",
-    "title:T1428",
-    "title:T1987",
-    "title:T1981",
-    "title:T1402",
-    "title:T1437",
-    "title:T1419",
-    "title:T1486",
-    "title:T1421",
     "title:T2009",
     "title:T1472",
-    "title:T1456"
+    "title:T1393",
+    "title:T1486",
+    "title:T1421",
+    "title:T2004",
+    "title:T1456",
+    "title:T2003",
+    "title:T1445",
+    "title:T1439",
+    "title:T1496",
+    "title:T2000",
+    "title:T1449",
+    "title:T2010",
+    "title:T1978",
+    "title:T1390",
+    "title:T1395",
+    "title:T1986",
+    "title:T2007",
+    "title:T1992",
+    "title:T1444",
+    "title:T2002",
+    "title:T1494",
+    "title:T2011",
+    "title:T1993",
+    "title:T1452",
+    "title:T1997"
    ],
    "confidence": {
     "value": 0.55,
@@ -473,15 +475,17 @@
      "observed_at": "2026-10-01T15:09:48.079Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d6, profile=d5, deeplink=None -> used d6 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series diti-kochu-d5 (1/32 episodes), last played 2026-09-19",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:9686e219-a9c5-481f-9727-4e716b037110"
+     "profile:U-04455@2026-09-28T20:44:56.293Z"
     ]
    },
    "model": {
@@ -510,76 +514,81 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:09:48.081Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:09:48.083Z",
    "status": "PUBLISHED",
    "during_surge": true
   }
  ],
  "actions": [
   {
-   "action_id": "A-00909",
+   "action_id": "A-00921",
    "decision_id": "D-02180",
    "user_id": "U-04455",
    "trigger_event_id": "562ffeb0-ff1f-470b-b46c-c5b1d2c2c93c",
-   "published_at": "2026-10-01T15:09:48.081Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T15:09:48.083Z",
+   "goal_id": "G05",
    "type": "home_page",
    "dialect": "d6",
    "hero_title_id": "T1976",
    "rows": [
     {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T1978",
-      "T1390",
-      "T1393",
-      "T1398",
-      "T1984",
-      "T1500",
-      "T1397",
-      "T1395",
-      "T1985",
-      "T1406"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T1980",
-      "T1414",
-      "T1399",
-      "T1982",
-      "T1450",
-      "T2003",
-      "T1461",
-      "T2004",
-      "T2012",
-      "T1465"
-     ]
-    },
-    {
      "row_type": "popular_in_dialect",
      "title_ids": [
       "T1392",
       "T1391",
-      "T1979",
-      "T1428",
+      "T1398",
+      "T1980",
+      "T1406",
       "T1987",
       "T1981",
-      "T1402",
-      "T1437",
-      "T1419",
-      "T1486"
+      "T1399",
+      "T1982",
+      "T1450"
      ]
     },
     {
      "row_type": "new_releases",
      "title_ids": [
-      "T1421",
+      "T1461",
+      "T2012",
       "T2009",
       "T1472",
+      "T1393",
+      "T1486",
+      "T1421",
+      "T2004",
       "T1456"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T2003",
+      "T1445",
+      "T1439",
+      "T1496",
+      "T2000",
+      "T1449",
+      "T2010",
+      "T1978",
+      "T1390",
+      "T1395"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1986",
+      "T2007",
+      "T1992",
+      "T1444",
+      "T2002",
+      "T1494",
+      "T2011",
+      "T1993",
+      "T1452",
+      "T1997"
      ]
     }
    ]
@@ -590,15 +599,15 @@
    "user_id": "U-04455",
    "arm": "agent",
    "goal_instance_id": "G-01240",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-10-01T15:09:48.079Z",
-   "deadline": "2026-10-04T15:09:48.079Z",
+   "deadline": "2026-10-08T15:09:48.079Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
@@ -606,7 +615,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00909"
+    "A-00921"
    ]
   }
  ]

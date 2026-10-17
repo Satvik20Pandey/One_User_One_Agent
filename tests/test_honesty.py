@@ -111,3 +111,71 @@ def test_model_hero_never_duplicates_content_in_another_language(env):
     _ask_model(proposal, facts, env.rules.eligible(facts), env.pack, env.settings, NOW, PicksRaloja(), Budget(NOW, env.settings))
     assert proposal.page.hero_title_id == "T0003"
     assert "T0008" not in proposal.page.rows[0].title_ids
+
+
+def test_model_never_replaces_a_hero_the_evidence_chose(env):
+    # push-only viewer with a resume goal: the model is asked for push copy, and must not move the series off the page
+    from viewer_agent.planner import Advice
+
+    class PushesAnotherTitle:
+        name = "fake"
+
+        def advise(self, request):
+            return Advice(goal_id="G07", hero_title_id="T0009", reason="prefers a film")
+
+    env.deps.provider = PushesAnotherTitle()
+    env.pack.profiles["U-R1"]["whatsapp_opt_in"] = False
+    record, actions = env.decide(make_trigger("U-R1"))
+    page = next(a for a in actions if a["type"] == "home_page")
+    push = next(a for a in actions if a["type"] == "push")
+    assert record["model"]["calls"] == 1 and page["hero_title_id"] == "T0004" == push["title_id"]
+    assert "kept the goal series hero" in record["model"]["note"]
+
+
+def test_model_copy_may_reword_but_not_add_facts():
+    from viewer_agent.planner import _copy_adds_facts
+    rules = {"title": "Continue Hapi", "body": "Episode 2 of Hapi is waiting for you."}
+    assert _copy_adds_facts({"title": "Hapi is calling", "body": "Your episode 2 awaits."}, rules, "Hapi") is None
+    assert "numbers" in _copy_adds_facts({"title": "Hapi", "body": "Episode 5 now, only Rs 49!"}, rules, "Hapi")
+    assert "name the title" in _copy_adds_facts({"title": "Something new", "body": "Watch now."}, rules, "Hapi")
+
+
+def test_new_release_goal_ignores_titles_released_after_the_goal_started(env):
+    goal = {"goal_id": "G08", "started_at": iso(parse_ts("2026-09-01T00:00:00.000Z")),
+            "deadline": iso(parse_ts("2026-10-15T00:00:00.000Z")), "context": {}}
+    play = lambda tid: {"event": "play_started", "event_id": tid, "_at": parse_ts("2026-10-01T00:00:00.000Z"),  # noqa: E731
+                        "properties": {"title_id": tid}}
+    assert env.rules._matches(goal, play("T0014"), env.pack) is False   # released 2025: too old
+    assert env.rules._matches(goal, play("T0006"), env.pack) is False   # released 2026-09-20: after the goal began
+    goal["started_at"] = iso(parse_ts("2026-09-25T00:00:00.000Z"))
+    assert env.rules._matches(goal, play("T0006"), env.pack) is True    # 5 days before the goal began
+
+
+def test_a_stale_write_is_retried_on_fresh_state(env, monkeypatch):
+    from viewer_agent.store import StaleState
+    real, calls = env.store.save_state, []
+
+    def flaky(user_id, state, now):
+        calls.append(user_id)
+        if len(calls) == 1:
+            raise StaleState("another worker saved first")
+        return real(user_id, state, now)
+
+    monkeypatch.setattr(env.store, "save_state", flaky)
+    record, actions = env.decide(make_trigger("U-R1"))
+    assert len(calls) == 2 and record["status"] == "PUBLISHED" and actions
+    assert any("decided again" in a for a in record["assumptions"])
+    assert len(env.store.decisions_for("U-R1")) == 1  # the abandoned first attempt wrote nothing
+
+
+def test_page_must_still_be_valid_when_it_goes_live(env):
+    from viewer_agent.agent import Budget
+    from viewer_agent.content import PageDraft, Row
+    from viewer_agent.planner import Proposal
+    from viewer_agent.verifier import verify
+    facts = env.facts_for("U-A1")
+    env.pack.withdraw("T0004", NOW + timedelta(seconds=30))  # withdrawn 30 s after the open arrived
+    page = PageDraft("d1", "T0001", [Row("popular_in_dialect", ["T0004", "T0005", "T0009"])])
+    result = verify(Proposal(env.rules.check("G02", facts), page, None, None), facts, "agent", env.rules, env.store,
+                    env.pack, env.settings, NOW, Budget(NOW, env.settings))
+    assert any(f["check"] == "availability" for f in result.failed)

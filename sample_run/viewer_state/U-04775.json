@@ -3,24 +3,21 @@
   "user_id": "U-04775",
   "active_goal": {
    "instance_id": "G-00034",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-09-30T20:13:34.637Z",
-   "deadline": "2026-10-03T20:13:34.637Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-07T20:13:34.637Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+    "profile:U-04775@2026-09-29T05:13:41.289Z"
    ],
-   "context": {
-    "slug": "rasuya-moni-d6",
-    "title_id": "T1976"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-03T20:13:34.637Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-07T20:13:34.637Z judged: G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -234,12 +231,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00034",
     "started_at": "2026-09-30T20:13:34.637Z",
-    "deadline": "2026-10-03T20:13:34.637Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:13:34.637Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -412,15 +409,17 @@
      "observed_at": "2026-09-30T20:13:34.637Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+     "profile:U-04775@2026-09-29T05:13:41.289Z"
     ]
    },
    "model": {
@@ -462,12 +461,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00034",
     "started_at": "2026-09-30T20:13:34.637Z",
-    "deadline": "2026-10-03T20:13:34.637Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:13:34.637Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -640,15 +639,17 @@
      "observed_at": "2026-10-01T01:32:26.469Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+     "profile:U-04775@2026-09-29T05:13:41.289Z"
     ]
    },
    "model": {
@@ -690,12 +691,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00034",
     "started_at": "2026-09-30T20:13:34.637Z",
-    "deadline": "2026-10-03T20:13:34.637Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:13:34.637Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -868,15 +869,17 @@
      "observed_at": "2026-10-01T07:12:11.143Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+     "profile:U-04775@2026-09-29T05:13:41.289Z"
     ]
    },
    "model": {
@@ -918,12 +921,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00034",
     "started_at": "2026-09-30T20:13:34.637Z",
-    "deadline": "2026-10-03T20:13:34.637Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:13:34.637Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -1096,15 +1099,17 @@
      "observed_at": "2026-10-01T07:15:43.826Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+     "profile:U-04775@2026-09-29T05:13:41.289Z"
     ]
    },
    "model": {
@@ -1126,8 +1131,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T07:15:43.828Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T07:15:43.827Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1146,12 +1151,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00034",
     "started_at": "2026-09-30T20:13:34.637Z",
-    "deadline": "2026-10-03T20:13:34.637Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:13:34.637Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -1324,15 +1329,17 @@
      "observed_at": "2026-10-01T11:33:21.578Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d6, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series rasuya-moni-d6 (1/9 episodes), last played 2026-09-23",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:ced00db8-cbd9-4a49-ae3e-80b8182add8f"
+     "profile:U-04775@2026-09-29T05:13:41.289Z"
     ]
    },
    "model": {
@@ -1366,15 +1373,15 @@
    "user_id": "U-04775",
    "arm": "holdout",
    "goal_instance_id": "G-00034",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-09-30T20:13:34.637Z",
-   "deadline": "2026-10-03T20:13:34.637Z",
+   "deadline": "2026-10-07T20:13:34.637Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

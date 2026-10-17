@@ -3,24 +3,21 @@
   "user_id": "U-03775",
   "active_goal": {
    "instance_id": "G-01006",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-10-01T13:55:44.879Z",
-   "deadline": "2026-10-04T13:55:44.879Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T13:55:44.879Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series suti-kadi-d2 (0/8 episodes), last played 2026-09-12",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:eb64e6be-9320-45a0-807b-60a67f904fef"
+    "profile:U-03775@2026-09-28T22:43:48.357Z"
    ],
-   "context": {
-    "slug": "suti-kadi-d2",
-    "title_id": "T0622"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
@@ -32,7 +29,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T13:55:44.879Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T13:55:44.879Z judged: G05 failed (exposed_no_success; page shown 1x, message delivered 0x). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -232,9 +229,9 @@
    "D-01790"
   ],
   "actions": [
-   "A-00721"
+   "A-00733"
   ],
-  "updated_at": "2026-10-01T13:55:44.883Z",
+  "updated_at": "2026-10-01T13:55:46.083Z",
   "version": 2
  },
  "decisions": [
@@ -253,12 +250,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-01006",
     "started_at": "2026-10-01T13:55:44.879Z",
-    "deadline": "2026-10-04T13:55:44.879Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T13:55:44.879Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": false
@@ -275,47 +272,47 @@
     "conflicts": []
    },
    "content": [
-    "title:T0521",
-    "title:T0526",
-    "title:T0523",
-    "title:T0524",
+    "title:T0533",
+    "title:T0525",
     "title:T0536",
     "title:T0531",
-    "title:T0528",
-    "title:T0539",
-    "title:T0543",
-    "title:T0540",
-    "title:T0548",
-    "title:T0533",
-    "title:T0556",
-    "title:T0568",
-    "title:T0550",
-    "title:T0566",
-    "title:T0701",
-    "title:T0675",
-    "title:T0665",
-    "title:T0612",
-    "title:T0609",
-    "title:T0525",
     "title:T0529",
-    "title:T0537",
     "title:T0534",
+    "title:T0548",
+    "title:T0556",
     "title:T0581",
-    "title:T0585",
-    "title:T0538",
-    "title:T0541",
-    "title:T0545",
-    "title:T0544",
+    "title:T0547",
+    "title:T0900",
     "title:T0676",
     "title:T0552",
-    "title:T0564",
-    "title:T0535",
     "title:T0584",
-    "title:T0596",
-    "title:T0616",
-    "title:T0679",
     "title:T0779",
-    "title:T0829"
+    "title:T0746",
+    "title:T0724",
+    "title:T0587",
+    "title:T0706",
+    "title:T0800",
+    "title:T0825",
+    "title:T0612",
+    "title:T0609",
+    "title:T0762",
+    "title:T0633",
+    "title:T0840",
+    "title:T0691",
+    "title:T0858",
+    "title:T0655",
+    "title:T0729",
+    "title:T0755",
+    "title:T0635",
+    "title:T0571",
+    "title:T0652",
+    "title:T0716",
+    "title:T0580",
+    "title:T0695",
+    "title:T0586",
+    "title:T0876",
+    "title:T0689",
+    "title:T0703"
    ],
    "confidence": {
     "value": 0.75,
@@ -502,22 +499,26 @@
      "observed_at": "2026-10-01T13:55:44.879Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series suti-kadi-d2 (0/8 episodes), last played 2026-09-12",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:eb64e6be-9320-45a0-807b-60a67f904fef"
+     "profile:U-03775@2026-09-28T22:43:48.357Z"
     ]
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0533",
+    "reason": "Tidisa Teva is the most popular allowed title in the viewer's top genre, Romance"
    },
    "checks": {
     "passed": [
@@ -526,78 +527,49 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T13:55:44.883Z",
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T13:55:46.083Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00721",
+   "action_id": "A-00733",
    "decision_id": "D-01790",
    "user_id": "U-03775",
    "trigger_event_id": "b9a62b7f-71e9-4d37-8bae-81694b18c3b5",
-   "published_at": "2026-10-01T13:55:44.883Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T13:55:46.083Z",
+   "goal_id": "G05",
    "type": "home_page",
    "dialect": "d2",
-   "hero_title_id": "T0521",
+   "hero_title_id": "T0533",
    "rows": [
-    {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T0526",
-      "T0523",
-      "T0524",
-      "T0536",
-      "T0531",
-      "T0528",
-      "T0539",
-      "T0543",
-      "T0540",
-      "T0548"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0533",
-      "T0556",
-      "T0568",
-      "T0550",
-      "T0566",
-      "T0701",
-      "T0675",
-      "T0665",
-      "T0612",
-      "T0609"
-     ]
-    },
     {
      "row_type": "popular_in_dialect",
      "title_ids": [
       "T0525",
+      "T0536",
+      "T0531",
       "T0529",
-      "T0537",
       "T0534",
+      "T0548",
+      "T0556",
       "T0581",
-      "T0585",
-      "T0538",
-      "T0541",
-      "T0545",
-      "T0544"
+      "T0547",
+      "T0900"
      ]
     },
     {
@@ -605,14 +577,44 @@
      "title_ids": [
       "T0676",
       "T0552",
-      "T0564",
-      "T0535",
       "T0584",
-      "T0596",
-      "T0616",
-      "T0679",
       "T0779",
-      "T0829"
+      "T0746",
+      "T0724",
+      "T0587",
+      "T0706",
+      "T0800",
+      "T0825"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0612",
+      "T0609",
+      "T0762",
+      "T0633",
+      "T0840",
+      "T0691",
+      "T0858",
+      "T0655",
+      "T0729",
+      "T0755"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0635",
+      "T0571",
+      "T0652",
+      "T0716",
+      "T0580",
+      "T0695",
+      "T0586",
+      "T0876",
+      "T0689",
+      "T0703"
      ]
     }
    ]
@@ -623,15 +625,15 @@
    "user_id": "U-03775",
    "arm": "agent",
    "goal_instance_id": "G-01006",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-10-01T13:55:44.879Z",
-   "deadline": "2026-10-04T13:55:44.879Z",
+   "deadline": "2026-10-08T13:55:44.879Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
@@ -639,7 +641,7 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00721"
+    "A-00733"
    ]
   }
  ]

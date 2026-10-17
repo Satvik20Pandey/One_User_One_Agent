@@ -42,6 +42,9 @@ for coming back, free viewers for a first full episode or resuming a series. Wit
 observable success signal come first so the holdout comparison has enough signal: in an earlier run, "resume this
 exact series" succeeded about 4% of the time and "play any new release" about 29%. Two goals are never offered:
 G10 has no success event and G11's event never occurs in the stream, which the rule book detects at start-up.
+A goal the agent cannot serve gives way to the next one: "resume this series" is passed over when the series cannot
+appear in the app's dialect or is held for review. This happens before the arm is considered, so both arms still
+get the same goal.
 
 The active goal is kept while its window is open and the viewer still qualifies. It is revised on a state change,
 not on a schedule: a live event that meets the success condition closes the goal at once (`handle_event`), a
@@ -61,7 +64,9 @@ below a confidence of 0.4 (no profile and no history, or no profile and disagree
 records the goal but publishes nothing.
 
 The model is asked only when it can add something: push or in-app copy to write, or a hero title that the evidence
-(a campaign link or the goal's own series) did not already decide. In the sample run that skips about a fifth of
+(a campaign link or the goal's own series) did not already decide. It can never replace a hero the evidence chose,
+and its copy may reword but not add facts: it must name the title and use no number that the rule-based copy (built
+from the catalogue and pricing) does not already contain. In the sample run that skips about a fifth of
 the possible calls.
 
 ## Source handling and freshness
@@ -128,8 +133,10 @@ triggers return the earlier decision in one store lookup.
 
 A surge monitor compares opens in the last 10 minutes with the hour before. At 2.5 times the baseline (and at least
 30 opens) it marks a surge and the agent skips optional model calls until traffic settles. In the sample run it
-caught both the offline-buffer burst and the evening peak. At real scale the same design shards by `user_id`
-across workers; the store is the only coordination point.
+caught both the offline-buffer burst and the evening peak. The latency report also replays the day's measured
+decision times under heavier load (the whole day at three times the traffic, and 1,000 opens in one minute) to show
+how many workers keep every decision inside the budget. At real scale the same design shards by `user_id` across
+workers; the store is the only coordination point.
 
 ## Failure recovery
 
@@ -148,6 +155,7 @@ across workers; the store is the only coordination point.
 
 - **1,000 opens in one minute.** Each open is an independent unit of work keyed by `user_id`; workers pull from one
   queue, the queue wait counts against the 60 s budget, and optional model calls are the first thing shed. The
+  capacity check in `latency_report.json` gives the worker count this needs with the day's real decision times. The
   expensive part (reading one viewer's events) is a single indexed read.
 - **10 million viewers, 40 dialects.** Shard the event store and the viewer documents by `user_id`; the catalogue
   index is per dialect and small. Goal rules and policy are data (`goals.json`, `interventions.json`), so new

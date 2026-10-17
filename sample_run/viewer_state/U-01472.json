@@ -3,24 +3,21 @@
   "user_id": "U-01472",
   "active_goal": {
    "instance_id": "G-01188",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-10-01T15:05:40.403Z",
-   "deadline": "2026-10-04T15:05:40.403Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T15:05:40.403Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-26",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:3512dcb6-935b-4194-bbd8-48b1f03bb145"
+    "profile:U-01472@2026-09-29T02:14:04.905Z"
    ],
-   "context": {
-    "slug": "hama-chudibha-d1",
-    "title_id": "T0002"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T15:05:40.403Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T15:05:40.403Z judged: G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -229,12 +226,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-01188",
     "started_at": "2026-10-01T15:05:40.403Z",
-    "deadline": "2026-10-04T15:05:40.403Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T15:05:40.403Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
     "committed_now": true,
     "shadow": true
@@ -416,13 +413,15 @@
      "observed_at": "2026-10-01T15:05:40.403Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (1/36 episodes), last played 2026-09-26",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:3512dcb6-935b-4194-bbd8-48b1f03bb145"
+     "profile:U-01472@2026-09-29T02:14:04.905Z"
     ]
    },
    "model": {
@@ -456,15 +455,15 @@
    "user_id": "U-01472",
    "arm": "holdout",
    "goal_instance_id": "G-01188",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-10-01T15:05:40.403Z",
-   "deadline": "2026-10-04T15:05:40.403Z",
+   "deadline": "2026-10-08T15:05:40.403Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

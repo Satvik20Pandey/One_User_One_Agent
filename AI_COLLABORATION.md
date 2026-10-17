@@ -18,7 +18,7 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 79 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 86 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
 - Reports are generated from program output. The few figures quoted in the design notes come from earlier runs
@@ -91,6 +91,15 @@ A second cold review (again with no notes from me) found smaller things, which I
 | Learning never ran end to end | `replay --continue-from` runs day two on day one's judged state; a test shows the change. Building it exposed an id collision when continuing a store, also fixed |
 | Flagged titles were still promoted | They are held back until a person reviews them |
 | No statement of how big an effect the test could detect | The impact report now gives the minimum detectable effect |
+
+A third cold review found one bug my own checks had missed, because a later change undid an earlier fix: once the
+model was asked for push copy, its hero pick could replace a hero the evidence had chosen, so about 19 resume-goal
+pages lost the very series they were about. The model can now only fill a hero the evidence left open, the old hero
+stays on the page, and model copy may not add numbers or drop the title. The same review found smaller issues, all
+fixed: a misleading "no catalogue content" reason when the app sent no dialect, new-release judging that counted
+titles released after the goal started, `StaleState` raised but not handled (a stale write is now retried on fresh
+state), availability checked when the open arrived rather than when the page goes live, and stale report text. The
+lesson I took: after every AI-proposed change, re-run the end-to-end checks of earlier fixes, not only the new tests.
 
 ## Where AI output was wrong and I only noticed by running it
 

@@ -3,24 +3,21 @@
   "user_id": "U-00023",
   "active_goal": {
    "instance_id": "G-00120",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-10-01T02:12:27.469Z",
-   "deadline": "2026-10-04T02:12:27.469Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T02:12:27.469Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series gula-tete-d3 (2/22 episodes), last played 2026-09-08",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:6e600f3d-96b5-4fc0-a743-7fb75e79ac96"
+    "profile:U-00023@2026-09-29T06:32:57.402Z"
    ],
-   "context": {
-    "slug": "gula-tete-d3",
-    "title_id": "T0912"
-   },
+   "context": {},
    "shadow": false,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "exposed_no_success",
@@ -32,7 +29,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T02:12:27.469Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 0x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T02:12:27.469Z judged: G05 failed (exposed_no_success; page shown 2x, message delivered 0x). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -225,7 +222,7 @@
   ],
   "actions": [
    "A-00073",
-   "A-00893"
+   "A-00905"
   ],
   "updated_at": "2026-10-01T15:08:06.702Z",
   "version": 4
@@ -246,12 +243,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00120",
     "started_at": "2026-10-01T02:12:27.469Z",
-    "deadline": "2026-10-04T02:12:27.469Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T02:12:27.469Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": false
@@ -268,16 +265,17 @@
     "conflicts": []
    },
    "content": [
-    "title:T0908",
+    "title:T1810",
+    "title:T1809",
+    "title:T0904",
+    "title:T0909",
+    "title:T0906",
+    "title:T0905",
     "title:T0901",
     "title:T0903",
     "title:T0907",
-    "title:T0914",
-    "title:T0904",
-    "title:T0913",
-    "title:T0910",
-    "title:T0909",
-    "title:T0905"
+    "title:T0908",
+    "title:T0914"
    ],
    "confidence": {
     "value": 0.75,
@@ -460,22 +458,26 @@
      "observed_at": "2026-10-01T02:12:27.469Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series gula-tete-d3 (2/22 episodes), last played 2026-09-08",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:6e600f3d-96b5-4fc0-a743-7fb75e79ac96"
+     "profile:U-00023@2026-09-29T06:32:57.402Z"
     ]
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T1810",
+    "reason": "Tepa Lagi (English) is the most popular allowed title in the viewer's top genre, Action"
    },
    "checks": {
     "passed": [
@@ -484,19 +486,20 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
+    "model_calls": 1,
     "tool_calls": 11,
-    "simulated_wait_ms": 0
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T02:12:27.472Z",
+   "decided_in_ms": 1203,
+   "published_at": "2026-10-01T02:12:28.672Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -515,12 +518,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00120",
     "started_at": "2026-10-01T02:12:27.469Z",
-    "deadline": "2026-10-04T02:12:27.469Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T02:12:27.469Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": false
@@ -528,7 +531,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00073 for this viewer is still live (published 2026-10-01T02:12:27.472Z); nothing to change",
+   "no_action_reason": "home page A-00073 for this viewer is still live (published 2026-10-01T02:12:28.672Z); nothing to change",
    "dialect": {
     "used": "d3",
     "source": "app_setting",
@@ -719,10 +722,10 @@
    "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series gula-tete-d3 (2/22 episodes), last played 2026-09-08",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:6e600f3d-96b5-4fc0-a743-7fb75e79ac96"
+     "profile:U-00023@2026-09-29T06:32:57.402Z"
     ]
    },
    "model": {
@@ -764,12 +767,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00120",
     "started_at": "2026-10-01T02:12:27.469Z",
-    "deadline": "2026-10-04T02:12:27.469Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T02:12:27.469Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": false
@@ -786,16 +789,17 @@
     "conflicts": []
    },
    "content": [
-    "title:T0908",
+    "title:T1809",
+    "title:T0904",
+    "title:T0909",
+    "title:T0906",
+    "title:T0905",
+    "title:T1810",
     "title:T0901",
     "title:T0903",
     "title:T0907",
-    "title:T0914",
-    "title:T0904",
-    "title:T0913",
-    "title:T0910",
-    "title:T0909",
-    "title:T0905"
+    "title:T0908",
+    "title:T0914"
    ],
    "confidence": {
     "value": 0.75,
@@ -978,13 +982,15 @@
      "observed_at": "2026-10-01T15:08:06.699Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series gula-tete-d3 (2/22 episodes), last played 2026-09-08",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:6e600f3d-96b5-4fc0-a743-7fb75e79ac96"
+     "profile:U-00023@2026-09-29T06:32:57.402Z"
     ]
    },
    "model": {
@@ -1025,51 +1031,53 @@
    "decision_id": "D-00148",
    "user_id": "U-00023",
    "trigger_event_id": "43fe95f1-fe37-4176-9f63-898e3d0d0a33",
-   "published_at": "2026-10-01T02:12:27.472Z",
-   "goal_id": "G07",
+   "published_at": "2026-10-01T02:12:28.672Z",
+   "goal_id": "G05",
    "type": "home_page",
    "dialect": "d3",
-   "hero_title_id": "T0908",
+   "hero_title_id": "T1810",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "popular_in_dialect",
      "title_ids": [
+      "T1809",
+      "T0904",
+      "T0909",
+      "T0906",
+      "T0905",
       "T0901",
       "T0903",
       "T0907",
-      "T0914",
-      "T0904",
-      "T0913",
-      "T0910",
-      "T0909",
-      "T0905"
+      "T0908",
+      "T0914"
      ]
     }
    ]
   },
   {
-   "action_id": "A-00893",
+   "action_id": "A-00905",
    "decision_id": "D-02149",
    "user_id": "U-00023",
    "trigger_event_id": "6750b3a3-f964-41f0-b0a4-eccab78a91f7",
    "published_at": "2026-10-01T15:08:06.702Z",
-   "goal_id": "G07",
+   "goal_id": "G05",
    "type": "home_page",
    "dialect": "d3",
-   "hero_title_id": "T0908",
+   "hero_title_id": "T1809",
    "rows": [
     {
-     "row_type": "next_episode",
+     "row_type": "popular_in_dialect",
      "title_ids": [
+      "T0904",
+      "T0909",
+      "T0906",
+      "T0905",
+      "T1810",
       "T0901",
       "T0903",
       "T0907",
-      "T0914",
-      "T0904",
-      "T0913",
-      "T0910",
-      "T0909",
-      "T0905"
+      "T0908",
+      "T0914"
      ]
     }
    ]
@@ -1080,15 +1088,15 @@
    "user_id": "U-00023",
    "arm": "agent",
    "goal_instance_id": "G-00120",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-10-01T02:12:27.469Z",
-   "deadline": "2026-10-04T02:12:27.469Z",
+   "deadline": "2026-10-08T02:12:27.469Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "exposed_no_success",
@@ -1097,7 +1105,7 @@
    },
    "actions": [
     "A-00073",
-    "A-00893"
+    "A-00905"
    ]
   }
  ]

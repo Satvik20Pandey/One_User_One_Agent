@@ -3,24 +3,21 @@
   "user_id": "U-04344",
   "active_goal": {
    "instance_id": "G-00036",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-09-30T20:32:29.042Z",
-   "deadline": "2026-10-03T20:32:29.042Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-07T20:32:29.042Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series hama-chudibha-d1 (0/36 episodes), last played 2026-09-17",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:bdee76c8-b737-4214-826f-e08cef31c4be"
+    "profile:U-04344@2026-09-29T10:18:05.287Z"
    ],
-   "context": {
-    "slug": "hama-chudibha-d1",
-    "title_id": "T0002"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-03T20:32:29.042Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-07T20:32:29.042Z judged: G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -236,12 +233,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00036",
     "started_at": "2026-09-30T20:32:29.042Z",
-    "deadline": "2026-10-03T20:32:29.042Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:32:29.042Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -437,15 +434,17 @@
      "observed_at": "2026-09-30T20:32:29.042Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d5, deeplink=d1 -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (0/36 episodes), last played 2026-09-17",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:bdee76c8-b737-4214-826f-e08cef31c4be"
+     "profile:U-04344@2026-09-29T10:18:05.287Z"
     ]
    },
    "model": {
@@ -487,12 +486,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00036",
     "started_at": "2026-09-30T20:32:29.042Z",
-    "deadline": "2026-10-03T20:32:29.042Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:32:29.042Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -679,15 +678,17 @@
      "observed_at": "2026-10-01T11:37:24.882Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d5, deeplink=None -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (0/36 episodes), last played 2026-09-17",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:bdee76c8-b737-4214-826f-e08cef31c4be"
+     "profile:U-04344@2026-09-29T10:18:05.287Z"
     ]
    },
    "model": {
@@ -709,8 +710,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T11:37:24.884Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T11:37:24.885Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -729,12 +730,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00036",
     "started_at": "2026-09-30T20:32:29.042Z",
-    "deadline": "2026-10-03T20:32:29.042Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:32:29.042Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -920,15 +921,17 @@
      "observed_at": "2026-10-01T15:50:26.931Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d5, deeplink=None -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (0/36 episodes), last played 2026-09-17",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:bdee76c8-b737-4214-826f-e08cef31c4be"
+     "profile:U-04344@2026-09-29T10:18:05.287Z"
     ]
    },
    "model": {
@@ -950,8 +953,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:50:26.933Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T15:50:26.934Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -970,12 +973,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00036",
     "started_at": "2026-09-30T20:32:29.042Z",
-    "deadline": "2026-10-03T20:32:29.042Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-07T20:32:29.042Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
@@ -1161,15 +1164,17 @@
      "observed_at": "2026-10-01T15:50:29.428Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d5, deeplink=None -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series hama-chudibha-d1 (0/36 episodes), last played 2026-09-17",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:bdee76c8-b737-4214-826f-e08cef31c4be"
+     "profile:U-04344@2026-09-29T10:18:05.287Z"
     ]
    },
    "model": {
@@ -1203,15 +1208,15 @@
    "user_id": "U-04344",
    "arm": "holdout",
    "goal_instance_id": "G-00036",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-09-30T20:32:29.042Z",
-   "deadline": "2026-10-03T20:32:29.042Z",
+   "deadline": "2026-10-07T20:32:29.042Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

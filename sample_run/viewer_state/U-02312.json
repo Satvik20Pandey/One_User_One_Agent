@@ -3,24 +3,21 @@
   "user_id": "U-02312",
   "active_goal": {
    "instance_id": "G-00564",
-   "goal_id": "G07",
-   "name": "resume_series_3d",
+   "goal_id": "G05",
+   "name": "first_paid_7d",
    "started_at": "2026-10-01T08:17:55.299Z",
-   "deadline": "2026-10-04T08:17:55.299Z",
-   "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+   "deadline": "2026-10-08T08:17:55.299Z",
+   "success_signal": "purchase_completed (is_trial = false) within 168h",
    "rule_version": "goals.json@2026-09-30",
-   "eligibility_reason": "unfinished series diti-kochu-d5 (1/32 episodes), last played 2026-09-08",
+   "eligibility_reason": "never had a paid plan",
    "evidence": [
-    "event:a75bf37e-9a6e-4888-80b1-462a161f6458"
+    "profile:U-02312@2026-09-29T02:04:41.076Z"
    ],
-   "context": {
-    "slug": "diti-kochu-d5",
-    "title_id": "T1906"
-   },
+   "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -30,7 +27,7 @@
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T08:17:55.299Z judged: G07 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-08T08:17:55.299Z judged: G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -228,12 +225,12 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G07",
-    "name": "resume_series_3d",
+    "id": "G05",
+    "name": "first_paid_7d",
     "instance_id": "G-00564",
     "started_at": "2026-10-01T08:17:55.299Z",
-    "deadline": "2026-10-04T08:17:55.299Z",
-    "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
+    "deadline": "2026-10-08T08:17:55.299Z",
+    "success_signal": "purchase_completed (is_trial = false) within 168h",
     "rule_version": "goals.json@2026-09-30",
     "committed_now": true,
     "shadow": true
@@ -404,15 +401,17 @@
      "observed_at": "2026-10-01T08:17:55.299Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [
     "dialect: app_setting=d4, profile=d5, deeplink=None -> used d4 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G07",
-    "reason": "unfinished series diti-kochu-d5 (1/32 episodes), last played 2026-09-08",
+    "goal": "G05",
+    "reason": "never had a paid plan",
     "evidence": [
-     "event:a75bf37e-9a6e-4888-80b1-462a161f6458"
+     "profile:U-02312@2026-09-29T02:04:41.076Z"
     ]
    },
    "model": {
@@ -446,15 +445,15 @@
    "user_id": "U-02312",
    "arm": "holdout",
    "goal_instance_id": "G-00564",
-   "goal_id": "G07",
-   "goal_name": "resume_series_3d",
+   "goal_id": "G05",
+   "goal_name": "first_paid_7d",
    "started_at": "2026-10-01T08:17:55.299Z",
-   "deadline": "2026-10-04T08:17:55.299Z",
+   "deadline": "2026-10-08T08:17:55.299Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no play_started matching 'same content_slug as the unfinished series' before the deadline",
+   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

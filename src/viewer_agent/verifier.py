@@ -98,7 +98,8 @@ def _check_page(r: CheckResult, page, facts: ViewerFacts, store: Store, pack: Pa
     else:
         r.ok("dialect")
 
-    unavailable = [t for t in ids if not pack.available(t, now)]
+    publish_by = now + timedelta(seconds=settings.latency_budget_s)  # the latest moment this page goes live
+    unavailable = [t for t in ids if not (pack.available(t, now) and pack.available(t, publish_by))]
     quarantined = [t for t in ids if pack.quarantined(t)]
     if unavailable:
         r.fail("availability", f"not available at publish time: {unavailable}", "page")
@@ -248,6 +249,10 @@ def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], 
     forbidden = [p for p in copy_rules.get("forbidden_phrases", FORBIDDEN_DEFAULT) if p.lower() in text.lower()]
     if forbidden:
         problems.append(f"forbidden phrase(s): {forbidden}")
+    episodes = len(pack.episodes.get(title.slug, [])) if title else 0
+    bad_episodes = [n for n in re.findall(r"episode (\d+)", text, re.I) if not 1 <= int(n) <= episodes]
+    if bad_episodes:
+        problems.append(f"mentions episode(s) {bad_episodes} but the title has {episodes}")
     bad_prices = {int(a or b) for a, b in PRICE_PATTERN.findall(text)} - pack.prices()
     if bad_prices:
         problems.append(f"price claim not in pricing.json: {sorted(bad_prices)}")

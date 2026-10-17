@@ -37,6 +37,11 @@ What the brief or the pack left open, how I settled it, and what I would do next
 - **No "continue watching" WhatsApp template.** `wa_new_episode_v2` ("Naya episode aa gaya") would be untrue for a
   series left weeks ago, so resume messages use the neutral `wa_recommend_title_v1`; templates cannot be invented.
 - **Dialect names.** WhatsApp templates want a `dialect_name`; the pack has only codes, so the code is sent.
+- **One replay day exercises some judgement only lightly.** Evidence confidence turned out to be a weak signal on
+  this data (success rates barely differ by confidence), and almost no live open has evidence thin enough to fall
+  below the 0.4 abstention line; only a handful of viewers were new enough for G03, so the mid-day G03 correction
+  found no open G03 goals. I kept the thresholds principled rather than tuning them until they fire; the tests
+  (`test_honesty.py`, `test_rules.py`) show each behaviour on viewers built for it.
 - **Learning needs a judged earlier day.** The planner reads judged outcomes from the viewer's state. `run-all`
   starts fresh, so for the sample run nothing has been judged yet; `replay --continue-from` carries a judged day
   into the next one, and `tests/test_learning.py` shows a failed goal changing the next day's plan.
