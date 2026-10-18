@@ -173,6 +173,7 @@ class ViewerAgent:
             goal_for_record, new_goal = self._commit_goal(state, proposal, now)
             status, checks = "HOLDOUT_NO_ACTION", None
             proposal.page, proposal.message = None, None
+            proposal.assumptions = [a for a in proposal.assumptions if "published" not in a]  # nothing was
             proposal.no_action_reason = proposal.no_action_reason or "viewer is in the randomized holdout arm"
         else:
             if proposal.page or proposal.message:
@@ -300,7 +301,9 @@ class ViewerAgent:
         for goal in state.get("goal_history", []):
             outcome = goal.get("outcome") or {}
             ended = parse_ts(goal["deadline"])
-            if outcome.get("verdict") == "failed" and now - ended < timedelta(days=self.d.settings.retry_failed_goal_days):
+            # a verdict is only known once the window has ended; never use it earlier
+            if outcome.get("verdict") == "failed" and ended <= now and \
+                    now - ended < timedelta(days=self.d.settings.retry_failed_goal_days):
                 skip[goal["goal_id"]] = (f"{goal['goal_id']} failed on {goal['deadline'][:10]} "
                                          f"({outcome.get('attribution', 'unknown').replace('_', ' ')}); "
                                          f"not retried for {self.d.settings.retry_failed_goal_days} days")

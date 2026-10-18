@@ -22,15 +22,14 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T16:00:18.167Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T16:00:18.167Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 0x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -215,10 +214,9 @@
    "D-02415"
   ],
   "actions": [
-   "A-01033",
-   "A-01034"
+   "A-01030"
   ],
-  "updated_at": "2026-10-01T16:13:24.869Z",
+  "updated_at": "2026-10-01T16:13:24.873Z",
   "version": 4
  },
  "decisions": [
@@ -250,14 +248,15 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "WHATSAPP"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d1",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [
     "title:T0011",
@@ -302,8 +301,8 @@
     "title:T0352"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 133 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 133 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -387,7 +386,9 @@
      "value": {
       "used": "d1",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d1",
       "message_dialect": "d1"
      },
@@ -490,9 +491,12 @@
    },
    "assumptions": [
     "this open carried no app dialect; used the app setting d1 seen at 2026-09-27T22:03:22.740Z",
-    "passed over G07: its series cannot be shown in the app's dialect"
+    "passed over G07: its series cannot be shown in the app's dialect",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d1, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -518,25 +522,19 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "template",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1219,
-   "published_at": "2026-10-01T16:00:19.386Z",
+   "decided_in_ms": 1228,
+   "published_at": "2026-10-01T16:00:19.395Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -568,7 +566,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-01033 for this viewer is still live (published 2026-10-01T16:00:19.386Z); nothing to change",
+   "no_action_reason": "home page A-01030 for this viewer is still live (published 2026-10-01T16:00:19.395Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -817,7 +815,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-01033 for this viewer is still live (published 2026-10-01T16:00:19.386Z); nothing to change",
+   "no_action_reason": "home page A-01030 for this viewer is still live (published 2026-10-01T16:00:19.395Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1033,19 +1031,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T16:13:24.869Z",
+   "decided_in_ms": 9,
+   "published_at": "2026-10-01T16:13:24.873Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-01033",
+   "action_id": "A-01030",
    "decision_id": "D-02373",
    "user_id": "U-00004",
    "trigger_event_id": "def55c8c-6768-4ff2-b6d0-859c729fa2aa",
-   "published_at": "2026-10-01T16:00:19.386Z",
+   "published_at": "2026-10-01T16:00:19.395Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1111,23 +1109,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-01034",
-   "decision_id": "D-02373",
-   "user_id": "U-00004",
-   "trigger_event_id": "def55c8c-6768-4ff2-b6d0-859c729fa2aa",
-   "published_at": "2026-10-01T16:00:19.386Z",
-   "goal_id": "G08",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0007",
-   "dialect": "d1",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Tiya Bhamaro",
-    "dialect_name": "D1"
-   }
   }
  ],
  "outcomes": [
@@ -1148,12 +1129,10 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "home_page_shown": 1
    },
    "actions": [
-    "A-01033",
-    "A-01034"
+    "A-01030"
    ]
   }
  ]

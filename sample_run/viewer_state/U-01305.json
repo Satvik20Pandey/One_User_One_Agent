@@ -208,7 +208,7 @@
    "D-02190"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:11:43.025Z",
+  "updated_at": "2026-10-01T15:11:43.026Z",
   "version": 3
  },
  "decisions": [
@@ -244,12 +244,14 @@
    "dialect": {
     "used": "d6",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 10 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 10 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -315,7 +317,9 @@
      "value": {
       "used": "d6",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d6",
       "message_dialect": "d6"
      },
@@ -405,7 +409,9 @@
     "this open carried no app dialect; used the app setting d6 seen at 2026-09-22T21:20:50.103Z",
     "events can arrive late; 'no completion' means none received yet"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=None, deeplink=None -> used d6 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G02",
     "reason": "no episode_completed on record",
@@ -432,8 +438,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:11:38.350Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:11:38.351Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": true
   },
@@ -665,8 +671,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:11:43.025Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:11:43.026Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": true
   }

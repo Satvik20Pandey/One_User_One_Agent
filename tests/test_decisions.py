@@ -26,7 +26,7 @@ def test_viewer_without_message_consent_gets_an_in_app_message_once_a_day(env):
     profile["notifications_opt_in"] = profile["whatsapp_opt_in"] = False
     record, actions = env.decide(make_trigger("U-R1"))
     in_app = next(a for a in actions if a["type"] == "in_app_message")
-    assert in_app["dialect"] == "d1" and in_app["text"]["title"].startswith("Continue")
+    assert in_app["dialect"] == "d1" and in_app["text"]["title"] == "Hapi jaari rakhiye"  # Hindi app: Hinglish copy
     assert "consent" not in record["checks"]["passed"]  # no consent is needed inside the app
 
     later = NOW + timedelta(hours=3)  # the page has expired, but today's in-app message is already out

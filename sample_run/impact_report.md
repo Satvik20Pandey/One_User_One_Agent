@@ -11,10 +11,10 @@ from the rate but shown.
 
 | Arm | Viewers | Judged | Succeeded | Inconclusive | Success rate |
 |---|---|---|---|---|---|
-| agent | 757 | 757 | 172 | 0 | 22.7% |
+| agent | 757 | 757 | 173 | 0 | 22.9% |
 | holdout | 744 | 743 | 148 | 1 | 19.9% |
 
-Difference (agent minus holdout): **+2.8 pp**, 95% interval -1.3 pp to +6.9 pp.
+Difference (agent minus holdout): **+2.9 pp**, 95% interval -1.2 pp to +7.1 pp.
 With these sample sizes the smallest difference this comparison can reliably detect (80% power, 5% two-sided) is about 5.9 pp; a true effect smaller than that will usually read as "not proven". More viewers or a longer replay would narrow it.
 The interval includes zero: at this sample size the data does not show that the agent changed the outcome. That is the honest reading, not a failure of the measurement.
 
@@ -37,7 +37,7 @@ The interval includes zero: at this sample size the data does not show that the 
 | G05 | 50 | 4.0% | 62 | 4.8% | -0.8 pp |
 | G06 | 52 | 9.6% | 63 | 14.3% | -4.7 pp |
 | G07 | 103 | 1.9% | 86 | 1.2% | +0.8 pp |
-| G08 | 229 | 36.2% | 237 | 28.7% | +7.6 pp |
+| G08 | 229 | 36.7% | 237 | 28.7% | +8.0 pp |
 | G09 | 69 | 33.3% | 60 | 31.7% | +1.7 pp |
 | G12 | 11 | 72.7% | 24 | 50.0% | +22.7 pp |
 
@@ -52,8 +52,8 @@ viewers more likely to play, complete or pay anyway.
 
 | Agent-arm viewers | Judged | Success rate |
 |---|---|---|
-| exposed to an agent action | 636 | 25.3% |
-| not exposed (no action, or published but never seen) | 121 | 9.1% |
+| exposed to an agent action | 634 | 25.6% |
+| not exposed (no action, or published but never seen) | 123 | 8.9% |
 
 The gap above mixes the agent's effect with self-selection. The arm comparison does not, because the
 holdout was assigned at random before anyone opened the app.
@@ -74,9 +74,9 @@ Difference: -1.3 pp. The headline uplift was selection, not effect.
 
 | Attribution | Goals |
 |---|---|
-| exposed_no_success | 475 |
-| exposed_before_success | 161 |
-| published_but_never_seen | 80 |
+| exposed_no_success | 472 |
+| exposed_before_success | 162 |
+| published_but_never_seen | 82 |
 | no_action_taken | 39 |
 | success_before_exposure | 2 |
 
@@ -84,4 +84,4 @@ Difference: -1.3 pp. The headline uplift was selection, not effect.
 the arm comparison, not the exposure, is the evidence of effect.
 
 Data: 1503 judged goals from `outcomes.jsonl`; outcome events from the pack simulator
-(seed `oua-practice`, 31820 events). Evaluators re-run with their own seed and replay day.
+(seed `oua-practice`, 31829 events). Evaluators re-run with their own seed and replay day.

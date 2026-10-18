@@ -228,7 +228,7 @@
    "D-02506"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:39:49.450Z",
+  "updated_at": "2026-10-01T16:39:49.449Z",
   "version": 3
  },
  "decisions": [
@@ -264,12 +264,14 @@
    "dialect": {
     "used": "d1",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 118 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 118 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -347,7 +349,9 @@
      "value": {
       "used": "d1",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d1",
       "message_dialect": "d1"
      },
@@ -449,9 +453,12 @@
     }
    },
    "assumptions": [
-    "this open carried no app dialect; used the app setting d1 seen at 2026-09-29T04:13:19.309Z"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-29T04:13:19.309Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d1, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -478,8 +485,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 15,
-   "published_at": "2026-10-01T16:39:48.315Z",
+   "decided_in_ms": 16,
+   "published_at": "2026-10-01T16:39:48.316Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -744,8 +751,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 15,
-   "published_at": "2026-10-01T16:39:49.450Z",
+   "decided_in_ms": 14,
+   "published_at": "2026-10-01T16:39:49.449Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

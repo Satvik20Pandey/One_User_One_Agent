@@ -36,6 +36,10 @@ What the brief or the pack left open, how I settled it, and what I would do next
   `action_id` are how the judge knows a viewer saw something; a production stream needs the same join keys.
 - **No "continue watching" WhatsApp template.** `wa_new_episode_v2` ("Naya episode aa gaya") would be untrue for a
   series left weeks ago, so resume messages use the neutral `wa_recommend_title_v1`; templates cannot be invented.
+- **A live page is not retracted when its goal closes.** A purchase cancels the goal's scheduled messages at once,
+  but a home page already live keeps showing until its 2-hour TTL ends; the platform has no "unpublish" action.
+- **Publish times differ by milliseconds between runs.** The pack README asks for `deliver_at` plus the measured
+  processing time, so the latency figures move slightly from run to run; decisions and outcomes do not.
 - **Dialect names.** WhatsApp templates want a `dialect_name`; the pack has only codes, so the code is sent.
 - **One replay day exercises some judgement only lightly.** Evidence confidence turned out to be a weak signal on
   this data (success rates barely differ by confidence), and almost no live open has evidence thin enough to fall

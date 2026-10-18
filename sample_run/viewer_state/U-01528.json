@@ -232,7 +232,7 @@
    "D-01727"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T13:37:30.594Z",
+  "updated_at": "2026-10-01T13:37:30.591Z",
   "version": 3
  },
  "decisions": [
@@ -268,12 +268,14 @@
    "dialect": {
     "used": "d2",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.7,
-    "reason": "profile row present; 47 events of history; dialect sources agree"
+    "value": 0.5,
+    "reason": "profile row present; 47 events of history; dialect sources disagree"
    },
    "evidence": [
     {
@@ -357,7 +359,9 @@
      "value": {
       "used": "d2",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d2",
       "message_dialect": "d2"
      },
@@ -479,9 +483,12 @@
     }
    },
    "assumptions": [
-    "this open carried no app dialect; used the app setting d2 seen at 2026-09-29T19:04:48.933Z"
+    "this open carried no app dialect; used the app setting d2 seen at 2026-09-29T19:04:48.933Z",
+    "evidence confidence 0.50 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -508,8 +515,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 7,
-   "published_at": "2026-10-01T13:37:28.395Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T13:37:28.394Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -777,8 +784,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 8,
-   "published_at": "2026-10-01T13:37:30.594Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T13:37:30.591Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

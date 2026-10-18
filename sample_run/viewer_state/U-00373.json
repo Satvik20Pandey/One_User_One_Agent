@@ -180,9 +180,9 @@
    "D-01699"
   ],
   "actions": [
-   "A-00711"
+   "A-00709"
   ],
-  "updated_at": "2026-10-01T13:29:02.901Z",
+  "updated_at": "2026-10-01T13:29:04.104Z",
   "version": 3
  },
  "decisions": [
@@ -212,52 +212,20 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "not enough evidence to act (confidence 0.30: no profile row; only 2 events of history; dialect sources disagree; trigger is fresh); nothing published",
    "dialect": {
     "used": "d5",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
-   "content": [
-    "title:T1177",
-    "title:T1179",
-    "title:T1185",
-    "title:T1178",
-    "title:T1180",
-    "title:T1181",
-    "title:T1191",
-    "title:T1182",
-    "title:T1187",
-    "title:T1186",
-    "title:T1188",
-    "title:T1189",
-    "title:T1183",
-    "title:T1192",
-    "title:T1213",
-    "title:T1219",
-    "title:T1250",
-    "title:T1264",
-    "title:T1381",
-    "title:T1202",
-    "title:T1215",
-    "title:T1198",
-    "title:T1326",
-    "title:T1258",
-    "title:T1299",
-    "title:T1242",
-    "title:T1270",
-    "title:T1350",
-    "title:T1279",
-    "title:T1214",
-    "title:T1293"
-   ],
+   "content": [],
    "confidence": {
-    "value": 0.5,
-    "reason": "no profile row; only 2 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.3,
+    "reason": "no profile row; only 2 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -305,7 +273,9 @@
      "value": {
       "used": "d5",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d5",
       "message_dialect": "d5"
      },
@@ -392,7 +362,9 @@
     "no profile row; status 'never' inferred from signup_completed with no purchase",
     "events can arrive late; 'no play' means none received yet"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=None, deeplink=None -> used d5 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G01",
     "reason": "signed up in the last 7 days, no play_started on record",
@@ -402,36 +374,27 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "reason": "signed up in the last 7 days, no play_started on record"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 11,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1206,
-   "published_at": "2026-10-01T13:28:59.860Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T13:28:58.655Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -460,15 +423,49 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "home page A-00711 for this viewer is still live (published 2026-10-01T13:28:59.860Z); nothing to change",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d5",
     "source": "app_setting",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T1177",
+    "title:T1179",
+    "title:T1185",
+    "title:T1178",
+    "title:T1180",
+    "title:T1181",
+    "title:T1191",
+    "title:T1182",
+    "title:T1187",
+    "title:T1186",
+    "title:T1188",
+    "title:T1189",
+    "title:T1183",
+    "title:T1192",
+    "title:T1213",
+    "title:T1219",
+    "title:T1250",
+    "title:T1264",
+    "title:T1381",
+    "title:T1202",
+    "title:T1215",
+    "title:T1198",
+    "title:T1326",
+    "title:T1258",
+    "title:T1299",
+    "title:T1242",
+    "title:T1270",
+    "title:T1350",
+    "title:T1279",
+    "title:T1214",
+    "title:T1293"
+   ],
    "confidence": {
     "value": 0.5,
     "reason": "no profile row; only 3 events of history; dialect sources agree; trigger is fresh"
@@ -615,37 +612,46 @@
     ]
    },
    "model": {
-    "provider": null,
-    "calls": 0,
-    "used": false,
+    "provider": "mock",
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": null
+    "skipped": null,
+    "reason": "signed up in the last 7 days, no play_started on record"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 6,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T13:29:02.901Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1204,
+   "published_at": "2026-10-01T13:29:04.104Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00711",
-   "decision_id": "D-01698",
+   "action_id": "A-00709",
+   "decision_id": "D-01699",
    "user_id": "U-00373",
-   "trigger_event_id": "c2ed1f6b-0e53-48ab-8d51-99bad41a8a4e",
-   "published_at": "2026-10-01T13:28:59.860Z",
+   "trigger_event_id": "21e4328f-a73f-459b-b6a1-a4fef98b3da4",
+   "published_at": "2026-10-01T13:29:04.104Z",
    "goal_id": "G01",
    "type": "home_page",
    "dialect": "d5",
@@ -718,7 +724,7 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00711"
+    "A-00709"
    ]
   }
  ]

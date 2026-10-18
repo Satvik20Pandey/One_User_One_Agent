@@ -203,7 +203,7 @@
    "D-02327"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:46:45.975Z",
+  "updated_at": "2026-10-01T15:46:45.978Z",
   "version": 3
  },
  "decisions": [
@@ -239,12 +239,14 @@
    "dialect": {
     "used": "d3",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 23 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 23 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -310,7 +312,9 @@
      "value": {
       "used": "d3",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d3",
       "message_dialect": "d3"
      },
@@ -410,7 +414,9 @@
     "this open carried no app dialect; used the app setting d3 seen at 2026-09-22T08:58:09.403Z",
     "events can arrive late; 'no completion' means none received yet"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=None, deeplink=None -> used d3 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G02",
     "reason": "no episode_completed on record",
@@ -665,8 +671,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:46:45.975Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T15:46:45.978Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

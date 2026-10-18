@@ -226,6 +226,8 @@ def _dialect(fx: ViewerFacts, profile: dict, profile_ref: str | None) -> None:
             conflicts.append(f"{name}:{value}")
     if source == "profile":
         conflicts.append("app_setting:unknown")  # no app evidence at all is itself a reason for caution
+    elif source == "app_setting_latest":
+        conflicts.append("app_setting:missing on this open")  # the setting may have changed since; be careful
     if conflicts:
         fx.conflicts.append(f"dialect: app_setting={app}, profile={prof}, deeplink={link_dialect} -> used {used} ({source})")
 

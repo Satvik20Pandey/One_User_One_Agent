@@ -214,7 +214,7 @@
    "D-02547"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:50:02.605Z",
+  "updated_at": "2026-10-01T16:50:02.609Z",
   "version": 5
  },
  "decisions": [
@@ -465,8 +465,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 9,
-   "published_at": "2026-10-01T06:31:57.896Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T06:31:57.894Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -770,12 +770,14 @@
    "dialect": {
     "used": "d1",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 80 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 80 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -853,7 +855,9 @@
      "value": {
       "used": "d1",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d1",
       "message_dialect": "d1"
      },
@@ -957,9 +961,12 @@
    },
    "assumptions": [
     "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T14:39:22.365Z",
-    "passed over G07: its series cannot be shown in the app's dialect"
+    "passed over G07: its series cannot be shown in the app's dialect",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d1, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -986,8 +993,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 8,
-   "published_at": "2026-10-01T16:50:00.378Z",
+   "decided_in_ms": 13,
+   "published_at": "2026-10-01T16:50:00.383Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1238,8 +1245,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 7,
-   "published_at": "2026-10-01T16:50:02.605Z",
+   "decided_in_ms": 11,
+   "published_at": "2026-10-01T16:50:02.609Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

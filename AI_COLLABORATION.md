@@ -109,6 +109,13 @@ every message against the app's latest setting with its own code. The same revie
 goals being closed by the very return they were waiting for; goals are no longer abandoned because their own
 progress changed their entry facts, and the verifier agrees with an open active goal from its own read of the store.
 
+A fifth review found nothing broken and a few smaller points, which I fixed: push and in-app copy were English
+even for Hindi apps (they now follow the app's language, like the approved WhatsApp templates), an open that sent
+"NA" as its dialect now counts as missing evidence and holds back push and WhatsApp, learning only uses verdicts
+whose window has already ended, and holdout records no longer carry assumptions about pages that were never
+published. Two points I kept as documented limits rather than code: a live page is not retracted when its goal
+closes, and publish times vary by a few milliseconds between runs because they include measured processing time.
+
 ## Where AI output was wrong and I only noticed by running it
 
 A multi-file shell command Claude wrote to create test fixtures failed on the shell parser; it rewrote the

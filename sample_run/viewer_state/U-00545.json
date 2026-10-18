@@ -180,7 +180,7 @@
    "D-00676"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T05:30:38.400Z",
+  "updated_at": "2026-10-01T05:30:38.399Z",
   "version": 3
  },
  "decisions": [
@@ -216,12 +216,14 @@
    "dialect": {
     "used": "d5",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.5,
-    "reason": "no profile row; only 2 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.3,
+    "reason": "no profile row; only 2 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -269,7 +271,9 @@
      "value": {
       "used": "d5",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d5",
       "message_dialect": "d5"
      },
@@ -356,7 +360,9 @@
     "no profile row; status 'never' inferred from signup_completed with no purchase",
     "events can arrive late; 'no play' means none received yet"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=None, deeplink=None -> used d5 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G01",
     "reason": "signed up in the last 7 days, no play_started on record",
@@ -384,8 +390,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T05:30:34.939Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T05:30:34.938Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -588,8 +594,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T05:30:38.400Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T05:30:38.399Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

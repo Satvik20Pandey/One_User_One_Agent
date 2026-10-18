@@ -11,7 +11,7 @@ Replay day 2026-10-01 IST, 2769 triggers from 1746 viewers, mock model provider.
 | NO_ACTION | 425 |
 | DUPLICATE | 90 |
 
-Actions published: 954 home_page, 68 whatsapp, 128 push, 29 in_app_message.
+Actions published: 954 home_page, 66 whatsapp, 29 in_app_message, 126 push.
 
 Goals committed (both arms): G08 467, G02 341, G07 189, G09 131, G06 115, G05 112, G01 110, G12 35, G04 2, G03 1.
 
@@ -21,11 +21,12 @@ Goals committed (both arms): G08 467, G02 341, G07 189, G09 131, G06 115, G05 11
 |---|---|
 | holdout | 1047 |
 | buffered offline | 424 |
-| still live | 172 |
+| still live | 166 |
 | duplicate | 90 |
 | no catalogue content | 56 |
 | goal G08 chosen but the open carried no app dialect, so the  | 21 |
 | goal G02 chosen but the open carried no app dialect, so the  | 14 |
+| not enough evidence | 6 |
 | goal G01 chosen but the open carried no app dialect, so the  | 4 |
 | goal G07 chosen but the open carried no app dialect, so the  | 4 |
 | no measurable goal | 3 |
@@ -36,9 +37,9 @@ Goals committed (both arms): G08 467, G02 341, G07 189, G09 131, G06 115, G05 11
 ## Real-time behaviour
 
 - Every decision published within the 60 s budget: 2769/2769; late 0, failed 0.
-- p50 6 ms, p95 1216 ms, max 18002 ms, including mock model latency and 787 decisions that waited on a slow dependency.
+- p50 6 ms, p95 1215 ms, max 18002 ms, including mock model latency and 787 decisions that waited on a slow dependency.
 - 4 decision workers share one queue: queue wait p95 0 ms, max 0 ms. Peak load 79 opens in one minute (2026-10-01T04:45 UTC).
-- Capacity, using this day's measured decision times: the whole day at 3x traffic gives 1 worker(s) p95 wait 319 ms, 2 worker(s) p95 wait 0 ms, 4 worker(s) p95 wait 0 ms; 1,000 opens in one minute gives 4 workers max wait 159,661 ms (631 over budget), 16 workers max wait 3,523 ms (0 over budget), 32 workers max wait 0 ms (0 over budget).
+- Capacity, using this day's measured decision times: the whole day at 3x traffic gives 1 worker(s) p95 wait 276 ms, 2 worker(s) p95 wait 0 ms, 4 worker(s) p95 wait 0 ms; 1,000 opens in one minute gives 4 workers max wait 159,470 ms (631 over budget), 16 workers max wait 3,521 ms (0 over budget), 32 workers max wait 0 ms (0 over budget).
 - Duplicate triggers recognised: 90. Fallbacks: 8 model_unavailable, 1 store_degraded.
 - Model: 776 calls, advice used 767, rejected 1, provider failures 8, not asked because it had nothing to add 165, skipped during a traffic surge 50.
 
@@ -68,19 +69,19 @@ Every fault type is also forced through the full agent in `tests/test_failures.p
 ## Simulator verdict on the published actions
 
 - Policy problems: **0** (holdout, consent, quiet hours, frequency cap).
-- Pages accepted 954, shown personalised 832, published but not shown 27.
-- Push delivered 113/128 (invalid tokens 15), WhatsApp delivered 68/68, clicks 0.
+- Pages accepted 954, shown personalised 833, published but not shown 25.
+- Push delivered 111/126 (invalid tokens 15), WhatsApp delivered 66/66, clicks 3.
 
 ## Outcomes
 
 | Arm | Succeeded | Failed | Inconclusive |
 |---|---|---|---|
-| agent | 172 | 585 | 0 |
+| agent | 173 | 584 | 0 |
 | holdout | 149 | 596 | 1 |
 
 The table counts goals (1503). A viewer can hold more than one goal over the day, one at a time; 1501 viewers had at least one.
 
-Intention-to-treat success rate, first goal per viewer: agent 22.7% (757 viewers) vs holdout 19.9% (743 viewers), difference +2.8 pp (95% interval -1.3 pp to +6.9 pp). See `impact_report.md`.
+Intention-to-treat success rate, first goal per viewer: agent 22.9% (757 viewers) vs holdout 19.9% (743 viewers), difference +2.9 pp (95% interval -1.2 pp to +7.1 pp). See `impact_report.md`.
 
 ## Where to look
 

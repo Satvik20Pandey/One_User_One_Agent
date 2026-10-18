@@ -13,8 +13,10 @@ def test_new_release_copy_says_how_new(env):
     msg = build_message("G08", facts, env.pack, NOW, env.settings)
     assert msg.channel == "whatsapp"
     env.pack.profiles["U-S1"]["whatsapp_opt_in"] = False
-    push = build_message("G08", env.facts_for("U-S1"), env.pack, NOW, env.settings)
-    assert "came out" in push.text["body"] and "just released" not in push.text["body"]
+    push = build_message("G08", env.facts_for("U-S1"), env.pack, NOW, env.settings)      # Hindi app
+    assert "din pehle aayi hai" in push.text["body"]
+    english = build_message("G08", env.facts_for("U-S1", make_trigger("U-S1", language="en")), env.pack, NOW, env.settings)
+    assert "days ago" in english.text["body"] and "just released" not in english.text["body"]
 
 
 def test_trial_ending_message_only_when_the_trial_really_ends_soon(env):

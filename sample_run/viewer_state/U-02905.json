@@ -20,16 +20,14 @@
     "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "published_but_never_seen",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-07T18:40:57.413Z judged: G08 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-07T18:40:57.413Z judged: G08 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -50,7 +48,9 @@
     "value": {
      "used": "d3",
      "source": "app_setting_latest",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:missing on this open"
+     ],
      "page_dialect": "d3",
      "message_dialect": "d3"
     },
@@ -217,16 +217,17 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (app_setting_latest)"
+  ],
   "last_session_id": "8b311d48-f795-419e-bde5-a8d8bbbf0ef6",
   "decisions": [
    "D-00004"
   ],
   "actions": [
-   "A-00004",
-   "A-00005"
+   "A-00004"
   ],
-  "updated_at": "2026-09-30T18:40:58.629Z",
+  "updated_at": "2026-09-30T18:40:58.622Z",
   "version": 2
  },
  "decisions": [
@@ -258,14 +259,15 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d3",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [
     "title:T0901",
@@ -283,8 +285,8 @@
     "title:T1810"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 94 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 94 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -368,7 +370,9 @@
      "value": {
       "used": "d3",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d3",
       "message_dialect": "d3"
      },
@@ -480,9 +484,12 @@
     }
    },
    "assumptions": [
-    "this open carried no app dialect; used the app setting d3 seen at 2026-09-30T14:01:33.553Z"
+    "this open carried no app dialect; used the app setting d3 seen at 2026-09-30T14:01:33.553Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -507,24 +514,19 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1216,
-   "published_at": "2026-09-30T18:40:58.629Z",
+   "decided_in_ms": 1209,
+   "published_at": "2026-09-30T18:40:58.622Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
@@ -535,7 +537,7 @@
    "decision_id": "D-00004",
    "user_id": "U-02905",
    "trigger_event_id": "a43ac846-f170-4199-bf07-2c47b3a4b224",
-   "published_at": "2026-09-30T18:40:58.629Z",
+   "published_at": "2026-09-30T18:40:58.622Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d3",
@@ -564,23 +566,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00005",
-   "decision_id": "D-00004",
-   "user_id": "U-02905",
-   "trigger_event_id": "a43ac846-f170-4199-bf07-2c47b3a4b224",
-   "published_at": "2026-09-30T18:40:58.629Z",
-   "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-01T13:30:00.000Z",
-   "title_id": "T1809",
-   "dialect": "d3",
-   "text": {
-    "title": "New in D3: Rate Java (English)",
-    "body": "Rate Java (English) came out 14 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T1809"
   }
  ],
  "outcomes": [
@@ -599,13 +584,10 @@
    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
+   "attribution": "published_but_never_seen",
+   "exposure": {},
    "actions": [
-    "A-00004",
-    "A-00005"
+    "A-00004"
    ]
   }
  ]

@@ -20,16 +20,14 @@
     "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "published_but_never_seen",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T09:03:17.131Z judged: G08 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T09:03:17.131Z judged: G08 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -50,7 +48,9 @@
     "value": {
      "used": "d2",
      "source": "app_setting_latest",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:missing on this open"
+     ],
      "page_dialect": "d2",
      "message_dialect": "d2"
     },
@@ -230,16 +230,17 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (app_setting_latest)"
+  ],
   "last_session_id": "9a1296ac-4df5-4abc-89da-75cd87be3fc4",
   "decisions": [
    "D-01128"
   ],
   "actions": [
-   "A-00454",
-   "A-00455"
+   "A-00453"
   ],
-  "updated_at": "2026-10-01T09:03:18.352Z",
+  "updated_at": "2026-10-01T09:03:18.343Z",
   "version": 2
  },
  "decisions": [
@@ -271,14 +272,15 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d2",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [
     "title:T0521",
@@ -324,8 +326,8 @@
     "title:T0562"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 91 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 91 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -421,7 +423,9 @@
      "value": {
       "used": "d2",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d2",
       "message_dialect": "d2"
      },
@@ -545,9 +549,12 @@
     }
    },
    "assumptions": [
-    "this open carried no app dialect; used the app setting d2 seen at 2026-09-29T14:57:03.971Z"
+    "this open carried no app dialect; used the app setting d2 seen at 2026-09-29T14:57:03.971Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -572,35 +579,30 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1221,
-   "published_at": "2026-10-01T09:03:18.352Z",
+   "decided_in_ms": 1212,
+   "published_at": "2026-10-01T09:03:18.343Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00454",
+   "action_id": "A-00453",
    "decision_id": "D-01128",
    "user_id": "U-01903",
    "trigger_event_id": "96b85a30-a7fb-4c55-99c7-14da37b5b60b",
-   "published_at": "2026-10-01T09:03:18.352Z",
+   "published_at": "2026-10-01T09:03:18.343Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -667,23 +669,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00455",
-   "decision_id": "D-01128",
-   "user_id": "U-01903",
-   "trigger_event_id": "96b85a30-a7fb-4c55-99c7-14da37b5b60b",
-   "published_at": "2026-10-01T09:03:18.352Z",
-   "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-01T13:30:00.000Z",
-   "title_id": "T0545",
-   "dialect": "d2",
-   "text": {
-    "title": "New in D2: Piya Moha",
-    "body": "Piya Moha came out 27 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T0545"
   }
  ],
  "outcomes": [
@@ -702,13 +687,10 @@
    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
+   "attribution": "published_but_never_seen",
+   "exposure": {},
    "actions": [
-    "A-00454",
-    "A-00455"
+    "A-00453"
    ]
   }
  ]

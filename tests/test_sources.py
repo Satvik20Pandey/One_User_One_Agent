@@ -51,7 +51,7 @@ def test_open_without_a_dialect_uses_the_apps_latest_setting_not_the_profile(env
     # U-C1's profile says d3, its earlier opens were in d1; this open carries no dialect at all
     record, actions = env.decide(make_trigger("U-C1", dialect="NA"))
     assert record["dialect"]["used"] == "d1" and record["dialect"]["source"] == "app_setting_latest"
-    assert "profile:d3" in record["dialect"]["conflicts"]
+    assert "profile:d3" in record["dialect"]["conflicts"] and "app_setting:missing on this open" in record["dialect"]["conflicts"]
     assert all(a["dialect"] == "d1" for a in actions)
     assert not any(a["type"] in ("push", "whatsapp") for a in actions)  # disagreeing evidence: page only
 

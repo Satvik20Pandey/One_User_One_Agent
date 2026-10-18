@@ -18,7 +18,7 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-    "success_event_id": "oua-001602",
+    "success_event_id": "oua-001601",
     "success_at": "2026-10-06T04:10:24.000Z",
     "attribution": "holdout_no_action",
     "exposure": {},
@@ -232,7 +232,7 @@
    "D-02443"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:22:22.683Z",
+  "updated_at": "2026-10-01T16:22:22.687Z",
   "version": 3
  },
  "decisions": [
@@ -268,12 +268,14 @@
    "dialect": {
     "used": "d3",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 78 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 78 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -363,7 +365,9 @@
      "value": {
       "used": "d3",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d3",
       "message_dialect": "d3"
      },
@@ -484,9 +488,12 @@
     }
    },
    "assumptions": [
-    "this open carried no app dialect; used the app setting d3 seen at 2026-09-28T23:00:44.316Z"
+    "this open carried no app dialect; used the app setting d3 seen at 2026-09-28T23:00:44.316Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -513,8 +520,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T11:54:19.373Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T11:54:19.376Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -793,8 +800,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T16:22:22.683Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T16:22:22.687Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -814,7 +821,7 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-   "success_event_id": "oua-001602",
+   "success_event_id": "oua-001601",
    "success_at": "2026-10-06T04:10:24.000Z",
    "attribution": "holdout_no_action",
    "exposure": {},

@@ -182,6 +182,7 @@ def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: dateti
     if not pool:
         return None
     recommend = lambda t: ("wa_recommend_title_v1", {"title_name": t.name, "dialect_name": dialect.upper()})  # noqa: E731
+    hindi = facts.value("app_language") == "hin"  # copy follows the app's language, like the approved templates
 
     if goal_id == "G07":
         # only the series the goal will be judged on; a message about another one would not help this goal
@@ -191,7 +192,10 @@ def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: dateti
         s = series[0]
         t = pack.title(s["title_id"])
         # not wa_new_episode_v2: "Naya episode aa gaya" would claim a new episode, and the next one is not new
-        return t, "unfinished series", (f"Continue {t.name}", f"Episode {s['next_episode_number']} of {t.name} is waiting for you."), recommend(t)
+        n = s["next_episode_number"]
+        copy = (f"{t.name} jaari rakhiye", f"{t.name} ka episode {n} aapka intezaar kar raha hai.") if hindi else \
+               (f"Continue {t.name}", f"Episode {n} of {t.name} is waiting for you.")
+        return t, "unfinished series", copy, recommend(t)
 
     if goal_id == "G08":
         recent = [t for t in _rank(pool, pack) if t.release_date >= (now - timedelta(days=30)).date()]
@@ -199,8 +203,13 @@ def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: dateti
             return None
         t = recent[0]
         age = (at.date() - t.release_date).days
-        when = "today" if age == 0 else ("yesterday" if age == 1 else f"{age} days ago")
-        return t, "new release", (f"New in {dialect.upper()}: {t.name}", f"{t.name} came out {when}. Start watching now."), recommend(t)
+        if hindi:
+            when = "aaj" if age == 0 else ("kal" if age == 1 else f"{age} din pehle")
+            copy = (f"{dialect.upper()} mein naya: {t.name}", f"{t.name} {when} aayi hai. Abhi dekhiye.")
+        else:
+            when = "today" if age == 0 else ("yesterday" if age == 1 else f"{age} days ago")
+            copy = (f"New in {dialect.upper()}: {t.name}", f"{t.name} came out {when}. Start watching now.")
+        return t, "new release", copy, recommend(t)
 
     if goal_id == "G04":
         # "your trial is ending soon" must be true at send time: the trial ends within three days of the message
@@ -209,8 +218,9 @@ def _hook(goal_id: str, facts: ViewerFacts, pack: Pack, dialect: str, at: dateti
             return None
         price = pack.plan_price("P_MONTH")
         t = _rank(pool, pack, premium_first=True)[0]
-        return (t, "trial ending", ("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}."),
-                ("wa_trial_ending_v1", {"plan_price": f"Rs {price}"}))
+        copy = ("Trial ke baad bhi dekhte rahiye", f"Monthly plan Rs {price} mein jaari rakhiye.") if hindi else \
+               ("Keep watching after your trial", f"Continue with the monthly plan at Rs {price}.")
+        return t, "trial ending", copy, ("wa_trial_ending_v1", {"plan_price": f"Rs {price}"})
     return None
 
 

@@ -204,7 +204,7 @@
    "D-02481"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:31:11.619Z",
+  "updated_at": "2026-10-01T16:31:11.622Z",
   "version": 4
  },
  "decisions": [
@@ -440,8 +440,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:31:28.795Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T15:31:28.799Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -477,12 +477,14 @@
    "dialect": {
     "used": "d2",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 20 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 20 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -536,7 +538,9 @@
      "value": {
       "used": "d2",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d2",
       "message_dialect": "d2"
      },
@@ -636,7 +640,9 @@
     "this open carried no app dialect; used the app setting d2 seen at 2026-10-01T15:31:28.791Z",
     "events can arrive late; 'no completion' means none received yet"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G02",
     "reason": "no episode_completed on record",
@@ -663,8 +669,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T16:31:07.899Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T16:31:07.902Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -885,8 +891,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:31:11.619Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T16:31:11.622Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

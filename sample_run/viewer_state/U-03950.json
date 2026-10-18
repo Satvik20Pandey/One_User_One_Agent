@@ -223,7 +223,7 @@
    "D-01784"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T13:54:34.064Z",
+  "updated_at": "2026-10-01T13:54:34.063Z",
   "version": 4
  },
  "decisions": [
@@ -521,12 +521,14 @@
    "dialect": {
     "used": "d2",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 73 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 73 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -604,7 +606,9 @@
      "value": {
       "used": "d2",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d2",
       "message_dialect": "d2"
      },
@@ -717,7 +721,9 @@
     "this open carried no app dialect; used the app setting d2 seen at 2026-10-01T12:15:34.174Z",
     "passed over G07: its series cannot be shown in the app's dialect"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G09",
     "reason": "active subscriber with plays on 1 day(s) in the last 14",
@@ -747,8 +753,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T13:54:32.417Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T13:54:32.418Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1009,8 +1015,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 6,
-   "published_at": "2026-10-01T13:54:34.064Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T13:54:34.063Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

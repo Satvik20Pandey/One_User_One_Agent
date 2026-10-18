@@ -16,21 +16,22 @@
    "context": {},
    "shadow": false,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
-    "attribution": "exposed_no_success",
+    "verdict": "succeeded",
+    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+    "success_event_id": "oua-023530",
+    "success_at": "2026-10-01T14:18:43.000Z",
+    "attribution": "exposed_before_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 2
+     "home_page_shown": 2,
+     "message_delivered": 1,
+     "message_clicked": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T12:22:52.439Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 2x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-01T14:18:43.000Z judged: G08 succeeded (exposed_before_success; page shown 2x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -217,12 +218,11 @@
    "D-02225"
   ],
   "actions": [
-   "A-00641",
-   "A-00642",
-   "A-00959",
-   "A-00960"
+   "A-00639",
+   "A-00640",
+   "A-00957"
   ],
-  "updated_at": "2026-10-01T15:19:48.391Z",
+  "updated_at": "2026-10-01T15:19:48.393Z",
   "version": 4
  },
  "decisions": [
@@ -540,8 +540,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1215,
-   "published_at": "2026-10-01T12:22:53.654Z",
+   "decided_in_ms": 1219,
+   "published_at": "2026-10-01T12:22:53.658Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -573,14 +573,15 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE",
-    "WHATSAPP"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d1",
     "source": "app_setting_latest",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:missing on this open"
+    ]
    },
    "content": [
     "title:T1506",
@@ -625,8 +626,8 @@
     "title:T1675"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 115 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 115 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -710,7 +711,9 @@
      "value": {
       "used": "d1",
       "source": "app_setting_latest",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:missing on this open"
+      ],
       "page_dialect": "d1",
       "message_dialect": "d1"
      },
@@ -815,9 +818,12 @@
    },
    "assumptions": [
     "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T12:21:44.676Z",
-    "passed over G07: its series cannot be shown in the app's dialect"
+    "passed over G07: its series cannot be shown in the app's dialect",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d1, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -843,25 +849,19 @@
      "availability",
      "page_rules",
      "duplicate_action",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "template",
-     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 12,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1219,
-   "published_at": "2026-10-01T15:19:46.139Z",
+   "decided_in_ms": 1225,
+   "published_at": "2026-10-01T15:19:46.145Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -893,7 +893,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00959 for this viewer is still live (published 2026-10-01T15:19:46.139Z); nothing to change",
+   "no_action_reason": "home page A-00957 for this viewer is still live (published 2026-10-01T15:19:46.145Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1117,19 +1117,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T15:19:48.391Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T15:19:48.393Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00641",
+   "action_id": "A-00639",
    "decision_id": "D-01560",
    "user_id": "U-03664",
    "trigger_event_id": "19edb93c-af28-4bfe-84e4-5d06678d9a28",
-   "published_at": "2026-10-01T12:22:53.654Z",
+   "published_at": "2026-10-01T12:22:53.658Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1197,11 +1197,11 @@
    ]
   },
   {
-   "action_id": "A-00642",
+   "action_id": "A-00640",
    "decision_id": "D-01560",
    "user_id": "U-03664",
    "trigger_event_id": "19edb93c-af28-4bfe-84e4-5d06678d9a28",
-   "published_at": "2026-10-01T12:22:53.654Z",
+   "published_at": "2026-10-01T12:22:53.658Z",
    "goal_id": "G08",
    "type": "whatsapp",
    "send_at": "2026-10-01T13:30:00.000Z",
@@ -1214,11 +1214,11 @@
    }
   },
   {
-   "action_id": "A-00959",
+   "action_id": "A-00957",
    "decision_id": "D-02224",
    "user_id": "U-03664",
    "trigger_event_id": "b8fd378f-c4a0-4b6e-b3ee-ac81cb34f240",
-   "published_at": "2026-10-01T15:19:46.139Z",
+   "published_at": "2026-10-01T15:19:46.145Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1284,23 +1284,6 @@
      ]
     }
    ]
-  },
-  {
-   "action_id": "A-00960",
-   "decision_id": "D-02224",
-   "user_id": "U-03664",
-   "trigger_event_id": "b8fd378f-c4a0-4b6e-b3ee-ac81cb34f240",
-   "published_at": "2026-10-01T15:19:46.139Z",
-   "goal_id": "G08",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0007",
-   "dialect": "d1",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Tiya Bhamaro",
-    "dialect_name": "D1"
-   }
   }
  ],
  "outcomes": [
@@ -1315,20 +1298,20 @@
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
-   "verdict": "failed",
-   "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "exposed_no_success",
+   "verdict": "succeeded",
+   "reason": "play_started matched 'a title released in the 30 days before the goal start'",
+   "success_event_id": "oua-023530",
+   "success_at": "2026-10-01T14:18:43.000Z",
+   "attribution": "exposed_before_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 2
+    "home_page_shown": 2,
+    "message_delivered": 1,
+    "message_clicked": 1
    },
    "actions": [
-    "A-00641",
-    "A-00642",
-    "A-00959",
-    "A-00960"
+    "A-00639",
+    "A-00640",
+    "A-00957"
    ]
   }
  ]
