@@ -19,7 +19,7 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "purchase_completed matched 'any paid plan'",
-    "success_event_id": "oua-007839",
+    "success_event_id": "oua-007845",
     "success_at": "2026-10-01T15:06:33.807Z",
     "attribution": "exposed_before_success",
     "exposure": {
@@ -245,11 +245,11 @@
    "D-02666"
   ],
   "actions": [
-   "A-00501",
-   "A-00880",
-   "A-01105"
+   "A-00508",
+   "A-00900",
+   "A-01141"
   ],
-  "updated_at": "2026-10-01T17:29:20.690Z",
+  "updated_at": "2026-10-01T17:29:19.492Z",
   "version": 6
  },
  "decisions": [
@@ -514,8 +514,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T04:46:26.717Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T04:46:26.718Z",
    "status": "NO_ACTION",
    "during_surge": true
   },
@@ -853,8 +853,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T10:02:21.910Z",
+   "decided_in_ms": 1210,
+   "published_at": "2026-10-01T10:02:21.916Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1191,8 +1191,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T15:03:35.012Z",
+   "decided_in_ms": 1207,
+   "published_at": "2026-10-01T15:03:35.014Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1222,18 +1222,64 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
-    "used": "d2",
-    "source": "profile",
-    "conflicts": []
+    "used": "d5",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d2"
+    ]
    },
-   "content": [],
+   "content": [
+    "title:T1184",
+    "title:T1178",
+    "title:T1181",
+    "title:T1186",
+    "title:T1189",
+    "title:T1241",
+    "title:T1196",
+    "title:T1263",
+    "title:T1195",
+    "title:T1198",
+    "title:T1230",
+    "title:T1219",
+    "title:T1250",
+    "title:T1202",
+    "title:T1215",
+    "title:T1326",
+    "title:T1281",
+    "title:T1285",
+    "title:T1185",
+    "title:T1183",
+    "title:T1192",
+    "title:T1194",
+    "title:T1384",
+    "title:T1224",
+    "title:T1293",
+    "title:T1338",
+    "title:T1353",
+    "title:T1253",
+    "title:T1220",
+    "title:T1294",
+    "title:T1357",
+    "title:T1315",
+    "title:T1340",
+    "title:T1292",
+    "title:T1284",
+    "title:T1275",
+    "title:T1362",
+    "title:T1300",
+    "title:T1311",
+    "title:T1179",
+    "title:T1182"
+   ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 48 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 48 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -1241,6 +1287,12 @@
      "source": "event",
      "observed_at": "2026-10-01T17:29:16.161Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:e7dffcbe-f9f0-4ad2-bdfd-6e9bb6d83c7e",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T15:03:33.807Z",
+     "age_s": 8742
     },
     {
      "ref": "profile:U-01171@2026-09-29T04:57:48.028Z",
@@ -1291,12 +1343,6 @@
      "age_s": 1904351
     },
     {
-     "ref": "event:e7dffcbe-f9f0-4ad2-bdfd-6e9bb6d83c7e",
-     "source": "event",
-     "observed_at": "2026-10-01T15:03:33.807Z",
-     "age_s": 8742
-    },
-    {
      "ref": "events:U-01171:count=48",
      "source": "derived",
      "observed_at": "2026-10-01T17:29:16.161Z",
@@ -1315,13 +1361,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d2",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d2"
+      "used": "d5",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T17:29:16.161Z"
     },
     "app_language": {
@@ -1439,10 +1487,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d5 seen at 2026-10-01T15:03:33.807Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d5 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G06",
     "reason": "lapsed recently",
@@ -1453,26 +1503,36 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T1184",
+    "reason": "Sulo Tigiti is the most popular allowed title in the viewer's top genre, Devotional"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T17:29:16.163Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1215,
+   "published_at": "2026-10-01T17:29:17.376Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -1501,11 +1561,9 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-01141 for this viewer is still live (published 2026-10-01T17:29:17.376Z); nothing to change",
    "dialect": {
     "used": "d5",
     "source": "app_setting",
@@ -1513,49 +1571,7 @@
      "profile:d2"
     ]
    },
-   "content": [
-    "title:T1184",
-    "title:T1178",
-    "title:T1181",
-    "title:T1186",
-    "title:T1189",
-    "title:T1241",
-    "title:T1196",
-    "title:T1263",
-    "title:T1195",
-    "title:T1198",
-    "title:T1230",
-    "title:T1219",
-    "title:T1250",
-    "title:T1202",
-    "title:T1215",
-    "title:T1326",
-    "title:T1281",
-    "title:T1285",
-    "title:T1185",
-    "title:T1183",
-    "title:T1192",
-    "title:T1194",
-    "title:T1384",
-    "title:T1224",
-    "title:T1293",
-    "title:T1338",
-    "title:T1353",
-    "title:T1253",
-    "title:T1220",
-    "title:T1294",
-    "title:T1357",
-    "title:T1315",
-    "title:T1340",
-    "title:T1292",
-    "title:T1284",
-    "title:T1275",
-    "title:T1362",
-    "title:T1300",
-    "title:T1311",
-    "title:T1179",
-    "title:T1182"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.55,
     "reason": "profile row present; 49 events of history; dialect sources disagree; trigger is fresh"
@@ -1780,47 +1796,37 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "changed": "hero -> T1184",
-    "reason": "Sulo Tigiti is the most popular allowed title in the viewer's top genre, Devotional"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 11,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T17:29:20.690Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T17:29:19.492Z",
+   "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00501",
+   "action_id": "A-00508",
    "decision_id": "D-01259",
    "user_id": "U-01171",
    "trigger_event_id": "ee72d061-c55c-4c6b-83d0-80c0f5d86519",
-   "published_at": "2026-10-01T10:02:21.910Z",
+   "published_at": "2026-10-01T10:02:21.916Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d5",
@@ -1889,11 +1895,11 @@
    ]
   },
   {
-   "action_id": "A-00880",
+   "action_id": "A-00900",
    "decision_id": "D-02077",
    "user_id": "U-01171",
    "trigger_event_id": "e7dffcbe-f9f0-4ad2-bdfd-6e9bb6d83c7e",
-   "published_at": "2026-10-01T15:03:35.012Z",
+   "published_at": "2026-10-01T15:03:35.014Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d5",
@@ -1962,11 +1968,11 @@
    ]
   },
   {
-   "action_id": "A-01105",
-   "decision_id": "D-02666",
+   "action_id": "A-01141",
+   "decision_id": "D-02665",
    "user_id": "U-01171",
-   "trigger_event_id": "c70443f8-c1a1-4543-b832-3ca93acc26ff",
-   "published_at": "2026-10-01T17:29:20.690Z",
+   "trigger_event_id": "812a5b2c-f25f-4f1b-adb8-0b08d1f73b40",
+   "published_at": "2026-10-01T17:29:17.376Z",
    "goal_id": "G06",
    "type": "home_page",
    "dialect": "d5",
@@ -2049,16 +2055,16 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "purchase_completed matched 'any paid plan'",
-   "success_event_id": "oua-007839",
+   "success_event_id": "oua-007845",
    "success_at": "2026-10-01T15:06:33.807Z",
    "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 2
    },
    "actions": [
-    "A-00501",
-    "A-00880",
-    "A-01105"
+    "A-00508",
+    "A-00900",
+    "A-01141"
    ]
   }
  ]

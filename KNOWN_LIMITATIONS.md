@@ -16,7 +16,7 @@ What the brief or the pack left open, how I settled it, and what I would do next
 | A push or WhatsApp needs evidence confidence of at least 0.6 (`message_min_confidence`); otherwise page only | design choice | a message outside the app is the action most likely to land in the wrong dialect or annoy; a page is always in the app's dialect |
 | Titles whose catalogue text tries to instruct an AI are not promoted until reviewed | design choice | the text is ignored either way; holding the title back is the cautious response to tampered data |
 | "Trial ending" copy only when the trial ends within 3 days of the send time | design choice | the template says "your trial is ending soon"; it must be true when sent |
-| Messages only for goals with a concrete hook (resume, new release, trial ending), sent at 19:00 IST the next day; in-app at the next open | design choice | proportionate actions inside quiet hours and caps |
+| Messages only for goals with a concrete hook (resume, new release, trial ending), sent at the next 19:00 IST at least an hour away; in-app at the next open | design choice | proportionate actions inside quiet hours and caps |
 | A goal that failed for a viewer is not retried for 7 days (`retry_failed_goal_days`) | design choice | learn from the outcome instead of repeating the same plan |
 | G06 success counts any `purchase_completed`, including the 1 rupee trial | assumption | `goals.json` says "any paid plan" |
 | Four decision workers share one queue (`workers`); a surge is 2.5 times the previous hour's rate (`surge_ratio`) | assumption | sized for the replay; the latency report shows the queue never formed with four |

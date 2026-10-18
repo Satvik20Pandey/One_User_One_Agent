@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-01216",
   "active_goal": {
-   "instance_id": "G-01182",
+   "instance_id": "G-01180",
    "goal_id": "G06",
    "name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T15:05:18.160Z",
@@ -48,15 +48,15 @@
    "dialect": {
     "value": {
      "used": "d7",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
      "page_dialect": null,
      "message_dialect": null
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T15:05:18.160Z",
     "evidence": [
-     "profile:U-01216@2026-09-29T03:11:16.969Z"
+     "event:d154eaa7-88fe-41c0-97c7-8385e250ee64"
     ],
     "note": ""
    },
@@ -205,7 +205,7 @@
    "D-02099"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:05:18.161Z",
+  "updated_at": "2026-10-01T15:05:18.163Z",
   "version": 2
  },
  "decisions": [
@@ -226,7 +226,7 @@
    "goal": {
     "id": "G06",
     "name": "reactivate_lapsed_14d",
-    "instance_id": "G-01182",
+    "instance_id": "G-01180",
     "started_at": "2026-10-01T15:05:18.160Z",
     "deadline": "2026-10-15T15:05:18.160Z",
     "success_signal": "purchase_completed (any paid plan) within 336h",
@@ -240,7 +240,7 @@
    "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
    "dialect": {
     "used": "d7",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -254,6 +254,12 @@
      "source": "event",
      "observed_at": "2026-10-01T15:05:18.160Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:d154eaa7-88fe-41c0-97c7-8385e250ee64",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-25T07:05:29.246Z",
+     "age_s": 547188
     },
     {
      "ref": "profile:U-01216@2026-09-29T03:11:16.969Z",
@@ -280,12 +286,6 @@
      "age_s": null
     },
     {
-     "ref": "event:d154eaa7-88fe-41c0-97c7-8385e250ee64",
-     "source": "event",
-     "observed_at": "2026-09-25T07:05:29.246Z",
-     "age_s": 547188
-    },
-    {
      "ref": "events:U-01216:count=37",
      "source": "derived",
      "observed_at": "2026-10-01T15:05:18.160Z",
@@ -305,12 +305,12 @@
     "dialect": {
      "value": {
       "used": "d7",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
       "page_dialect": null,
       "message_dialect": null
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T15:05:18.160Z"
     },
     "app_language": {
@@ -403,7 +403,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d7 seen at 2026-09-25T07:05:29.246Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
    "conflicts": [],
@@ -434,8 +434,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T15:05:18.161Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T15:05:18.163Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": true
   },
@@ -453,7 +453,7 @@
    "goal": {
     "id": "G06",
     "name": "reactivate_lapsed_14d",
-    "instance_id": "G-01182",
+    "instance_id": "G-01180",
     "started_at": "2026-10-01T15:05:18.160Z",
     "deadline": "2026-10-15T15:05:18.160Z",
     "success_signal": "purchase_completed (any paid plan) within 336h",
@@ -467,7 +467,7 @@
    "duplicate_of": "D-02099",
    "dialect": {
     "used": "d7",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -479,7 +479,7 @@
     {
      "ref": "decision:D-02099",
      "source": "store",
-     "observed_at": "2026-10-01T15:05:18.161Z"
+     "observed_at": "2026-10-01T15:05:18.163Z"
     }
    ],
    "assumptions": [],
@@ -513,7 +513,7 @@
   {
    "user_id": "U-01216",
    "arm": "holdout",
-   "goal_instance_id": "G-01182",
+   "goal_instance_id": "G-01180",
    "goal_id": "G06",
    "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T15:05:18.160Z",

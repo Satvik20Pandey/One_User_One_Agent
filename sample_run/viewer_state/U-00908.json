@@ -26,14 +26,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 4,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T04:42:19.702Z judged: G07 failed (exposed_no_success; page shown 4x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T04:42:19.702Z judged: G07 failed (exposed_no_success; page shown 4x, message delivered 2x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -217,13 +217,14 @@
    "D-02394"
   ],
   "actions": [
-   "A-00166",
    "A-00167",
-   "A-00502",
-   "A-00657",
-   "A-01012"
+   "A-00168",
+   "A-00509",
+   "A-00664",
+   "A-00665",
+   "A-01041"
   ],
-  "updated_at": "2026-10-01T16:08:14.368Z",
+  "updated_at": "2026-10-01T16:08:14.371Z",
   "version": 5
  },
  "decisions": [
@@ -522,8 +523,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T04:42:19.705Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T04:42:19.708Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -781,7 +782,7 @@
     }
    },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "a message is already scheduled for 2026-10-01; page only"
    ],
    "conflicts": [],
    "eligibility": {
@@ -817,8 +818,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T10:06:17.395Z",
+   "decided_in_ms": 10,
+   "published_at": "2026-10-01T10:06:17.402Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -850,7 +851,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "WHATSAPP"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -1075,9 +1077,7 @@
      "observed_at": "2026-10-01T12:48:09.048Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -1101,19 +1101,25 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "template",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T12:48:09.052Z",
+   "decided_in_ms": 12,
+   "published_at": "2026-10-01T12:48:09.060Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1407,19 +1413,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:08:14.368Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T16:08:14.371Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00166",
+   "action_id": "A-00167",
    "decision_id": "D-00357",
    "user_id": "U-00908",
    "trigger_event_id": "f59b7416-a051-4333-86c8-57d712829bad",
-   "published_at": "2026-10-01T04:42:19.705Z",
+   "published_at": "2026-10-01T04:42:19.708Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -1488,14 +1494,14 @@
    ]
   },
   {
-   "action_id": "A-00167",
+   "action_id": "A-00168",
    "decision_id": "D-00357",
    "user_id": "U-00908",
    "trigger_event_id": "f59b7416-a051-4333-86c8-57d712829bad",
-   "published_at": "2026-10-01T04:42:19.705Z",
+   "published_at": "2026-10-01T04:42:19.708Z",
    "goal_id": "G07",
    "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0007",
    "dialect": "d1",
    "template_id": "wa_recommend_title_v1",
@@ -1505,11 +1511,11 @@
    }
   },
   {
-   "action_id": "A-00502",
+   "action_id": "A-00509",
    "decision_id": "D-01261",
    "user_id": "U-00908",
    "trigger_event_id": "7674348d-e093-40ed-ba50-80222b7fd3d5",
-   "published_at": "2026-10-01T10:06:17.395Z",
+   "published_at": "2026-10-01T10:06:17.402Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -1578,11 +1584,11 @@
    ]
   },
   {
-   "action_id": "A-00657",
+   "action_id": "A-00664",
    "decision_id": "D-01611",
    "user_id": "U-00908",
    "trigger_event_id": "46a069ed-4cb7-446e-b983-1956611d432b",
-   "published_at": "2026-10-01T12:48:09.052Z",
+   "published_at": "2026-10-01T12:48:09.060Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -1651,11 +1657,28 @@
    ]
   },
   {
-   "action_id": "A-01012",
+   "action_id": "A-00665",
+   "decision_id": "D-01611",
+   "user_id": "U-00908",
+   "trigger_event_id": "46a069ed-4cb7-446e-b983-1956611d432b",
+   "published_at": "2026-10-01T12:48:09.060Z",
+   "goal_id": "G07",
+   "type": "whatsapp",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0007",
+   "dialect": "d1",
+   "template_id": "wa_recommend_title_v1",
+   "variables": {
+    "title_name": "Tiya Bhamaro",
+    "dialect_name": "D1"
+   }
+  },
+  {
+   "action_id": "A-01041",
    "decision_id": "D-02394",
    "user_id": "U-00908",
    "trigger_event_id": "5d8422af-279d-439f-b666-59b844978d81",
-   "published_at": "2026-10-01T16:08:14.368Z",
+   "published_at": "2026-10-01T16:08:14.371Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -1743,14 +1766,15 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 4,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00166",
     "A-00167",
-    "A-00502",
-    "A-00657",
-    "A-01012"
+    "A-00168",
+    "A-00509",
+    "A-00664",
+    "A-00665",
+    "A-01041"
    ]
   }
  ]

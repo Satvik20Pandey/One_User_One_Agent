@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-03664",
   "active_goal": {
-   "instance_id": "G-00879",
+   "instance_id": "G-00878",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T12:22:52.439Z",
@@ -23,14 +23,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 1,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T12:22:52.439Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T12:22:52.439Z judged: G08 failed (exposed_no_success; page shown 1x, message delivered 2x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -217,11 +217,12 @@
    "D-02225"
   ],
   "actions": [
-   "A-00633",
-   "A-00634",
-   "A-00935"
+   "A-00641",
+   "A-00642",
+   "A-00959",
+   "A-00960"
   ],
-  "updated_at": "2026-10-01T15:19:49.591Z",
+  "updated_at": "2026-10-01T15:19:48.391Z",
   "version": 4
  },
  "decisions": [
@@ -242,7 +243,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00879",
+    "instance_id": "G-00878",
     "started_at": "2026-10-01T12:22:52.439Z",
     "deadline": "2026-10-08T12:22:52.439Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -539,8 +540,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T12:22:53.646Z",
+   "decided_in_ms": 1215,
+   "published_at": "2026-10-01T12:22:53.654Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -561,7 +562,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00879",
+    "instance_id": "G-00878",
     "started_at": "2026-10-01T12:22:52.439Z",
     "deadline": "2026-10-08T12:22:52.439Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -570,15 +571,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE",
+    "WHATSAPP"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T1506",
+    "title:T1501",
+    "title:T0007",
+    "title:T1523",
+    "title:T1540",
+    "title:T1520",
+    "title:T0028",
+    "title:T0031",
+    "title:T0047",
+    "title:T0063",
+    "title:T0426",
+    "title:T0005",
+    "title:T0004",
+    "title:T1504",
+    "title:T1502",
+    "title:T1503",
+    "title:T0015",
+    "title:T1505",
+    "title:T0013",
+    "title:T1507",
+    "title:T0018",
+    "title:T0026",
+    "title:T1519",
+    "title:T0027",
+    "title:T0252",
+    "title:T0422",
+    "title:T1546",
+    "title:T0023",
+    "title:T0168",
+    "title:T1574",
+    "title:T1512",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T1513",
+    "title:T0226",
+    "title:T0352",
+    "title:T1675"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 115 events of history; dialect sources agree; trigger is fresh"
@@ -589,6 +634,12 @@
      "source": "event",
      "observed_at": "2026-10-01T15:19:44.920Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:19edb93c-af28-4bfe-84e4-5d06678d9a28",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T12:21:44.676Z",
+     "age_s": 10680
     },
     {
      "ref": "profile:U-03664@2026-09-28T22:24:47.040Z",
@@ -639,12 +690,6 @@
      "age_s": 566991
     },
     {
-     "ref": "event:19edb93c-af28-4bfe-84e4-5d06678d9a28",
-     "source": "event",
-     "observed_at": "2026-10-01T12:21:44.676Z",
-     "age_s": 10680
-    },
-    {
      "ref": "events:U-03664:count=115",
      "source": "derived",
      "observed_at": "2026-10-01T15:19:44.920Z",
@@ -664,12 +709,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T15:19:44.920Z"
     },
     "app_language": {
@@ -769,8 +814,8 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
-    "a message is already scheduled for 2026-10-02; page only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T12:21:44.676Z",
+    "passed over G07: its series cannot be shown in the app's dialect"
    ],
    "conflicts": [],
    "eligibility": {
@@ -782,26 +827,42 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T1506",
+    "reason": "Raja Badi (English) is the most popular allowed title in the viewer's top genre, Thriller"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "template",
+     "copy_rules",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 7,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 12,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:19:44.922Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1219,
+   "published_at": "2026-10-01T15:19:46.139Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -821,7 +882,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00879",
+    "instance_id": "G-00878",
     "started_at": "2026-10-01T12:22:52.439Z",
     "deadline": "2026-10-08T12:22:52.439Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -830,58 +891,15 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-00959 for this viewer is still live (published 2026-10-01T15:19:46.139Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
     "conflicts": []
    },
-   "content": [
-    "title:T1506",
-    "title:T1501",
-    "title:T0007",
-    "title:T1523",
-    "title:T1540",
-    "title:T1520",
-    "title:T0028",
-    "title:T0031",
-    "title:T0047",
-    "title:T0063",
-    "title:T0426",
-    "title:T0005",
-    "title:T0004",
-    "title:T1504",
-    "title:T1502",
-    "title:T1503",
-    "title:T0015",
-    "title:T1505",
-    "title:T0013",
-    "title:T1507",
-    "title:T0018",
-    "title:T0026",
-    "title:T1519",
-    "title:T0027",
-    "title:T0252",
-    "title:T0422",
-    "title:T1546",
-    "title:T0023",
-    "title:T0168",
-    "title:T1574",
-    "title:T1512",
-    "title:T0016",
-    "title:T0030",
-    "title:T0273",
-    "title:T0520",
-    "title:T0022",
-    "title:T1513",
-    "title:T0226",
-    "title:T0352",
-    "title:T1675"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 116 events of history; dialect sources agree; trigger is fresh"
@@ -1071,10 +1089,7 @@
      "observed_at": "2026-10-01T15:19:48.386Z"
     }
    },
-   "assumptions": [
-    "passed over G07: its series cannot be shown in the app's dialect",
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -1084,47 +1099,37 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "changed": "hero -> T1506",
-    "reason": "Raja Badi (English) is the most popular allowed title in the viewer's top genre, Thriller"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T15:19:49.591Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T15:19:48.391Z",
+   "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00633",
+   "action_id": "A-00641",
    "decision_id": "D-01560",
    "user_id": "U-03664",
    "trigger_event_id": "19edb93c-af28-4bfe-84e4-5d06678d9a28",
-   "published_at": "2026-10-01T12:22:53.646Z",
+   "published_at": "2026-10-01T12:22:53.654Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1192,11 +1197,100 @@
    ]
   },
   {
-   "action_id": "A-00634",
+   "action_id": "A-00642",
    "decision_id": "D-01560",
    "user_id": "U-03664",
    "trigger_event_id": "19edb93c-af28-4bfe-84e4-5d06678d9a28",
-   "published_at": "2026-10-01T12:22:53.646Z",
+   "published_at": "2026-10-01T12:22:53.654Z",
+   "goal_id": "G08",
+   "type": "whatsapp",
+   "send_at": "2026-10-01T13:30:00.000Z",
+   "title_id": "T0007",
+   "dialect": "d1",
+   "template_id": "wa_recommend_title_v1",
+   "variables": {
+    "title_name": "Tiya Bhamaro",
+    "dialect_name": "D1"
+   }
+  },
+  {
+   "action_id": "A-00959",
+   "decision_id": "D-02224",
+   "user_id": "U-03664",
+   "trigger_event_id": "b8fd378f-c4a0-4b6e-b3ee-ac81cb34f240",
+   "published_at": "2026-10-01T15:19:46.139Z",
+   "goal_id": "G08",
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T1506",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1501",
+      "T0007",
+      "T1523",
+      "T1540",
+      "T1520",
+      "T0028",
+      "T0031",
+      "T0047",
+      "T0063",
+      "T0426"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0005",
+      "T0004",
+      "T1504",
+      "T1502",
+      "T1503",
+      "T0015",
+      "T1505",
+      "T0013",
+      "T1507"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0018",
+      "T0026",
+      "T1519",
+      "T0027",
+      "T0252",
+      "T0422",
+      "T1546",
+      "T0023",
+      "T0168",
+      "T1574"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1512",
+      "T0016",
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T1513",
+      "T0226",
+      "T0352",
+      "T1675"
+     ]
+    }
+   ]
+  },
+  {
+   "action_id": "A-00960",
+   "decision_id": "D-02224",
+   "user_id": "U-03664",
+   "trigger_event_id": "b8fd378f-c4a0-4b6e-b3ee-ac81cb34f240",
+   "published_at": "2026-10-01T15:19:46.139Z",
    "goal_id": "G08",
    "type": "whatsapp",
    "send_at": "2026-10-02T13:30:00.000Z",
@@ -1207,85 +1301,13 @@
     "title_name": "Tiya Bhamaro",
     "dialect_name": "D1"
    }
-  },
-  {
-   "action_id": "A-00935",
-   "decision_id": "D-02225",
-   "user_id": "U-03664",
-   "trigger_event_id": "4d1ae936-ade4-4f07-bbd6-127cebc86321",
-   "published_at": "2026-10-01T15:19:49.591Z",
-   "goal_id": "G08",
-   "type": "home_page",
-   "dialect": "d1",
-   "hero_title_id": "T1506",
-   "rows": [
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T1501",
-      "T0007",
-      "T1523",
-      "T1540",
-      "T1520",
-      "T0028",
-      "T0031",
-      "T0047",
-      "T0063",
-      "T0426"
-     ]
-    },
-    {
-     "row_type": "popular_in_dialect",
-     "title_ids": [
-      "T0005",
-      "T0004",
-      "T1504",
-      "T1502",
-      "T1503",
-      "T0015",
-      "T1505",
-      "T0013",
-      "T1507"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0018",
-      "T0026",
-      "T1519",
-      "T0027",
-      "T0252",
-      "T0422",
-      "T1546",
-      "T0023",
-      "T0168",
-      "T1574"
-     ]
-    },
-    {
-     "row_type": "genre",
-     "title_ids": [
-      "T1512",
-      "T0016",
-      "T0030",
-      "T0273",
-      "T0520",
-      "T0022",
-      "T1513",
-      "T0226",
-      "T0352",
-      "T1675"
-     ]
-    }
-   ]
   }
  ],
  "outcomes": [
   {
    "user_id": "U-03664",
    "arm": "agent",
-   "goal_instance_id": "G-00879",
+   "goal_instance_id": "G-00878",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T12:22:52.439Z",
@@ -1300,12 +1322,13 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 1,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00633",
-    "A-00634",
-    "A-00935"
+    "A-00641",
+    "A-00642",
+    "A-00959",
+    "A-00960"
    ]
   }
  ]

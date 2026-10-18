@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-02409",
   "active_goal": {
-   "instance_id": "G-01282",
+   "instance_id": "G-01278",
    "goal_id": "G02",
    "name": "first_full_episode_3d",
    "started_at": "2026-10-01T15:31:28.791Z",
@@ -204,7 +204,7 @@
    "D-02481"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:31:11.618Z",
+  "updated_at": "2026-10-01T16:31:11.619Z",
   "version": 4
  },
  "decisions": [
@@ -225,7 +225,7 @@
    "goal": {
     "id": "G02",
     "name": "first_full_episode_3d",
-    "instance_id": "G-01282",
+    "instance_id": "G-01278",
     "started_at": "2026-10-01T15:31:28.791Z",
     "deadline": "2026-10-04T15:31:28.791Z",
     "success_signal": "episode_completed (any episode) within 72h",
@@ -440,8 +440,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:31:28.793Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T15:31:28.795Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -462,7 +462,7 @@
    "goal": {
     "id": "G02",
     "name": "first_full_episode_3d",
-    "instance_id": "G-01282",
+    "instance_id": "G-01278",
     "started_at": "2026-10-01T15:31:28.791Z",
     "deadline": "2026-10-04T15:31:28.791Z",
     "success_signal": "episode_completed (any episode) within 72h",
@@ -473,10 +473,10 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G02 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
     "used": "d2",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -490,6 +490,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:31:07.895Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:7ab175e2-c808-4532-887d-f60747caa8b6",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T15:31:28.791Z",
+     "age_s": 3579
     },
     {
      "ref": "profile:U-02409@2026-09-29T14:36:52.162Z",
@@ -508,12 +514,6 @@
      "source": "event",
      "observed_at": null,
      "age_s": null
-    },
-    {
-     "ref": "event:7ab175e2-c808-4532-887d-f60747caa8b6",
-     "source": "event",
-     "observed_at": "2026-10-01T15:31:28.791Z",
-     "age_s": 3579
     },
     {
      "ref": "events:U-02409:count=20",
@@ -535,12 +535,12 @@
     "dialect": {
      "value": {
       "used": "d2",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d2",
       "message_dialect": "d2"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:31:07.895Z"
     },
     "app_language": {
@@ -633,7 +633,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d2 seen at 2026-10-01T15:31:28.791Z",
     "events can arrive late; 'no completion' means none received yet"
    ],
    "conflicts": [],
@@ -663,8 +663,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T16:31:07.896Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T16:31:07.899Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -685,7 +685,7 @@
    "goal": {
     "id": "G02",
     "name": "first_full_episode_3d",
-    "instance_id": "G-01282",
+    "instance_id": "G-01278",
     "started_at": "2026-10-01T15:31:28.791Z",
     "deadline": "2026-10-04T15:31:28.791Z",
     "success_signal": "episode_completed (any episode) within 72h",
@@ -885,8 +885,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T16:31:11.618Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T16:31:11.619Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -896,7 +896,7 @@
   {
    "user_id": "U-02409",
    "arm": "holdout",
-   "goal_instance_id": "G-01282",
+   "goal_instance_id": "G-01278",
    "goal_id": "G02",
    "goal_name": "first_full_episode_3d",
    "started_at": "2026-10-01T15:31:28.791Z",

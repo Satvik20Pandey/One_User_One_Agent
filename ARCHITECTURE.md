@@ -46,17 +46,20 @@ A goal the agent cannot serve gives way to the next one: "resume this series" is
 appear in the app's dialect or is held for review. This happens before the arm is considered, so both arms still
 get the same goal.
 
-The active goal is kept while its window is open and the viewer still qualifies. It is revised on a state change,
-not on a schedule: a live event that meets the success condition closes the goal at once (`handle_event`), a
-purchase makes a monetisation goal moot, a lapse closes subscriber goals, and a closing goal cancels any message
-it had scheduled. Judged outcomes feed back: a goal that failed for this viewer is not retried for seven days, and the
+The active goal is kept while its window is open. Entry facts that the goal itself is meant to change (a viewer
+returning after an absence, a first play) do not close it; only goals that depend on the subscription are re-checked,
+because a purchase or a lapse can make them moot. It is revised on a state change, not on a schedule: a live
+purchase, renewal or lapse that meets a goal's success condition or makes it moot closes it at once
+(`handle_event`), and a closing goal cancels any message it had scheduled; plays and other success signals are
+judged when the window ends. Judged outcomes feed back: a goal that failed for this viewer is not retried for seven days, and the
 decision says so ("learned: ..."). `replay --continue-from <earlier state.db>` runs the next day on top of an earlier,
 judged day, so this loop runs across days, not only in tests.
 
 Interventions are proportionate. A home page is the default: it needs no consent, the app shows it only while the
 viewer is there, and it is always rendered in the app's own dialect. One message at most, only for goals with a
 concrete hook (resume a series, a new release, a trial ending): WhatsApp if the viewer opted in, else push, else an
-in-app message, which needs no consent and is shown at the next open. A push or WhatsApp reaches the viewer outside
+in-app message, which needs no consent and is shown at the next open. Push and WhatsApp go out at the next 19:00 IST
+that is at least an hour away: a morning open is followed up the same evening, never inside the current session. A push or WhatsApp reaches the viewer outside
 the app, so it needs evidence confidence of at least 0.6; when the app, profile and campaign disagree on dialect the
 agent publishes the page only. "Do nothing" is a recorded decision with a reason: holdout, buffered-offline trigger,
 duplicate, page still live, no catalogue in the app's dialect, no measurable goal, a veto, or not enough evidence:
@@ -76,7 +79,7 @@ Every fact carries `source`, `observed_at` and evidence refs (`event:<id>`, `pro
 
 | Fact | Wins | Why |
 |---|---|---|
-| dialect | app setting on the trigger, then profile, deeplink last | the app only shows a page for the dialect it is set to; the campaign link is intent, not reality |
+| dialect | app setting on the trigger, then the app setting on the viewer's latest earlier event, then profile, deeplink last | the app only shows a page for the dialect it is set to; some opens arrive without a setting, and the profile is a day-old preference; the campaign link is intent, not reality |
 | subscription status | purchase / renewal / lapse event received after the snapshot's `updated_at` | events are primary, the warehouse export is a day stale |
 | consent | snapshot flag, overridden by a later `notification_opt_out` | policy rule 1 |
 | signup, plays, completions, visits | events | the snapshot has no row for new viewers |
@@ -164,9 +167,10 @@ workers; the store is the only coordination point.
 - **Never automated.** Prices, offers and plan changes (only `pricing.json` prices, no invented discounts); adding or
   approving message templates; releasing a quarantined title; changing consent; and rolling the agent out wider. The
   agent proposes and records; people approve those.
-- **Was doing nothing right?** Holdout viewers get the same goals, and the agent-arm viewers it chose not to act for
-  keep their goals too, so their outcomes are measured against the holdout like everyone else's. Abstentions are
-  recorded with reasons, so a later analysis can compare "abstained" against "acted" within each reason.
+- **Was doing nothing right?** Only a randomized comparison can say. The agent-arm viewers it chose not to act for
+  keep their goals, so the arm comparison already counts their outcomes. To test a specific abstention rule, I would
+  randomize it: among opens where the rule says "do nothing", act anyway for a small random share and compare that
+  share with the rest. Comparing abstained against acted viewers directly would repeat the pilot's selection bias.
 
 ## Trust boundaries
 

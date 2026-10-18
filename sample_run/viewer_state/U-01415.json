@@ -213,11 +213,12 @@
    "D-02299"
   ],
   "actions": [
-   "A-00286",
-   "A-00287",
-   "A-00970"
+   "A-00289",
+   "A-00290",
+   "A-00998",
+   "A-00999"
   ],
-  "updated_at": "2026-10-01T15:37:53.268Z",
+  "updated_at": "2026-10-01T15:37:53.277Z",
   "version": 3
  },
  "decisions": [
@@ -525,8 +526,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T06:39:53.439Z",
+   "decided_in_ms": 1219,
+   "published_at": "2026-10-01T06:39:53.451Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -558,7 +559,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -790,9 +792,7 @@
      "observed_at": "2026-10-01T15:37:52.063Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -818,30 +818,35 @@
      "availability",
      "page_rules",
      "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T15:37:53.268Z",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T15:37:53.277Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00286",
+   "action_id": "A-00289",
    "decision_id": "D-00821",
    "user_id": "U-01415",
    "trigger_event_id": "80c0f462-565a-4627-8d22-74957d67ea58",
-   "published_at": "2026-10-01T06:39:53.439Z",
+   "published_at": "2026-10-01T06:39:53.451Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -910,28 +915,28 @@
    ]
   },
   {
-   "action_id": "A-00287",
+   "action_id": "A-00290",
    "decision_id": "D-00821",
    "user_id": "U-01415",
    "trigger_event_id": "80c0f462-565a-4627-8d22-74957d67ea58",
-   "published_at": "2026-10-01T06:39:53.439Z",
+   "published_at": "2026-10-01T06:39:53.451Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0545",
    "dialect": "d2",
    "text": {
     "title": "New in D2: Piya Moha",
-    "body": "Piya Moha came out 28 days ago. Start watching now."
+    "body": "Piya Moha came out 27 days ago. Start watching now."
    },
    "deeplink": "ott://title/T0545"
   },
   {
-   "action_id": "A-00970",
+   "action_id": "A-00998",
    "decision_id": "D-02299",
    "user_id": "U-01415",
    "trigger_event_id": "c42d3611-4bc8-4e91-b271-95b1bf17f6df",
-   "published_at": "2026-10-01T15:37:53.268Z",
+   "published_at": "2026-10-01T15:37:53.277Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -998,6 +1003,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00999",
+   "decision_id": "D-02299",
+   "user_id": "U-01415",
+   "trigger_event_id": "c42d3611-4bc8-4e91-b271-95b1bf17f6df",
+   "published_at": "2026-10-01T15:37:53.277Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0545",
+   "dialect": "d2",
+   "text": {
+    "title": "New in D2: Piya Moha",
+    "body": "Piya Moha came out 28 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T0545"
   }
  ],
  "outcomes": [
@@ -1021,9 +1043,10 @@
     "home_page_shown": 2
    },
    "actions": [
-    "A-00286",
-    "A-00287",
-    "A-00970"
+    "A-00289",
+    "A-00290",
+    "A-00998",
+    "A-00999"
    ]
   }
  ]

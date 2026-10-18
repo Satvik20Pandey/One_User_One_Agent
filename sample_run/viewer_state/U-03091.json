@@ -26,14 +26,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 4,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T08:39:09.827Z judged: G07 failed (exposed_no_success; page shown 4x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T08:39:09.827Z judged: G07 failed (exposed_no_success; page shown 4x, message delivered 2x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -211,12 +211,13 @@
    "D-02538"
   ],
   "actions": [
-   "A-00431",
-   "A-00432",
-   "A-00595",
-   "A-01059"
+   "A-00435",
+   "A-00436",
+   "A-00603",
+   "A-01091",
+   "A-01092"
   ],
-  "updated_at": "2026-10-01T16:47:58.438Z",
+  "updated_at": "2026-10-01T16:47:58.443Z",
   "version": 5
  },
  "decisions": [
@@ -493,8 +494,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T08:39:09.831Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T08:39:09.834Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -730,7 +731,7 @@
     }
    },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "a message is already scheduled for 2026-10-01; page only"
    ],
    "conflicts": [],
    "eligibility": {
@@ -799,7 +800,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00595 for this viewer is still live (published 2026-10-01T11:48:12.177Z); nothing to change",
+   "no_action_reason": "home page A-00603 for this viewer is still live (published 2026-10-01T11:48:12.177Z); nothing to change",
    "dialect": {
     "used": "d2",
     "source": "app_setting",
@@ -986,8 +987,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T12:58:13.589Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T12:58:13.590Z",
    "status": "NO_ACTION",
    "during_surge": false
   },
@@ -1019,7 +1020,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "WHATSAPP"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -1222,9 +1224,7 @@
      "observed_at": "2026-10-01T16:47:58.435Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -1248,30 +1248,36 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "template",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:47:58.438Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T16:47:58.443Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00431",
+   "action_id": "A-00435",
    "decision_id": "D-01081",
    "user_id": "U-03091",
    "trigger_event_id": "57bff0ee-a998-4041-9e83-bbcb55a62912",
-   "published_at": "2026-10-01T08:39:09.831Z",
+   "published_at": "2026-10-01T08:39:09.834Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
@@ -1340,14 +1346,14 @@
    ]
   },
   {
-   "action_id": "A-00432",
+   "action_id": "A-00436",
    "decision_id": "D-01081",
    "user_id": "U-03091",
    "trigger_event_id": "57bff0ee-a998-4041-9e83-bbcb55a62912",
-   "published_at": "2026-10-01T08:39:09.831Z",
+   "published_at": "2026-10-01T08:39:09.834Z",
    "goal_id": "G07",
    "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0521",
    "dialect": "d2",
    "template_id": "wa_recommend_title_v1",
@@ -1357,7 +1363,7 @@
    }
   },
   {
-   "action_id": "A-00595",
+   "action_id": "A-00603",
    "decision_id": "D-01465",
    "user_id": "U-03091",
    "trigger_event_id": "3fb91929-97a8-4c84-a21c-2a173087b95f",
@@ -1430,11 +1436,11 @@
    ]
   },
   {
-   "action_id": "A-01059",
+   "action_id": "A-01091",
    "decision_id": "D-02538",
    "user_id": "U-03091",
    "trigger_event_id": "f488a6e6-4f32-4230-a5ba-98f1ae91efbd",
-   "published_at": "2026-10-01T16:47:58.438Z",
+   "published_at": "2026-10-01T16:47:58.443Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d2",
@@ -1501,6 +1507,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-01092",
+   "decision_id": "D-02538",
+   "user_id": "U-03091",
+   "trigger_event_id": "f488a6e6-4f32-4230-a5ba-98f1ae91efbd",
+   "published_at": "2026-10-01T16:47:58.443Z",
+   "goal_id": "G07",
+   "type": "whatsapp",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0521",
+   "dialect": "d2",
+   "template_id": "wa_recommend_title_v1",
+   "variables": {
+    "title_name": "Molo",
+    "dialect_name": "D2"
+   }
   }
  ],
  "outcomes": [
@@ -1522,13 +1545,14 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 4,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00431",
-    "A-00432",
-    "A-00595",
-    "A-01059"
+    "A-00435",
+    "A-00436",
+    "A-00603",
+    "A-01091",
+    "A-01092"
    ]
   }
  ]

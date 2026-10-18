@@ -45,3 +45,27 @@ def test_duplicate_history_events_are_stored_once(env):
     assert env.stats["counts"]["duplicates_dropped"] == 1
     purchases = [e for e in env.store.events_for("U-P1") if e["event"] == "purchase_completed"]
     assert len(purchases) == 1
+
+
+def test_open_without_a_dialect_uses_the_apps_latest_setting_not_the_profile(env):
+    # U-C1's profile says d3, its earlier opens were in d1; this open carries no dialect at all
+    record, actions = env.decide(make_trigger("U-C1", dialect="NA"))
+    assert record["dialect"]["used"] == "d1" and record["dialect"]["source"] == "app_setting_latest"
+    assert "profile:d3" in record["dialect"]["conflicts"]
+    assert all(a["dialect"] == "d1" for a in actions)
+    assert not any(a["type"] in ("push", "whatsapp") for a in actions)  # disagreeing evidence: page only
+
+
+def test_message_in_a_dialect_the_app_is_not_set_to_is_vetoed(env):
+    from viewer_agent.agent import Budget
+    from viewer_agent.content import MessageDraft
+    from viewer_agent.planner import Proposal
+    from viewer_agent.times import next_send_slot
+    from viewer_agent.verifier import verify
+    from helpers import NOW
+    facts = env.facts_for("U-C1", make_trigger("U-C1", dialect="NA"))
+    msg = MessageDraft("push", "d3", "T0201", next_send_slot(NOW, 19), text={"title": "Only", "body": "Watch Only now."},
+                       deeplink="ott://title/T0201")
+    result = verify(Proposal(env.rules.check("G02", facts) if env.rules.check("G02", facts).eligible else None, None, msg, None),
+                    facts, "agent", env.rules, env.store, env.pack, env.settings, NOW, Budget(NOW, env.settings))
+    assert any(f["check"] == "message_dialect" and "last seen set to d1" in f["reason"] for f in result.failed)

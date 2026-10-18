@@ -209,10 +209,11 @@
    "D-02441"
   ],
   "actions": [
-   "A-00185",
-   "A-01030"
+   "A-00186",
+   "A-00187",
+   "A-01061"
   ],
-  "updated_at": "2026-10-01T16:22:02.386Z",
+  "updated_at": "2026-10-01T16:22:02.390Z",
   "version": 4
  },
  "decisions": [
@@ -502,8 +503,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T05:05:54.957Z",
+   "decided_in_ms": 1208,
+   "published_at": "2026-10-01T05:05:54.961Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -533,15 +534,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G09 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
-    "used": null,
-    "source": "none",
+    "used": "d1",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T0015",
+    "title:T0001",
+    "title:T0014",
+    "title:T0008",
+    "title:T0034",
+    "title:T0018",
+    "title:T0037",
+    "title:T0029",
+    "title:T0030",
+    "title:T0027",
+    "title:T0024",
+    "title:T0005",
+    "title:T0004",
+    "title:T0003",
+    "title:T0009",
+    "title:T0013",
+    "title:T0006",
+    "title:T0007",
+    "title:T0012",
+    "title:T0010",
+    "title:T0011",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
+    "title:T0195",
+    "title:T0016",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041",
+    "title:T0352",
+    "title:T0036"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 26 events of history; dialect sources agree; trigger is fresh"
@@ -551,6 +596,12 @@
      "ref": "trigger:69e3cc8d-5a74-42a9-b9d2-6a382a250fa2",
      "source": "event",
      "observed_at": "2026-10-01T05:05:53.827Z",
+     "age_s": 0
+    },
+    {
+     "ref": "event:449ec86b-379f-4bc0-96d5-ac1f171906dc",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T05:05:53.753Z",
      "age_s": 0
     },
     {
@@ -608,13 +659,13 @@
     },
     "dialect": {
      "value": {
-      "used": null,
-      "source": "none",
+      "used": "d1",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": null
+      "page_dialect": "d1",
+      "message_dialect": "d1"
      },
-     "source": "none",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T05:05:53.827Z"
     },
     "app_language": {
@@ -708,7 +759,10 @@
      "observed_at": "2026-10-01T05:05:53.827Z"
     }
    },
-   "assumptions": [],
+   "assumptions": [
+    "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T05:05:53.753Z",
+    "passed over G07: its series cannot be shown in the app's dialect"
+   ],
    "conflicts": [],
    "eligibility": {
     "goal": "G09",
@@ -720,26 +774,36 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0015",
+    "reason": "Salosa Valo is the most popular allowed title in the viewer's top genre, Comedy"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T05:05:53.828Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1209,
+   "published_at": "2026-10-01T05:05:55.036Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -1028,8 +1092,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T16:22:02.386Z",
+   "decided_in_ms": 1208,
+   "published_at": "2026-10-01T16:22:02.390Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1073,7 +1137,7 @@
     {
      "ref": "decision:D-02441",
      "source": "store",
-     "observed_at": "2026-10-01T16:22:02.386Z"
+     "observed_at": "2026-10-01T16:22:02.390Z"
     }
    ],
    "assumptions": [],
@@ -1104,11 +1168,11 @@
  ],
  "actions": [
   {
-   "action_id": "A-00185",
+   "action_id": "A-00186",
    "decision_id": "D-00619",
    "user_id": "U-01487",
    "trigger_event_id": "449ec86b-379f-4bc0-96d5-ac1f171906dc",
-   "published_at": "2026-10-01T05:05:54.957Z",
+   "published_at": "2026-10-01T05:05:54.961Z",
    "goal_id": "G09",
    "type": "home_page",
    "dialect": "d1",
@@ -1177,7 +1241,80 @@
    ]
   },
   {
-   "action_id": "A-00301",
+   "action_id": "A-00187",
+   "decision_id": "D-00620",
+   "user_id": "U-01487",
+   "trigger_event_id": "69e3cc8d-5a74-42a9-b9d2-6a382a250fa2",
+   "published_at": "2026-10-01T05:05:55.036Z",
+   "goal_id": "G09",
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T0015",
+   "rows": [
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0001",
+      "T0014",
+      "T0008",
+      "T0034",
+      "T0018",
+      "T0037",
+      "T0029",
+      "T0030",
+      "T0027",
+      "T0024"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0005",
+      "T0004",
+      "T0003",
+      "T0009",
+      "T0013",
+      "T0006",
+      "T0007",
+      "T0012",
+      "T0010",
+      "T0011"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435",
+      "T0195"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0016",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041",
+      "T0352",
+      "T0036"
+     ]
+    }
+   ]
+  },
+  {
+   "action_id": "A-00304",
    "decision_id": "D-00619",
    "user_id": "U-01487",
    "trigger_event_id": "449ec86b-379f-4bc0-96d5-ac1f171906dc",
@@ -1247,15 +1384,89 @@
      ]
     }
    ],
-   "replaces": "A-00185",
+   "replaces": "A-00186",
    "reason": "T0001 withdrawn"
   },
   {
-   "action_id": "A-01030",
+   "action_id": "A-00305",
+   "decision_id": "D-00620",
+   "user_id": "U-01487",
+   "trigger_event_id": "69e3cc8d-5a74-42a9-b9d2-6a382a250fa2",
+   "published_at": "2026-10-01T07:00:00.000Z",
+   "goal_id": "G09",
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T0015",
+   "rows": [
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0014",
+      "T0008",
+      "T0034",
+      "T0018",
+      "T0037",
+      "T0029",
+      "T0030",
+      "T0027",
+      "T0024"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0005",
+      "T0004",
+      "T0003",
+      "T0009",
+      "T0013",
+      "T0006",
+      "T0007",
+      "T0012",
+      "T0010",
+      "T0011"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435",
+      "T0195"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0016",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041",
+      "T0352",
+      "T0036"
+     ]
+    }
+   ],
+   "replaces": "A-00187",
+   "reason": "T0001 withdrawn"
+  },
+  {
+   "action_id": "A-01061",
    "decision_id": "D-02441",
    "user_id": "U-01487",
    "trigger_event_id": "6c628a74-4e36-411e-872f-919a2b46123f",
-   "published_at": "2026-10-01T16:22:02.386Z",
+   "published_at": "2026-10-01T16:22:02.390Z",
    "goal_id": "G09",
    "type": "home_page",
    "dialect": "d1",
@@ -1345,9 +1556,11 @@
     "home_page_shown": 2
    },
    "actions": [
-    "A-00185",
-    "A-00301",
-    "A-01030"
+    "A-00186",
+    "A-00187",
+    "A-00304",
+    "A-00305",
+    "A-01061"
    ]
   }
  ]

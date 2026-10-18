@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-04167",
   "active_goal": {
-   "instance_id": "G-01416",
+   "instance_id": "G-01411",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T16:53:51.102Z",
@@ -46,16 +46,18 @@
    },
    "dialect": {
     "value": {
-     "used": "d5",
-     "source": "profile",
-     "conflicts": [],
-     "page_dialect": null,
-     "message_dialect": "d5"
+     "used": "d3",
+     "source": "app_setting_latest",
+     "conflicts": [
+      "profile:d5"
+     ],
+     "page_dialect": "d3",
+     "message_dialect": "d3"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T16:53:51.102Z",
     "evidence": [
-     "profile:U-04167@2026-09-29T13:36:03.326Z"
+     "event:d761cac6-68da-4756-ae7c-6a3ef0d48584"
     ],
     "note": ""
    },
@@ -271,13 +273,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d5, deeplink=None -> used d3 (app_setting_latest)"
+  ],
   "last_session_id": "03e01383-57aa-4160-8134-3f60d1c75cae",
   "decisions": [
    "D-02560"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:53:51.105Z",
+  "updated_at": "2026-10-01T16:53:51.110Z",
   "version": 2
  },
  "decisions": [
@@ -298,7 +302,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01416",
+    "instance_id": "G-01411",
     "started_at": "2026-10-01T16:53:51.102Z",
     "deadline": "2026-10-08T16:53:51.102Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -311,14 +315,16 @@
    "actions": [],
    "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
-    "used": "d5",
-    "source": "profile",
-    "conflicts": []
+    "used": "d3",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d5"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.7,
-    "reason": "profile row present; 182 events of history; dialect sources agree"
+    "value": 0.5,
+    "reason": "profile row present; 182 events of history; dialect sources disagree"
    },
    "evidence": [
     {
@@ -326,6 +332,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:49:35.919Z",
      "age_s": 255
+    },
+    {
+     "ref": "event:d761cac6-68da-4756-ae7c-6a3ef0d48584",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-24T05:20:37.588Z",
+     "age_s": 646393
     },
     {
      "ref": "profile:U-04167@2026-09-29T13:36:03.326Z",
@@ -364,12 +376,6 @@
      "age_s": 311697
     },
     {
-     "ref": "event:d761cac6-68da-4756-ae7c-6a3ef0d48584",
-     "source": "event",
-     "observed_at": "2026-09-24T05:20:37.588Z",
-     "age_s": 646393
-    },
-    {
      "ref": "event:23e68ce9-b053-468c-9b42-0b23474e21e3",
      "source": "event",
      "observed_at": "2026-09-25T12:19:57.443Z",
@@ -400,13 +406,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d5",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d5"
+      "used": "d3",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d5"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:53:51.102Z"
     },
     "app_language": {
@@ -569,9 +577,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d3 seen at 2026-09-24T05:20:37.588Z",
+    "evidence confidence 0.50 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d5, deeplink=None -> used d3 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -598,8 +609,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:53:51.105Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T16:53:51.110Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -609,7 +620,7 @@
   {
    "user_id": "U-04167",
    "arm": "holdout",
-   "goal_instance_id": "G-01416",
+   "goal_instance_id": "G-01411",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T16:53:51.102Z",

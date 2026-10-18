@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00924",
   "active_goal": {
-   "instance_id": "G-01471",
+   "instance_id": "G-01465",
    "goal_id": "G06",
    "name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T17:40:39.491Z",
@@ -48,15 +48,15 @@
    "dialect": {
     "value": {
      "used": "d1",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d1",
      "message_dialect": "d1"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T17:40:39.491Z",
     "evidence": [
-     "profile:U-00924@2026-09-29T06:59:35.713Z"
+     "event:4c9d3c14-56a7-416e-9654-548b51357cf3"
     ],
     "note": ""
    },
@@ -198,7 +198,7 @@
    "D-02687"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T17:40:39.492Z",
+  "updated_at": "2026-10-01T17:40:39.499Z",
   "version": 2
  },
  "decisions": [
@@ -219,7 +219,7 @@
    "goal": {
     "id": "G06",
     "name": "reactivate_lapsed_14d",
-    "instance_id": "G-01471",
+    "instance_id": "G-01465",
     "started_at": "2026-10-01T17:40:39.491Z",
     "deadline": "2026-10-15T17:40:39.491Z",
     "success_signal": "purchase_completed (any paid plan) within 336h",
@@ -230,10 +230,10 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -247,6 +247,12 @@
      "source": "event",
      "observed_at": "2026-10-01T17:40:39.491Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:4c9d3c14-56a7-416e-9654-548b51357cf3",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-29T09:21:53.691Z",
+     "age_s": 202725
     },
     {
      "ref": "profile:U-00924@2026-09-29T06:59:35.713Z",
@@ -310,12 +316,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T17:40:39.491Z"
     },
     "app_language": {
@@ -401,7 +407,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-29T09:21:53.691Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
    "conflicts": [],
@@ -432,8 +438,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T17:40:39.492Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T17:40:39.499Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -443,7 +449,7 @@
   {
    "user_id": "U-00924",
    "arm": "holdout",
-   "goal_instance_id": "G-01471",
+   "goal_instance_id": "G-01465",
    "goal_id": "G06",
    "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T17:40:39.491Z",

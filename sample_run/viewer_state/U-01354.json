@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-01354",
   "active_goal": {
-   "instance_id": "G-01010",
+   "instance_id": "G-01008",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T14:01:15.149Z",
@@ -20,16 +20,14 @@
     "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "published_but_never_seen",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T14:01:15.149Z judged: G08 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T14:01:15.149Z judged: G08 failed (published_but_never_seen; nothing of ours was seen). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -48,16 +46,18 @@
    },
    "dialect": {
     "value": {
-     "used": "d6",
-     "source": "profile",
-     "conflicts": [],
-     "page_dialect": null,
-     "message_dialect": "d6"
+     "used": "d5",
+     "source": "app_setting_latest",
+     "conflicts": [
+      "profile:d6"
+     ],
+     "page_dialect": "d5",
+     "message_dialect": "d5"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T14:01:15.149Z",
     "evidence": [
-     "profile:U-01354@2026-09-28T19:14:51.681Z"
+     "event:894114d7-6efb-4eaa-8c71-770448b1ad3a"
     ],
     "note": ""
    },
@@ -218,15 +218,17 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d6, deeplink=None -> used d5 (app_setting_latest)"
+  ],
   "last_session_id": "feecad67-26b5-45f9-b371-b59fa1d2ac93",
   "decisions": [
    "D-01810"
   ],
   "actions": [
-   "A-00741"
+   "A-00755"
   ],
-  "updated_at": "2026-10-01T14:01:16.352Z",
+  "updated_at": "2026-10-01T14:01:16.362Z",
   "version": 2
  },
  "decisions": [
@@ -247,7 +249,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01010",
+    "instance_id": "G-01008",
     "started_at": "2026-10-01T14:01:15.149Z",
     "deadline": "2026-10-08T14:01:15.149Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -256,22 +258,64 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "PUSH",
+   "action": "HOME_PAGE",
    "actions": [
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
-    "used": "d6",
-    "source": "profile",
-    "conflicts": []
+    "used": "d5",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d6"
+    ]
    },
    "content": [
-    "title:T1393"
+    "title:T1177",
+    "title:T1185",
+    "title:T1181",
+    "title:T1189",
+    "title:T1183",
+    "title:T1192",
+    "title:T1213",
+    "title:T1219",
+    "title:T1250",
+    "title:T1264",
+    "title:T1381",
+    "title:T1179",
+    "title:T1178",
+    "title:T1180",
+    "title:T1191",
+    "title:T1182",
+    "title:T1187",
+    "title:T1186",
+    "title:T1188",
+    "title:T1226",
+    "title:T1206",
+    "title:T1184",
+    "title:T1243",
+    "title:T1196",
+    "title:T1386",
+    "title:T1295",
+    "title:T1195",
+    "title:T1221",
+    "title:T1194",
+    "title:T1202",
+    "title:T1285",
+    "title:T1198",
+    "title:T1326",
+    "title:T1258",
+    "title:T1299",
+    "title:T1242",
+    "title:T1270",
+    "title:T1350",
+    "title:T1279",
+    "title:T1214",
+    "title:T1293"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 67 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 67 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -279,6 +323,12 @@
      "source": "event",
      "observed_at": "2026-10-01T14:01:15.149Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:894114d7-6efb-4eaa-8c71-770448b1ad3a",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-22T16:13:12.983Z",
+     "age_s": 769682
     },
     {
      "ref": "profile:U-01354@2026-09-28T19:14:51.681Z",
@@ -347,13 +397,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d6",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d6"
+      "used": "d5",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d5",
+      "message_dialect": "d5"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T14:01:15.149Z"
     },
     "app_language": {
@@ -462,9 +514,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d5 seen at 2026-09-22T16:13:12.983Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d6, deeplink=None -> used d5 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -485,52 +540,107 @@
     "passed": [
      "holdout",
      "eligibility",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1203,
-   "published_at": "2026-10-01T14:01:16.352Z",
+   "decided_in_ms": 1213,
+   "published_at": "2026-10-01T14:01:16.362Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00741",
+   "action_id": "A-00755",
    "decision_id": "D-01810",
    "user_id": "U-01354",
    "trigger_event_id": "f87f4768-969f-4121-a353-eab9405f3670",
-   "published_at": "2026-10-01T14:01:16.352Z",
+   "published_at": "2026-10-01T14:01:16.362Z",
    "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1393",
-   "dialect": "d6",
-   "text": {
-    "title": "New in D6: Bhari Vagi",
-    "body": "Bhari Vagi came out 18 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T1393"
+   "type": "home_page",
+   "dialect": "d5",
+   "hero_title_id": "T1177",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1185",
+      "T1181",
+      "T1189",
+      "T1183",
+      "T1192",
+      "T1213",
+      "T1219",
+      "T1250",
+      "T1264",
+      "T1381"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T1179",
+      "T1178",
+      "T1180",
+      "T1191",
+      "T1182",
+      "T1187",
+      "T1186",
+      "T1188",
+      "T1226",
+      "T1206"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T1184",
+      "T1243",
+      "T1196",
+      "T1386",
+      "T1295",
+      "T1195",
+      "T1221",
+      "T1194",
+      "T1202",
+      "T1285"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1198",
+      "T1326",
+      "T1258",
+      "T1299",
+      "T1242",
+      "T1270",
+      "T1350",
+      "T1279",
+      "T1214",
+      "T1293"
+     ]
+    }
+   ]
   }
  ],
  "outcomes": [
   {
    "user_id": "U-01354",
    "arm": "agent",
-   "goal_instance_id": "G-01010",
+   "goal_instance_id": "G-01008",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T14:01:15.149Z",
@@ -542,12 +652,10 @@
    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
+   "attribution": "published_but_never_seen",
+   "exposure": {},
    "actions": [
-    "A-00741"
+    "A-00755"
    ]
   }
  ]

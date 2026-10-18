@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00724",
   "active_goal": {
-   "instance_id": "G-01269",
+   "instance_id": "G-01265",
    "goal_id": "G04",
    "name": "trial_to_paid_7d",
    "started_at": "2026-10-01T15:25:37.353Z",
@@ -198,9 +198,9 @@
    "D-02450"
   ],
   "actions": [
-   "A-00946"
+   "A-00972"
   ],
-  "updated_at": "2026-10-01T16:24:52.521Z",
+  "updated_at": "2026-10-01T16:24:52.522Z",
   "version": 5
  },
  "decisions": [
@@ -221,7 +221,7 @@
    "goal": {
     "id": "G04",
     "name": "trial_to_paid_7d",
-    "instance_id": "G-01269",
+    "instance_id": "G-01265",
     "started_at": "2026-10-01T15:25:37.353Z",
     "deadline": "2026-10-08T15:25:37.353Z",
     "success_signal": "purchase_completed (is_trial = false) within 168h",
@@ -230,15 +230,58 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G04 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T0156",
+    "title:T0005",
+    "title:T0015",
+    "title:T0013",
+    "title:T1506",
+    "title:T1510",
+    "title:T0034",
+    "title:T1523",
+    "title:T1511",
+    "title:T0018",
+    "title:T1509",
+    "title:T1540",
+    "title:T1520",
+    "title:T0028",
+    "title:T0031",
+    "title:T0426",
+    "title:T0413",
+    "title:T0126",
+    "title:T0419",
+    "title:T0076",
+    "title:T1525",
+    "title:T1515",
+    "title:T0198",
+    "title:T0466",
+    "title:T0068",
+    "title:T0139",
+    "title:T1585",
+    "title:T1594",
+    "title:T1583",
+    "title:T1581",
+    "title:T0030",
+    "title:T0520",
+    "title:T0022",
+    "title:T0226",
+    "title:T0352",
+    "title:T1675",
+    "title:T0097",
+    "title:T0447",
+    "title:T0392",
+    "title:T0192"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 14 events of history; dialect sources agree; trigger is fresh"
@@ -251,16 +294,22 @@
      "age_s": 0
     },
     {
-     "ref": "profile:U-00724@2026-09-29T05:42:21.882Z",
-     "source": "profile",
-     "observed_at": "2026-09-29T05:42:21.882Z",
-     "age_s": 207795
+     "ref": "event:6ad5de71-1912-4962-bf0b-04759e7bc3ff",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-30T15:18:20.626Z",
+     "age_s": 86836
     },
     {
      "ref": "event:97ce14d0-ae55-4e63-b73e-cfbecc9a0386",
      "source": "event",
      "observed_at": "2026-09-28T04:27:14.457Z",
      "age_s": 298702
+    },
+    {
+     "ref": "profile:U-00724@2026-09-29T05:42:21.882Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T05:42:21.882Z",
+     "age_s": 207795
     },
     {
      "ref": "event:230b61d3-defc-48f5-83bc-f9565e49ba24",
@@ -300,12 +349,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T15:25:37.353Z"
     },
     "app_language": {
@@ -389,7 +438,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-30T15:18:20.626Z"
    ],
    "conflicts": [],
    "eligibility": {
@@ -401,26 +450,36 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0156",
+    "reason": "Lomamo Lonegu is the most popular allowed title in the viewer's top genre, Drama"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T15:25:37.354Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T15:25:38.559Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -440,7 +499,7 @@
    "goal": {
     "id": "G04",
     "name": "trial_to_paid_7d",
-    "instance_id": "G-01269",
+    "instance_id": "G-01265",
     "started_at": "2026-10-01T15:25:37.353Z",
     "deadline": "2026-10-08T15:25:37.353Z",
     "success_signal": "purchase_completed (is_trial = false) within 168h",
@@ -449,58 +508,15 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-00972 for this viewer is still live (published 2026-10-01T15:25:38.559Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
     "conflicts": []
    },
-   "content": [
-    "title:T0156",
-    "title:T0005",
-    "title:T0015",
-    "title:T0013",
-    "title:T1506",
-    "title:T1510",
-    "title:T0034",
-    "title:T1523",
-    "title:T1511",
-    "title:T0018",
-    "title:T1509",
-    "title:T1540",
-    "title:T1520",
-    "title:T0028",
-    "title:T0031",
-    "title:T0426",
-    "title:T0413",
-    "title:T0126",
-    "title:T0419",
-    "title:T0076",
-    "title:T1525",
-    "title:T1515",
-    "title:T0198",
-    "title:T0466",
-    "title:T0068",
-    "title:T0139",
-    "title:T1585",
-    "title:T1594",
-    "title:T1583",
-    "title:T1581",
-    "title:T0030",
-    "title:T0520",
-    "title:T0022",
-    "title:T0226",
-    "title:T0352",
-    "title:T1675",
-    "title:T0097",
-    "title:T0447",
-    "title:T0392",
-    "title:T0192"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 15 events of history; dialect sources agree; trigger is fresh"
@@ -660,37 +676,27 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "changed": "hero -> T0156",
-    "reason": "Lomamo Lonegu is the most popular allowed title in the viewer's top genre, Drama"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 11,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T15:25:44.128Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T15:25:42.926Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -710,7 +716,7 @@
    "goal": {
     "id": "G04",
     "name": "trial_to_paid_7d",
-    "instance_id": "G-01269",
+    "instance_id": "G-01265",
     "started_at": "2026-10-01T15:25:37.353Z",
     "deadline": "2026-10-08T15:25:37.353Z",
     "success_signal": "purchase_completed (is_trial = false) within 168h",
@@ -721,7 +727,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00946 for this viewer is still live (published 2026-10-01T15:25:44.128Z); nothing to change",
+   "no_action_reason": "home page A-00972 for this viewer is still live (published 2026-10-01T15:25:38.559Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -936,7 +942,7 @@
    "goal": {
     "id": "G04",
     "name": "trial_to_paid_7d",
-    "instance_id": "G-01269",
+    "instance_id": "G-01265",
     "started_at": "2026-10-01T15:25:37.353Z",
     "deadline": "2026-10-08T15:25:37.353Z",
     "success_signal": "purchase_completed (is_trial = false) within 168h",
@@ -947,7 +953,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00946 for this viewer is still live (published 2026-10-01T15:25:44.128Z); nothing to change",
+   "no_action_reason": "home page A-00972 for this viewer is still live (published 2026-10-01T15:25:38.559Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1131,19 +1137,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T16:24:52.521Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T16:24:52.522Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00946",
-   "decision_id": "D-02253",
+   "action_id": "A-00972",
+   "decision_id": "D-02252",
    "user_id": "U-00724",
-   "trigger_event_id": "542f16d2-6a40-4f58-8337-356c52dcc6f5",
-   "published_at": "2026-10-01T15:25:44.128Z",
+   "trigger_event_id": "0f3ff973-bb04-4b84-b7dd-197ece681d75",
+   "published_at": "2026-10-01T15:25:38.559Z",
    "goal_id": "G04",
    "type": "home_page",
    "dialect": "d1",
@@ -1215,7 +1221,7 @@
   {
    "user_id": "U-00724",
    "arm": "agent",
-   "goal_instance_id": "G-01269",
+   "goal_instance_id": "G-01265",
    "goal_id": "G04",
    "goal_name": "trial_to_paid_7d",
    "started_at": "2026-10-01T15:25:37.353Z",
@@ -1232,7 +1238,7 @@
     "home_page_shown": 2
    },
    "actions": [
-    "A-00946"
+    "A-00972"
    ]
   }
  ]

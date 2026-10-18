@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-02707",
   "active_goal": {
-   "instance_id": "G-00904",
+   "instance_id": "G-00902",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T12:47:06.776Z",
@@ -217,11 +217,10 @@
    "D-01980"
   ],
   "actions": [
-   "A-00654",
-   "A-00655",
-   "A-00830"
+   "A-00662",
+   "A-00848"
   ],
-  "updated_at": "2026-10-01T14:49:29.449Z",
+  "updated_at": "2026-10-01T14:49:29.460Z",
   "version": 4
  },
  "decisions": [
@@ -242,7 +241,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00904",
+    "instance_id": "G-00902",
     "started_at": "2026-10-01T12:47:06.776Z",
     "deadline": "2026-10-08T12:47:06.776Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -251,22 +250,63 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "PUSH",
+   "action": "HOME_PAGE",
    "actions": [
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
-    "used": "d4",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d4"
+    ]
    },
    "content": [
-    "title:T0915"
+    "title:T0004",
+    "title:T0005",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0003",
+    "title:T0009",
+    "title:T0015",
+    "title:T0013",
+    "title:T0006",
+    "title:T0014",
+    "title:T0008",
+    "title:T0012",
+    "title:T0010",
+    "title:T0084",
+    "title:T0065",
+    "title:T0156",
+    "title:T0517",
+    "title:T0198",
+    "title:T0466",
+    "title:T0068",
+    "title:T0139",
+    "title:T0148",
+    "title:T0045",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041",
+    "title:T0352"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 48 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 48 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -276,16 +316,16 @@
      "age_s": 0
     },
     {
+     "ref": "event:7d764068-a637-496d-ba0f-e001cd5aa12d",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-27T14:52:33.761Z",
+     "age_s": 338073
+    },
+    {
      "ref": "profile:U-02707@2026-09-29T10:01:16.051Z",
      "source": "profile",
      "observed_at": "2026-09-29T10:01:16.051Z",
      "age_s": 182750
-    },
-    {
-     "ref": "event:7d764068-a637-496d-ba0f-e001cd5aa12d",
-     "source": "event",
-     "observed_at": "2026-09-27T14:52:33.761Z",
-     "age_s": 338073
     },
     {
      "ref": "event:ce02a902-8804-439b-b8fd-218e6dc3b99a",
@@ -342,13 +382,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d4",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d4"
+      "used": "d1",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T12:47:06.776Z"
     },
     "app_language": {
@@ -445,9 +487,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-27T14:52:33.761Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d4, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -462,30 +507,30 @@
     "rejected": null,
     "failure": null,
     "skipped": null,
-    "reason": "active subscriber"
+    "changed": "hero -> T0004",
+    "reason": "Hapibha is the most popular allowed title in the viewer's top genre, Drama"
    },
    "checks": {
     "passed": [
      "holdout",
      "eligibility",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T12:47:07.981Z",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T12:47:07.990Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -506,7 +551,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00904",
+    "instance_id": "G-00902",
     "started_at": "2026-10-01T12:47:06.776Z",
     "deadline": "2026-10-08T12:47:06.776Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -515,11 +560,9 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-00662 for this viewer is still live (published 2026-10-01T12:47:07.990Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -527,48 +570,7 @@
      "profile:d4"
     ]
    },
-   "content": [
-    "title:T0004",
-    "title:T0005",
-    "title:T0007",
-    "title:T0028",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0003",
-    "title:T0009",
-    "title:T0015",
-    "title:T0013",
-    "title:T0006",
-    "title:T0014",
-    "title:T0008",
-    "title:T0012",
-    "title:T0010",
-    "title:T0084",
-    "title:T0065",
-    "title:T0156",
-    "title:T0517",
-    "title:T0198",
-    "title:T0466",
-    "title:T0068",
-    "title:T0139",
-    "title:T0148",
-    "title:T0045",
-    "title:T0016",
-    "title:T0030",
-    "title:T0273",
-    "title:T0520",
-    "title:T0022",
-    "title:T0038",
-    "title:T0518",
-    "title:T0226",
-    "title:T0041",
-    "title:T0352"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.55,
     "reason": "profile row present; 49 events of history; dialect sources disagree; trigger is fresh"
@@ -751,9 +753,7 @@
      "observed_at": "2026-10-01T12:47:13.574Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d1, profile=d4, deeplink=None -> used d1 (app_setting)"
    ],
@@ -765,37 +765,27 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "changed": "hero -> T0004",
-    "reason": "Hapibha is the most popular allowed title in the viewer's top genre, Drama"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T12:47:14.778Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T12:47:13.578Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -812,7 +802,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00904",
+    "instance_id": "G-00902",
     "started_at": "2026-10-01T12:47:06.776Z",
     "deadline": "2026-10-08T12:47:06.776Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -825,9 +815,11 @@
    "no_action_reason": "duplicate delivery of trigger f238e564-416f-4650-a502-9409be98d5f8; already decided in D-01605",
    "duplicate_of": "D-01605",
    "dialect": {
-    "used": "d4",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d4"
+    ]
    },
    "content": [],
    "confidence": {
@@ -838,7 +830,7 @@
     {
      "ref": "decision:D-01605",
      "source": "store",
-     "observed_at": "2026-10-01T12:47:07.981Z"
+     "observed_at": "2026-10-01T12:47:07.990Z"
     }
    ],
    "assumptions": [],
@@ -883,7 +875,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-00904",
+    "instance_id": "G-00902",
     "started_at": "2026-10-01T12:47:06.776Z",
     "deadline": "2026-10-08T12:47:06.776Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -1129,7 +1121,7 @@
     }
    },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d4, deeplink=None -> used d1 (app_setting)"
@@ -1165,41 +1157,24 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T14:49:29.449Z",
+   "decided_in_ms": 1216,
+   "published_at": "2026-10-01T14:49:29.460Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00654",
+   "action_id": "A-00662",
    "decision_id": "D-01605",
    "user_id": "U-02707",
    "trigger_event_id": "f238e564-416f-4650-a502-9409be98d5f8",
-   "published_at": "2026-10-01T12:47:07.981Z",
-   "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0915",
-   "dialect": "d4",
-   "text": {
-    "title": "New in D4: Gineni",
-    "body": "Gineni came out 23 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T0915"
-  },
-  {
-   "action_id": "A-00655",
-   "decision_id": "D-01606",
-   "user_id": "U-02707",
-   "trigger_event_id": "23e7dbfd-4119-452e-9922-5b4dc95f3378",
-   "published_at": "2026-10-01T12:47:14.778Z",
+   "published_at": "2026-10-01T12:47:07.990Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1267,11 +1242,11 @@
    ]
   },
   {
-   "action_id": "A-00830",
+   "action_id": "A-00848",
    "decision_id": "D-01980",
    "user_id": "U-02707",
    "trigger_event_id": "8b12b1d8-1447-48c4-ad37-ffc831a9607e",
-   "published_at": "2026-10-01T14:49:29.449Z",
+   "published_at": "2026-10-01T14:49:29.460Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1343,7 +1318,7 @@
   {
    "user_id": "U-02707",
    "arm": "agent",
-   "goal_instance_id": "G-00904",
+   "goal_instance_id": "G-00902",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T12:47:06.776Z",
@@ -1360,9 +1335,8 @@
     "home_page_shown": 1
    },
    "actions": [
-    "A-00654",
-    "A-00655",
-    "A-00830"
+    "A-00662",
+    "A-00848"
    ]
   }
  ]

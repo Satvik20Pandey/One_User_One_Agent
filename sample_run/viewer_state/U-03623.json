@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-03623",
   "active_goal": {
-   "instance_id": "G-01174",
+   "instance_id": "G-01172",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T15:04:38.059Z",
@@ -48,7 +48,9 @@
     "value": {
      "used": "d3",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d3"
     },
@@ -203,14 +205,16 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+  ],
   "last_session_id": "9eecbaef-2650-46c2-b12a-b8ee1c2b79ab",
   "decisions": [
    "D-02090",
    "D-02485"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:32:19.276Z",
+  "updated_at": "2026-10-01T16:32:19.277Z",
   "version": 3
  },
  "decisions": [
@@ -231,7 +235,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01174",
+    "instance_id": "G-01172",
     "started_at": "2026-10-01T15:04:38.059Z",
     "deadline": "2026-10-08T15:04:38.059Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -242,16 +246,18 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "viewer is in the randomized holdout arm",
+   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
    "dialect": {
     "used": "d3",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 79 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 79 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -329,7 +335,9 @@
      "value": {
       "used": "d3",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d3"
      },
@@ -430,9 +438,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -459,8 +470,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:04:38.061Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T15:04:38.064Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": true
   },
@@ -481,7 +492,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01174",
+    "instance_id": "G-01172",
     "started_at": "2026-10-01T15:04:38.059Z",
     "deadline": "2026-10-08T15:04:38.059Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -492,16 +503,18 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "viewer is in the randomized holdout arm",
+   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
    "dialect": {
     "used": "d3",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 80 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 80 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -579,7 +592,9 @@
      "value": {
       "used": "d3",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d3"
      },
@@ -680,9 +695,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -709,8 +727,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T16:32:19.276Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T16:32:19.277Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -720,7 +738,7 @@
   {
    "user_id": "U-03623",
    "arm": "holdout",
-   "goal_instance_id": "G-01174",
+   "goal_instance_id": "G-01172",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T15:04:38.059Z",

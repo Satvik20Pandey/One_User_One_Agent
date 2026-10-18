@@ -244,7 +244,7 @@
    "D-01258"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T10:02:03.716Z",
+  "updated_at": "2026-10-01T10:02:03.721Z",
   "version": 4
  },
  "decisions": [
@@ -517,8 +517,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-09-30T22:28:21.504Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-09-30T22:28:21.510Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -550,16 +550,18 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
-    "used": "d6",
-    "source": "profile",
-    "conflicts": []
+    "used": "d4",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d6"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 80 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 80 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -567,6 +569,12 @@
      "source": "event",
      "observed_at": "2026-10-01T10:02:02.773Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:31ae9f1d-1d6a-4fa9-9627-f32b7b79931d",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-26T14:51:33.486Z",
+     "age_s": 414629
     },
     {
      "ref": "profile:U-04114@2026-09-29T03:52:38.277Z",
@@ -641,13 +649,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d6",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d6"
+      "used": "d4",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d6"
+      ],
+      "page_dialect": "d4",
+      "message_dialect": "d4"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T10:02:02.773Z"
     },
     "app_language": {
@@ -756,10 +766,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d4 seen at 2026-09-26T14:51:33.486Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d6, deeplink=None -> used d4 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G06",
     "reason": "lapsed recently",
@@ -787,8 +799,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T10:02:02.775Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T10:02:02.780Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1071,8 +1083,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T10:02:03.716Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T10:02:03.721Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

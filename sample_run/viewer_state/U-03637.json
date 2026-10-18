@@ -23,14 +23,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 2,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T00:59:03.573Z judged: G08 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T00:59:03.573Z judged: G08 failed (exposed_no_success; page shown 2x, message delivered 2x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -226,11 +226,12 @@
    "D-02169"
   ],
   "actions": [
-   "A-00052",
    "A-00053",
-   "A-00917"
+   "A-00054",
+   "A-00938",
+   "A-00939"
   ],
-  "updated_at": "2026-10-01T15:09:01.260Z",
+  "updated_at": "2026-10-01T15:09:01.272Z",
   "version": 3
  },
  "decisions": [
@@ -564,8 +565,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T00:59:04.778Z",
+   "decided_in_ms": 1220,
+   "published_at": "2026-10-01T00:59:04.793Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -597,7 +598,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -845,9 +847,7 @@
      "observed_at": "2026-10-01T15:09:01.256Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -871,30 +871,35 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:09:01.260Z",
+   "decided_in_ms": 16,
+   "published_at": "2026-10-01T15:09:01.272Z",
    "status": "PUBLISHED",
    "during_surge": true
   }
  ],
  "actions": [
   {
-   "action_id": "A-00052",
+   "action_id": "A-00053",
    "decision_id": "D-00094",
    "user_id": "U-03637",
    "trigger_event_id": "6e76a5ca-2cd8-403f-af7a-d73c4755a0a2",
-   "published_at": "2026-10-01T00:59:04.778Z",
+   "published_at": "2026-10-01T00:59:04.793Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d6",
@@ -963,28 +968,28 @@
    ]
   },
   {
-   "action_id": "A-00053",
+   "action_id": "A-00054",
    "decision_id": "D-00094",
    "user_id": "U-03637",
    "trigger_event_id": "6e76a5ca-2cd8-403f-af7a-d73c4755a0a2",
-   "published_at": "2026-10-01T00:59:04.778Z",
+   "published_at": "2026-10-01T00:59:04.793Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T1393",
    "dialect": "d6",
    "text": {
     "title": "New in D6: Bhari Vagi",
-    "body": "Bhari Vagi came out 18 days ago. Start watching now."
+    "body": "Bhari Vagi came out 17 days ago. Start watching now."
    },
    "deeplink": "ott://title/T1393"
   },
   {
-   "action_id": "A-00917",
+   "action_id": "A-00938",
    "decision_id": "D-02169",
    "user_id": "U-03637",
    "trigger_event_id": "7cae5afc-deec-4aed-9a6d-5b6d7600e8f3",
-   "published_at": "2026-10-01T15:09:01.260Z",
+   "published_at": "2026-10-01T15:09:01.272Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d6",
@@ -1050,6 +1055,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00939",
+   "decision_id": "D-02169",
+   "user_id": "U-03637",
+   "trigger_event_id": "7cae5afc-deec-4aed-9a6d-5b6d7600e8f3",
+   "published_at": "2026-10-01T15:09:01.272Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T1393",
+   "dialect": "d6",
+   "text": {
+    "title": "New in D6: Bhari Vagi",
+    "body": "Bhari Vagi came out 18 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T1393"
   }
  ],
  "outcomes": [
@@ -1071,12 +1093,13 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 2,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00052",
     "A-00053",
-    "A-00917"
+    "A-00054",
+    "A-00938",
+    "A-00939"
    ]
   }
  ]

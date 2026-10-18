@@ -196,11 +196,27 @@ def _dialect(fx: ViewerFacts, profile: dict, profile_ref: str | None) -> None:
     link = parse_deeplink((t.get("properties") or {}).get("deeplink"))
     link_dialect = link["dialect"] if link else None
 
+    # When this open carries no dialect (some login events don't), the app's setting seen on the viewer's latest
+    # earlier event is still the best evidence of what the app shows; the profile is a day-old preference.
+    last_seen = None
+    if not app:
+        opened_at = event_time(t)
+        for e in reversed(fx.events):
+            setting = e.get("app_dialect")
+            if e["event_id"] != t["event_id"] and setting and setting != "NA" and e["_at"] <= opened_at:
+                last_seen = e
+                break
+
     if app:
         used, source, ref = app, "app_setting", f"trigger:{t['event_id']}"
+    elif last_seen:
+        used, source, ref = last_seen["app_dialect"], "app_setting_latest", f"event:{last_seen['event_id']}"
+        fx.assumptions.append(f"this open carried no app dialect; used the app setting {used} seen at "
+                              f"{iso(last_seen['_at'])}")
     elif prof:
         used, source, ref = prof, "profile", profile_ref
-        fx.assumptions.append("app dialect missing on the trigger; profile preference used for messages only")
+        fx.assumptions.append("app dialect missing on the trigger and on every earlier event; profile preference "
+                              "used for messages only")
     else:
         used, source, ref = None, "none", None
 
@@ -208,13 +224,16 @@ def _dialect(fx: ViewerFacts, profile: dict, profile_ref: str | None) -> None:
     for name, value in (("profile", prof), ("deeplink", link_dialect), ("app_setting", app)):
         if value and used and value != used:
             conflicts.append(f"{name}:{value}")
+    if source == "profile":
+        conflicts.append("app_setting:unknown")  # no app evidence at all is itself a reason for caution
     if conflicts:
         fx.conflicts.append(f"dialect: app_setting={app}, profile={prof}, deeplink={link_dialect} -> used {used} ({source})")
 
     note = ""
     if app and app not in CATALOGUE_DIALECTS:
         note = f"app dialect {app} has no catalogue content"
-    page_dialect = app if app in CATALOGUE_DIALECTS else None
+    page_dialect = (app or (last_seen or {}).get("app_dialect"))
+    page_dialect = page_dialect if page_dialect in CATALOGUE_DIALECTS else None
     message_dialect = page_dialect or (prof if prof in CATALOGUE_DIALECTS else None)
 
     fx.add(Fact("dialect", {"used": used, "source": source, "conflicts": conflicts, "page_dialect": page_dialect,

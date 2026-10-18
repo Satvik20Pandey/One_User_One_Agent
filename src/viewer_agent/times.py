@@ -27,7 +27,10 @@ def in_quiet_hours(dt: datetime, start_hour: int = 22, end_hour: int = 8) -> boo
 
 
 def next_send_slot(after: datetime, hour_ist: int) -> datetime:
-    """The next day at `hour_ist` IST. Messages are never sent in the same session the viewer is already in."""
+    """The next `hour_ist` IST that is at least an hour away, so a message never lands in the session the viewer
+    is already in: a morning open is followed up the same evening, an evening open the next day."""
     local = after.astimezone(IST)
-    slot = (local + timedelta(days=1)).replace(hour=hour_ist, minute=0, second=0, microsecond=0)
+    slot = local.replace(hour=hour_ist, minute=0, second=0, microsecond=0)
+    if slot < local + timedelta(hours=1):
+        slot += timedelta(days=1)
     return slot.astimezone(UTC)

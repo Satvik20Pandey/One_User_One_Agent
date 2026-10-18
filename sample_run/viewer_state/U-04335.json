@@ -23,14 +23,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 2,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T06:15:19.683Z judged: G08 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T06:15:19.683Z judged: G08 failed (exposed_no_success; page shown 2x, message delivered 2x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -211,11 +211,12 @@
    "D-01622"
   ],
   "actions": [
-   "A-00258",
-   "A-00259",
-   "A-00661"
+   "A-00260",
+   "A-00261",
+   "A-00669",
+   "A-00670"
   ],
-  "updated_at": "2026-10-01T12:53:27.520Z",
+  "updated_at": "2026-10-01T12:53:27.526Z",
   "version": 3
  },
  "decisions": [
@@ -519,8 +520,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T06:15:20.888Z",
+   "decided_in_ms": 1216,
+   "published_at": "2026-10-01T06:15:20.899Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -552,7 +553,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -780,9 +782,7 @@
      "observed_at": "2026-10-01T12:53:26.315Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -809,30 +809,35 @@
      "availability",
      "page_rules",
      "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T12:53:27.520Z",
+   "decided_in_ms": 1211,
+   "published_at": "2026-10-01T12:53:27.526Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00258",
+   "action_id": "A-00260",
    "decision_id": "D-00771",
    "user_id": "U-04335",
    "trigger_event_id": "b37e777f-52f8-4e25-a4a1-506505e81ff6",
-   "published_at": "2026-10-01T06:15:20.888Z",
+   "published_at": "2026-10-01T06:15:20.899Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -900,28 +905,28 @@
    ]
   },
   {
-   "action_id": "A-00259",
+   "action_id": "A-00261",
    "decision_id": "D-00771",
    "user_id": "U-04335",
    "trigger_event_id": "b37e777f-52f8-4e25-a4a1-506505e81ff6",
-   "published_at": "2026-10-01T06:15:20.888Z",
+   "published_at": "2026-10-01T06:15:20.899Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0545",
    "dialect": "d2",
    "text": {
     "title": "New in D2: Piya Moha",
-    "body": "Piya Moha came out 28 days ago. Start watching now."
+    "body": "Piya Moha came out 27 days ago. Start watching now."
    },
    "deeplink": "ott://title/T0545"
   },
   {
-   "action_id": "A-00661",
+   "action_id": "A-00669",
    "decision_id": "D-01622",
    "user_id": "U-04335",
    "trigger_event_id": "c1394cf7-8d6b-4369-a703-ce626b52db8a",
-   "published_at": "2026-10-01T12:53:27.520Z",
+   "published_at": "2026-10-01T12:53:27.526Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -987,6 +992,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00670",
+   "decision_id": "D-01622",
+   "user_id": "U-04335",
+   "trigger_event_id": "c1394cf7-8d6b-4369-a703-ce626b52db8a",
+   "published_at": "2026-10-01T12:53:27.526Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0545",
+   "dialect": "d2",
+   "text": {
+    "title": "New in D2: Piya Moha",
+    "body": "Piya Moha came out 28 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T0545"
   }
  ],
  "outcomes": [
@@ -1008,12 +1030,13 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 2,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00258",
-    "A-00259",
-    "A-00661"
+    "A-00260",
+    "A-00261",
+    "A-00669",
+    "A-00670"
    ]
   }
  ]

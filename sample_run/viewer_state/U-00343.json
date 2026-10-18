@@ -26,14 +26,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 2,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T03:56:47.443Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T03:56:47.443Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 2x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -230,11 +230,12 @@
    "D-02074"
   ],
   "actions": [
-   "A-00133",
    "A-00134",
-   "A-00879"
+   "A-00135",
+   "A-00898",
+   "A-00899"
   ],
-  "updated_at": "2026-10-01T15:03:17.845Z",
+  "updated_at": "2026-10-01T15:03:17.850Z",
   "version": 3
  },
  "decisions": [
@@ -516,8 +517,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T03:56:47.446Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T03:56:47.451Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -549,7 +550,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "WHATSAPP"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -763,9 +765,7 @@
      "observed_at": "2026-10-01T15:03:17.841Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [
     "subscription_status: profile=never (2026-09-29T06:48:17.874Z), purchase_completed at 2026-10-01T03:58:44.267Z -> used active"
    ],
@@ -791,30 +791,36 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "template",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:03:17.845Z",
+   "decided_in_ms": 9,
+   "published_at": "2026-10-01T15:03:17.850Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00133",
+   "action_id": "A-00134",
    "decision_id": "D-00285",
    "user_id": "U-00343",
    "trigger_event_id": "a9c9152f-bd2f-4c97-93e0-388b4aebd4fd",
-   "published_at": "2026-10-01T03:56:47.446Z",
+   "published_at": "2026-10-01T03:56:47.451Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d3",
@@ -845,11 +851,63 @@
    ]
   },
   {
-   "action_id": "A-00134",
+   "action_id": "A-00135",
    "decision_id": "D-00285",
    "user_id": "U-00343",
    "trigger_event_id": "a9c9152f-bd2f-4c97-93e0-388b4aebd4fd",
-   "published_at": "2026-10-01T03:56:47.446Z",
+   "published_at": "2026-10-01T03:56:47.451Z",
+   "goal_id": "G07",
+   "type": "whatsapp",
+   "send_at": "2026-10-01T13:30:00.000Z",
+   "title_id": "T0910",
+   "dialect": "d3",
+   "template_id": "wa_recommend_title_v1",
+   "variables": {
+    "title_name": "Digi Mone",
+    "dialect_name": "D3"
+   }
+  },
+  {
+   "action_id": "A-00898",
+   "decision_id": "D-02074",
+   "user_id": "U-00343",
+   "trigger_event_id": "43813b63-139a-4137-9e71-7b9b13ef5d18",
+   "published_at": "2026-10-01T15:03:17.850Z",
+   "goal_id": "G07",
+   "type": "home_page",
+   "dialect": "d3",
+   "hero_title_id": "T0910",
+   "rows": [
+    {
+     "row_type": "next_episode",
+     "title_ids": [
+      "T0901",
+      "T0903",
+      "T0907",
+      "T0908",
+      "T0914",
+      "T0904",
+      "T0913",
+      "T0909",
+      "T0905"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0906",
+      "T0902",
+      "T0911"
+     ]
+    }
+   ]
+  },
+  {
+   "action_id": "A-00899",
+   "decision_id": "D-02074",
+   "user_id": "U-00343",
+   "trigger_event_id": "43813b63-139a-4137-9e71-7b9b13ef5d18",
+   "published_at": "2026-10-01T15:03:17.850Z",
    "goal_id": "G07",
    "type": "whatsapp",
    "send_at": "2026-10-02T13:30:00.000Z",
@@ -860,41 +918,6 @@
     "title_name": "Digi Mone",
     "dialect_name": "D3"
    }
-  },
-  {
-   "action_id": "A-00879",
-   "decision_id": "D-02074",
-   "user_id": "U-00343",
-   "trigger_event_id": "43813b63-139a-4137-9e71-7b9b13ef5d18",
-   "published_at": "2026-10-01T15:03:17.845Z",
-   "goal_id": "G07",
-   "type": "home_page",
-   "dialect": "d3",
-   "hero_title_id": "T0910",
-   "rows": [
-    {
-     "row_type": "next_episode",
-     "title_ids": [
-      "T0901",
-      "T0903",
-      "T0907",
-      "T0908",
-      "T0914",
-      "T0904",
-      "T0913",
-      "T0909",
-      "T0905"
-     ]
-    },
-    {
-     "row_type": "popular_in_dialect",
-     "title_ids": [
-      "T0906",
-      "T0902",
-      "T0911"
-     ]
-    }
-   ]
   }
  ],
  "outcomes": [
@@ -916,12 +939,13 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 2,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00133",
     "A-00134",
-    "A-00879"
+    "A-00135",
+    "A-00898",
+    "A-00899"
    ]
   }
  ]

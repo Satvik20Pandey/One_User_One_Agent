@@ -18,7 +18,7 @@ file records what they did, how I checked their output, and what I rejected.
   the decision JSON printed for six representative triggers, the full replay, then the pack simulator.
 - The simulator is the referee the brief gives us: the final run reports zero policy problems (no holdout,
   consent, quiet-hour or frequency-cap violations) and every published page accepted.
-- 86 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
+- 90 tests on a hand-made mini pack cover duplicate and late triggers, conflicting sources, model and store
   failures, the corrected goal rule, the verifier's vetoes, injected catalogue text, the judge, the CLI and the
   demo app (driven headlessly with Streamlit's test runner, including live agent runs with failures switched on).
 - Reports are generated from program output. The few figures quoted in the design notes come from earlier runs
@@ -100,6 +100,14 @@ fixed: a misleading "no catalogue content" reason when the app sent no dialect, 
 titles released after the goal started, `StaleState` raised but not handled (a stale write is now retried on fresh
 state), availability checked when the open arrived rather than when the page goes live, and stale report text. The
 lesson I took: after every AI-proposed change, re-run the end-to-end checks of earlier fixes, not only the new tests.
+
+A fourth review found the most important remaining bug: when an open arrived without a dialect (common on login
+events), the agent fell back to the profile's dialect even though the viewer's own app had shown a different one
+minutes earlier, so a handful of messages went out in the wrong dialect. It now uses the app setting from the
+viewer's latest event, keeps the disagreement visible (which also holds the message back), and the verifier checks
+every message against the app's latest setting with its own code. The same review showed "return after absence"
+goals being closed by the very return they were waiting for; goals are no longer abandoned because their own
+progress changed their entry facts, and the verifier agrees with an open active goal from its own read of the store.
 
 ## Where AI output was wrong and I only noticed by running it
 

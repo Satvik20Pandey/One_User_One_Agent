@@ -48,7 +48,9 @@
     "value": {
      "used": "d5",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d5"
     },
@@ -227,13 +229,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d5, deeplink=None -> used d5 (profile)"
+  ],
   "last_session_id": "24c59839-979c-495d-9bf3-cb4e5c9ab5ef",
   "decisions": [
    "D-01272"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T10:09:22.973Z",
+  "updated_at": "2026-10-01T10:09:22.979Z",
   "version": 2
  },
  "decisions": [
@@ -265,16 +269,18 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "viewer is in the randomized holdout arm",
+   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
    "dialect": {
     "used": "d5",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 135 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 135 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -370,7 +376,9 @@
      "value": {
       "used": "d5",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d5"
      },
@@ -493,9 +501,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d5, deeplink=None -> used d5 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -522,8 +533,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T10:09:22.973Z",
+   "decided_in_ms": 9,
+   "published_at": "2026-10-01T10:09:22.979Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

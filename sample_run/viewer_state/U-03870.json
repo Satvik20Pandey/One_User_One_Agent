@@ -50,15 +50,15 @@
    "dialect": {
     "value": {
      "used": "d5",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d5",
      "message_dialect": "d5"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T09:42:34.018Z",
     "evidence": [
-     "profile:U-03870@2026-09-29T10:16:28.951Z"
+     "event:c2a796e7-94e0-4075-8d26-9773e27f97f7"
     ],
     "note": ""
    },
@@ -226,10 +226,11 @@
    "D-01225"
   ],
   "actions": [
-   "A-00355",
-   "A-00356"
+   "A-00359",
+   "A-00360",
+   "A-00496"
   ],
-  "updated_at": "2026-10-01T09:42:34.020Z",
+  "updated_at": "2026-10-01T09:42:35.230Z",
   "version": 3
  },
  "decisions": [
@@ -553,8 +554,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T07:27:42.422Z",
+   "decided_in_ms": 1213,
+   "published_at": "2026-10-01T07:27:42.431Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -584,15 +585,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d5",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T1177",
+    "title:T1185",
+    "title:T1181",
+    "title:T1189",
+    "title:T1183",
+    "title:T1192",
+    "title:T1213",
+    "title:T1219",
+    "title:T1250",
+    "title:T1264",
+    "title:T1381",
+    "title:T1179",
+    "title:T1178",
+    "title:T1180",
+    "title:T1191",
+    "title:T1199",
+    "title:T1182",
+    "title:T1187",
+    "title:T1186",
+    "title:T1188",
+    "title:T1226",
+    "title:T1184",
+    "title:T1243",
+    "title:T1196",
+    "title:T1386",
+    "title:T1295",
+    "title:T1195",
+    "title:T1221",
+    "title:T1194",
+    "title:T1202",
+    "title:T1285",
+    "title:T1198",
+    "title:T1326",
+    "title:T1258",
+    "title:T1299",
+    "title:T1242",
+    "title:T1270",
+    "title:T1350",
+    "title:T1279",
+    "title:T1214",
+    "title:T1293"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 55 events of history; dialect sources agree; trigger is fresh"
@@ -603,6 +648,12 @@
      "source": "event",
      "observed_at": "2026-10-01T09:42:34.018Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:c2a796e7-94e0-4075-8d26-9773e27f97f7",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-22T13:39:47.427Z",
+     "age_s": 763366
     },
     {
      "ref": "profile:U-03870@2026-09-29T10:16:28.951Z",
@@ -678,12 +729,12 @@
     "dialect": {
      "value": {
       "used": "d5",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d5",
       "message_dialect": "d5"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T09:42:34.018Z"
     },
     "app_language": {
@@ -792,8 +843,8 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
-    "a message is already scheduled for 2026-10-02; page only"
+    "this open carried no app dialect; used the app setting d5 seen at 2026-09-22T13:39:47.427Z",
+    "a message is already scheduled for 2026-10-01; page only"
    ],
    "conflicts": [],
    "eligibility": {
@@ -805,36 +856,45 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "active subscriber"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 7,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 10,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T09:42:34.020Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1212,
+   "published_at": "2026-10-01T09:42:35.230Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00355",
+   "action_id": "A-00359",
    "decision_id": "D-00919",
    "user_id": "U-03870",
    "trigger_event_id": "fd8d9231-1dcc-4325-b106-c52554b4457a",
-   "published_at": "2026-10-01T07:27:42.422Z",
+   "published_at": "2026-10-01T07:27:42.431Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d5",
@@ -903,21 +963,94 @@
    ]
   },
   {
-   "action_id": "A-00356",
+   "action_id": "A-00360",
    "decision_id": "D-00919",
    "user_id": "U-03870",
    "trigger_event_id": "fd8d9231-1dcc-4325-b106-c52554b4457a",
-   "published_at": "2026-10-01T07:27:42.422Z",
+   "published_at": "2026-10-01T07:27:42.431Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T1185",
    "dialect": "d5",
    "text": {
     "title": "New in D5: Yaka Naka",
-    "body": "Yaka Naka came out 25 days ago. Start watching now."
+    "body": "Yaka Naka came out 24 days ago. Start watching now."
    },
    "deeplink": "ott://title/T1185"
+  },
+  {
+   "action_id": "A-00496",
+   "decision_id": "D-01225",
+   "user_id": "U-03870",
+   "trigger_event_id": "83b44008-12aa-4475-87b9-132f059adc0c",
+   "published_at": "2026-10-01T09:42:35.230Z",
+   "goal_id": "G08",
+   "type": "home_page",
+   "dialect": "d5",
+   "hero_title_id": "T1177",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1185",
+      "T1181",
+      "T1189",
+      "T1183",
+      "T1192",
+      "T1213",
+      "T1219",
+      "T1250",
+      "T1264",
+      "T1381"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T1179",
+      "T1178",
+      "T1180",
+      "T1191",
+      "T1199",
+      "T1182",
+      "T1187",
+      "T1186",
+      "T1188",
+      "T1226"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T1184",
+      "T1243",
+      "T1196",
+      "T1386",
+      "T1295",
+      "T1195",
+      "T1221",
+      "T1194",
+      "T1202",
+      "T1285"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1198",
+      "T1326",
+      "T1258",
+      "T1299",
+      "T1242",
+      "T1270",
+      "T1350",
+      "T1279",
+      "T1214",
+      "T1293"
+     ]
+    }
+   ]
   }
  ],
  "outcomes": [
@@ -942,8 +1075,9 @@
     "message_delivered": 1
    },
    "actions": [
-    "A-00355",
-    "A-00356"
+    "A-00359",
+    "A-00360",
+    "A-00496"
    ]
   }
  ]

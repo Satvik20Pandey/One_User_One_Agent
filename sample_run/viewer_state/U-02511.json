@@ -18,19 +18,19 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-    "success_event_id": "oua-015933",
+    "success_event_id": "oua-015941",
     "success_at": "2026-10-01T18:32:22.944Z",
     "attribution": "exposed_before_success",
     "exposure": {
      "home_page_shown": 3,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-01T18:32:22.944Z judged: G08 succeeded (exposed_before_success; page shown 3x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
+   "2026-10-01T18:32:22.944Z judged: G08 succeeded (exposed_before_success; page shown 3x, message delivered 2x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -227,13 +227,14 @@
    "D-02761"
   ],
   "actions": [
-   "A-00156",
    "A-00157",
    "A-00158",
-   "A-00893",
-   "A-01136"
+   "A-00159",
+   "A-00913",
+   "A-00914",
+   "A-01175"
   ],
-  "updated_at": "2026-10-01T18:25:12.055Z",
+  "updated_at": "2026-10-01T18:25:12.060Z",
   "version": 5
  },
  "decisions": [
@@ -562,8 +563,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T04:34:21.872Z",
+   "decided_in_ms": 1217,
+   "published_at": "2026-10-01T04:34:21.882Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -863,7 +864,7 @@
     }
    },
    "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
+    "a message is already scheduled for 2026-10-01; page only"
    ],
    "conflicts": [
     "dialect: app_setting=d1, profile=d1, deeplink=d6 -> used d1 (app_setting)"
@@ -903,8 +904,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T04:34:22.406Z",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T04:34:22.416Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -936,7 +937,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -1190,9 +1192,7 @@
      "observed_at": "2026-10-01T15:05:51.551Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -1216,19 +1216,24 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:05:51.555Z",
+   "decided_in_ms": 15,
+   "published_at": "2026-10-01T15:05:51.566Z",
    "status": "PUBLISHED",
    "during_surge": true
   },
@@ -1272,7 +1277,7 @@
     {
      "ref": "decision:D-02113",
      "source": "store",
-     "observed_at": "2026-10-01T15:05:51.555Z"
+     "observed_at": "2026-10-01T15:05:51.566Z"
     }
    ],
    "assumptions": [],
@@ -1621,8 +1626,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T18:25:12.055Z",
+   "decided_in_ms": 1209,
+   "published_at": "2026-10-01T18:25:12.060Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1666,7 +1671,7 @@
     {
      "ref": "decision:D-02761",
      "source": "store",
-     "observed_at": "2026-10-01T18:25:12.055Z"
+     "observed_at": "2026-10-01T18:25:12.060Z"
     }
    ],
    "assumptions": [],
@@ -1697,101 +1702,11 @@
  ],
  "actions": [
   {
-   "action_id": "A-00156",
-   "decision_id": "D-00340",
-   "user_id": "U-02511",
-   "trigger_event_id": "863f913c-863f-4b39-a121-54615f6c6456",
-   "published_at": "2026-10-01T04:34:21.872Z",
-   "goal_id": "G08",
-   "type": "home_page",
-   "dialect": "d1",
-   "hero_title_id": "T0001",
-   "rows": [
-    {
-     "row_type": "new_releases",
-     "title_ids": [
-      "T0007",
-      "T1523",
-      "T1540",
-      "T1520",
-      "T0028",
-      "T0031",
-      "T0047",
-      "T0063",
-      "T0426",
-      "T1626"
-     ]
-    },
-    {
-     "row_type": "popular_in_dialect",
-     "title_ids": [
-      "T1501",
-      "T0005",
-      "T0004",
-      "T1504",
-      "T1502",
-      "T1503",
-      "T0015",
-      "T1505",
-      "T0013",
-      "T1507"
-     ]
-    },
-    {
-     "row_type": "because_you_watched",
-     "title_ids": [
-      "T0084",
-      "T0065",
-      "T0156",
-      "T1515",
-      "T0198",
-      "T0106",
-      "T1536",
-      "T0466",
-      "T0068",
-      "T0139"
-     ]
-    },
-    {
-     "row_type": "genre",
-     "title_ids": [
-      "T1512",
-      "T0016",
-      "T0030",
-      "T0273",
-      "T0520",
-      "T0022",
-      "T1513",
-      "T0226",
-      "T0352",
-      "T1675"
-     ]
-    }
-   ]
-  },
-  {
    "action_id": "A-00157",
    "decision_id": "D-00340",
    "user_id": "U-02511",
    "trigger_event_id": "863f913c-863f-4b39-a121-54615f6c6456",
-   "published_at": "2026-10-01T04:34:21.872Z",
-   "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0007",
-   "dialect": "d1",
-   "text": {
-    "title": "New in D1: Tiya Bhamaro",
-    "body": "Tiya Bhamaro came out 18 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T0007"
-  },
-  {
-   "action_id": "A-00158",
-   "decision_id": "D-00341",
-   "user_id": "U-02511",
-   "trigger_event_id": "902df3a4-e52d-4c0c-81c9-91539ddff900",
-   "published_at": "2026-10-01T04:34:22.406Z",
+   "published_at": "2026-10-01T04:34:21.882Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1860,11 +1775,101 @@
    ]
   },
   {
-   "action_id": "A-00893",
+   "action_id": "A-00158",
+   "decision_id": "D-00340",
+   "user_id": "U-02511",
+   "trigger_event_id": "863f913c-863f-4b39-a121-54615f6c6456",
+   "published_at": "2026-10-01T04:34:21.882Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-01T13:30:00.000Z",
+   "title_id": "T0007",
+   "dialect": "d1",
+   "text": {
+    "title": "New in D1: Tiya Bhamaro",
+    "body": "Tiya Bhamaro came out 17 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T0007"
+  },
+  {
+   "action_id": "A-00159",
+   "decision_id": "D-00341",
+   "user_id": "U-02511",
+   "trigger_event_id": "902df3a4-e52d-4c0c-81c9-91539ddff900",
+   "published_at": "2026-10-01T04:34:22.416Z",
+   "goal_id": "G08",
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T0001",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0007",
+      "T1523",
+      "T1540",
+      "T1520",
+      "T0028",
+      "T0031",
+      "T0047",
+      "T0063",
+      "T0426",
+      "T1626"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T1501",
+      "T0005",
+      "T0004",
+      "T1504",
+      "T1502",
+      "T1503",
+      "T0015",
+      "T1505",
+      "T0013",
+      "T1507"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0084",
+      "T0065",
+      "T0156",
+      "T1515",
+      "T0198",
+      "T0106",
+      "T1536",
+      "T0466",
+      "T0068",
+      "T0139"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T1512",
+      "T0016",
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T1513",
+      "T0226",
+      "T0352",
+      "T1675"
+     ]
+    }
+   ]
+  },
+  {
+   "action_id": "A-00913",
    "decision_id": "D-02113",
    "user_id": "U-02511",
    "trigger_event_id": "86582f3b-2b3f-4a96-a097-543766e3d245",
-   "published_at": "2026-10-01T15:05:51.555Z",
+   "published_at": "2026-10-01T15:05:51.566Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1933,11 +1938,28 @@
    ]
   },
   {
-   "action_id": "A-01136",
+   "action_id": "A-00914",
+   "decision_id": "D-02113",
+   "user_id": "U-02511",
+   "trigger_event_id": "86582f3b-2b3f-4a96-a097-543766e3d245",
+   "published_at": "2026-10-01T15:05:51.566Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0007",
+   "dialect": "d1",
+   "text": {
+    "title": "New in D1: Tiya Bhamaro",
+    "body": "Tiya Bhamaro came out 18 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T0007"
+  },
+  {
+   "action_id": "A-01175",
    "decision_id": "D-02761",
    "user_id": "U-02511",
    "trigger_event_id": "be5040c8-2d02-4cb2-aac9-2f874c3a373c",
-   "published_at": "2026-10-01T18:25:12.055Z",
+   "published_at": "2026-10-01T18:25:12.060Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -2019,19 +2041,20 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-   "success_event_id": "oua-015933",
+   "success_event_id": "oua-015941",
    "success_at": "2026-10-01T18:32:22.944Z",
    "attribution": "exposed_before_success",
    "exposure": {
     "home_page_shown": 3,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00156",
     "A-00157",
     "A-00158",
-    "A-00893",
-    "A-01136"
+    "A-00159",
+    "A-00913",
+    "A-00914",
+    "A-01175"
    ]
   }
  ]

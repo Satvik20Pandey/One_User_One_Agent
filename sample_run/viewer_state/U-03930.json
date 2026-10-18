@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-03930",
   "active_goal": {
-   "instance_id": "G-01476",
+   "instance_id": "G-01470",
    "goal_id": "G02",
    "name": "first_full_episode_3d",
    "started_at": "2026-10-01T17:44:09.020Z",
@@ -20,14 +20,14 @@
     "reason": "no episode_completed matching 'any episode' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "no_action_taken",
+    "attribution": "published_but_never_seen",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T17:44:09.020Z judged: G02 failed (no_action_taken; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
+   "2026-10-04T17:44:09.020Z judged: G02 failed (published_but_never_seen; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -47,15 +47,15 @@
    "dialect": {
     "value": {
      "used": "d1",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d1",
      "message_dialect": "d1"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T17:44:09.020Z",
     "evidence": [
-     "profile:U-03930@2026-09-29T17:37:49.837Z"
+     "event:70e52869-0d30-45b7-85b6-d991822d2bac"
     ],
     "note": ""
    },
@@ -200,8 +200,10 @@
   "decisions": [
    "D-02697"
   ],
-  "actions": [],
-  "updated_at": "2026-10-01T17:44:09.021Z",
+  "actions": [
+   "A-01151"
+  ],
+  "updated_at": "2026-10-01T17:44:10.226Z",
   "version": 2
  },
  "decisions": [
@@ -222,7 +224,7 @@
    "goal": {
     "id": "G02",
     "name": "first_full_episode_3d",
-    "instance_id": "G-01476",
+    "instance_id": "G-01470",
     "started_at": "2026-10-01T17:44:09.020Z",
     "deadline": "2026-10-04T17:44:09.020Z",
     "success_signal": "episode_completed (any episode) within 72h",
@@ -231,15 +233,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G02 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T0004",
+    "title:T0005",
+    "title:T0003",
+    "title:T0009",
+    "title:T0015",
+    "title:T0013",
+    "title:T0006",
+    "title:T0007",
+    "title:T0014",
+    "title:T0008",
+    "title:T0012",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
+    "title:T0195",
+    "title:T0010",
+    "title:T0084",
+    "title:T0065",
+    "title:T0156",
+    "title:T0517",
+    "title:T0198",
+    "title:T0466",
+    "title:T0068",
+    "title:T0139",
+    "title:T0148",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041",
+    "title:T0352"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 11 events of history; dialect sources agree; trigger is fresh"
@@ -250,6 +296,12 @@
      "source": "event",
      "observed_at": "2026-10-01T17:44:09.020Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:70e52869-0d30-45b7-85b6-d991822d2bac",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-30T06:54:07.752Z",
+     "age_s": 125401
     },
     {
      "ref": "profile:U-03930@2026-09-29T17:37:49.837Z",
@@ -295,12 +347,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T17:44:09.020Z"
     },
     "app_language": {
@@ -392,7 +444,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-30T06:54:07.752Z",
     "events can arrive late; 'no completion' means none received yet"
    ],
    "conflicts": [],
@@ -405,35 +457,119 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0004",
+    "reason": "Hapibha is the most popular allowed title in the viewer's top genre, Drama"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T17:44:09.021Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T17:44:10.226Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
- "actions": [],
+ "actions": [
+  {
+   "action_id": "A-01151",
+   "decision_id": "D-02697",
+   "user_id": "U-03930",
+   "trigger_event_id": "391269fc-7946-429d-b01b-83a57a7019fb",
+   "published_at": "2026-10-01T17:44:10.226Z",
+   "goal_id": "G02",
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T0004",
+   "rows": [
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0005",
+      "T0003",
+      "T0009",
+      "T0015",
+      "T0013",
+      "T0006",
+      "T0007",
+      "T0014",
+      "T0008",
+      "T0012"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435",
+      "T0195"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0010",
+      "T0084",
+      "T0065",
+      "T0156",
+      "T0517",
+      "T0198",
+      "T0466",
+      "T0068",
+      "T0139",
+      "T0148"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0016",
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0022",
+      "T0038",
+      "T0518",
+      "T0226",
+      "T0041",
+      "T0352"
+     ]
+    }
+   ]
+  }
+ ],
  "outcomes": [
   {
    "user_id": "U-03930",
    "arm": "agent",
-   "goal_instance_id": "G-01476",
+   "goal_instance_id": "G-01470",
    "goal_id": "G02",
    "goal_name": "first_full_episode_3d",
    "started_at": "2026-10-01T17:44:09.020Z",
@@ -445,9 +581,11 @@
    "reason": "no episode_completed matching 'any episode' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "no_action_taken",
+   "attribution": "published_but_never_seen",
    "exposure": {},
-   "actions": []
+   "actions": [
+    "A-01151"
+   ]
   }
  ]
 }

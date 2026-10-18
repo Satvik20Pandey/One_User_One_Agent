@@ -67,7 +67,10 @@ def verify(proposal: Proposal, facts: ViewerFacts, arm: str | None, rules: RuleB
         measurable, why = rules.measurable(proposal.goal.goal_id)
         needed = STATUS_GOALS.get(proposal.goal.goal_id)
         status = raw_subscription_status(facts.user_id, events, pack) if needed else None
-        if not again.eligible:
+        # A goal already committed for this viewer keeps applying while its window is open, unless it depends on
+        # the subscription (a purchase or lapse can make it moot). Read from the store, not from the planner.
+        open_goal = not needed and _is_open_active_goal(store, facts.user_id, proposal.goal.goal_id, now)
+        if not again.eligible and not open_goal:
             r.fail("eligibility", f"{proposal.goal.goal_id}: {again.reason}", "all")
         elif needed and status != needed:
             r.fail("eligibility", f"{proposal.goal.goal_id} needs status {needed}; an independent read of the "
@@ -154,6 +157,23 @@ def raw_subscription_status(user_id: str, events: list[dict], pack: Pack) -> str
     return status
 
 
+def _is_open_active_goal(store: Store, user_id: str, goal_id: str, now: datetime) -> bool:
+    state = store.load_state(user_id) or {}
+    goal = state.get("active_goal") or {}
+    return goal.get("goal_id") == goal_id and parse_ts(goal["deadline"]) > now
+
+
+def raw_app_dialect(trigger: dict, events: list[dict]) -> str | None:
+    """The dialect the viewer's app is set to: this open's setting, else the latest earlier event that carries one."""
+    valid = lambda d: d if d and d != "NA" else None  # noqa: E731
+    if valid(trigger.get("app_dialect")):
+        return trigger["app_dialect"]
+    opened_at = event_time(trigger)
+    earlier = [e for e in events if valid(e.get("app_dialect")) and e["event_id"] != trigger["event_id"]
+               and event_time(e) <= opened_at]
+    return max(earlier, key=event_time)["app_dialect"] if earlier else None
+
+
 def raw_trial_end(user_id: str, events: list[dict], pack: Pack):
     """End of the viewer's current trial, from the latest trial purchase or else the profile row."""
     profile = pack.profiles.get(user_id)
@@ -211,6 +231,9 @@ def _check_message(r: CheckResult, msg, facts: ViewerFacts, events: list[dict], 
         else:
             r.ok("frequency_cap")
 
+    app_now = raw_app_dialect(facts.trigger, events or [])
+    if app_now and msg.dialect != app_now:
+        r.fail("message_dialect", f"message in {msg.dialect} but the viewer's app was last seen set to {app_now}", "message")
     title = pack.title(msg.title_id)
     if title is None or title.dialect != msg.dialect:
         r.fail("message_dialect", f"title {msg.title_id} is not in dialect {msg.dialect}", "message")

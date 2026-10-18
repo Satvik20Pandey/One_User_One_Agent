@@ -21,14 +21,14 @@
     "reason": "no purchase_completed matching 'any paid plan' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "no_action_taken",
+    "attribution": "published_but_never_seen",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-15T09:57:17.270Z judged: G06 failed (no_action_taken; nothing of ours was seen). no purchase_completed matching 'any paid plan' before the deadline"
+   "2026-10-15T09:57:17.270Z judged: G06 failed (published_but_never_seen; nothing of ours was seen). no purchase_completed matching 'any paid plan' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -48,15 +48,15 @@
    "dialect": {
     "value": {
      "used": "d4",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d4",
      "message_dialect": "d4"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T09:57:17.270Z",
     "evidence": [
-     "profile:U-00273@2026-09-29T04:39:50.345Z"
+     "event:f63f77d0-d13a-4f27-a28c-51bdc458ccfa"
     ],
     "note": ""
    },
@@ -221,8 +221,10 @@
   "decisions": [
    "D-01248"
   ],
-  "actions": [],
-  "updated_at": "2026-10-01T09:57:17.272Z",
+  "actions": [
+   "A-00505"
+  ],
+  "updated_at": "2026-10-01T09:57:18.484Z",
   "version": 2
  },
  "decisions": [
@@ -252,15 +254,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d4",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T0919",
+    "title:T0915",
+    "title:T0921",
+    "title:T0933",
+    "title:T0924",
+    "title:T0942",
+    "title:T0946",
+    "title:T0936",
+    "title:T0956",
+    "title:T0974",
+    "title:T0999",
+    "title:T1040",
+    "title:T1107",
+    "title:T1116",
+    "title:T1014",
+    "title:T1101",
+    "title:T1150",
+    "title:T1031",
+    "title:T1083",
+    "title:T0971",
+    "title:T1124",
+    "title:T0957",
+    "title:T1041",
+    "title:T1076",
+    "title:T0934",
+    "title:T0940",
+    "title:T1171",
+    "title:T1013",
+    "title:T1169",
+    "title:T1160",
+    "title:T0977",
+    "title:T0935",
+    "title:T0984",
+    "title:T0968",
+    "title:T1089",
+    "title:T1096",
+    "title:T1075",
+    "title:T0960",
+    "title:T1071",
+    "title:T1091",
+    "title:T1133"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 61 events of history; dialect sources agree; trigger is fresh"
@@ -271,6 +317,12 @@
      "source": "event",
      "observed_at": "2026-10-01T09:57:17.270Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:f63f77d0-d13a-4f27-a28c-51bdc458ccfa",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-24T08:32:03.902Z",
+     "age_s": 609913
     },
     {
      "ref": "profile:U-00273@2026-09-29T04:39:50.345Z",
@@ -315,12 +367,6 @@
      "age_s": 699504
     },
     {
-     "ref": "event:f63f77d0-d13a-4f27-a28c-51bdc458ccfa",
-     "source": "event",
-     "observed_at": "2026-09-24T08:32:03.902Z",
-     "age_s": 609913
-    },
-    {
      "ref": "events:U-00273:count=61",
      "source": "derived",
      "observed_at": "2026-10-01T09:57:17.270Z",
@@ -340,12 +386,12 @@
     "dialect": {
      "value": {
       "used": "d4",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d4",
       "message_dialect": "d4"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T09:57:17.270Z"
     },
     "app_language": {
@@ -451,7 +497,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d4 seen at 2026-09-24T08:32:03.902Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
    "conflicts": [],
@@ -465,30 +511,114 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0919",
+    "reason": "Hada Maloni is the most popular allowed title in the viewer's top genre, Romance"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T09:57:17.272Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T09:57:18.484Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
- "actions": [],
+ "actions": [
+  {
+   "action_id": "A-00505",
+   "decision_id": "D-01248",
+   "user_id": "U-00273",
+   "trigger_event_id": "a9f5c891-c1dd-4e93-8704-6d446c60ea3b",
+   "published_at": "2026-10-01T09:57:18.484Z",
+   "goal_id": "G06",
+   "type": "home_page",
+   "dialect": "d4",
+   "hero_title_id": "T0919",
+   "rows": [
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0915",
+      "T0921",
+      "T0933",
+      "T0924",
+      "T0942",
+      "T0946",
+      "T0936",
+      "T0956",
+      "T0974",
+      "T0999"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1040",
+      "T1107",
+      "T1116",
+      "T1014",
+      "T1101",
+      "T1150",
+      "T1031",
+      "T1083",
+      "T0971",
+      "T1124"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0957",
+      "T1041",
+      "T1076",
+      "T0934",
+      "T0940",
+      "T1171",
+      "T1013",
+      "T1169",
+      "T1160",
+      "T0977"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0935",
+      "T0984",
+      "T0968",
+      "T1089",
+      "T1096",
+      "T1075",
+      "T0960",
+      "T1071",
+      "T1091",
+      "T1133"
+     ]
+    }
+   ]
+  }
+ ],
  "outcomes": [
   {
    "user_id": "U-00273",
@@ -505,9 +635,11 @@
    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "no_action_taken",
+   "attribution": "published_but_never_seen",
    "exposure": {},
-   "actions": []
+   "actions": [
+    "A-00505"
+   ]
   }
  ]
 }

@@ -25,15 +25,15 @@
     "success_at": null,
     "attribution": "exposed_no_success",
     "exposure": {
-     "home_page_shown": 1,
-     "message_delivered": 1
+     "message_delivered": 2,
+     "home_page_shown": 1
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-04T05:47:37.524Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-04T05:47:37.524Z judged: G07 failed (exposed_no_success; page shown 1x, message delivered 2x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -215,11 +215,12 @@
    "D-02197"
   ],
   "actions": [
-   "A-00226",
-   "A-00227",
-   "A-00926"
+   "A-00228",
+   "A-00229",
+   "A-00949",
+   "A-00950"
   ],
-  "updated_at": "2026-10-01T15:13:33.635Z",
+  "updated_at": "2026-10-01T15:13:33.639Z",
   "version": 3
  },
  "decisions": [
@@ -524,8 +525,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1204,
-   "published_at": "2026-10-01T05:47:38.728Z",
+   "decided_in_ms": 1207,
+   "published_at": "2026-10-01T05:47:38.731Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -557,7 +558,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -787,9 +789,7 @@
      "observed_at": "2026-10-01T15:13:33.631Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -813,30 +813,35 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T15:13:33.635Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T15:13:33.639Z",
    "status": "PUBLISHED",
    "during_surge": true
   }
  ],
  "actions": [
   {
-   "action_id": "A-00226",
+   "action_id": "A-00228",
    "decision_id": "D-00711",
    "user_id": "U-01249",
    "trigger_event_id": "7b550081-4a3e-43a5-851c-26ca51499cf0",
-   "published_at": "2026-10-01T05:47:38.728Z",
+   "published_at": "2026-10-01T05:47:38.731Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
@@ -905,14 +910,14 @@
    ]
   },
   {
-   "action_id": "A-00227",
+   "action_id": "A-00229",
    "decision_id": "D-00711",
    "user_id": "U-01249",
    "trigger_event_id": "7b550081-4a3e-43a5-851c-26ca51499cf0",
-   "published_at": "2026-10-01T05:47:38.728Z",
+   "published_at": "2026-10-01T05:47:38.731Z",
    "goal_id": "G07",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T1177",
    "dialect": "d5",
    "text": {
@@ -922,11 +927,11 @@
    "deeplink": "ott://title/T1177"
   },
   {
-   "action_id": "A-00926",
+   "action_id": "A-00949",
    "decision_id": "D-02197",
    "user_id": "U-01249",
    "trigger_event_id": "536b45c5-aced-4a6e-828d-88f4f7fa162f",
-   "published_at": "2026-10-01T15:13:33.635Z",
+   "published_at": "2026-10-01T15:13:33.639Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d5",
@@ -993,6 +998,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00950",
+   "decision_id": "D-02197",
+   "user_id": "U-01249",
+   "trigger_event_id": "536b45c5-aced-4a6e-828d-88f4f7fa162f",
+   "published_at": "2026-10-01T15:13:33.639Z",
+   "goal_id": "G07",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T1177",
+   "dialect": "d5",
+   "text": {
+    "title": "Continue Gubava Gihaya",
+    "body": "Episode 3 of Gubava Gihaya is waiting for you."
+   },
+   "deeplink": "ott://title/T1177"
   }
  ],
  "outcomes": [
@@ -1013,13 +1035,14 @@
    "success_at": null,
    "attribution": "exposed_no_success",
    "exposure": {
-    "home_page_shown": 1,
-    "message_delivered": 1
+    "message_delivered": 2,
+    "home_page_shown": 1
    },
    "actions": [
-    "A-00226",
-    "A-00227",
-    "A-00926"
+    "A-00228",
+    "A-00229",
+    "A-00949",
+    "A-00950"
    ]
   }
  ]

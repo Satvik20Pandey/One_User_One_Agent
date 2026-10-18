@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 from .config import Settings
 from .facts import ViewerFacts, build_facts
-from .goals import RuleBook
+from .goals import Eligibility, RuleBook
 from .pack import Pack
 from .planner import ModelProvider, Proposal, propose
 from .store import StaleState, Store, StoreTimeout
@@ -20,6 +20,7 @@ from .times import iso, ist_day, next_send_slot, parse_ts
 from .verifier import verify
 
 SUBSCRIBER_GOALS = {"G08", "G09", "G11"}
+STATUS_GOALS = {"G04", "G05", "G06", "G08", "G09", "G11"}  # eligibility depends on the subscription status
 
 
 class BudgetExceeded(Exception):
@@ -263,6 +264,11 @@ class ViewerAgent:
         learned = self._learned_skips(state, now)
         budget.tool("rules:eligible")
         eligible = self.d.rules.eligible(facts, skip=learned)
+        if keep and keep not in {e.goal_id for e in eligible}:
+            # the active goal stays the plan while its window is open, even if its entry facts have moved on
+            active = state["active_goal"]
+            eligible.insert(0, Eligibility(keep, True, f"active goal kept: its window is open until {active['deadline'][:16]}",
+                                           active.get("evidence", []), [], active.get("context") or {}))
         live_page = self._live_page(facts, now, budget) if arm == "agent" else None
         if live_page:
             goal = next((e for e in eligible if e.goal_id == keep), None) or (eligible[0] if eligible else None)
@@ -353,6 +359,10 @@ class ViewerAgent:
         if parse_ts(goal["deadline"]) <= now:
             self._close_goal(state, now, "window_ended")
             return None
+        # Only goals that depend on the subscription can stop applying mid-window (a purchase, a lapse). Entry
+        # facts like "has not visited for 14 days" or "has never played" change because the goal is working.
+        if goal["goal_id"] not in STATUS_GOALS:
+            return goal["goal_id"]
         again = self.d.rules.check(goal["goal_id"], facts)
         if not again.eligible:
             self._close_goal(state, now, "no_longer_eligible:" + again.reason)

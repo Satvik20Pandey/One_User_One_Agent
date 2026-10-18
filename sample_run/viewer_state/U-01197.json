@@ -265,7 +265,7 @@
    "D-00144"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T02:03:05.338Z",
+  "updated_at": "2026-10-01T02:03:05.348Z",
   "version": 3
  },
  "decisions": [
@@ -299,14 +299,16 @@
    "actions": [],
    "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
-    "used": "d4",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d4"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 150 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 150 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -314,6 +316,12 @@
      "source": "event",
      "observed_at": "2026-10-01T02:03:00.237Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:707db476-0a35-43ff-9551-d556a980ffd8",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-30T12:51:40.548Z",
+     "age_s": 47479
     },
     {
      "ref": "profile:U-01197@2026-09-29T02:20:25.386Z",
@@ -388,13 +396,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d4",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d4"
+      "used": "d1",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d4"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T02:03:00.237Z"
     },
     "app_language": {
@@ -527,9 +537,13 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-30T12:51:40.548Z",
+    "passed over G07: its series cannot be shown in the app's dialect",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d4, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -556,8 +570,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T02:03:00.240Z",
+   "decided_in_ms": 17,
+   "published_at": "2026-10-01T02:03:00.254Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -864,8 +878,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T02:03:05.338Z",
+   "decided_in_ms": 14,
+   "published_at": "2026-10-01T02:03:05.348Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

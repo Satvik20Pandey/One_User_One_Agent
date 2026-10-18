@@ -253,7 +253,7 @@
    "D-02494"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:36:24.420Z",
+  "updated_at": "2026-10-01T16:36:24.422Z",
   "version": 5
  },
  "decisions": [
@@ -536,8 +536,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T01:47:52.343Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T01:47:52.348Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -820,8 +820,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T05:58:51.497Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T05:58:51.499Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -855,14 +855,16 @@
    "actions": [],
    "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
-    "used": "d2",
-    "source": "profile",
-    "conflicts": []
+    "used": "d3",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d2"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 85 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 85 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -870,6 +872,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:36:21.338Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:17437f8b-4f18-411c-9143-a775c5ddf81b",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T05:58:51.495Z",
+     "age_s": 38249
     },
     {
      "ref": "profile:U-00003@2026-09-29T15:04:16.317Z",
@@ -920,12 +928,6 @@
      "age_s": 1223988
     },
     {
-     "ref": "event:17437f8b-4f18-411c-9143-a775c5ddf81b",
-     "source": "event",
-     "observed_at": "2026-10-01T05:58:51.495Z",
-     "age_s": 38249
-    },
-    {
      "ref": "events:U-00003:count=85",
      "source": "derived",
      "observed_at": "2026-10-01T16:36:21.338Z",
@@ -944,13 +946,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d2",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d2"
+      "used": "d3",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d3",
+      "message_dialect": "d3"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:36:21.338Z"
     },
     "app_language": {
@@ -1068,9 +1072,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d3 seen at 2026-10-01T05:58:51.495Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d3 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -1097,8 +1104,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:36:21.341Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T16:36:21.344Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1391,8 +1398,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T16:36:24.420Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T16:36:24.422Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

@@ -268,7 +268,10 @@ def capacity_check(decisions: list[dict], budget_s: int) -> dict:
         return {}
     t0 = timed[0][0]
     tripled = [(t0 + (at - t0) / 3, service) for at, service in timed]
-    services = [service for _, service in timed]
+    # the 1,000-open burst uses the cost of live, agent-arm decisions only (holdout and buffered opens are cheap)
+    live = [max(0, d["decided_in_ms"] - d.get("queue_wait_ms", 0)) / 1000 for d in decisions
+            if d.get("arm") == "agent" and d["status"] in ("PUBLISHED", "NO_ACTION") and d["trigger"].get("live_visit")]
+    services = live or [service for _, service in timed]
     burst = [(t0 + 60 * i / 1000, services[i % len(services)]) for i in range(1000)]
     out = {"note": "queue waits using this day's measured service times (model latency and slow reads included)"}
     for name, arrivals, options in (("day_at_3x_traffic", tripled, (1, 2, 4)), ("1000_opens_in_one_minute", burst, (4, 16, 32))):

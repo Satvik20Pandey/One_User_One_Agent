@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00004",
   "active_goal": {
-   "instance_id": "G-01332",
+   "instance_id": "G-01328",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T16:00:18.167Z",
@@ -215,10 +215,10 @@
    "D-02415"
   ],
   "actions": [
-   "A-01004",
-   "A-01005"
+   "A-01033",
+   "A-01034"
   ],
-  "updated_at": "2026-10-01T16:13:24.867Z",
+  "updated_at": "2026-10-01T16:13:24.869Z",
   "version": 4
  },
  "decisions": [
@@ -239,7 +239,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01332",
+    "instance_id": "G-01328",
     "started_at": "2026-10-01T16:00:18.167Z",
     "deadline": "2026-10-08T16:00:18.167Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -248,18 +248,58 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "WHATSAPP",
+   "action": "HOME_PAGE",
    "actions": [
+    "HOME_PAGE",
     "WHATSAPP"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [
-    "title:T0007"
+    "title:T0011",
+    "title:T0005",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0004",
+    "title:T0003",
+    "title:T0009",
+    "title:T0015",
+    "title:T0013",
+    "title:T0006",
+    "title:T0014",
+    "title:T0008",
+    "title:T0012",
+    "title:T0010",
+    "title:T0018",
+    "title:T0026",
+    "title:T0027",
+    "title:T0252",
+    "title:T0422",
+    "title:T0058",
+    "title:T0023",
+    "title:T0168",
+    "title:T0100",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T0038",
+    "title:T0518",
+    "title:T0226",
+    "title:T0041",
+    "title:T0352"
    ],
    "confidence": {
     "value": 0.75,
@@ -271,6 +311,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:00:18.167Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:f87a82ea-4d4f-4cac-8be8-c522f295c791",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-27T22:03:22.740Z",
+     "age_s": 323815
     },
     {
      "ref": "profile:U-00004@2026-09-29T09:24:14.946Z",
@@ -340,12 +386,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:00:18.167Z"
     },
     "app_language": {
@@ -443,7 +489,8 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-27T22:03:22.740Z",
+    "passed over G07: its series cannot be shown in the app's dialect"
    ],
    "conflicts": [],
    "eligibility": {
@@ -455,34 +502,41 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0011",
+    "reason": "Raja Badi is the most popular allowed title in the viewer's top genre, Thriller"
    },
    "checks": {
     "passed": [
      "holdout",
      "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
      "consent",
      "quiet_hours",
      "frequency_cap",
      "message_content",
      "template",
-     "copy_rules"
+     "copy_rules",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 10,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 12,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 7,
-   "published_at": "2026-10-01T16:00:18.174Z",
+   "decided_in_ms": 1219,
+   "published_at": "2026-10-01T16:00:19.386Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -503,7 +557,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01332",
+    "instance_id": "G-01328",
     "started_at": "2026-10-01T16:00:18.167Z",
     "deadline": "2026-10-08T16:00:18.167Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -512,58 +566,15 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-01033 for this viewer is still live (published 2026-10-01T16:00:19.386Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
     "conflicts": []
    },
-   "content": [
-    "title:T0011",
-    "title:T0005",
-    "title:T0007",
-    "title:T0028",
-    "title:T0031",
-    "title:T0070",
-    "title:T0047",
-    "title:T0127",
-    "title:T0063",
-    "title:T0426",
-    "title:T0382",
-    "title:T0004",
-    "title:T0003",
-    "title:T0009",
-    "title:T0015",
-    "title:T0013",
-    "title:T0006",
-    "title:T0014",
-    "title:T0008",
-    "title:T0012",
-    "title:T0010",
-    "title:T0018",
-    "title:T0026",
-    "title:T0027",
-    "title:T0252",
-    "title:T0422",
-    "title:T0058",
-    "title:T0023",
-    "title:T0168",
-    "title:T0100",
-    "title:T0016",
-    "title:T0030",
-    "title:T0273",
-    "title:T0520",
-    "title:T0022",
-    "title:T0038",
-    "title:T0518",
-    "title:T0226",
-    "title:T0041",
-    "title:T0352"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 134 events of history; dialect sources agree; trigger is fresh"
@@ -745,10 +756,7 @@
      "observed_at": "2026-10-01T16:00:19.400Z"
     }
    },
-   "assumptions": [
-    "passed over G07: its series cannot be shown in the app's dialect",
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -758,37 +766,27 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "changed": "hero -> T0011",
-    "reason": "Raja Badi is the most popular allowed title in the viewer's top genre, Thriller"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 10,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1206,
-   "published_at": "2026-10-01T16:00:20.606Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T16:00:19.407Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -808,7 +806,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01332",
+    "instance_id": "G-01328",
     "started_at": "2026-10-01T16:00:18.167Z",
     "deadline": "2026-10-08T16:00:18.167Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -819,7 +817,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-01005 for this viewer is still live (published 2026-10-01T16:00:20.606Z); nothing to change",
+   "no_action_reason": "home page A-01033 for this viewer is still live (published 2026-10-01T16:00:19.386Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1035,36 +1033,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:13:24.867Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T16:13:24.869Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-01004",
+   "action_id": "A-01033",
    "decision_id": "D-02373",
    "user_id": "U-00004",
    "trigger_event_id": "def55c8c-6768-4ff2-b6d0-859c729fa2aa",
-   "published_at": "2026-10-01T16:00:18.174Z",
-   "goal_id": "G08",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0007",
-   "dialect": "d1",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Tiya Bhamaro",
-    "dialect_name": "D1"
-   }
-  },
-  {
-   "action_id": "A-01005",
-   "decision_id": "D-02374",
-   "user_id": "U-00004",
-   "trigger_event_id": "266c2ad2-d103-4833-8820-8f70d35878ff",
-   "published_at": "2026-10-01T16:00:20.606Z",
+   "published_at": "2026-10-01T16:00:19.386Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -1130,13 +1111,30 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-01034",
+   "decision_id": "D-02373",
+   "user_id": "U-00004",
+   "trigger_event_id": "def55c8c-6768-4ff2-b6d0-859c729fa2aa",
+   "published_at": "2026-10-01T16:00:19.386Z",
+   "goal_id": "G08",
+   "type": "whatsapp",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0007",
+   "dialect": "d1",
+   "template_id": "wa_recommend_title_v1",
+   "variables": {
+    "title_name": "Tiya Bhamaro",
+    "dialect_name": "D1"
+   }
   }
  ],
  "outcomes": [
   {
    "user_id": "U-00004",
    "arm": "agent",
-   "goal_instance_id": "G-01332",
+   "goal_instance_id": "G-01328",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T16:00:18.167Z",
@@ -1154,8 +1152,8 @@
     "message_delivered": 1
    },
    "actions": [
-    "A-01004",
-    "A-01005"
+    "A-01033",
+    "A-01034"
    ]
   }
  ]

@@ -238,7 +238,8 @@ def write_reports(pack_dir: Path, out_dir: Path) -> list[Path]:
     multi = len(outcomes) - len(rows)
     lines += ["", "### Who is counted", "",
               f"- {len(outcomes)} goals were judged in total for {len(rows)} viewers. {multi} viewer(s) got a second goal the same",
-              "  day after the first closed early (the viewer stopped qualifying); the table above counts the first goal only.",
+              "  day after the first closed early (a purchase or a subscription change made it moot); the table above counts",
+              "  the first goal only.",
               f"- Triggered viewers: agent {triggered['agent']}, holdout {triggered['holdout']}. Viewers without any goal: agent "
               f"{triggered['agent'] - a['n']}, holdout {triggered['holdout'] - h['n']}. Nearly all of them only had app opens that were",
               "  buffered offline for hours or days, which the same rule treats as \"not a live visit\" in both arms."]

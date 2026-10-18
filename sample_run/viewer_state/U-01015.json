@@ -214,7 +214,7 @@
    "D-02547"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:50:02.601Z",
+  "updated_at": "2026-10-01T16:50:02.605Z",
   "version": 5
  },
  "decisions": [
@@ -465,8 +465,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T06:31:57.891Z",
+   "decided_in_ms": 9,
+   "published_at": "2026-10-01T06:31:57.896Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -733,8 +733,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T14:39:22.369Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T14:39:22.373Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -769,7 +769,7 @@
    "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -783,6 +783,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:50:00.370Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:740cbe8a-ef89-4bbf-a6d0-a8b2c61ed992",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T14:39:22.365Z",
+     "age_s": 7838
     },
     {
      "ref": "profile:U-01015@2026-09-29T08:11:27.661Z",
@@ -827,12 +833,6 @@
      "age_s": 950643
     },
     {
-     "ref": "event:740cbe8a-ef89-4bbf-a6d0-a8b2c61ed992",
-     "source": "event",
-     "observed_at": "2026-10-01T14:39:22.365Z",
-     "age_s": 7838
-    },
-    {
      "ref": "events:U-01015:count=80",
      "source": "derived",
      "observed_at": "2026-10-01T16:50:00.370Z",
@@ -852,12 +852,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:50:00.370Z"
     },
     "app_language": {
@@ -956,7 +956,8 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T14:39:22.365Z",
+    "passed over G07: its series cannot be shown in the app's dialect"
    ],
    "conflicts": [],
    "eligibility": {
@@ -985,8 +986,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:50:00.373Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T16:50:00.378Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -1237,8 +1238,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:50:02.601Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T16:50:02.605Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

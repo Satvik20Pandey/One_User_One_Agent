@@ -23,7 +23,9 @@
     "value": {
      "used": "d4",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d4"
     },
@@ -155,13 +157,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d4, deeplink=None -> used d4 (profile)"
+  ],
   "last_session_id": "8156cce2-68f1-49e9-bdfb-4fe26a002276",
   "decisions": [
    "D-00425"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T04:45:47.713Z",
+  "updated_at": "2026-10-01T04:45:47.714Z",
   "version": 1
  },
  "decisions": [
@@ -187,12 +191,14 @@
    "dialect": {
     "used": "d4",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.6,
-    "reason": "profile row present; only 5 events of history; dialect sources agree"
+    "value": 0.4,
+    "reason": "profile row present; only 5 events of history; dialect sources disagree"
    },
    "evidence": [
     {
@@ -246,7 +252,9 @@
      "value": {
       "used": "d4",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d4"
      },
@@ -329,9 +337,11 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d4, deeplink=None -> used d4 (profile)"
+   ],
    "eligibility": null,
    "model": {
     "provider": null,
@@ -352,8 +362,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T04:45:47.713Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T04:45:47.714Z",
    "status": "NO_ACTION",
    "during_surge": true
   }

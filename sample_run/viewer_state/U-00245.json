@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00245",
   "active_goal": {
-   "instance_id": "G-01096",
+   "instance_id": "G-01094",
    "goal_id": "G12",
    "name": "return_after_absence_7d",
    "started_at": "2026-10-01T14:44:58.013Z",
@@ -191,9 +191,9 @@
    "D-01965"
   ],
   "actions": [
-   "A-00821"
+   "A-00839"
   ],
-  "updated_at": "2026-10-01T14:45:03.466Z",
+  "updated_at": "2026-10-01T14:45:02.265Z",
   "version": 3
  },
  "decisions": [
@@ -214,7 +214,7 @@
    "goal": {
     "id": "G12",
     "name": "return_after_absence_7d",
-    "instance_id": "G-01096",
+    "instance_id": "G-01094",
     "started_at": "2026-10-01T14:44:58.013Z",
     "deadline": "2026-10-08T14:44:58.013Z",
     "success_signal": "play_started (any title) within 168h",
@@ -223,18 +223,52 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G12 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
-    "used": "d2",
-    "source": "profile",
-    "conflicts": []
+    "used": "d6",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d2"
+    ]
    },
-   "content": [],
+   "content": [
+    "title:T1387",
+    "title:T1392",
+    "title:T1389",
+    "title:T1391",
+    "title:T1390",
+    "title:T1393",
+    "title:T1398",
+    "title:T1500",
+    "title:T1397",
+    "title:T1395",
+    "title:T1406",
+    "title:T1486",
+    "title:T1421",
+    "title:T1461",
+    "title:T1468",
+    "title:T1491",
+    "title:T1484",
+    "title:T1472",
+    "title:T1456",
+    "title:T1428",
+    "title:T1396",
+    "title:T1437",
+    "title:T1404",
+    "title:T1419",
+    "title:T1426",
+    "title:T1444",
+    "title:T1455",
+    "title:T1465",
+    "title:T1494"
+   ],
    "confidence": {
-    "value": 0.65,
-    "reason": "profile row present; only 4 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.45,
+    "reason": "profile row present; only 4 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -242,6 +276,12 @@
      "source": "event",
      "observed_at": "2026-10-01T14:44:58.013Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:5d7acbf6-173f-4d9e-8750-7f56d8c79517",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-22T16:08:21.096Z",
+     "age_s": 772596
     },
     {
      "ref": "profile:U-00245@2026-09-28T21:01:03.596Z",
@@ -286,13 +326,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d2",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d2"
+      "used": "d6",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d6",
+      "message_dialect": "d6"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T14:44:58.013Z"
     },
     "app_language": {
@@ -371,9 +413,11 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d6 seen at 2026-09-22T16:08:21.096Z"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d6 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G12",
     "reason": "no visit for 24 days before this open",
@@ -383,26 +427,35 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "no visit for 24 days before this open"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T14:44:58.014Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1205,
+   "published_at": "2026-10-01T14:44:59.218Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -422,7 +475,7 @@
    "goal": {
     "id": "G12",
     "name": "return_after_absence_7d",
-    "instance_id": "G-01096",
+    "instance_id": "G-01094",
     "started_at": "2026-10-01T14:44:58.013Z",
     "deadline": "2026-10-08T14:44:58.013Z",
     "success_signal": "play_started (any title) within 168h",
@@ -431,11 +484,9 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-00839 for this viewer is still live (published 2026-10-01T14:44:59.218Z); nothing to change",
    "dialect": {
     "used": "d6",
     "source": "app_setting",
@@ -443,37 +494,7 @@
      "profile:d2"
     ]
    },
-   "content": [
-    "title:T1387",
-    "title:T1392",
-    "title:T1389",
-    "title:T1391",
-    "title:T1390",
-    "title:T1393",
-    "title:T1398",
-    "title:T1500",
-    "title:T1397",
-    "title:T1395",
-    "title:T1406",
-    "title:T1486",
-    "title:T1421",
-    "title:T1461",
-    "title:T1468",
-    "title:T1491",
-    "title:T1484",
-    "title:T1472",
-    "title:T1456",
-    "title:T1428",
-    "title:T1396",
-    "title:T1437",
-    "title:T1404",
-    "title:T1419",
-    "title:T1426",
-    "title:T1444",
-    "title:T1455",
-    "title:T1465",
-    "title:T1494"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.45,
     "reason": "profile row present; only 5 events of history; dialect sources disagree; trigger is fresh"
@@ -626,46 +647,37 @@
     ]
    },
    "model": {
-    "provider": "mock",
-    "calls": 1,
-    "used": true,
+    "provider": null,
+    "calls": 0,
+    "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": null,
-    "reason": "no visit for 24 days before this open"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action",
-     "injection"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
-    "model_calls": 1,
-    "tool_calls": 11,
-    "simulated_wait_ms": 1200
+    "model_calls": 0,
+    "tool_calls": 6,
+    "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1202,
-   "published_at": "2026-10-01T14:45:03.466Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T14:45:02.265Z",
+   "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00821",
-   "decision_id": "D-01965",
+   "action_id": "A-00839",
+   "decision_id": "D-01964",
    "user_id": "U-00245",
-   "trigger_event_id": "09f84fd0-222f-4dda-897d-1fce180c9d94",
-   "published_at": "2026-10-01T14:45:03.466Z",
+   "trigger_event_id": "8137e014-61c9-4fb5-914d-5a2765a96840",
+   "published_at": "2026-10-01T14:44:59.218Z",
    "goal_id": "G12",
    "type": "home_page",
    "dialect": "d6",
@@ -721,7 +733,7 @@
   {
    "user_id": "U-00245",
    "arm": "agent",
-   "goal_instance_id": "G-01096",
+   "goal_instance_id": "G-01094",
    "goal_id": "G12",
    "goal_name": "return_after_absence_7d",
    "started_at": "2026-10-01T14:44:58.013Z",
@@ -736,7 +748,7 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-00821"
+    "A-00839"
    ]
   }
  ]

@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-02271",
   "active_goal": {
-   "instance_id": "G-01050",
+   "instance_id": "G-01048",
    "goal_id": "G06",
    "name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T14:21:49.495Z",
@@ -21,14 +21,14 @@
     "reason": "no purchase_completed matching 'any paid plan' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "no_action_taken",
+    "attribution": "published_but_never_seen",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-15T14:21:49.495Z judged: G06 failed (no_action_taken; nothing of ours was seen). no purchase_completed matching 'any paid plan' before the deadline"
+   "2026-10-15T14:21:49.495Z judged: G06 failed (published_but_never_seen; nothing of ours was seen). no purchase_completed matching 'any paid plan' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -48,15 +48,15 @@
    "dialect": {
     "value": {
      "used": "d2",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d2",
      "message_dialect": "d2"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T14:21:49.495Z",
     "evidence": [
-     "profile:U-02271@2026-09-29T12:25:11.198Z"
+     "event:ca83b010-98d8-4993-938b-eb32f6a57775"
     ],
     "note": ""
    },
@@ -219,8 +219,10 @@
   "decisions": [
    "D-01875"
   ],
-  "actions": [],
-  "updated_at": "2026-10-01T14:21:49.497Z",
+  "actions": [
+   "A-00796"
+  ],
+  "updated_at": "2026-10-01T14:21:50.709Z",
   "version": 2
  },
  "decisions": [
@@ -241,7 +243,7 @@
    "goal": {
     "id": "G06",
     "name": "reactivate_lapsed_14d",
-    "instance_id": "G-01050",
+    "instance_id": "G-01048",
     "started_at": "2026-10-01T14:21:49.495Z",
     "deadline": "2026-10-15T14:21:49.495Z",
     "success_signal": "purchase_completed (any paid plan) within 336h",
@@ -250,15 +252,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G06 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d2",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T0534",
+    "title:T0525",
+    "title:T0536",
+    "title:T0531",
+    "title:T0529",
+    "title:T0533",
+    "title:T0548",
+    "title:T0556",
+    "title:T0581",
+    "title:T0547",
+    "title:T0900",
+    "title:T0676",
+    "title:T0552",
+    "title:T0584",
+    "title:T0779",
+    "title:T0746",
+    "title:T0724",
+    "title:T0587",
+    "title:T0706",
+    "title:T0800",
+    "title:T0825",
+    "title:T0635",
+    "title:T0612",
+    "title:T0571",
+    "title:T0652",
+    "title:T0716",
+    "title:T0580",
+    "title:T0695",
+    "title:T0586",
+    "title:T0876",
+    "title:T0689",
+    "title:T0583",
+    "title:T0570",
+    "title:T0593",
+    "title:T0618",
+    "title:T0609",
+    "title:T0604",
+    "title:T0767",
+    "title:T0777",
+    "title:T0843",
+    "title:T0839"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 50 events of history; dialect sources agree; trigger is fresh"
@@ -269,6 +315,12 @@
      "source": "event",
      "observed_at": "2026-10-01T14:21:49.495Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:ca83b010-98d8-4993-938b-eb32f6a57775",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-28T15:00:08.473Z",
+     "age_s": 256901
     },
     {
      "ref": "profile:U-02271@2026-09-29T12:25:11.198Z",
@@ -332,12 +384,12 @@
     "dialect": {
      "value": {
       "used": "d2",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d2",
       "message_dialect": "d2"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T14:21:49.495Z"
     },
     "app_language": {
@@ -442,7 +494,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
+    "this open carried no app dialect; used the app setting d2 seen at 2026-09-28T15:00:08.473Z",
     "'recently lapsed' read as within 30 days (not defined in goals.json)"
    ],
    "conflicts": [],
@@ -456,26 +508,36 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "changed": "hero -> T0534",
+    "reason": "Ginava Chusu is the most popular allowed title in the viewer's top genre, Action"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T14:21:49.497Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T14:21:50.709Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -492,7 +554,7 @@
    "goal": {
     "id": "G06",
     "name": "reactivate_lapsed_14d",
-    "instance_id": "G-01050",
+    "instance_id": "G-01048",
     "started_at": "2026-10-01T14:21:49.495Z",
     "deadline": "2026-10-15T14:21:49.495Z",
     "success_signal": "purchase_completed (any paid plan) within 336h",
@@ -506,7 +568,7 @@
    "duplicate_of": "D-01875",
    "dialect": {
     "used": "d2",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -518,7 +580,7 @@
     {
      "ref": "decision:D-01875",
      "source": "store",
-     "observed_at": "2026-10-01T14:21:49.497Z"
+     "observed_at": "2026-10-01T14:21:50.709Z"
     }
    ],
    "assumptions": [],
@@ -547,12 +609,86 @@
    "during_surge": false
   }
  ],
- "actions": [],
+ "actions": [
+  {
+   "action_id": "A-00796",
+   "decision_id": "D-01875",
+   "user_id": "U-02271",
+   "trigger_event_id": "739ebfe3-39fe-4abd-b666-78acc159e9eb",
+   "published_at": "2026-10-01T14:21:50.709Z",
+   "goal_id": "G06",
+   "type": "home_page",
+   "dialect": "d2",
+   "hero_title_id": "T0534",
+   "rows": [
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0525",
+      "T0536",
+      "T0531",
+      "T0529",
+      "T0533",
+      "T0548",
+      "T0556",
+      "T0581",
+      "T0547",
+      "T0900"
+     ]
+    },
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0676",
+      "T0552",
+      "T0584",
+      "T0779",
+      "T0746",
+      "T0724",
+      "T0587",
+      "T0706",
+      "T0800",
+      "T0825"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0635",
+      "T0612",
+      "T0571",
+      "T0652",
+      "T0716",
+      "T0580",
+      "T0695",
+      "T0586",
+      "T0876",
+      "T0689"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0583",
+      "T0570",
+      "T0593",
+      "T0618",
+      "T0609",
+      "T0604",
+      "T0767",
+      "T0777",
+      "T0843",
+      "T0839"
+     ]
+    }
+   ]
+  }
+ ],
  "outcomes": [
   {
    "user_id": "U-02271",
    "arm": "agent",
-   "goal_instance_id": "G-01050",
+   "goal_instance_id": "G-01048",
    "goal_id": "G06",
    "goal_name": "reactivate_lapsed_14d",
    "started_at": "2026-10-01T14:21:49.495Z",
@@ -564,9 +700,11 @@
    "reason": "no purchase_completed matching 'any paid plan' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "no_action_taken",
+   "attribution": "published_but_never_seen",
    "exposure": {},
-   "actions": []
+   "actions": [
+    "A-00796"
+   ]
   }
  ]
 }

@@ -2,22 +2,22 @@
  "state": {
   "user_id": "U-01363",
   "active_goal": {
-   "instance_id": "G-00852",
-   "goal_id": "G02",
-   "name": "first_full_episode_3d",
-   "started_at": "2026-10-01T12:04:27.339Z",
-   "deadline": "2026-10-04T12:04:27.339Z",
-   "success_signal": "episode_completed (any episode) within 72h",
-   "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "no episode_completed on record",
+   "instance_id": "G-00446",
+   "goal_id": "G12",
+   "name": "return_after_absence_7d",
+   "started_at": "2026-10-01T06:54:19.548Z",
+   "deadline": "2026-10-08T06:54:19.548Z",
+   "success_signal": "play_started (any title) within 168h",
+   "rule_version": "goals.json@2026-09-30",
+   "eligibility_reason": "no visit for 16 days before this open",
    "evidence": [
-    "events:U-01363:episode_completed=0"
+    "event:06d04dff-7ba7-4315-8893-f80573e9e8c5"
    ],
    "context": {},
    "shadow": true,
    "outcome": {
     "verdict": "failed",
-    "reason": "no episode_completed matching 'any episode' before the deadline",
+    "reason": "no play_started matching 'any title' before the deadline",
     "success_event_id": null,
     "success_at": null,
     "attribution": "holdout_no_action",
@@ -25,39 +25,9 @@
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
-  "goal_history": [
-   {
-    "instance_id": "G-00446",
-    "goal_id": "G12",
-    "name": "return_after_absence_7d",
-    "started_at": "2026-10-01T06:54:19.548Z",
-    "deadline": "2026-10-08T06:54:19.548Z",
-    "success_signal": "play_started (any title) within 168h",
-    "rule_version": "goals.json@2026-09-30",
-    "eligibility_reason": "no visit for 16 days before this open",
-    "evidence": [
-     "event:06d04dff-7ba7-4315-8893-f80573e9e8c5"
-    ],
-    "context": {},
-    "shadow": true,
-    "closed_at": "2026-10-01T12:04:27.339Z",
-    "close_reason": "no_longer_eligible:visited 0 days ago",
-    "close_event_id": null,
-    "outcome": {
-     "verdict": "failed",
-     "reason": "no play_started matching 'any title' before the deadline",
-     "success_event_id": null,
-     "success_at": null,
-     "attribution": "holdout_no_action",
-     "exposure": {},
-     "rule_version_at_judgement": "goals.json@2026-09-30"
-    }
-   }
-  ],
+  "goal_history": [],
   "learnings": [
-   "2026-10-01T12:04:27.339Z G12 closed early: visited 0 days ago",
-   "2026-10-08T06:54:19.548Z judged: G12 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'any title' before the deadline",
-   "2026-10-04T12:04:27.339Z judged: G02 failed (holdout_no_action; nothing of ours was seen). no episode_completed matching 'any episode' before the deadline"
+   "2026-10-08T06:54:19.548Z judged: G12 failed (holdout_no_action; nothing of ours was seen). no play_started matching 'any title' before the deadline"
   ],
   "arm": "holdout",
   "facts": {
@@ -252,7 +222,7 @@
    "D-02588"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T17:02:53.768Z",
+  "updated_at": "2026-10-01T17:02:53.769Z",
   "version": 5
  },
  "decisions": [
@@ -471,8 +441,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T06:54:19.548Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T06:54:19.549Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -491,20 +461,20 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
-    "instance_id": "G-00852",
-    "started_at": "2026-10-01T12:04:27.339Z",
-    "deadline": "2026-10-04T12:04:27.339Z",
-    "success_signal": "episode_completed (any episode) within 72h",
-    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-    "committed_now": true,
+    "id": "G12",
+    "name": "return_after_absence_7d",
+    "instance_id": "G-00446",
+    "started_at": "2026-10-01T06:54:19.548Z",
+    "deadline": "2026-10-08T06:54:19.548Z",
+    "success_signal": "play_started (any title) within 168h",
+    "rule_version": "goals.json@2026-09-30",
+    "committed_now": false,
     "shadow": true
    },
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G02 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
+   "no_action_reason": "goal G12 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
    "dialect": {
     "used": "d7",
     "source": "app_setting",
@@ -663,15 +633,13 @@
      "observed_at": "2026-10-01T12:04:27.339Z"
     }
    },
-   "assumptions": [
-    "events can arrive late; 'no completion' means none received yet"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G12",
+    "reason": "active goal kept: its window is open until 2026-10-08T06:54",
     "evidence": [
-     "events:U-01363:episode_completed=0"
+     "event:06d04dff-7ba7-4315-8893-f80573e9e8c5"
     ]
    },
    "model": {
@@ -693,8 +661,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T12:04:27.339Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T12:04:27.340Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -713,20 +681,20 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
-    "instance_id": "G-00852",
-    "started_at": "2026-10-01T12:04:27.339Z",
-    "deadline": "2026-10-04T12:04:27.339Z",
-    "success_signal": "episode_completed (any episode) within 72h",
-    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+    "id": "G12",
+    "name": "return_after_absence_7d",
+    "instance_id": "G-00446",
+    "started_at": "2026-10-01T06:54:19.548Z",
+    "deadline": "2026-10-08T06:54:19.548Z",
+    "success_signal": "play_started (any title) within 168h",
+    "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
    },
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G02 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
+   "no_action_reason": "goal G12 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
    "dialect": {
     "used": "d7",
     "source": "app_setting",
@@ -885,15 +853,13 @@
      "observed_at": "2026-10-01T15:30:25.958Z"
     }
    },
-   "assumptions": [
-    "events can arrive late; 'no completion' means none received yet"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G12",
+    "reason": "active goal kept: its window is open until 2026-10-08T06:54",
     "evidence": [
-     "events:U-01363:episode_completed=0"
+     "event:06d04dff-7ba7-4315-8893-f80573e9e8c5"
     ]
    },
    "model": {
@@ -915,8 +881,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T15:30:25.958Z",
+   "decided_in_ms": 1,
+   "published_at": "2026-10-01T15:30:25.959Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -935,20 +901,20 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G02",
-    "name": "first_full_episode_3d",
-    "instance_id": "G-00852",
-    "started_at": "2026-10-01T12:04:27.339Z",
-    "deadline": "2026-10-04T12:04:27.339Z",
-    "success_signal": "episode_completed (any episode) within 72h",
-    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
+    "id": "G12",
+    "name": "return_after_absence_7d",
+    "instance_id": "G-00446",
+    "started_at": "2026-10-01T06:54:19.548Z",
+    "deadline": "2026-10-08T06:54:19.548Z",
+    "success_signal": "play_started (any title) within 168h",
+    "rule_version": "goals.json@2026-09-30",
     "committed_now": false,
     "shadow": true
    },
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G02 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
+   "no_action_reason": "goal G12 chosen but app dialect 'd7' has no catalogue content; no consented message channel",
    "dialect": {
     "used": "d7",
     "source": "app_setting",
@@ -1120,17 +1086,15 @@
      "observed_at": "2026-10-01T17:02:53.767Z"
     }
    },
-   "assumptions": [
-    "events can arrive late; 'no completion' means none received yet"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d7, profile=d7, deeplink=d5 -> used d7 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G02",
-    "reason": "no episode_completed on record",
+    "goal": "G12",
+    "reason": "active goal kept: its window is open until 2026-10-08T06:54",
     "evidence": [
-     "events:U-01363:episode_completed=0"
+     "event:06d04dff-7ba7-4315-8893-f80573e9e8c5"
     ]
    },
    "model": {
@@ -1152,8 +1116,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T17:02:53.768Z",
+   "decided_in_ms": 2,
+   "published_at": "2026-10-01T17:02:53.769Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -1170,28 +1134,9 @@
    "deadline": "2026-10-08T06:54:19.548Z",
    "rule_version_at_commit": "goals.json@2026-09-30",
    "rule_version_at_judgement": "goals.json@2026-09-30",
-   "closed_early": "no_longer_eligible:visited 0 days ago",
-   "verdict": "failed",
-   "reason": "no play_started matching 'any title' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
-   "attribution": "holdout_no_action",
-   "exposure": {},
-   "actions": []
-  },
-  {
-   "user_id": "U-01363",
-   "arm": "holdout",
-   "goal_instance_id": "G-00852",
-   "goal_id": "G02",
-   "goal_name": "first_full_episode_3d",
-   "started_at": "2026-10-01T12:04:27.339Z",
-   "deadline": "2026-10-04T12:04:27.339Z",
-   "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30",
    "closed_early": null,
    "verdict": "failed",
-   "reason": "no episode_completed matching 'any episode' before the deadline",
+   "reason": "no play_started matching 'any title' before the deadline",
    "success_event_id": null,
    "success_at": null,
    "attribution": "holdout_no_action",

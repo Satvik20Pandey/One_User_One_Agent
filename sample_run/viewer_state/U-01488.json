@@ -51,7 +51,9 @@
     "value": {
      "used": "d5",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d5"
     },
@@ -205,13 +207,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d5, deeplink=None -> used d5 (profile)"
+  ],
   "last_session_id": "9f3b21e9-4472-48e9-8fde-ede49b420c75",
   "decisions": [
    "D-00944"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T07:38:57.870Z",
+  "updated_at": "2026-10-01T07:38:57.873Z",
   "version": 2
  },
  "decisions": [
@@ -247,12 +251,14 @@
    "dialect": {
     "used": "d5",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 70 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 70 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -324,7 +330,9 @@
      "value": {
       "used": "d5",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d5"
      },
@@ -424,9 +432,11 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d5, deeplink=None -> used d5 (profile)"
+   ],
    "eligibility": {
     "goal": "G07",
     "reason": "unfinished series labha-d1 (2/6 episodes), last played 2026-09-22",
@@ -453,8 +463,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T07:38:57.870Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T07:38:57.873Z",
    "status": "NO_ACTION",
    "during_surge": false
   }

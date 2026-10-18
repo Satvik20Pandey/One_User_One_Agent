@@ -23,14 +23,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 3,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T08:15:02.772Z judged: G08 failed (exposed_no_success; page shown 3x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T08:15:02.772Z judged: G08 failed (exposed_no_success; page shown 3x, message delivered 2x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -238,12 +238,13 @@
    "D-02617"
   ],
   "actions": [
-   "A-00402",
-   "A-00403",
-   "A-00771",
-   "A-01093"
+   "A-00406",
+   "A-00407",
+   "A-00785",
+   "A-00786",
+   "A-01129"
   ],
-  "updated_at": "2026-10-01T17:12:38.924Z",
+  "updated_at": "2026-10-01T17:12:38.929Z",
   "version": 4
  },
  "decisions": [
@@ -578,8 +579,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T08:15:03.979Z",
+   "decided_in_ms": 1216,
+   "published_at": "2026-10-01T08:15:03.988Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -611,7 +612,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -871,9 +873,7 @@
      "observed_at": "2026-10-01T14:16:10.725Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G08",
@@ -899,19 +899,24 @@
      "availability",
      "page_rules",
      "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules",
      "injection"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1206,
-   "published_at": "2026-10-01T14:16:11.931Z",
+   "decided_in_ms": 1214,
+   "published_at": "2026-10-01T14:16:11.939Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1241,19 +1246,19 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T17:12:38.924Z",
+   "decided_in_ms": 1212,
+   "published_at": "2026-10-01T17:12:38.929Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00402",
+   "action_id": "A-00406",
    "decision_id": "D-01026",
    "user_id": "U-00594",
    "trigger_event_id": "9fc6ac48-163c-4e6f-9bca-6cb80f14cc39",
-   "published_at": "2026-10-01T08:15:03.979Z",
+   "published_at": "2026-10-01T08:15:03.988Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -1322,28 +1327,28 @@
    ]
   },
   {
-   "action_id": "A-00403",
+   "action_id": "A-00407",
    "decision_id": "D-01026",
    "user_id": "U-00594",
    "trigger_event_id": "9fc6ac48-163c-4e6f-9bca-6cb80f14cc39",
-   "published_at": "2026-10-01T08:15:03.979Z",
+   "published_at": "2026-10-01T08:15:03.988Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0545",
    "dialect": "d2",
    "text": {
     "title": "New in D2: Piya Moha",
-    "body": "Piya Moha came out 28 days ago. Start watching now."
+    "body": "Piya Moha came out 27 days ago. Start watching now."
    },
    "deeplink": "ott://title/T0545"
   },
   {
-   "action_id": "A-00771",
+   "action_id": "A-00785",
    "decision_id": "D-01856",
    "user_id": "U-00594",
    "trigger_event_id": "51272c55-f008-47a3-ae6a-dbdb38889f59",
-   "published_at": "2026-10-01T14:16:11.931Z",
+   "published_at": "2026-10-01T14:16:11.939Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -1412,11 +1417,28 @@
    ]
   },
   {
-   "action_id": "A-01093",
+   "action_id": "A-00786",
+   "decision_id": "D-01856",
+   "user_id": "U-00594",
+   "trigger_event_id": "51272c55-f008-47a3-ae6a-dbdb38889f59",
+   "published_at": "2026-10-01T14:16:11.939Z",
+   "goal_id": "G08",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0545",
+   "dialect": "d2",
+   "text": {
+    "title": "New in D2: Piya Moha",
+    "body": "Piya Moha came out 28 days ago. Start watching now."
+   },
+   "deeplink": "ott://title/T0545"
+  },
+  {
+   "action_id": "A-01129",
    "decision_id": "D-02617",
    "user_id": "U-00594",
    "trigger_event_id": "0d006414-83cf-41a9-bbb7-bda43c325451",
-   "published_at": "2026-10-01T17:12:38.924Z",
+   "published_at": "2026-10-01T17:12:38.929Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d2",
@@ -1504,13 +1526,14 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 3,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00402",
-    "A-00403",
-    "A-00771",
-    "A-01093"
+    "A-00406",
+    "A-00407",
+    "A-00785",
+    "A-00786",
+    "A-01129"
    ]
   }
  ]

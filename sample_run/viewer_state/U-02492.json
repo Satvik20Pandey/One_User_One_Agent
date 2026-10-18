@@ -20,16 +20,14 @@
     "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "exposed_no_success",
-    "exposure": {
-     "message_delivered": 1
-    },
+    "attribution": "no_action_taken",
+    "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T03:08:30.358Z judged: G08 failed (exposed_no_success; page shown 0x, message delivered 1x). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
+   "2026-10-08T03:08:30.358Z judged: G08 failed (no_action_taken; nothing of ours was seen). no play_started matching 'a title released in the 30 days before the goal start' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -50,7 +48,9 @@
     "value": {
      "used": "d3",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d3"
     },
@@ -227,16 +227,16 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+  ],
   "last_session_id": "6ce7427b-1935-43e8-913a-c40cb9dbbaf1",
   "decisions": [
    "D-00218",
    "D-00312"
   ],
-  "actions": [
-   "A-00103"
-  ],
-  "updated_at": "2026-10-01T04:19:42.341Z",
+  "actions": [],
+  "updated_at": "2026-10-01T04:19:42.343Z",
   "version": 3
  },
  "decisions": [
@@ -266,22 +266,20 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "WHATSAPP",
-   "actions": [
-    "WHATSAPP"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "goal G08 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
    "dialect": {
     "used": "d3",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
-   "content": [
-    "title:T0904"
-   ],
+   "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 80 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 80 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -371,7 +369,9 @@
      "value": {
       "used": "d3",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d3"
      },
@@ -492,9 +492,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -511,28 +514,19 @@
     "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "template",
-     "copy_rules"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 8,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 8,
-   "published_at": "2026-10-01T03:08:30.366Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T03:08:30.364Z",
+   "status": "NO_ACTION",
    "during_surge": false
   },
   {
@@ -567,12 +561,14 @@
    "dialect": {
     "used": "d3",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 81 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 81 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -662,7 +658,9 @@
      "value": {
       "used": "d3",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d3"
      },
@@ -783,10 +781,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only",
-    "a message is already scheduled for 2026-10-02; page only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d3, deeplink=None -> used d3 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -808,36 +808,18 @@
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 7,
+    "tool_calls": 8,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T04:19:42.341Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T04:19:42.343Z",
    "status": "NO_ACTION",
    "during_surge": false
   }
  ],
- "actions": [
-  {
-   "action_id": "A-00103",
-   "decision_id": "D-00218",
-   "user_id": "U-02492",
-   "trigger_event_id": "7c8e767a-9884-4557-a8b9-ddfebbb8b475",
-   "published_at": "2026-10-01T03:08:30.366Z",
-   "goal_id": "G08",
-   "type": "whatsapp",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T0904",
-   "dialect": "d3",
-   "template_id": "wa_recommend_title_v1",
-   "variables": {
-    "title_name": "Jakasa Dapi",
-    "dialect_name": "D3"
-   }
-  }
- ],
+ "actions": [],
  "outcomes": [
   {
    "user_id": "U-02492",
@@ -854,13 +836,9 @@
    "reason": "no play_started matching 'a title released in the 30 days before the goal start' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "exposed_no_success",
-   "exposure": {
-    "message_delivered": 1
-   },
-   "actions": [
-    "A-00103"
-   ]
+   "attribution": "no_action_taken",
+   "exposure": {},
+   "actions": []
   }
  ]
 }

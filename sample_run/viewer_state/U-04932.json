@@ -21,18 +21,19 @@
    },
    "dialect": {
     "value": {
-     "used": "d4",
-     "source": "profile",
+     "used": "d2",
+     "source": "app_setting_latest",
      "conflicts": [
+      "profile:d4",
       "deeplink:d1"
      ],
-     "page_dialect": null,
-     "message_dialect": "d4"
+     "page_dialect": "d2",
+     "message_dialect": "d2"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T08:48:40.161Z",
     "evidence": [
-     "profile:U-04932@2026-09-29T04:52:38.442Z"
+     "event:a7e57495-c5a8-4bd1-9881-042df43cd0ce"
     ],
     "note": ""
    },
@@ -217,14 +218,14 @@
    }
   },
   "conflicts": [
-   "dialect: app_setting=None, profile=d4, deeplink=d1 -> used d4 (profile)"
+   "dialect: app_setting=None, profile=d4, deeplink=d1 -> used d2 (app_setting_latest)"
   ],
   "last_session_id": "00fd2e76-e011-423d-945d-6e1cca4ea4ad",
   "decisions": [
    "D-01101"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T08:48:40.162Z",
+  "updated_at": "2026-10-01T08:48:40.165Z",
   "version": 1
  },
  "decisions": [
@@ -248,9 +249,10 @@
    "actions": [],
    "no_action_reason": "trigger is 2d 17h 34m old (buffered offline); the viewer is not in the app now",
    "dialect": {
-    "used": "d4",
-    "source": "profile",
+    "used": "d2",
+    "source": "app_setting_latest",
     "conflicts": [
+     "profile:d4",
      "deeplink:d1"
     ]
    },
@@ -265,6 +267,12 @@
      "source": "event",
      "observed_at": "2026-09-28T15:13:44.659Z",
      "age_s": 236095
+    },
+    {
+     "ref": "event:a7e57495-c5a8-4bd1-9881-042df43cd0ce",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-21T09:57:56.454Z",
+     "age_s": 859843
     },
     {
      "ref": "profile:U-04932@2026-09-29T04:52:38.442Z",
@@ -345,15 +353,16 @@
     },
     "dialect": {
      "value": {
-      "used": "d4",
-      "source": "profile",
+      "used": "d2",
+      "source": "app_setting_latest",
       "conflicts": [
+       "profile:d4",
        "deeplink:d1"
       ],
-      "page_dialect": null,
-      "message_dialect": "d4"
+      "page_dialect": "d2",
+      "message_dialect": "d2"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T08:48:40.161Z"
     },
     "app_language": {
@@ -480,10 +489,10 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d2 seen at 2026-09-21T09:57:56.454Z"
    ],
    "conflicts": [
-    "dialect: app_setting=None, profile=d4, deeplink=d1 -> used d4 (profile)"
+    "dialect: app_setting=None, profile=d4, deeplink=d1 -> used d2 (app_setting_latest)"
    ],
    "eligibility": null,
    "model": {
@@ -505,8 +514,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T08:48:40.162Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T08:48:40.165Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }

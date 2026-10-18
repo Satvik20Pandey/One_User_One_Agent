@@ -26,14 +26,14 @@
     "attribution": "exposed_no_success",
     "exposure": {
      "home_page_shown": 2,
-     "message_delivered": 1
+     "message_delivered": 2
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-03T19:03:24.232Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 1x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
+   "2026-10-03T19:03:24.232Z judged: G07 failed (exposed_no_success; page shown 2x, message delivered 2x). no play_started matching 'same content_slug as the unfinished series' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -211,11 +211,12 @@
    "D-02285"
   ],
   "actions": [
-   "A-00012",
    "A-00013",
-   "A-00962"
+   "A-00014",
+   "A-00988",
+   "A-00989"
   ],
-  "updated_at": "2026-10-01T15:33:07.497Z",
+  "updated_at": "2026-10-01T15:33:08.701Z",
   "version": 3
  },
  "decisions": [
@@ -495,8 +496,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1203,
-   "published_at": "2026-09-30T19:03:25.435Z",
+   "decided_in_ms": 1210,
+   "published_at": "2026-09-30T19:03:25.442Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -528,7 +529,8 @@
    "no_goal_reason": null,
    "action": "HOME_PAGE",
    "actions": [
-    "HOME_PAGE"
+    "HOME_PAGE",
+    "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
@@ -733,9 +735,7 @@
      "observed_at": "2026-10-01T15:33:07.494Z"
     }
    },
-   "assumptions": [
-    "a message is already scheduled for 2026-10-02; page only"
-   ],
+   "assumptions": [],
    "conflicts": [],
    "eligibility": {
     "goal": "G07",
@@ -746,11 +746,12 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "unfinished series tidha-dakachu-d1 (1/17 episodes), last played 2026-09-20"
    },
    "checks": {
     "passed": [
@@ -759,30 +760,36 @@
      "dialect",
      "availability",
      "page_rules",
-     "duplicate_action"
+     "duplicate_action",
+     "consent",
+     "quiet_hours",
+     "frequency_cap",
+     "message_content",
+     "copy_rules",
+     "injection"
     ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 10,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 12,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T15:33:07.497Z",
+   "decided_in_ms": 1207,
+   "published_at": "2026-10-01T15:33:08.701Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00012",
+   "action_id": "A-00013",
    "decision_id": "D-00015",
    "user_id": "U-04720",
    "trigger_event_id": "8693fa5c-8e0e-4968-adda-3ae5d6633a21",
-   "published_at": "2026-09-30T19:03:25.435Z",
+   "published_at": "2026-09-30T19:03:25.442Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -851,14 +858,14 @@
    ]
   },
   {
-   "action_id": "A-00013",
+   "action_id": "A-00014",
    "decision_id": "D-00015",
    "user_id": "U-04720",
    "trigger_event_id": "8693fa5c-8e0e-4968-adda-3ae5d6633a21",
-   "published_at": "2026-09-30T19:03:25.435Z",
+   "published_at": "2026-09-30T19:03:25.442Z",
    "goal_id": "G07",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0005",
    "dialect": "d1",
    "text": {
@@ -868,11 +875,11 @@
    "deeplink": "ott://title/T0005"
   },
   {
-   "action_id": "A-00962",
+   "action_id": "A-00988",
    "decision_id": "D-02285",
    "user_id": "U-04720",
    "trigger_event_id": "0778555b-5fd0-4115-a157-6d1766f2e813",
-   "published_at": "2026-10-01T15:33:07.497Z",
+   "published_at": "2026-10-01T15:33:08.701Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
@@ -939,6 +946,23 @@
      ]
     }
    ]
+  },
+  {
+   "action_id": "A-00989",
+   "decision_id": "D-02285",
+   "user_id": "U-04720",
+   "trigger_event_id": "0778555b-5fd0-4115-a157-6d1766f2e813",
+   "published_at": "2026-10-01T15:33:08.701Z",
+   "goal_id": "G07",
+   "type": "push",
+   "send_at": "2026-10-02T13:30:00.000Z",
+   "title_id": "T0005",
+   "dialect": "d1",
+   "text": {
+    "title": "Continue Tidha Dakachu",
+    "body": "Episode 2 of Tidha Dakachu is waiting for you."
+   },
+   "deeplink": "ott://title/T0005"
   }
  ],
  "outcomes": [
@@ -960,12 +984,13 @@
    "attribution": "exposed_no_success",
    "exposure": {
     "home_page_shown": 2,
-    "message_delivered": 1
+    "message_delivered": 2
    },
    "actions": [
-    "A-00012",
     "A-00013",
-    "A-00962"
+    "A-00014",
+    "A-00988",
+    "A-00989"
    ]
   }
  ]

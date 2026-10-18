@@ -20,14 +20,14 @@
     "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
     "success_event_id": null,
     "success_at": null,
-    "attribution": "no_action_taken",
+    "attribution": "published_but_never_seen",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-08T03:34:31.242Z judged: G05 failed (no_action_taken; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
+   "2026-10-08T03:34:31.242Z judged: G05 failed (published_but_never_seen; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
   ],
   "arm": "agent",
   "facts": {
@@ -47,15 +47,15 @@
    "dialect": {
     "value": {
      "used": "d3",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d3",
      "message_dialect": "d3"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T03:34:31.242Z",
     "evidence": [
-     "profile:U-00318@2026-09-29T07:02:23.111Z"
+     "event:9b4c5c96-8d98-4409-9797-95d0a78e949e"
     ],
     "note": ""
    },
@@ -190,8 +190,10 @@
   "decisions": [
    "D-00255"
   ],
-  "actions": [],
-  "updated_at": "2026-10-01T03:34:31.244Z",
+  "actions": [
+   "A-00119"
+  ],
+  "updated_at": "2026-10-01T03:34:32.448Z",
   "version": 2
  },
  "decisions": [
@@ -221,15 +223,29 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G05 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
     "used": "d3",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
-   "content": [],
+   "content": [
+    "title:T1809",
+    "title:T0904",
+    "title:T0909",
+    "title:T0906",
+    "title:T0905",
+    "title:T1810",
+    "title:T0901",
+    "title:T0903",
+    "title:T0907",
+    "title:T0908",
+    "title:T0914"
+   ],
    "confidence": {
     "value": 0.75,
     "reason": "profile row present; 25 events of history; dialect sources agree; trigger is fresh"
@@ -242,16 +258,22 @@
      "age_s": 0
     },
     {
-     "ref": "profile:U-00318@2026-09-29T07:02:23.111Z",
-     "source": "profile",
-     "observed_at": "2026-09-29T07:02:23.111Z",
-     "age_s": 160328
+     "ref": "event:9b4c5c96-8d98-4409-9797-95d0a78e949e",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-28T11:40:57.498Z",
+     "age_s": 230013
     },
     {
      "ref": "event:c872702d-bf53-4e60-93b5-bf00455c0b6c",
      "source": "event",
      "observed_at": "2026-09-17T02:35:31.349Z",
      "age_s": 1213139
+    },
+    {
+     "ref": "profile:U-00318@2026-09-29T07:02:23.111Z",
+     "source": "profile",
+     "observed_at": "2026-09-29T07:02:23.111Z",
+     "age_s": 160328
     },
     {
      "ref": "event:a5ec2e83-3f00-42bc-bd92-122477f2cca2",
@@ -291,12 +313,12 @@
     "dialect": {
      "value": {
       "used": "d3",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d3",
       "message_dialect": "d3"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T03:34:31.242Z"
     },
     "app_language": {
@@ -380,7 +402,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d3 seen at 2026-09-28T11:40:57.498Z"
    ],
    "conflicts": [],
    "eligibility": {
@@ -392,30 +414,68 @@
    },
    "model": {
     "provider": "mock",
-    "calls": 0,
-    "used": false,
+    "calls": 1,
+    "used": true,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null,
+    "reason": "never had a paid plan"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
+     "injection"
+    ],
     "failed": []
    },
    "budget": {
-    "model_calls": 0,
-    "tool_calls": 8,
-    "simulated_wait_ms": 0
+    "model_calls": 1,
+    "tool_calls": 11,
+    "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T03:34:31.244Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 1206,
+   "published_at": "2026-10-01T03:34:32.448Z",
+   "status": "PUBLISHED",
    "during_surge": false
   }
  ],
- "actions": [],
+ "actions": [
+  {
+   "action_id": "A-00119",
+   "decision_id": "D-00255",
+   "user_id": "U-00318",
+   "trigger_event_id": "a191c1b2-da86-4a60-8f95-f1c8abe16e95",
+   "published_at": "2026-10-01T03:34:32.448Z",
+   "goal_id": "G05",
+   "type": "home_page",
+   "dialect": "d3",
+   "hero_title_id": "T1809",
+   "rows": [
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0904",
+      "T0909",
+      "T0906",
+      "T0905",
+      "T1810",
+      "T0901",
+      "T0903",
+      "T0907",
+      "T0908",
+      "T0914"
+     ]
+    }
+   ]
+  }
+ ],
  "outcomes": [
   {
    "user_id": "U-00318",
@@ -432,9 +492,11 @@
    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
    "success_event_id": null,
    "success_at": null,
-   "attribution": "no_action_taken",
+   "attribution": "published_but_never_seen",
    "exposure": {},
-   "actions": []
+   "actions": [
+    "A-00119"
+   ]
   }
  ]
 }

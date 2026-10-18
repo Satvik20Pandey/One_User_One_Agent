@@ -18,19 +18,18 @@
    "outcome": {
     "verdict": "succeeded",
     "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-    "success_event_id": "oua-029225",
+    "success_event_id": "oua-029233",
     "success_at": "2026-10-01T14:31:36.061Z",
     "attribution": "exposed_before_success",
     "exposure": {
-     "home_page_shown": 4,
-     "message_delivered": 1
+     "home_page_shown": 4
     },
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
   "goal_history": [],
   "learnings": [
-   "2026-10-01T14:31:36.061Z judged: G08 succeeded (exposed_before_success; page shown 4x, message delivered 1x). play_started matched 'a title released in the 30 days before the goal start'"
+   "2026-10-01T14:31:36.061Z judged: G08 succeeded (exposed_before_success; page shown 4x, message delivered 0x). play_started matched 'a title released in the 30 days before the goal start'"
   ],
   "arm": "agent",
   "facts": {
@@ -49,16 +48,18 @@
    },
    "dialect": {
     "value": {
-     "used": "d5",
-     "source": "profile",
-     "conflicts": [],
-     "page_dialect": null,
-     "message_dialect": "d5"
+     "used": "d1",
+     "source": "app_setting_latest",
+     "conflicts": [
+      "profile:d5"
+     ],
+     "page_dialect": "d1",
+     "message_dialect": "d1"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T15:04:26.056Z",
     "evidence": [
-     "profile:U-04642@2026-09-29T00:06:51.577Z"
+     "event:e2d0d744-1196-4536-b767-39775c681b4a"
     ],
     "note": ""
    },
@@ -252,7 +253,9 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d5, deeplink=None -> used d1 (app_setting_latest)"
+  ],
   "last_session_id": "03e84874-fbdc-4e3a-b233-561e3dd7205a",
   "decisions": [
    "D-01377",
@@ -263,11 +266,11 @@
    "D-02086"
   ],
   "actions": [
-   "A-00561",
-   "A-00666",
-   "A-00884"
+   "A-00569",
+   "A-00675",
+   "A-00904"
   ],
-  "updated_at": "2026-10-01T15:04:26.061Z",
+  "updated_at": "2026-10-01T15:04:26.079Z",
   "version": 7
  },
  "decisions": [
@@ -625,8 +628,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1207,
-   "published_at": "2026-10-01T10:59:04.409Z",
+   "decided_in_ms": 1223,
+   "published_at": "2026-10-01T10:59:04.425Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -658,7 +661,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00561 for this viewer is still live (published 2026-10-01T10:59:04.409Z); nothing to change",
+   "no_action_reason": "home page A-00569 for this viewer is still live (published 2026-10-01T10:59:04.425Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -929,8 +932,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T12:49:33.770Z",
+   "decided_in_ms": 8,
+   "published_at": "2026-10-01T12:49:33.775Z",
    "status": "NO_ACTION",
    "during_surge": false
   },
@@ -1288,8 +1291,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1213,
-   "published_at": "2026-10-01T13:02:48.268Z",
+   "decided_in_ms": 1215,
+   "published_at": "2026-10-01T13:02:48.270Z",
    "status": "PUBLISHED",
    "during_surge": false
   },
@@ -1321,7 +1324,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00666 for this viewer is still live (published 2026-10-01T13:02:48.268Z); nothing to change",
+   "no_action_reason": "home page A-00675 for this viewer is still live (published 2026-10-01T13:02:48.270Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1592,8 +1595,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T14:29:50.063Z",
+   "decided_in_ms": 6,
+   "published_at": "2026-10-01T14:29:50.067Z",
    "status": "NO_ACTION",
    "during_surge": false
   },
@@ -1625,7 +1628,7 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "home page A-00666 for this viewer is still live (published 2026-10-01T13:02:48.268Z); nothing to change",
+   "no_action_reason": "home page A-00675 for this viewer is still live (published 2026-10-01T13:02:48.270Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -1905,8 +1908,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T14:29:54.447Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T14:29:54.450Z",
    "status": "NO_ACTION",
    "during_surge": false
   },
@@ -1936,22 +1939,64 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "PUSH",
+   "action": "HOME_PAGE",
    "actions": [
-    "PUSH"
+    "HOME_PAGE"
    ],
    "no_action_reason": null,
    "dialect": {
-    "used": "d5",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d5"
+    ]
    },
    "content": [
-    "title:T1185"
+    "title:T0005",
+    "title:T0007",
+    "title:T0028",
+    "title:T0031",
+    "title:T0070",
+    "title:T0047",
+    "title:T0127",
+    "title:T0063",
+    "title:T0426",
+    "title:T0382",
+    "title:T0435",
+    "title:T0004",
+    "title:T0003",
+    "title:T0009",
+    "title:T0015",
+    "title:T0013",
+    "title:T0006",
+    "title:T0014",
+    "title:T0008",
+    "title:T0012",
+    "title:T0010",
+    "title:T0011",
+    "title:T0067",
+    "title:T0035",
+    "title:T0022",
+    "title:T0024",
+    "title:T0055",
+    "title:T0518",
+    "title:T0198",
+    "title:T0117",
+    "title:T0100",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0038",
+    "title:T0226",
+    "title:T0041",
+    "title:T0352",
+    "title:T0036",
+    "title:T0137"
    ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 122 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 122 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -1959,6 +2004,12 @@
      "source": "event",
      "observed_at": "2026-10-01T15:04:26.056Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:e2d0d744-1196-4536-b767-39775c681b4a",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T14:29:54.445Z",
+     "age_s": 2071
     },
     {
      "ref": "profile:U-04642@2026-09-29T00:06:51.577Z",
@@ -2009,12 +2060,6 @@
      "age_s": 808454
     },
     {
-     "ref": "event:e2d0d744-1196-4536-b767-39775c681b4a",
-     "source": "event",
-     "observed_at": "2026-10-01T14:29:54.445Z",
-     "age_s": 2071
-    },
-    {
      "ref": "events:U-04642:count=122",
      "source": "derived",
      "observed_at": "2026-10-01T15:04:26.056Z",
@@ -2033,13 +2078,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d5",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d5"
+      "used": "d1",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d5"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T15:04:26.056Z"
     },
     "app_language": {
@@ -2180,9 +2227,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-10-01T14:29:54.445Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d5, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -2202,23 +2252,22 @@
     "passed": [
      "holdout",
      "eligibility",
-     "consent",
-     "quiet_hours",
-     "frequency_cap",
-     "message_content",
-     "copy_rules"
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action"
     ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 10,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 5,
-   "published_at": "2026-10-01T15:04:26.061Z",
+   "decided_in_ms": 23,
+   "published_at": "2026-10-01T15:04:26.079Z",
    "status": "PUBLISHED",
    "during_surge": true
   },
@@ -2249,9 +2298,11 @@
    "no_action_reason": "duplicate delivery of trigger 957716c3-b79c-485c-a256-e908bc8968b1; already decided in D-02086",
    "duplicate_of": "D-02086",
    "dialect": {
-    "used": "d5",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d5"
+    ]
    },
    "content": [],
    "confidence": {
@@ -2262,7 +2313,7 @@
     {
      "ref": "decision:D-02086",
      "source": "store",
-     "observed_at": "2026-10-01T15:04:26.061Z"
+     "observed_at": "2026-10-01T15:04:26.079Z"
     }
    ],
    "assumptions": [],
@@ -2293,11 +2344,11 @@
  ],
  "actions": [
   {
-   "action_id": "A-00561",
+   "action_id": "A-00569",
    "decision_id": "D-01377",
    "user_id": "U-04642",
    "trigger_event_id": "3bbf0d12-fedd-4d62-b840-164273e35528",
-   "published_at": "2026-10-01T10:59:04.409Z",
+   "published_at": "2026-10-01T10:59:04.425Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -2365,11 +2416,11 @@
    ]
   },
   {
-   "action_id": "A-00666",
+   "action_id": "A-00675",
    "decision_id": "D-01639",
    "user_id": "U-04642",
    "trigger_event_id": "b3435d72-9011-408b-adb9-aab83010e61b",
-   "published_at": "2026-10-01T13:02:48.268Z",
+   "published_at": "2026-10-01T13:02:48.270Z",
    "goal_id": "G08",
    "type": "home_page",
    "dialect": "d1",
@@ -2437,21 +2488,77 @@
    ]
   },
   {
-   "action_id": "A-00884",
+   "action_id": "A-00904",
    "decision_id": "D-02086",
    "user_id": "U-04642",
    "trigger_event_id": "957716c3-b79c-485c-a256-e908bc8968b1",
-   "published_at": "2026-10-01T15:04:26.061Z",
+   "published_at": "2026-10-01T15:04:26.079Z",
    "goal_id": "G08",
-   "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
-   "title_id": "T1185",
-   "dialect": "d5",
-   "text": {
-    "title": "New in D5: Yaka Naka",
-    "body": "Yaka Naka came out 25 days ago. Start watching now."
-   },
-   "deeplink": "ott://title/T1185"
+   "type": "home_page",
+   "dialect": "d1",
+   "hero_title_id": "T0005",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T0007",
+      "T0028",
+      "T0031",
+      "T0070",
+      "T0047",
+      "T0127",
+      "T0063",
+      "T0426",
+      "T0382",
+      "T0435"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T0004",
+      "T0003",
+      "T0009",
+      "T0015",
+      "T0013",
+      "T0006",
+      "T0014",
+      "T0008",
+      "T0012",
+      "T0010"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0011",
+      "T0067",
+      "T0035",
+      "T0022",
+      "T0024",
+      "T0055",
+      "T0518",
+      "T0198",
+      "T0117",
+      "T0100"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0016",
+      "T0030",
+      "T0273",
+      "T0520",
+      "T0038",
+      "T0226",
+      "T0041",
+      "T0352",
+      "T0036",
+      "T0137"
+     ]
+    }
+   ]
   }
  ],
  "outcomes": [
@@ -2468,17 +2575,16 @@
    "closed_early": null,
    "verdict": "succeeded",
    "reason": "play_started matched 'a title released in the 30 days before the goal start'",
-   "success_event_id": "oua-029225",
+   "success_event_id": "oua-029233",
    "success_at": "2026-10-01T14:31:36.061Z",
    "attribution": "exposed_before_success",
    "exposure": {
-    "home_page_shown": 4,
-    "message_delivered": 1
+    "home_page_shown": 4
    },
    "actions": [
-    "A-00561",
-    "A-00666",
-    "A-00884"
+    "A-00569",
+    "A-00675",
+    "A-00904"
    ]
   }
  ]

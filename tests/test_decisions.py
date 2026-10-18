@@ -75,3 +75,24 @@ def test_a_resume_goal_gives_way_when_its_series_cannot_be_shown(env):
     other, _ = env.decide(make_trigger("U-R1", at=NOW + timedelta(days=4)), NOW + timedelta(days=4))
     assert other["goal"]["id"] == "G05"
     assert any("passed over G07" in a for a in other["assumptions"])
+
+
+def test_a_return_does_not_close_the_return_goal(env):
+    # U-H1 last visited 2026-09-15, so G12 "return after absence" applies; their next open is the return itself
+    env.deps.pack.arms["U-H1"] = "agent"
+    first, _ = env.decide(make_trigger("U-H1"))
+    assert first["goal"]["id"] == "G12"
+    later = NOW + timedelta(hours=3)
+    second, actions = env.decide(make_trigger("U-H1", at=later), later)
+    assert second["goal"]["id"] == "G12" and second["goal"]["committed_now"] is False
+    assert second["status"] == "PUBLISHED" and actions  # the verifier agrees: the goal's window is still open
+    assert "eligibility" in second["checks"]["passed"]
+
+
+def test_morning_opens_are_followed_up_the_same_evening():
+    from viewer_agent.times import IST, next_send_slot
+    from viewer_agent.times import parse_ts as p
+    morning = next_send_slot(p("2026-10-01T04:30:00.000Z"), 19)   # 10:00 IST
+    evening = next_send_slot(p("2026-10-01T13:00:00.000Z"), 19)   # 18:30 IST: less than an hour to go
+    assert morning.astimezone(IST).date().isoformat() == "2026-10-01" and morning.astimezone(IST).hour == 19
+    assert evening.astimezone(IST).date().isoformat() == "2026-10-02"

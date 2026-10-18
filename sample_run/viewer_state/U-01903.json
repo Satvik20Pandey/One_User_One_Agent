@@ -49,15 +49,15 @@
    "dialect": {
     "value": {
      "used": "d2",
-     "source": "profile",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
+     "page_dialect": "d2",
      "message_dialect": "d2"
     },
-    "source": "profile",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T09:03:17.131Z",
     "evidence": [
-     "profile:U-01903@2026-09-29T01:34:43.129Z"
+     "event:e7ab748a-39e9-45b4-8490-822843e24ddf"
     ],
     "note": ""
    },
@@ -236,9 +236,10 @@
    "D-01128"
   ],
   "actions": [
-   "A-00450"
+   "A-00454",
+   "A-00455"
   ],
-  "updated_at": "2026-10-01T09:03:18.336Z",
+  "updated_at": "2026-10-01T09:03:18.352Z",
   "version": 2
  },
  "decisions": [
@@ -268,18 +269,59 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "PUSH",
+   "action": "HOME_PAGE",
    "actions": [
+    "HOME_PAGE",
     "PUSH"
    ],
    "no_action_reason": null,
    "dialect": {
     "used": "d2",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [
-    "title:T0545"
+    "title:T0521",
+    "title:T1680",
+    "title:T0545",
+    "title:T0676",
+    "title:T0552",
+    "title:T1691",
+    "title:T0535",
+    "title:T0584",
+    "title:T0596",
+    "title:T1707",
+    "title:T1730",
+    "title:T1677",
+    "title:T1678",
+    "title:T0526",
+    "title:T1679",
+    "title:T0525",
+    "title:T0536",
+    "title:T0531",
+    "title:T0528",
+    "title:T1683",
+    "title:T1681",
+    "title:T0533",
+    "title:T0548",
+    "title:T0556",
+    "title:T0568",
+    "title:T0566",
+    "title:T1687",
+    "title:T0701",
+    "title:T1710",
+    "title:T0612",
+    "title:T0609",
+    "title:T0534",
+    "title:T1709",
+    "title:T0565",
+    "title:T0547",
+    "title:T0567",
+    "title:T0899",
+    "title:T1696",
+    "title:T0559",
+    "title:T0744",
+    "title:T0562"
    ],
    "confidence": {
     "value": 0.75,
@@ -291,6 +333,12 @@
      "source": "event",
      "observed_at": "2026-10-01T09:03:17.131Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:e7ab748a-39e9-45b4-8490-822843e24ddf",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-29T14:57:03.971Z",
+     "age_s": 151573
     },
     {
      "ref": "profile:U-01903@2026-09-29T01:34:43.129Z",
@@ -372,12 +420,12 @@
     "dialect": {
      "value": {
       "used": "d2",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d2",
       "message_dialect": "d2"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T09:03:17.131Z"
     },
     "app_language": {
@@ -497,7 +545,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d2 seen at 2026-09-29T14:57:03.971Z"
    ],
    "conflicts": [],
    "eligibility": {
@@ -520,6 +568,10 @@
     "passed": [
      "holdout",
      "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action",
      "consent",
      "quiet_hours",
      "frequency_cap",
@@ -531,32 +583,105 @@
    },
    "budget": {
     "model_calls": 1,
-    "tool_calls": 10,
+    "tool_calls": 12,
     "simulated_wait_ms": 1200
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1205,
-   "published_at": "2026-10-01T09:03:18.336Z",
+   "decided_in_ms": 1221,
+   "published_at": "2026-10-01T09:03:18.352Z",
    "status": "PUBLISHED",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-00450",
+   "action_id": "A-00454",
    "decision_id": "D-01128",
    "user_id": "U-01903",
    "trigger_event_id": "96b85a30-a7fb-4c55-99c7-14da37b5b60b",
-   "published_at": "2026-10-01T09:03:18.336Z",
+   "published_at": "2026-10-01T09:03:18.352Z",
+   "goal_id": "G08",
+   "type": "home_page",
+   "dialect": "d2",
+   "hero_title_id": "T0521",
+   "rows": [
+    {
+     "row_type": "new_releases",
+     "title_ids": [
+      "T1680",
+      "T0545",
+      "T0676",
+      "T0552",
+      "T1691",
+      "T0535",
+      "T0584",
+      "T0596",
+      "T1707",
+      "T1730"
+     ]
+    },
+    {
+     "row_type": "popular_in_dialect",
+     "title_ids": [
+      "T1677",
+      "T1678",
+      "T0526",
+      "T1679",
+      "T0525",
+      "T0536",
+      "T0531",
+      "T0528",
+      "T1683",
+      "T1681"
+     ]
+    },
+    {
+     "row_type": "because_you_watched",
+     "title_ids": [
+      "T0533",
+      "T0548",
+      "T0556",
+      "T0568",
+      "T0566",
+      "T1687",
+      "T0701",
+      "T1710",
+      "T0612",
+      "T0609"
+     ]
+    },
+    {
+     "row_type": "genre",
+     "title_ids": [
+      "T0534",
+      "T1709",
+      "T0565",
+      "T0547",
+      "T0567",
+      "T0899",
+      "T1696",
+      "T0559",
+      "T0744",
+      "T0562"
+     ]
+    }
+   ]
+  },
+  {
+   "action_id": "A-00455",
+   "decision_id": "D-01128",
+   "user_id": "U-01903",
+   "trigger_event_id": "96b85a30-a7fb-4c55-99c7-14da37b5b60b",
+   "published_at": "2026-10-01T09:03:18.352Z",
    "goal_id": "G08",
    "type": "push",
-   "send_at": "2026-10-02T13:30:00.000Z",
+   "send_at": "2026-10-01T13:30:00.000Z",
    "title_id": "T0545",
    "dialect": "d2",
    "text": {
     "title": "New in D2: Piya Moha",
-    "body": "Piya Moha came out 28 days ago. Start watching now."
+    "body": "Piya Moha came out 27 days ago. Start watching now."
    },
    "deeplink": "ott://title/T0545"
   }
@@ -582,7 +707,8 @@
     "message_delivered": 1
    },
    "actions": [
-    "A-00450"
+    "A-00454",
+    "A-00455"
    ]
   }
  ]

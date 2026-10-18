@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-03529",
   "active_goal": {
-   "instance_id": "G-01049",
+   "instance_id": "G-01047",
    "goal_id": "G01",
    "name": "first_play_24h",
    "started_at": "2026-10-01T14:21:44.916Z",
@@ -47,15 +47,17 @@
    },
    "dialect": {
     "value": {
-     "used": null,
-     "source": "none",
+     "used": "d2",
+     "source": "app_setting_latest",
      "conflicts": [],
-     "page_dialect": null,
-     "message_dialect": null
+     "page_dialect": "d2",
+     "message_dialect": "d2"
     },
-    "source": "none",
+    "source": "app_setting_latest",
     "observed_at": "2026-10-01T14:21:45.398Z",
-    "evidence": [],
+    "evidence": [
+     "event:a78c2199-21c3-435a-b24d-4ee8016763fb"
+    ],
     "note": ""
    },
    "app_language": {
@@ -178,7 +180,7 @@
    "D-01874"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T14:21:45.398Z",
+  "updated_at": "2026-10-01T14:21:45.403Z",
   "version": 3
  },
  "decisions": [
@@ -199,7 +201,7 @@
    "goal": {
     "id": "G01",
     "name": "first_play_24h",
-    "instance_id": "G-01049",
+    "instance_id": "G-01047",
     "started_at": "2026-10-01T14:21:44.916Z",
     "deadline": "2026-10-02T14:21:44.916Z",
     "success_signal": "play_started (any title) within 24h",
@@ -381,8 +383,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T14:21:44.917Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T14:21:44.921Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -403,7 +405,7 @@
    "goal": {
     "id": "G01",
     "name": "first_play_24h",
-    "instance_id": "G-01049",
+    "instance_id": "G-01047",
     "started_at": "2026-10-01T14:21:44.916Z",
     "deadline": "2026-10-02T14:21:44.916Z",
     "success_signal": "play_started (any title) within 24h",
@@ -414,10 +416,10 @@
    "no_goal_reason": null,
    "action": "NO_ACTION",
    "actions": [],
-   "no_action_reason": "goal G01 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
-    "used": null,
-    "source": "none",
+    "used": "d2",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -430,6 +432,12 @@
      "ref": "trigger:26fe829a-dce9-4d4d-901b-17956149b2f9",
      "source": "event",
      "observed_at": "2026-10-01T14:21:45.398Z",
+     "age_s": 0
+    },
+    {
+     "ref": "event:a78c2199-21c3-435a-b24d-4ee8016763fb",
+     "source": "app_setting_latest",
+     "observed_at": "2026-10-01T14:21:44.916Z",
      "age_s": 0
     },
     {
@@ -469,13 +477,13 @@
     },
     "dialect": {
      "value": {
-      "used": null,
-      "source": "none",
+      "used": "d2",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": null
+      "page_dialect": "d2",
+      "message_dialect": "d2"
      },
-     "source": "none",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T14:21:45.398Z"
     },
     "app_language": {
@@ -554,6 +562,7 @@
     }
    },
    "assumptions": [
+    "this open carried no app dialect; used the app setting d2 seen at 2026-10-01T14:21:44.916Z",
     "no profile row; status 'never' inferred from signup_completed with no purchase",
     "events can arrive late; 'no play' means none received yet"
    ],
@@ -585,8 +594,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 0,
-   "published_at": "2026-10-01T14:21:45.398Z",
+   "decided_in_ms": 5,
+   "published_at": "2026-10-01T14:21:45.403Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -596,7 +605,7 @@
   {
    "user_id": "U-03529",
    "arm": "holdout",
-   "goal_instance_id": "G-01049",
+   "goal_instance_id": "G-01047",
    "goal_id": "G01",
    "goal_name": "first_play_24h",
    "started_at": "2026-10-01T14:21:44.916Z",

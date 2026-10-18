@@ -48,7 +48,9 @@
     "value": {
      "used": "d2",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d2"
     },
@@ -207,13 +209,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (profile)"
+  ],
   "last_session_id": "d0e10ebe-3c58-473c-ac70-88eb3b931d18",
   "decisions": [
    "D-00307"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T04:15:35.893Z",
+  "updated_at": "2026-10-01T04:15:35.895Z",
   "version": 2
  },
  "decisions": [
@@ -249,12 +253,14 @@
    "dialect": {
     "used": "d2",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 98 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 98 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -332,7 +338,9 @@
      "value": {
       "used": "d2",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d2"
      },
@@ -437,9 +445,11 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d2 (profile)"
+   ],
    "eligibility": {
     "goal": "G08",
     "reason": "active subscriber",
@@ -466,8 +476,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T04:15:35.893Z",
+   "decided_in_ms": 4,
+   "published_at": "2026-10-01T04:15:35.895Z",
    "status": "NO_ACTION",
    "during_surge": false
   }

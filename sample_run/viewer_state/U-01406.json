@@ -2,62 +2,32 @@
  "state": {
   "user_id": "U-01406",
   "active_goal": {
-   "instance_id": "G-01251",
-   "goal_id": "G05",
-   "name": "first_paid_7d",
-   "started_at": "2026-10-01T15:15:46.506Z",
-   "deadline": "2026-10-08T15:15:46.506Z",
-   "success_signal": "purchase_completed (is_trial = false) within 168h",
+   "instance_id": "G-00696",
+   "goal_id": "G12",
+   "name": "return_after_absence_7d",
+   "started_at": "2026-10-01T10:04:44.687Z",
+   "deadline": "2026-10-08T10:04:44.687Z",
+   "success_signal": "play_started (any title) within 168h",
    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "eligibility_reason": "never had a paid plan",
+   "eligibility_reason": "no visit for 14 days before this open",
    "evidence": [
-    "profile:U-01406@2026-09-29T14:06:32.453Z"
+    "event:3fb39787-6bbd-439d-a29c-cb478445130c"
    ],
    "context": {},
    "shadow": true,
    "outcome": {
-    "verdict": "failed",
-    "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
-    "success_event_id": null,
-    "success_at": null,
+    "verdict": "succeeded",
+    "reason": "play_started matched 'any title'",
+    "success_event_id": "oua-009549",
+    "success_at": "2026-10-01T10:07:34.687Z",
     "attribution": "holdout_no_action",
     "exposure": {},
     "rule_version_at_judgement": "goals.json@2026-09-30"
    }
   },
-  "goal_history": [
-   {
-    "instance_id": "G-00696",
-    "goal_id": "G12",
-    "name": "return_after_absence_7d",
-    "started_at": "2026-10-01T10:04:44.687Z",
-    "deadline": "2026-10-08T10:04:44.687Z",
-    "success_signal": "play_started (any title) within 168h",
-    "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-    "eligibility_reason": "no visit for 14 days before this open",
-    "evidence": [
-     "event:3fb39787-6bbd-439d-a29c-cb478445130c"
-    ],
-    "context": {},
-    "shadow": true,
-    "closed_at": "2026-10-01T15:15:46.506Z",
-    "close_reason": "no_longer_eligible:visited 0 days ago",
-    "close_event_id": null,
-    "outcome": {
-     "verdict": "succeeded",
-     "reason": "play_started matched 'any title'",
-     "success_event_id": "oua-009542",
-     "success_at": "2026-10-01T10:07:34.687Z",
-     "attribution": "holdout_no_action",
-     "exposure": {},
-     "rule_version_at_judgement": "goals.json@2026-09-30"
-    }
-   }
-  ],
+  "goal_history": [],
   "learnings": [
-   "2026-10-01T15:15:46.506Z G12 closed early: visited 0 days ago",
-   "2026-10-01T10:07:34.687Z judged: G12 succeeded (holdout_no_action; nothing of ours was seen). play_started matched 'any title'",
-   "2026-10-08T15:15:46.506Z judged: G05 failed (holdout_no_action; nothing of ours was seen). no purchase_completed matching 'is_trial = false' before the deadline"
+   "2026-10-01T10:07:34.687Z judged: G12 succeeded (holdout_no_action; nothing of ours was seen). play_started matched 'any title'"
   ],
   "arm": "holdout",
   "facts": {
@@ -224,7 +194,7 @@
    "D-02212"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:15:46.508Z",
+  "updated_at": "2026-10-01T15:15:46.513Z",
   "version": 3
  },
  "decisions": [
@@ -438,8 +408,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T10:04:44.689Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T10:04:44.694Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -458,14 +428,14 @@
     "device_clock_trusted": true
    },
    "goal": {
-    "id": "G05",
-    "name": "first_paid_7d",
-    "instance_id": "G-01251",
-    "started_at": "2026-10-01T15:15:46.506Z",
-    "deadline": "2026-10-08T15:15:46.506Z",
-    "success_signal": "purchase_completed (is_trial = false) within 168h",
+    "id": "G12",
+    "name": "return_after_absence_7d",
+    "instance_id": "G-00696",
+    "started_at": "2026-10-01T10:04:44.687Z",
+    "deadline": "2026-10-08T10:04:44.687Z",
+    "success_signal": "play_started (any title) within 168h",
     "rule_version": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-    "committed_now": true,
+    "committed_now": false,
     "shadow": true
    },
    "no_goal_reason": null,
@@ -628,10 +598,10 @@
     "dialect: app_setting=d1, profile=d6, deeplink=None -> used d1 (app_setting)"
    ],
    "eligibility": {
-    "goal": "G05",
-    "reason": "never had a paid plan",
+    "goal": "G12",
+    "reason": "active goal kept: its window is open until 2026-10-08T10:04",
     "evidence": [
-     "profile:U-01406@2026-09-29T14:06:32.453Z"
+     "event:3fb39787-6bbd-439d-a29c-cb478445130c"
     ]
    },
    "model": {
@@ -653,8 +623,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 2,
-   "published_at": "2026-10-01T15:15:46.508Z",
+   "decided_in_ms": 7,
+   "published_at": "2026-10-01T15:15:46.513Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -671,30 +641,11 @@
    "deadline": "2026-10-08T10:04:44.687Z",
    "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
    "rule_version_at_judgement": "goals.json@2026-09-30",
-   "closed_early": "no_longer_eligible:visited 0 days ago",
+   "closed_early": null,
    "verdict": "succeeded",
    "reason": "play_started matched 'any title'",
-   "success_event_id": "oua-009542",
+   "success_event_id": "oua-009549",
    "success_at": "2026-10-01T10:07:34.687Z",
-   "attribution": "holdout_no_action",
-   "exposure": {},
-   "actions": []
-  },
-  {
-   "user_id": "U-01406",
-   "arm": "holdout",
-   "goal_instance_id": "G-01251",
-   "goal_id": "G05",
-   "goal_name": "first_paid_7d",
-   "started_at": "2026-10-01T15:15:46.506Z",
-   "deadline": "2026-10-08T15:15:46.506Z",
-   "rule_version_at_commit": "goals.json@2026-09-30+G03@2026-10-01T08:30:00.000Z",
-   "rule_version_at_judgement": "goals.json@2026-09-30",
-   "closed_early": null,
-   "verdict": "failed",
-   "reason": "no purchase_completed matching 'is_trial = false' before the deadline",
-   "success_event_id": null,
-   "success_at": null,
    "attribution": "holdout_no_action",
    "exposure": {},
    "actions": []

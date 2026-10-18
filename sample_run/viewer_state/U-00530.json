@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-00530",
   "active_goal": {
-   "instance_id": "G-01173",
+   "instance_id": "G-01171",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T15:04:34.400Z",
@@ -51,7 +51,9 @@
     "value": {
      "used": "d4",
      "source": "profile",
-     "conflicts": [],
+     "conflicts": [
+      "app_setting:unknown"
+     ],
      "page_dialect": null,
      "message_dialect": "d4"
     },
@@ -202,13 +204,15 @@
     "note": ""
    }
   },
-  "conflicts": [],
+  "conflicts": [
+   "dialect: app_setting=None, profile=d4, deeplink=None -> used d4 (profile)"
+  ],
   "last_session_id": "efe9eee8-0bb9-4136-965f-b594d5507046",
   "decisions": [
    "D-02089"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T15:04:34.401Z",
+  "updated_at": "2026-10-01T15:04:34.403Z",
   "version": 2
  },
  "decisions": [
@@ -229,7 +233,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01173",
+    "instance_id": "G-01171",
     "started_at": "2026-10-01T15:04:34.400Z",
     "deadline": "2026-10-04T15:04:34.400Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -244,12 +248,14 @@
    "dialect": {
     "used": "d4",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 31 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 31 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -309,7 +315,9 @@
      "value": {
       "used": "d4",
       "source": "profile",
-      "conflicts": [],
+      "conflicts": [
+       "app_setting:unknown"
+      ],
       "page_dialect": null,
       "message_dialect": "d4"
      },
@@ -408,9 +416,11 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "app dialect missing on the trigger and on every earlier event; profile preference used for messages only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d4, deeplink=None -> used d4 (profile)"
+   ],
    "eligibility": {
     "goal": "G07",
     "reason": "unfinished series guka-kosusa-d2 (1/41 episodes), last played 2026-09-23",
@@ -437,8 +447,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T15:04:34.401Z",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T15:04:34.403Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": true
   },
@@ -456,7 +466,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01173",
+    "instance_id": "G-01171",
     "started_at": "2026-10-01T15:04:34.400Z",
     "deadline": "2026-10-04T15:04:34.400Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -471,7 +481,9 @@
    "dialect": {
     "used": "d4",
     "source": "profile",
-    "conflicts": []
+    "conflicts": [
+     "app_setting:unknown"
+    ]
    },
    "content": [],
    "confidence": {
@@ -482,7 +494,7 @@
     {
      "ref": "decision:D-02089",
      "source": "store",
-     "observed_at": "2026-10-01T15:04:34.401Z"
+     "observed_at": "2026-10-01T15:04:34.403Z"
     }
    ],
    "assumptions": [],
@@ -516,7 +528,7 @@
   {
    "user_id": "U-00530",
    "arm": "holdout",
-   "goal_instance_id": "G-01173",
+   "goal_instance_id": "G-01171",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T15:04:34.400Z",

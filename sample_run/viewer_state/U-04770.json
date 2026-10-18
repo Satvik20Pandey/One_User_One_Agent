@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-04770",
   "active_goal": {
-   "instance_id": "G-01394",
+   "instance_id": "G-01389",
    "goal_id": "G08",
    "name": "try_new_release_7d",
    "started_at": "2026-10-01T16:39:48.300Z",
@@ -228,7 +228,7 @@
    "D-02506"
   ],
   "actions": [],
-  "updated_at": "2026-10-01T16:39:49.439Z",
+  "updated_at": "2026-10-01T16:39:49.450Z",
   "version": 3
  },
  "decisions": [
@@ -249,7 +249,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01394",
+    "instance_id": "G-01389",
     "started_at": "2026-10-01T16:39:48.300Z",
     "deadline": "2026-10-08T16:39:48.300Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -263,7 +263,7 @@
    "no_action_reason": "viewer is in the randomized holdout arm",
    "dialect": {
     "used": "d1",
-    "source": "profile",
+    "source": "app_setting_latest",
     "conflicts": []
    },
    "content": [],
@@ -277,6 +277,12 @@
      "source": "event",
      "observed_at": "2026-10-01T16:39:48.300Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:52082357-8295-4154-a5a0-4bb77191ac77",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-29T04:13:19.309Z",
+     "age_s": 217588
     },
     {
      "ref": "profile:U-04770@2026-09-29T10:37:13.490Z",
@@ -321,12 +327,6 @@
      "age_s": 452919
     },
     {
-     "ref": "event:52082357-8295-4154-a5a0-4bb77191ac77",
-     "source": "event",
-     "observed_at": "2026-09-29T04:13:19.309Z",
-     "age_s": 217588
-    },
-    {
      "ref": "events:U-04770:count=118",
      "source": "derived",
      "observed_at": "2026-10-01T16:39:48.300Z",
@@ -346,12 +346,12 @@
     "dialect": {
      "value": {
       "used": "d1",
-      "source": "profile",
+      "source": "app_setting_latest",
       "conflicts": [],
-      "page_dialect": null,
+      "page_dialect": "d1",
       "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T16:39:48.300Z"
     },
     "app_language": {
@@ -449,7 +449,7 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-29T04:13:19.309Z"
    ],
    "conflicts": [],
    "eligibility": {
@@ -478,8 +478,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 3,
-   "published_at": "2026-10-01T16:39:48.303Z",
+   "decided_in_ms": 15,
+   "published_at": "2026-10-01T16:39:48.315Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   },
@@ -500,7 +500,7 @@
    "goal": {
     "id": "G08",
     "name": "try_new_release_7d",
-    "instance_id": "G-01394",
+    "instance_id": "G-01389",
     "started_at": "2026-10-01T16:39:48.300Z",
     "deadline": "2026-10-08T16:39:48.300Z",
     "success_signal": "play_started (a title released in the 30 days before the goal start) within 168h",
@@ -744,8 +744,8 @@
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T16:39:49.439Z",
+   "decided_in_ms": 15,
+   "published_at": "2026-10-01T16:39:49.450Z",
    "status": "HOLDOUT_NO_ACTION",
    "during_surge": false
   }
@@ -755,7 +755,7 @@
   {
    "user_id": "U-04770",
    "arm": "holdout",
-   "goal_instance_id": "G-01394",
+   "goal_instance_id": "G-01389",
    "goal_id": "G08",
    "goal_name": "try_new_release_7d",
    "started_at": "2026-10-01T16:39:48.300Z",

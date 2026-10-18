@@ -2,7 +2,7 @@
  "state": {
   "user_id": "U-02814",
   "active_goal": {
-   "instance_id": "G-01427",
+   "instance_id": "G-01421",
    "goal_id": "G07",
    "name": "resume_series_3d",
    "started_at": "2026-10-01T17:01:37.155Z",
@@ -239,9 +239,9 @@
    "D-02586"
   ],
   "actions": [
-   "A-01079"
+   "A-01115"
   ],
-  "updated_at": "2026-10-01T17:01:39.837Z",
+  "updated_at": "2026-10-01T17:01:39.836Z",
   "version": 3
  },
  "decisions": [
@@ -262,7 +262,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01427",
+    "instance_id": "G-01421",
     "started_at": "2026-10-01T17:01:37.155Z",
     "deadline": "2026-10-04T17:01:37.155Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -271,18 +271,64 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "NO_ACTION",
-   "actions": [],
-   "no_action_reason": "goal G07 chosen but the open carried no app dialect, so the page the app will request is unknown; no consented message channel",
+   "action": "HOME_PAGE",
+   "actions": [
+    "HOME_PAGE"
+   ],
+   "no_action_reason": null,
    "dialect": {
-    "used": "d2",
-    "source": "profile",
-    "conflicts": []
+    "used": "d1",
+    "source": "app_setting_latest",
+    "conflicts": [
+     "profile:d2"
+    ]
    },
-   "content": [],
+   "content": [
+    "title:T1512",
+    "title:T0005",
+    "title:T0004",
+    "title:T1504",
+    "title:T1502",
+    "title:T1503",
+    "title:T0015",
+    "title:T1505",
+    "title:T0013",
+    "title:T0007",
+    "title:T0012",
+    "title:T1501",
+    "title:T0016",
+    "title:T0030",
+    "title:T0273",
+    "title:T0520",
+    "title:T0022",
+    "title:T1513",
+    "title:T1520",
+    "title:T0063",
+    "title:T0226",
+    "title:T1507",
+    "title:T1506",
+    "title:T1510",
+    "title:T0034",
+    "title:T1508",
+    "title:T1523",
+    "title:T1511",
+    "title:T0084",
+    "title:T0018",
+    "title:T0067",
+    "title:T1540",
+    "title:T0028",
+    "title:T0031",
+    "title:T0047",
+    "title:T0426",
+    "title:T1626",
+    "title:T1647",
+    "title:T0195",
+    "title:T0036",
+    "title:T0413"
+   ],
    "confidence": {
-    "value": 0.75,
-    "reason": "profile row present; 22 events of history; dialect sources agree; trigger is fresh"
+    "value": 0.55,
+    "reason": "profile row present; 22 events of history; dialect sources disagree; trigger is fresh"
    },
    "evidence": [
     {
@@ -290,6 +336,12 @@
      "source": "event",
      "observed_at": "2026-10-01T17:01:37.155Z",
      "age_s": 0
+    },
+    {
+     "ref": "event:f810438b-2430-4337-a2a0-7390367feedd",
+     "source": "app_setting_latest",
+     "observed_at": "2026-09-26T13:40:20.470Z",
+     "age_s": 444076
     },
     {
      "ref": "profile:U-02814@2026-09-29T07:01:06.626Z",
@@ -346,13 +398,15 @@
     },
     "dialect": {
      "value": {
-      "used": "d2",
-      "source": "profile",
-      "conflicts": [],
-      "page_dialect": null,
-      "message_dialect": "d2"
+      "used": "d1",
+      "source": "app_setting_latest",
+      "conflicts": [
+       "profile:d2"
+      ],
+      "page_dialect": "d1",
+      "message_dialect": "d1"
      },
-     "source": "profile",
+     "source": "app_setting_latest",
      "observed_at": "2026-10-01T17:01:37.155Z"
     },
     "app_language": {
@@ -458,9 +512,12 @@
     }
    },
    "assumptions": [
-    "app dialect missing on the trigger; profile preference used for messages only"
+    "this open carried no app dialect; used the app setting d1 seen at 2026-09-26T13:40:20.470Z",
+    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
    ],
-   "conflicts": [],
+   "conflicts": [
+    "dialect: app_setting=None, profile=d2, deeplink=None -> used d1 (app_setting_latest)"
+   ],
    "eligibility": {
     "goal": "G07",
     "reason": "unfinished series patena-d1 (1/20 episodes), last played 2026-09-25",
@@ -477,19 +534,26 @@
     "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
    },
    "checks": {
-    "passed": [],
+    "passed": [
+     "holdout",
+     "eligibility",
+     "dialect",
+     "availability",
+     "page_rules",
+     "duplicate_action"
+    ],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 8,
+    "tool_calls": 11,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 1,
-   "published_at": "2026-10-01T17:01:37.156Z",
-   "status": "NO_ACTION",
+   "decided_in_ms": 9,
+   "published_at": "2026-10-01T17:01:37.164Z",
+   "status": "PUBLISHED",
    "during_surge": false
   },
   {
@@ -509,7 +573,7 @@
    "goal": {
     "id": "G07",
     "name": "resume_series_3d",
-    "instance_id": "G-01427",
+    "instance_id": "G-01421",
     "started_at": "2026-10-01T17:01:37.155Z",
     "deadline": "2026-10-04T17:01:37.155Z",
     "success_signal": "play_started (same content_slug as the unfinished series) within 72h",
@@ -518,11 +582,9 @@
     "shadow": false
    },
    "no_goal_reason": null,
-   "action": "HOME_PAGE",
-   "actions": [
-    "HOME_PAGE"
-   ],
-   "no_action_reason": null,
+   "action": "NO_ACTION",
+   "actions": [],
+   "no_action_reason": "home page A-01115 for this viewer is still live (published 2026-10-01T17:01:37.164Z); nothing to change",
    "dialect": {
     "used": "d1",
     "source": "app_setting",
@@ -530,49 +592,7 @@
      "profile:d2"
     ]
    },
-   "content": [
-    "title:T0012",
-    "title:T1512",
-    "title:T0005",
-    "title:T0004",
-    "title:T1504",
-    "title:T1502",
-    "title:T1503",
-    "title:T0015",
-    "title:T1505",
-    "title:T0013",
-    "title:T0007",
-    "title:T1501",
-    "title:T0016",
-    "title:T0030",
-    "title:T0273",
-    "title:T0520",
-    "title:T0022",
-    "title:T1513",
-    "title:T1520",
-    "title:T0063",
-    "title:T0226",
-    "title:T1507",
-    "title:T1506",
-    "title:T1510",
-    "title:T0034",
-    "title:T1508",
-    "title:T1523",
-    "title:T1511",
-    "title:T0084",
-    "title:T0018",
-    "title:T0067",
-    "title:T1540",
-    "title:T0028",
-    "title:T0031",
-    "title:T0047",
-    "title:T0426",
-    "title:T1626",
-    "title:T1647",
-    "title:T0195",
-    "title:T0036",
-    "title:T0413"
-   ],
+   "content": [],
    "confidence": {
     "value": 0.55,
     "reason": "profile row present; 23 events of history; dialect sources disagree; trigger is fresh"
@@ -761,9 +781,7 @@
      "observed_at": "2026-10-01T17:01:39.833Z"
     }
    },
-   "assumptions": [
-    "evidence confidence 0.55 is below the 0.6 a push or WhatsApp needs; home page only"
-   ],
+   "assumptions": [],
    "conflicts": [
     "dialect: app_setting=d1, profile=d2, deeplink=d1 -> used d1 (app_setting)"
    ],
@@ -775,53 +793,45 @@
     ]
    },
    "model": {
-    "provider": "mock",
+    "provider": null,
     "calls": 0,
     "used": false,
     "rejected": null,
     "failure": null,
-    "skipped": "not needed: the hero and the copy were decided by evidence or an approved template"
+    "skipped": null
    },
    "checks": {
-    "passed": [
-     "holdout",
-     "eligibility",
-     "dialect",
-     "availability",
-     "page_rules",
-     "duplicate_action"
-    ],
+    "passed": [],
     "failed": []
    },
    "budget": {
     "model_calls": 0,
-    "tool_calls": 11,
+    "tool_calls": 6,
     "simulated_wait_ms": 0
    },
    "fallback_used": null,
    "queue_wait_ms": 0,
-   "decided_in_ms": 4,
-   "published_at": "2026-10-01T17:01:39.837Z",
-   "status": "PUBLISHED",
+   "decided_in_ms": 3,
+   "published_at": "2026-10-01T17:01:39.836Z",
+   "status": "NO_ACTION",
    "during_surge": false
   }
  ],
  "actions": [
   {
-   "action_id": "A-01079",
-   "decision_id": "D-02586",
+   "action_id": "A-01115",
+   "decision_id": "D-02584",
    "user_id": "U-02814",
-   "trigger_event_id": "022eaf3d-1b1c-4c2f-a3b4-7bdf5b725264",
-   "published_at": "2026-10-01T17:01:39.837Z",
+   "trigger_event_id": "7cd0e047-e353-45d7-be82-54a914c70cff",
+   "published_at": "2026-10-01T17:01:37.164Z",
    "goal_id": "G07",
    "type": "home_page",
    "dialect": "d1",
-   "hero_title_id": "T0012",
+   "hero_title_id": "T1512",
    "rows": [
     {
      "row_type": "next_episode",
      "title_ids": [
-      "T1512",
       "T0005",
       "T0004",
       "T1504",
@@ -830,7 +840,8 @@
       "T0015",
       "T1505",
       "T0013",
-      "T0007"
+      "T0007",
+      "T0012"
      ]
     },
     {
@@ -885,7 +896,7 @@
   {
    "user_id": "U-02814",
    "arm": "agent",
-   "goal_instance_id": "G-01427",
+   "goal_instance_id": "G-01421",
    "goal_id": "G07",
    "goal_name": "resume_series_3d",
    "started_at": "2026-10-01T17:01:37.155Z",
@@ -900,7 +911,7 @@
    "attribution": "published_but_never_seen",
    "exposure": {},
    "actions": [
-    "A-01079"
+    "A-01115"
    ]
   }
  ]
